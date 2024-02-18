@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Jelmer Poelstra">
+<meta name="dcterms.date" content="2024-02-19">
 
-<title>Practical Computing Skills for Omics data - About this website</title>
+<title>pracs-sp24 - About this site and course</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -39,6 +41,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -79,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="./index.html">
-    <span class="navbar-title">Practical Computing Skills for Omics data</span>
+    <span class="navbar-title">pracs-sp24</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -93,11 +97,82 @@ ul.task-list li input[type="checkbox"] {
 </i> 
 <span class="menu-text"> </span></a>
   </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-modulesweeks" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Modules/Weeks</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-modulesweeks">    
+        <li>
+    <a class="dropdown-item" href="./week0/overview.html">
+ <span class="dropdown-text">Pre-course</span></a>
+  </li>  
+        <li class="dropdown-header">Week 1</li>
+        <li class="dropdown-header">Week 2</li>
+        <li class="dropdown-header">Week 3</li>
+        <li class="dropdown-header">Week 4</li>
+        <li class="dropdown-header">Week 5</li>
+        <li class="dropdown-header">Week 6</li>
+        <li class="dropdown-header">Week 7</li>
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-final-project" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Final project</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-final-project">    
+        <li class="dropdown-header">General info</li>
+        <li class="dropdown-header">Checkpoint I: Proposal</li>
+        <li class="dropdown-header">Checkpoint II: Progress report</li>
+        <li class="dropdown-header">Checkpoint III: Presentation</li>
+        <li class="dropdown-header">Checkpoint IV: Submission</li>
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-topic-overviews" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Topic overviews</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-topic-overviews">    
+        <li class="dropdown-header">Unix shell</li>
+        <li class="dropdown-header">Shell scripting</li>
+        <li class="dropdown-header">OSC, Slurm, and Conda</li>
+        <li class="dropdown-header">Markdown</li>
+        <li class="dropdown-header">Git</li>
+        <li class="dropdown-header">Nextflow</li>
+    </ul>
+  </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference-pages" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Reference Pages</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-reference-pages">    
+        <li>
+    <a class="dropdown-item" href="./ref/glossary.html">
+ <span class="dropdown-text">Glossary</span></a>
+  </li>  
+        <li class="dropdown-header">List of Further Resources</li>
+    </ul>
+  </li>
   <li class="nav-item">
     <a class="nav-link active" href="./about.html" aria-current="page"> 
-<span class="menu-text">About this website</span></a>
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://osu.instructure.com/courses/163340"> 
+<span class="menu-text"><i class="fa-solid fa-graduation-cap" aria-label="graduation-cap"></i></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://ondemand.osc.edu"> 
+<span class="menu-text"><i class="fa-solid fa-desktop" aria-label="desktop"></i></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://library.ohio-state.edu/record=b8624007~S7"> 
+<span class="menu-text"><i class="fa-solid fa-book" aria-label="book"></i></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://library.ohio-state.edu/record=b9490023~S7"> 
+<span class="menu-text"><i class="fa-solid fa-book-open" aria-label="book-open"></i></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -126,21 +201,40 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#course-description" id="toc-course-description" class="nav-link active" data-scroll-target="#course-description">Course description</a></li>
+  <li><a href="#more-information" id="toc-more-information" class="nav-link" data-scroll-target="#more-information">More information</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">About this website</h1>
+<h1 class="title">About this site and course</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jelmer Poelstra </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 19, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -150,9 +244,44 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>This the website for the course …</p>
+<hr>
+<hr style="height:1pt; visibility:hidden;">
+<p>This is the GitHub website for the course <strong>Practical Computing Skills for Omics Data</strong> (PLNTPTH 6193), a 2-credit Independent Studies course at Ohio State University during the Spring semester of 2024.</p>
+<p>The course is taught by by <a href="mailto:poelstra.1@osu.edu">Jelmer Poelstra</a> from OSU’s <a href="https://mcic.osu.edu">Molecular and Cellular Imaging Center (MCIC)</a> for the <a href="https://plantpath.osu.edu">Department of Plant Pathology</a>.</p>
+<hr style="height:1pt; visibility:hidden;">
+<section id="course-description" class="level3">
+<h3 class="anchored" data-anchor-id="course-description">Course description</h3>
+<p>As datasets have rapidly grown larger in biology, coding has been recognized as an increasingly important skill for biologists. Yet in fact, basic coding skills and “computational thinking” are highly beneficial for any scientist, paving the way for more efficient, robust, and reproducible research.</p>
+<p>In this course, students will gain hands-on experience with a set of general and versatile tools for day-to-day work with data sets small and large alike. The course’s focus is on foundational skills such as working in the Unix shell, coding in Python, organizing, documenting, version-controlling and sharing research, submitting jobs to a compute cluster, and building flexible workflows. Taken together, this will allow students to reproduce their own work, and have others reproduce their work, with as little as a single command.</p>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+<section id="more-information" class="level3">
+<h3 class="anchored" data-anchor-id="more-information">More information</h3>
+<section id="topics-taught" class="level4">
+<h4 class="anchored" data-anchor-id="topics-taught">Topics taught</h4>
+<ul>
+<li>Shell basics and tools</li>
+<li>Shell scripting</li>
+<li>Computing at OSC with Slurm batch jobs and Conda software management</li>
+<li>Version control with Git and GitHub</li>
+<li>Project documentation with Markdown and project organization</li>
+<li>Reproducible workflows with Nextflow</li>
+</ul>
+</section>
+<section id="course-books" class="level4">
+<h4 class="anchored" data-anchor-id="course-books">Course books</h4>
+<ul>
+<li>Allesina S, Wilmes M (2019). <em><a href="https://library.ohio-state.edu/record=b8624007~S7">Computing Skills for Biologists</a></em>. Princeton UP.</li>
+<li>Buffalo V (2015). <em><a href="https://library.ohio-state.edu/record=b9490023~S7">Bioinformatics Data Skills: Reproducible and Robust Research with Open Source Tools</a></em>. O’Reilly Media, Inc.</li>
+</ul>
+</section>
+<section id="carmencanvas-website" class="level4">
+<h4 class="anchored" data-anchor-id="carmencanvas-website">CarmenCanvas website</h4>
+<p>If you are a student in this course, you should also refer to the <a href="https://osu.instructure.com/courses/163340">CarmenCanvas site for this course</a>.</p>
 
 
+</section>
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -1,15 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://jelmerp.github.io/pracs-sp24/week3/overview.html</loc>
+    <lastmod>2024-02-18T02:55:57.219Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jelmerp.github.io/pracs-sp24/week5/overview.html</loc>
+    <lastmod>2024-02-18T02:56:20.220Z</lastmod>
+  </url>
+  <url>
     <loc>https://jelmerp.github.io/pracs-sp24/about.html</loc>
-    <lastmod>2024-02-18T01:28:21.387Z</lastmod>
+    <lastmod>2024-02-18T14:24:16.731Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jelmerp.github.io/pracs-sp24/week7/overview.html</loc>
+    <lastmod>2024-02-18T02:56:41.748Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jelmerp.github.io/pracs-sp24/week0/overview.html</loc>
+    <lastmod>2024-02-18T14:41:11.733Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jelmerp.github.io/pracs-sp24/week6/overview.html</loc>
+    <lastmod>2024-02-18T02:56:30.547Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jelmerp.github.io/pracs-sp24/ref/glossary.html</loc>
+    <lastmod>2024-02-18T14:25:23.852Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jelmerp.github.io/pracs-sp24/week1/overview.html</loc>
+    <lastmod>2024-02-18T02:55:29.383Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jelmerp.github.io/pracs-sp24/week0/osc-setup.html</loc>
+    <lastmod>2024-02-18T02:37:00.822Z</lastmod>
   </url>
   <url>
     <loc>https://jelmerp.github.io/pracs-sp24/index.html</loc>
-    <lastmod>2024-02-18T01:28:39.323Z</lastmod>
+    <lastmod>2024-02-18T14:42:10.650Z</lastmod>
   </url>
   <url>
-    <loc>https://jelmerp.github.io/pracs-sp24/glossary.html</loc>
-    <lastmod>2024-02-18T01:28:21.388Z</lastmod>
+    <loc>https://jelmerp.github.io/pracs-sp24/week2/overview.html</loc>
+    <lastmod>2024-02-18T02:55:44.679Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jelmerp.github.io/pracs-sp24/week4/overview.html</loc>
+    <lastmod>2024-02-18T02:56:08.677Z</lastmod>
   </url>
 </urlset>

@@ -1,0 +1,23 @@
+[
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About this website",
+    "section": "",
+    "text": "This the website for the course …\n\n\n\n Back to top"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Practical Computing Skills for Omics data",
+    "section": "",
+    "text": "Back to top"
+  },
+  {
+    "objectID": "glossary.html",
+    "href": "glossary.html",
+    "title": "Untitled",
+    "section": "",
+    "text": "KEY TERMS\n\n\n\n\n\n\n\n\n\n\n\n\n\n Buffalo\n\n Book: Bioinformatics Data Skills (Buffalo 2015)\n\n\n\n\n\n\n\n\n\n\n\n CSB\n\n Book: Computing Skills for Biologists (Allesina & Wilmes 2019)\n\n\n\n\n\n\n\n\n\n\n\n git\n\n Software for version control\n\n\n\n\n\n\n\n\n\n\n\n Github\n\n A website that hosts git projects, which are known as repositories\n\n\n\n\n\n\n\n\n\n\n\n Markdown\n\n A simple text markup language (think LaTeX or HTML but much simpler)\n\n\n\n\n\n\n\n\n\n\n\n OSC\n\n The Ohio Supercomputer Center\n\n\n\n\n\n\n\n\n\n\n\n shell\n\n The Unix shell is a command-line interface to your operating system that runs within a terminal.\n There are several shell flavors, and in this course, we will be working with the bash shell.\n\n\n\n\n\n\n\n\n\n\n\n Nextflow\n\n Software for automated workflow (pipeline) management\n\n\n\n\n\n\n\n\n\n\n\n Slurm\n\n The compute job scheduling system used at the Ohio Supercomputer Center\n\n\n\n\n\n\n\n\n\n\n\n Unix\n\n A family of operating systems that includes Mac and Linux, but not Windows\n\n\n\n\n\n\n\n\n\n\n\n ADDITIONAL TERMS\n\n\n\n\n\n\n\n\n\n\n\n\n\n CLI\n\n Command-line Interface – a software interface with which one interacts by typing commands (cf. GUI)\n\n\n\n\n\n\n\n\n\n\n\n dir\n\n Short for “directory”, which is Unix-speak for a folder on your computer\n\n\n\n\n\n\n\n\n\n\n\n GUI\n\n Graphical User Interface – a visual software interface with which one interacts by clicking\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n Back to top"
+  }
+]

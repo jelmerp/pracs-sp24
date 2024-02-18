@@ -1,0 +1,8 @@
+---
+title: "Practical Computing Skills for Omics data"
+subtitle: "PLNTPTH 6193 – Spring 2024 S2"
+number-sections: false
+toc: false
+---
+
+<hr style="height:1pt; visibility:hidden;" />

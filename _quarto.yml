@@ -1,0 +1,38 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Practical Computing Skills for Omics data"
+  site-url: https://jelmerp.github.io/cabana-workshop
+  repo-url: https://github.com/jelmerp/cabana-workshop
+  page-navigation: true
+  back-to-top-navigation: true
+  navbar:
+    left:
+      - href: index.qmd
+        icon: house
+        text: " "
+    right:
+      - about.qmd
+    tools:
+      - icon: github
+        menu:
+          - text: Source Code
+            url:  https://github.com/jelmerp/cabana-workshop
+          - text: Report an Issue
+            url:  https://github.com/jelmerp/cabana-workshop/issues/new
+
+format:
+  html:
+    highlight-style: atom-one
+    theme: yeti
+    css: styles.css
+    toc: true
+    number-sections: true
+    number-depth: 3
+    grid:
+      body-width: 900px
+
+editor: source
+

@@ -242,7 +242,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#getting-started-with-the-shell-ch.-1.4" id="toc-getting-started-with-the-shell-ch.-1.4" class="nav-link" data-scroll-target="#getting-started-with-the-shell-ch.-1.4"><span class="header-section-number">5</span> Getting started with the shell (Ch. 1.4)</a>
   <ul class="collapse">
   <li><a href="#the-prompt" id="toc-the-prompt" class="nav-link" data-scroll-target="#the-prompt"><span class="header-section-number">5.1</span> The prompt</a></li>
-  <li><a href="#a-few-simple-commands-date-whoami-pwd" id="toc-a-few-simple-commands-date-whoami-pwd" class="nav-link" data-scroll-target="#a-few-simple-commands-date-whoami-pwd"><span class="header-section-number">5.2</span> A few simple commands: <code>date</code>, <code>whoami</code>, <code>pwd</code></a></li>
+  <li><a href="#a-few-simple-commands-date-and-pwd" id="toc-a-few-simple-commands-date-and-pwd" class="nav-link" data-scroll-target="#a-few-simple-commands-date-and-pwd"><span class="header-section-number">5.2</span> A few simple commands: <code>date</code> and <code>pwd</code></a></li>
   <li><a href="#the-cal-command-and-options-arguments" id="toc-the-cal-command-and-options-arguments" class="nav-link" data-scroll-target="#the-cal-command-and-options-arguments"><span class="header-section-number">5.3</span> The <code>cal</code> command — and options &amp; arguments</a></li>
   <li><a href="#getting-help" id="toc-getting-help" class="nav-link" data-scroll-target="#getting-help"><span class="header-section-number">5.4</span> Getting help</a></li>
   <li><a href="#cd-and-command-actions" id="toc-cd-and-command-actions" class="nav-link" data-scroll-target="#cd-and-command-actions"><span class="header-section-number">5.5</span> <code>cd</code> and command “actions”</a></li>
@@ -265,8 +265,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#standard-input-and-pipes" id="toc-standard-input-and-pipes" class="nav-link" data-scroll-target="#standard-input-and-pipes"><span class="header-section-number">7.2</span> Standard input and pipes</a></li>
   <li><a href="#selecting-columns-using-cut" id="toc-selecting-columns-using-cut" class="nav-link" data-scroll-target="#selecting-columns-using-cut"><span class="header-section-number">7.3</span> Selecting columns using <code>cut</code></a></li>
   <li><a href="#combining-cut-sort-and-uniq-to-create-a-list" id="toc-combining-cut-sort-and-uniq-to-create-a-list" class="nav-link" data-scroll-target="#combining-cut-sort-and-uniq-to-create-a-list"><span class="header-section-number">7.4</span> Combining <code>cut</code>, <code>sort</code>, and <code>uniq</code> to create a list</a></li>
-  <li><a href="#substituting-characters-using-tr" id="toc-substituting-characters-using-tr" class="nav-link" data-scroll-target="#substituting-characters-using-tr"><span class="header-section-number">7.5</span> Substituting characters using <code>tr</code></a></li>
-  <li><a href="#grep-to-print-lines-matching-a-pattern" id="toc-grep-to-print-lines-matching-a-pattern" class="nav-link" data-scroll-target="#grep-to-print-lines-matching-a-pattern"><span class="header-section-number">7.6</span> <code>grep</code> to print lines matching a pattern</a></li>
+  <li><a href="#grep-to-print-lines-matching-a-pattern" id="toc-grep-to-print-lines-matching-a-pattern" class="nav-link" data-scroll-target="#grep-to-print-lines-matching-a-pattern"><span class="header-section-number">7.5</span> <code>grep</code> to print lines matching a pattern</a></li>
+  <li><a href="#substituting-characters-using-tr" id="toc-substituting-characters-using-tr" class="nav-link" data-scroll-target="#substituting-characters-using-tr"><span class="header-section-number">7.6</span> Substituting characters using <code>tr</code></a></li>
   </ul></li>
   <li><a href="#wrap-up-the-unix-philosophy" id="toc-wrap-up-the-unix-philosophy" class="nav-link" data-scroll-target="#wrap-up-the-unix-philosophy"><span class="header-section-number">8</span> Wrap-up &amp; the Unix philosophy</a>
   <ul class="collapse">
@@ -458,29 +458,26 @@ Copying and pasting in this shell
 <p>We type our commands after the dollar sign, and then press <kbd>Enter</kbd> to execute the command. When the command has finished executing, we’ll get our prompt back and can type a new command.</p>
 <hr style="height:1pt; visibility:hidden;">
 </section>
-<section id="a-few-simple-commands-date-whoami-pwd" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="a-few-simple-commands-date-whoami-pwd"><span class="header-section-number">5.2</span> A few simple commands: <code>date</code>, <code>whoami</code>, <code>pwd</code></h3>
+<section id="a-few-simple-commands-date-and-pwd" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="a-few-simple-commands-date-and-pwd"><span class="header-section-number">5.2</span> A few simple commands: <code>date</code> and <code>pwd</code></h3>
 <p>The Unix shell comes with hundreds of “commands”: small programs that perform specific actions. If you’re familiar with R or Python, a Unix <em>command</em> is like an R/Python <em>function</em>.</p>
 <p>Let’s start with a few simple commands:</p>
 <ul>
 <li><p>The <code>date</code> command prints the current date and time:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>Thu Feb 29 14:58:19 EST 2024</code></pre></li>
-<li><p>The <code>whoami</code> (who-am-i) command prints your username:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">whoami</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="bash-out"><code>jelmer</code></pre></li>
 <li><p>The <code>pwd</code> (Print Working Directory) command prints the path to the directory you are currently located in:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>/users/PAS0471/jelmer</code></pre></li>
 </ul>
-<p>All 3 of those commands provided us with some output. That output was <strong>printed to screen</strong>, which is the default behavior for nearly every Unix command.</p>
+<p>Both of those commands provided us with some output. That output was <strong>printed to screen</strong>, which is the default behavior for nearly every Unix command.</p>
 <hr style="height:1pt; visibility:hidden;">
 </section>
 <section id="the-cal-command-and-options-arguments" class="level3" data-number="5.3">
 <h3 data-number="5.3" class="anchored" data-anchor-id="the-cal-command-and-options-arguments"><span class="header-section-number">5.3</span> The <code>cal</code> command — and options &amp; arguments</h3>
 <p>The <code>cal</code> command is another example of a command that simply prints some information to the screen, in this case a calendar. We’ll use it to learn about command <em>options</em> and <em>arguments</em>.</p>
 <p>Invoking <code>cal</code> without options or arguments will show the current month:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cal</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cal</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>    February 2024   
 Su Mo Tu We Th Fr Sa
              1  2  3
@@ -491,8 +488,8 @@ Su Mo Tu We Th Fr Sa
 <section id="option-examples" class="level4">
 <h4 class="anchored" data-anchor-id="option-examples">Option examples</h4>
 <p>Use the <em>option</em> <code>-j</code> (dash and then j) for a Julian calendar, in which day numbering is continuous instead of restarting each month:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure to leave a space between `cal` and `-j`!</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cal</span> <span class="at">-j</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make sure to leave a space between `cal` and `-j`!</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cal</span> <span class="at">-j</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>       February 2024       
 Sun Mon Tue Wed Thu Fri Sat
                  32  33  34
@@ -501,7 +498,7 @@ Sun Mon Tue Wed Thu Fri Sat
  49  50  51  52  53  54  55
  56  57  58  59  60</code></pre>
 <p>Use the <code>-3</code> option to show 3 months (adding the previous and next month):</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cal</span> <span class="at">-3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cal</span> <span class="at">-3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>    January 2024          February 2024          March 2024     
 Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa
     1  2  3  4  5  6               1  2  3                  1  2
@@ -511,7 +508,7 @@ Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa  Su Mo Tu We Th Fr Sa
 28 29 30 31           25 26 27 28 29        24 25 26 27 28 29 30
                                             31   </code></pre>
 <p>We can always combine multiple options, for example:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cal</span> <span class="at">-j</span> <span class="at">-3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cal</span> <span class="at">-j</span> <span class="at">-3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>        January 2024                February 2024                  March 2024        
 Sun Mon Tue Wed Thu Fri Sat  Sun Mon Tue Wed Thu Fri Sat  Sun Mon Tue Wed Thu Fri Sat
       1   2   3   4   5   6                   32  33  34                       61  62
@@ -521,7 +518,7 @@ Sun Mon Tue Wed Thu Fri Sat  Sun Mon Tue Wed Thu Fri Sat  Sun Mon Tue Wed Thu Fr
  28  29  30  31               56  57  58  59  60           84  85  86  87  88  89  90
                                                            91 </code></pre>
 <p>Handily, options can be “pasted together” like so (output not shown - same as above):</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cal</span> <span class="at">-j3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cal</span> <span class="at">-j3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="options-summary" class="level4">
 <h4 class="anchored" data-anchor-id="options-summary">Options summary</h4>
@@ -549,7 +546,7 @@ A more complex type of option
 <h4 class="anchored" data-anchor-id="arguments">Arguments</h4>
 <p>Whereas options change the behavior of a command, arguments typically tell the command <strong>what to operate on</strong>. Most commonly, these are file or directory paths.</p>
 <p>Admittedly, the <code>cal</code> command is not the best illustration of this general pattern — when you give it one argument, this is supposed to be the year to show a calendar for:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cal</span> 2020</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cal</span> 2020</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>                              2020                               
 
        January               February                 March       
@@ -562,7 +559,7 @@ Su Mo Tu We Th Fr Sa   Su Mo Tu We Th Fr Sa   Su Mo Tu We Th Fr Sa
 
 # [...output truncated, entire year is shown...]</code></pre>
 <p>We can also combine options and arguments:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cal</span> <span class="at">-j</span> 2020</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cal</span> <span class="at">-j</span> 2020</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>                            2020                          
 
           January                       February         
@@ -585,7 +582,7 @@ Sun Mon Tue Wed Thu Fri Sat   Sun Mon Tue Wed Thu Fri Sat
 <section id="getting-help" class="level3" data-number="5.4">
 <h3 data-number="5.4" class="anchored" data-anchor-id="getting-help"><span class="header-section-number">5.4</span> Getting help</h3>
 <p>Many commands – <em>and other command-line programs!</em> – have a <strong><code>-h</code></strong> option for help, which usually gives a concise summary of the command’s syntax, i.e.&nbsp;it’s available options and arguments:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cal</span> <span class="at">-h</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cal</span> <span class="at">-h</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>
 Usage:
  cal [options] [[[day] month] year]
@@ -612,7 +609,7 @@ Another way to see documentation: the <code>man</code> command <em>(Click to exp
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>An alternative way of getting help for Unix commands is with the <code>man</code> command:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">man</span> cal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">man</span> cal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This manual page often includes a lot more details than the <code>--help</code> output, and it is opened inside a “pager” rather than printed to screen: type <strong><kbd>q</kbd></strong> to exit the pager that <code>man</code> launches.</p>
 </div>
 </div>
@@ -626,8 +623,8 @@ Another way to see documentation: the <code>man</code> command <em>(Click to exp
 <summary>
 Solution
 </summary>
-<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print a calendar with Monday as the first day of th week (instead of the default, SUnday) </span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cal</span> <span class="at">-m</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print a calendar with Monday as the first day of th week (instead of the default, SUnday) </span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cal</span> <span class="at">-m</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>    February 2024   
 Mo Tu We Th Fr Sa Su
           1  2  3  4
@@ -644,7 +641,7 @@ Mo Tu We Th Fr Sa Su
 Solution
 </summary>
 <p>For example:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cal</span> <span class="at">--julian</span> <span class="at">--monday</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cal</span> <span class="at">--julian</span> <span class="at">--monday</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>       February 2024       
 Mon Tue Wed Thu Fri Sat Sun
              32  33  34  35
@@ -669,7 +666,7 @@ Solution
 <li>If you provide a third argument, it should be a day</li>
 </ul>
 <p>To print a calendar for April 2017:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cal</span> 4 2017</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cal</span> 4 2017</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>     April 2017     
 Su Mo Tu We Th Fr Sa
                    1
@@ -687,21 +684,21 @@ Su Mo Tu We Th Fr Sa
 <p>All the commands so far “merely” provided some information, which was printed to screen.</p>
 <p>But many commands perform another kind of <strong>action</strong>. For example, the command <strong><code>cd</code></strong> will change your <em>working</em> directory. And like many commands that perform a potentially invisible action, <code>cd</code> normally has <strong>no output</strong> at all.</p>
 <p>First, let’s check again where we are — we should be in our Home directory:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (Note: you will have a different project listed in your Home dir. This is not important.)</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (Note: you will have a different project listed in your Home dir. This is not important.)</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>/users/PAS0471/jelmer</code></pre>
 <p>Now, let’s use <code>cd</code> to move to another directory by specifying the <em>path</em> to that directory as an argument:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /fs/ess/PAS2700</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Double-check that we moved:</span></span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /fs/ess/PAS2700</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Double-check that we moved:</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>/fs/ess/PAS2700</code></pre>
 <p>In summary:</p>
 <ul>
-<li><p>Like <code>cal</code>, <code>cd</code> accepts an argument. Unlike <code>cal</code>, this argument takes the form of a path that the command should operate on, which is much more typical.</p></li>
-<li><p><code>cd</code> gives no output when it successfully changed the working directory. This is very common behavior for Unix commands that perform operations: <strong>when they succeed, they are silent</strong>.</p></li>
+<li>Like <code>cal</code>, <code>cd</code> accepts an argument. Unlike <code>cal</code>, this argument takes the form of a path that the command should operate on, which is much more typical.</li>
+<li><code>cd</code> gives no output when it successfully changed the working directory. This is very common behavior for Unix commands that perform operations: <strong>when they succeed, they are silent</strong>.</li>
 </ul>
 <p>Let’s also see what happens when <code>cd</code> does not succeed — it gives an error:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /fs/ess/PAs2700</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /fs/ess/PAs2700</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>-bash: cd: /fs/ess/PAs2700: No such file or directory</code></pre>
 <details>
 <summary>
@@ -722,12 +719,11 @@ General shell tips
 <div class="callout-body-container callout-body">
 <ul>
 <li>Everything in the shell is <strong>case-sensitive</strong>, including commands and file names.</li>
-<li><strong>Avoid spaces</strong> in file and dir names (we’ll talk more about this next week).</li>
 <li>Your <strong>cursor</strong> can be anywhere on a line (not just at the end) when you press <kbd>Enter</kbd> to execute a command!</li>
 <li>Any text that comes after a <strong><code>#</code></strong> is considered a <strong>comment</strong> instead of code!</li>
 </ul>
-<div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This entire line is a comment - you can run it and nothing will happen</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span>    <span class="co"># 'pwd' will be executed but everything after the '#' is ignored</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This entire line is a comment - you can run it and nothing will happen</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span>    <span class="co"># 'pwd' will be executed but everything after the '#' is ignored</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>/users/PAS0471/jelmer</code></pre>
 <hr style="height:1pt; visibility:hidden;">
 </div>
@@ -765,15 +761,15 @@ Basically, everything you type in the shell should start with a command. Just ty
 <li><p>Press <strong><kbd>⇧</kbd></strong> to get the previous “command” back on the prompt.</p></li>
 <li><p>Press <strong><kbd>Ctrl</kbd>+<kbd>A</kbd></strong> to move to the beginning of the line at once.</p></li>
 <li><p>Add <code>cd</code> and a space in front of the dir, and press <kbd>Enter</kbd> again.</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /fs/ess/PAS2700</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /fs/ess/PAS2700</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 </section>
 <section id="practice-with-canceling" class="level4 exercise">
 <h4 class="anchored" data-anchor-id="practice-with-canceling"><i class="fa-solid fa-user-edit" aria-label="user-edit"></i> Practice with canceling</h4>
 <p>To simulate a long-running command that we may want to abort, we can use the <code>sleep</code> command, which will make the computer wait for a specified amount of time until giving your prompt back. Run the below command and instead of waiting for the full 60 seconds, press <kbd>Ctrl</kbd> + <kbd>C</kbd> to get your prompt back sooner!</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sleep</span> 60s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sleep</span> 60s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Or, use <kbd>Ctrl</kbd> + <kbd>C</kbd> after running this example of an incomplete command (an opening parenthesis <code>(</code>):</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
@@ -866,9 +862,9 @@ Table with useful keyboard shortcuts <em>(Click to expand)</em>
 <li>Assigning and printing the value of a variable <strong>in R</strong>:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (Don't run this)</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">5</span></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (Don't run this)</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre class="styled-output"><code>[1] 5</code></pre>
 </div>
@@ -876,8 +872,8 @@ Table with useful keyboard shortcuts <em>(Click to expand)</em>
 <ul>
 <li>Assigning and printing the value of a variable <strong>in the Unix shell</strong>:</li>
 </ul>
-<div class="sourceCode" id="cb46"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="va">x</span><span class="op">=</span>5</span>
-<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="va">x</span><span class="op">=</span>5</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$x</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>5</code></pre>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -895,17 +891,17 @@ In the Unix shell code above, note that:
 <li>You need the <strong><code>echo</code></strong> command, a general command to print text, to print the value of <code>$x</code> (cf.&nbsp;in R).</li>
 </ul>
 <p>By the way, <code>echo</code> can also print literal text (as shown below) or combinations of literals and variables (next exercise):</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Welcome to PLNTPTH 6193"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Welcome to PLNTPTH 6193"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>Welcome to PLNTPTH 6193</code></pre>
 <hr style="height:1pt; visibility:hidden;">
 </div>
 </div>
 <p><strong>Environment variables</strong> are pre-existing variables that have been automatically assigned values. Two examples:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># $HOME contains the path to your Home dir:</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$HOME</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># $HOME contains the path to your Home dir:</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$HOME</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>/users/PAS0471/jelmer</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># $USER contains your user name:</span></span>
-<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$USER</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># $USER contains your user name:</span></span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="va">$USER</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>jelmer</code></pre>
 <section id="exercise-environment-variables" class="level4 exercise">
 <h4 class="anchored" data-anchor-id="exercise-environment-variables"><i class="fa-solid fa-user-edit" aria-label="user-edit"></i> <strong>Exercise</strong>: environment variables</h4>
@@ -914,8 +910,8 @@ In the Unix shell code above, note that:
 <summary>
 <em>Click to see the solution</em>
 </summary>
-<div class="sourceCode" id="cb54"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (This would also work without the " " quotes)</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Hello, my name is </span><span class="va">$USER</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (This would also work without the " " quotes)</span></span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Hello, my name is </span><span class="va">$USER</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>Hello, my name is jelmer</code></pre>
 </details>
 </section>
@@ -926,13 +922,13 @@ In the Unix shell code above, note that:
 <p>Our base OSC directory for the course is the <strong><code>/fs/ess/PAS2700</code></strong> dir we are currently in. Now, let’s all create our own subdir in here, and get the data from the CSB book.</p>
 <ul>
 <li><p>Create a directory for yourself using the <strong><code>mkdir</code></strong> (<strong>m</strong>a<strong>k</strong>e <strong>dir</strong>) command:</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> users/<span class="va">$USER</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb54"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> users/<span class="va">$USER</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Move there using <code>cd</code>:</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> users/<span class="va">$USER</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb55"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> users/<span class="va">$USER</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Get the files associated with the CSB book by “<em>cloning</em>” (downloading) its Git repository:</p>
-<div class="sourceCode" id="cb58"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/CSB-book/CSB.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb56"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/CSB-book/CSB.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Move into the <em>sandbox</em> dir for the Unix chapter (remember to use tab completion):</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> CSB/unix/sandbox</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb57"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> CSB/unix/sandbox</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 <hr style="height:1pt; visibility:hidden;">
 </section>
@@ -941,12 +937,13 @@ In the Unix shell code above, note that:
 <section id="absolute-full-paths-versus-relative-paths" class="level4">
 <h4 class="anchored" data-anchor-id="absolute-full-paths-versus-relative-paths">Absolute (full) paths versus relative paths</h4>
 <ul>
-<li><p>Paths with a <strong>leading <code>/</code></strong> begin from the computer’s root directory, and are called “absolute” or “full paths”.<br>
+<li><p><strong>Absolute (full) paths</strong> (e.g.&nbsp;<code>/fs/ess/PAS2700</code>)<br>
+Paths that begin with a <code>/</code> always start from the computer’s root directory, and are called “absolute paths”.<br>
 <em>(They are equivalent to GPS coordinates for a geographical location,</em> <em>as they work regardless of where you are</em>).</p></li>
-<li><p>Paths without a leading <strong><code>/</code></strong> begin from your current working directory, and are called “relative paths”.<br>
+<li><p><strong>Relative paths</strong> (e.g.&nbsp;<code>CSB/unix/sandbox</code>)<br>
+Paths that instead start from your current working directory are called “relative paths”.<br>
 <em>(These work like directions along the lines of “take the second left:”</em> <em>they depend on your current location.)</em></p></li>
 </ul>
-<p>Above, we just used an absolute path (<code>cd /fs/ess/PAS2700/users/$USER</code>) and a relative path (<code>cd CSB/unix/sandbox</code>) to change directories.</p>
 <p>Next week, we’ll talk more about the distinction between absolute and relative paths, and their respective merits.</p>
 </section>
 <section id="path-shortcuts" class="level4">
@@ -959,14 +956,14 @@ In the Unix shell code above, note that:
 <p>Some examples of <code>..</code>:</p>
 <ul>
 <li><p>Use <code>..</code> to go up one level in the dir hierarchy:</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>/fs/ess/PAS2700/users/jelmer/CSB/unix/sandbox</code></pre>
-<div class="sourceCode" id="cb62"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span>
-<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>/fs/ess/PAS2700/users/jelmer/CSB/unix</code></pre></li>
 <li><p>This pattern can be continued all the way to the root of the computer, so <code>../..</code> means two levels up:</p>
-<div class="sourceCode" id="cb64"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../..</span>
-<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../..</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a><span class="bu">pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>/fs/ess/PAS2700/users/jelmer</code></pre></li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -993,7 +990,7 @@ These path shortcuts work with many commands
 <summary>
 <em>(Click for the solution)</em>
 </summary>
-<div class="sourceCode" id="cb66"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> CSB/unix/sandbox</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> CSB/unix/sandbox</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <ul>
 <li><strong>B)</strong> Use a relative path (with <code>..</code>) to move into the <code>/fs/ess/PAS2700/users/$USER/CSB/unix/data</code> dir.</li>
@@ -1002,10 +999,10 @@ These path shortcuts work with many commands
 <summary>
 <em>(Click for the solution)</em>
 </summary>
-<div class="sourceCode" id="cb67"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>You may have done this in two steps, because you may not have realized that you can “add to” a path after <code>..</code> like we did above. So you may have done this:</p>
-<div class="sourceCode" id="cb68"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ..</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>That’s OK, but is obviously more typing.</p>
 </details>
 <ul>
@@ -1018,13 +1015,13 @@ These path shortcuts work with many commands
 <ul>
 <li>With the <code>~</code> shortcut:</li>
 </ul>
-<div class="sourceCode" id="cb69"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ~</span>
-<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (Output not shown)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ~</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (Output not shown)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>With the <code>$HOME</code> environment variable:</li>
 </ul>
-<div class="sourceCode" id="cb70"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="va">$HOME</span></span>
-<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (Output not shown)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="va">$HOME</span></span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (Output not shown)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </section>
 <p><br></p>
@@ -1035,8 +1032,8 @@ These path shortcuts work with many commands
 <section id="ls-to-list-files" class="level3" data-number="6.1">
 <h3 data-number="6.1" class="anchored" data-anchor-id="ls-to-list-files"><span class="header-section-number">6.1</span> <code>ls</code> to list files</h3>
 <p>The <code>ls</code> command, short for “list”, will list files and directories:</p>
-<div class="sourceCode" id="cb71"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (You should be in /fs/ess/PAS2700/users/$USER/CSB/unix/data)</span></span>
-<span id="cb71-2"><a href="#cb71-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (You should be in /fs/ess/PAS2700/users/$USER/CSB/unix/data)</span></span>
+<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>Buzzard2015_about.txt  Gesquiere2011_about.txt  Marra2014_about.txt   miRNA                   Pacifici2013_data.csv  Saavedra2013_about.txt
 Buzzard2015_data.csv   Gesquiere2011_data.csv   Marra2014_data.fasta  Pacifici2013_about.txt  Saavedra2013</code></pre>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -1061,7 +1058,7 @@ Buzzard2015_data.csv   Gesquiere2011_data.csv   Marra2014_data.fasta  Pacifici20
 </div>
 </div>
 <p>By default, <code>ls</code> will list files and dirs in your current working dir in the way shown above. <em>For which dir</em> <code>ls</code> lists its contents can be changed with arguments, and <em>how</em> it shows the output can be changed with options. For example, we can call <code>ls</code> with the <strong>option <code>-l</code></strong> (lowercase L):</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>total 1793
 -rw-rw----+ 1 jelmer PAS0471     562 Feb 24 20:30 Buzzard2015_about.txt
 -rw-rw----+ 1 jelmer PAS0471   39058 Feb 24 20:30 Buzzard2015_data.csv
@@ -1076,7 +1073,7 @@ drwxrwx---+ 2 jelmer PAS0471    4096 Feb 24 20:30 Saavedra2013
 -rw-rw----+ 1 jelmer PAS0471     322 Feb 24 20:30 Saavedra2013_about.txt</code></pre>
 <p>Notice that it lists the same items as above, but <strong>printed in a different format</strong>: one item per line, with additional information such as the date and time each file was last modified, and file sizes in bytes (to the left of the date).</p>
 <p>Let’s add another option, <strong><code>-h</code></strong>:</p>
-<div class="sourceCode" id="cb75"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>total 1.8M
 -rw-rw----+ 1 jelmer PAS0471  562 Feb 24 20:30 Buzzard2015_about.txt
 -rw-rw----+ 1 jelmer PAS0471  39K Feb 24 20:30 Buzzard2015_data.csv
@@ -1097,10 +1094,10 @@ What is different about the output, and what do you think that means? <em>(Click
 <p>We now have “Human-readable filesizes” (hence <code>-h</code>), where sizes on the scale of kilobytes will be shown with <code>K</code>s, of megabytes with <code>M</code>s, and of gigabytes with <code>G</code>s. That can be really useful especially for very large files.</p>
 </details>
 <p>We can also list files in directories other than the one we are in, by specifying that dir as an argument:</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> miRNA</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> miRNA</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>ggo_miR.fasta  hsa_miR.fasta  miR_about.txt  miRNA_about.txt  ppa_miR.fasta  ppy_miR.fasta  ptr_miR.fasta  ssy_miR.fasta</code></pre>
 <p>And like we saw with <code>cal</code>, we can combine options and arguments:</p>
-<div class="sourceCode" id="cb79"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span> miRNA</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span> miRNA</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>total 320K
 -rw-rw----+ 1 jelmer PAS0471  18K Feb 24 20:30 ggo_miR.fasta
 -rw-rw----+ 1 jelmer PAS0471 131K Feb 24 20:30 hsa_miR.fasta
@@ -1111,9 +1108,9 @@ What is different about the output, and what do you think that means? <em>(Click
 -rw-rw----+ 1 jelmer PAS0471  29K Feb 24 20:30 ptr_miR.fasta
 -rw-rw----+ 1 jelmer PAS0471  495 Feb 24 20:30 ssy_miR.fasta</code></pre>
 <p>Let’s move into the <code>sandbox</code> dir in preparation for the next sections:</p>
-<div class="sourceCode" id="cb81"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../sandbox</span>
-<span id="cb81-2"><a href="#cb81-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb81-3"><a href="#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../sandbox</span>
+<span id="cb79-2"><a href="#cb79-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb79-3"><a href="#cb79-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>Papers and reviews</code></pre>
 <hr style="height:1pt; visibility:hidden;">
 </section>
@@ -1121,23 +1118,23 @@ What is different about the output, and what do you think that means? <em>(Click
 <h3 data-number="6.2" class="anchored" data-anchor-id="cp-to-copy-files"><span class="header-section-number">6.2</span> <code>cp</code> to copy files</h3>
 <p>The <code>cp</code> command copies files and/or directories from one location to another. It has two required arguments: what you want to copy (the <em>source</em>), and where you want to copy it to (the <em>destination</em>). Its basic syntax can be summarized as <code>cp &lt;source&gt; &lt;destination&gt;</code>.</p>
 <p>For example, to copy a file to our current working directory using the <code>.</code> shortcut, keeping the original file name:</p>
-<div class="sourceCode" id="cb83"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../data/Buzzard2015_about.txt .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../data/Buzzard2015_about.txt .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We can also copy using a new name for the copy:</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../data/Buzzard2015_about.txt buzz2.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb82"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../data/Buzzard2015_about.txt buzz2.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>cp</code> will by default refuse to copy directories and their contents — that is, it is not “recursive” by default. The <code>-r</code> option is needed for recursive copying:</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-r</span> ../data/ . </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-r</span> ../data/ . </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Check the contents of the <code>sandbox</code> dir again now that we’ve copied several items there:</p>
-<div class="sourceCode" id="cb86"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb84"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>buzz2.txt  Buzzard2015_about.txt  data  Papers and reviews</code></pre>
 <hr style="height:1pt; visibility:hidden;">
 </section>
 <section id="mv-to-move-and-rename-files" class="level3" data-number="6.3">
 <h3 data-number="6.3" class="anchored" data-anchor-id="mv-to-move-and-rename-files"><span class="header-section-number">6.3</span> <code>mv</code> to move and rename files</h3>
 <p>Use <strong><code>mv</code></strong> both to move and rename files (this is fundamentally the same operation):</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Same directory, different file name ("renaming")</span></span>
-<span id="cb88-2"><a href="#cb88-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> buzz2.txt buzz_copy.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb89"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Different directory, same file name ("moving")</span></span>
-<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> buzz_copy.txt data/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Same directory, different file name ("renaming")</span></span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> buzz2.txt buzz_copy.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb87"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Different directory, same file name ("moving")</span></span>
+<span id="cb87-2"><a href="#cb87-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> buzz_copy.txt data/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Unlike <code>cp</code>, <code>mv</code> is recursive by default, so you won’t need the <code>-r</code> option.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1160,16 +1157,16 @@ Both the <code>mv</code> and <code>cp</code> commands will by default:
 <section id="rm-to-remove-files-and-dirs" class="level3" data-number="6.4">
 <h3 data-number="6.4" class="anchored" data-anchor-id="rm-to-remove-files-and-dirs"><span class="header-section-number">6.4</span> <code>rm</code> to remove files and dirs</h3>
 <p>The <strong><code>rm</code></strong> command removes files and optionally dirs — here, we’ll remove the file copy we made above:</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> buzz_copy.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> buzz_copy.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Like with <code>cp</code>, the <strong><code>-r</code></strong> option is needed to make the command work recursively:</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First we create 3 levels of dirs - we need `-p` to make mkdir work recursively:</span></span>
-<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> d1/d2/d3</span>
-<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Then we try to remove the d1 dir - which fails:</span></span>
-<span id="cb91-5"><a href="#cb91-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> d1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb89"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First we create 3 levels of dirs - we need `-p` to make mkdir work recursively:</span></span>
+<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> d1/d2/d3</span>
+<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Then we try to remove the d1 dir - which fails:</span></span>
+<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> d1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>rm: cannot remove ‘d1’: Is a directory</code></pre>
-<div class="sourceCode" id="cb93"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co"># But it does work (silently!) with the '-r' option:</span></span>
-<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-r</span> d1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co"># But it does work (silently!) with the '-r' option:</span></span>
+<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-r</span> d1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -1201,7 +1198,7 @@ There is no thrash bin when deleting files in the shell, so use <code>rm</code> 
 </ul>
 <hr>
 <p>With that in mind, try to answer the following questions about this command:</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> Buzzard2015_about.txt more_data/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> Buzzard2015_about.txt more_data/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>What do you think the command would do or attempt to do?</li>
 <li>Do you think the command will succeed?</li>
@@ -1215,12 +1212,12 @@ Click to see the solution
 <ul>
 <li><p>Because we put a trailing forward slash in <code>more_data/</code>, we are making clear that we are referring to a directory. So the file should be copied into a dir <code>more_data</code>, and keep the same file name.</p></li>
 <li><p>However, the <code>more_data/</code> dir does not exist, and <code>cp</code> will not create a dir on the fly, so this will fail:</p>
-<div class="sourceCode" id="cb95"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> Buzzard2015_about.txt more_data/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb93"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> Buzzard2015_about.txt more_data/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>cp: cannot create regular file ‘more_data/’: Not a directory</code></pre></li>
 <li><p>If we had omitted the trailing forward slash, we would have created a copy of the file with <em>file</em> name <code>more_data</code> (note that no file extension is needed, per se).</p></li>
 <li><p>P.S: To make the original intention work, first create the destination dir:</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> more_data</span>
-<span id="cb97-2"><a href="#cb97-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> Buzzard2015_about.txt more_data/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb95"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> more_data</span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> Buzzard2015_about.txt more_data/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Note also that once the <code>more_data</code> dir exists, it <strong>does not</strong> make a difference whether or not you using a trailing slash (!).</p></li>
 </ul>
 </details>
@@ -1229,11 +1226,11 @@ Click to see the solution
 </section>
 <section id="viewing-and-processing-text-files" class="level3" data-number="6.5">
 <h3 data-number="6.5" class="anchored" data-anchor-id="viewing-and-processing-text-files"><span class="header-section-number">6.5</span> Viewing and processing text files</h3>
-<div class="sourceCode" id="cb98"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../data   <span class="co"># Move to the data dir for the next commands</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../data   <span class="co"># Move to the data dir for the next commands</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="cat" class="level4">
 <h4 class="anchored" data-anchor-id="cat"><code>cat</code></h4>
 <p>The <strong><code>cat</code></strong> command will print the entire contents of (a) file(s) to screen:</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> Marra2014_about.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> Marra2014_about.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>Data published by:
 Marra NJ, DeWoody JA (2014) Transcriptomic characterization of the immunogenetic repertoires of heteromyid rodents. BMC Genomics 15: 929. http://dx.doi.org/10.1186/1471-2164-15-929
 
@@ -1250,7 +1247,7 @@ Marra NJ, DeWoody JA (2014) Data from: Transcriptomic characterization of the im
 <p>The <strong><code>head</code></strong> and <strong><code>tail</code></strong> commands will print the first or last lines of a file:</p>
 <ul>
 <li><p><code>head</code> &amp; <code>tail</code>’s defaults are to print 10 lines:</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> Gesquiere2011_data.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> Gesquiere2011_data.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>maleID  GC      T
 1       66.9    64.57
 1       51.09   35.57
@@ -1262,12 +1259,12 @@ Marra NJ, DeWoody JA (2014) Data from: Transcriptomic characterization of the im
 1       52.72   43.98
 1       84.85   102.31</code></pre></li>
 <li><p>Use the <code>-n</code> option to specify the number of lines to print:</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-n</span> 3 Gesquiere2011_data.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb101"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-n</span> 3 Gesquiere2011_data.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>maleID  GC      T
 1       66.9    64.57
 1       51.09   35.57</code></pre></li>
 <li><p>A neat trick with <code>tail</code> is to <em>start at</em> a specific line, often used to skip the header line, like in this example<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>:</p>
-<div class="sourceCode" id="cb105"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-n</span> +2 Gesquiere2011_data.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-n</span> +2 Gesquiere2011_data.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>1       66.9    64.57
 1       51.09   35.57
 1       65.89   114.28
@@ -1285,7 +1282,7 @@ Marra NJ, DeWoody JA (2014) Data from: Transcriptomic characterization of the im
 <section id="wc--l" class="level4">
 <h4 class="anchored" data-anchor-id="wc--l"><code>wc -l</code></h4>
 <p>The <strong><code>wc</code></strong> command is different from the previous commands, which all printed file contents. By default, <code>wc</code> will count lines, words, and characters — but it is most commonly used to only <strong>count lines</strong>, with the <code>-l</code> option:</p>
-<div class="sourceCode" id="cb107"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wc</span> <span class="at">-l</span> Marra2014_about.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb105"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wc</span> <span class="at">-l</span> Marra2014_about.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>9 Marra2014_about.txt</code></pre>
 <p><br></p>
 </section>
@@ -1294,7 +1291,7 @@ Marra NJ, DeWoody JA (2014) Data from: Transcriptomic characterization of the im
 <section id="advanced-unix-commands-ch.-1.6" class="level2" data-number="7">
 <h2 data-number="7" class="anchored" data-anchor-id="advanced-unix-commands-ch.-1.6"><span class="header-section-number">7</span> Advanced Unix commands (Ch. 1.6)</h2>
 <p>Start by moving back to the <code>sandbox</code> dir:</p>
-<div class="sourceCode" id="cb109"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../sandbox</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../sandbox</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <section id="standard-output-and-redirection" class="level3" data-number="7.1">
 <h3 data-number="7.1" class="anchored" data-anchor-id="standard-output-and-redirection"><span class="header-section-number">7.1</span> Standard output and redirection</h3>
 <p>The regular output of a command is also called <strong>“standard out”</strong> (“<em>stdout</em>”). As we’ve seen many times now, such output is by default printed to screen, but it can alternatively be “<strong>redirected</strong>”, such as into a file.</p>
@@ -1304,20 +1301,20 @@ Marra NJ, DeWoody JA (2014) Data from: Transcriptomic characterization of the im
 <li>If the file does exist, any contents will be <em>overwritten</em>.</li>
 </ul>
 <p>First, let’s remind ourselves what <code>echo</code> does without redirection:</p>
-<div class="sourceCode" id="cb110"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"My first line"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb108-1"><a href="#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"My first line"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>My first line</code></pre>
 <p>Now, let’s redirect to a new file <code>test.txt</code> — no output is printed, as it went into the file:</p>
-<div class="sourceCode" id="cb112"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"My first line"</span> <span class="op">&gt;</span> test.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb113"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> test.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb110-1"><a href="#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"My first line"</span> <span class="op">&gt;</span> test.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb111"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> test.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>My first line</code></pre>
 <p>Let’s redirect another line into that same file:</p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"My second line"</span> <span class="op">&gt;</span> test.txt</span>
-<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> test.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb113"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb113-1"><a href="#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"My second line"</span> <span class="op">&gt;</span> test.txt</span>
+<span id="cb113-2"><a href="#cb113-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> test.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>My second line</code></pre>
 <p>That may not have been what we intended! As explained above, the file was overwritten.</p>
 <p>With “<strong><code>&gt;&gt;</code></strong>”, however, we <strong>append</strong> the output to a file:</p>
-<div class="sourceCode" id="cb117"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"My third line"</span> <span class="op">&gt;&gt;</span> test.txt</span>
-<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> test.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb115"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb115-1"><a href="#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"My third line"</span> <span class="op">&gt;&gt;</span> test.txt</span>
+<span id="cb115-2"><a href="#cb115-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> test.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>My second line
 My third line</code></pre>
 <hr style="height:1pt; visibility:hidden;">
@@ -1325,21 +1322,21 @@ My third line</code></pre>
 <section id="standard-input-and-pipes" class="level3" data-number="7.2">
 <h3 data-number="7.2" class="anchored" data-anchor-id="standard-input-and-pipes"><span class="header-section-number">7.2</span> Standard input and pipes</h3>
 <p>Recall from today’s previous examples that a file name can be given as an argument to many commands — for example, see the following sequence of commands:</p>
-<div class="sourceCode" id="cb119"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First we redirect the ls output to a file</span></span>
-<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ../data/Saavedra2013 <span class="op">&gt;</span> filelist.txt</span>
-<span id="cb119-3"><a href="#cb119-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb119-4"><a href="#cb119-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's check what that looks like:</span></span>
-<span id="cb119-5"><a href="#cb119-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-n</span> 5 filelist.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb117"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First we redirect the ls output to a file</span></span>
+<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ../data/Saavedra2013 <span class="op">&gt;</span> filelist.txt</span>
+<span id="cb117-3"><a href="#cb117-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb117-4"><a href="#cb117-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Let's check what that looks like:</span></span>
+<span id="cb117-5"><a href="#cb117-5" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-n</span> 5 filelist.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>n10.txt
 n11.txt
 n12.txt
 n13.txt
 n14.txt</code></pre>
-<div class="sourceCode" id="cb121"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Then we count the nr. of lines, which is the number of files+dirs in Saavedra2013:</span></span>
-<span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wc</span> <span class="at">-l</span> filelist.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb119"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Then we count the nr. of lines, which is the number of files+dirs in Saavedra2013:</span></span>
+<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wc</span> <span class="at">-l</span> filelist.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>59 filelist.txt</code></pre>
 <p>However, most commands <em>also</em> accept input from so-called “standard input” (<em>stdin</em>) using the <strong>pipe</strong>, “<strong><code>|</code></strong>”:</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ../data/Saavedra2013 <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb121"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ../data/Saavedra2013 <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>59</code></pre>
 <p>When we use the pipe, the output of the command on the left-hand side (a file listing, in this case) is no longer printed to screen but is <strong>redirected into the <code>wc</code> command</strong>, which will gladly accept input that way instead of via an argument with a file name like in the earlier example.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
@@ -1361,8 +1358,8 @@ Why pipes are useful
 <h3 data-number="7.3" class="anchored" data-anchor-id="selecting-columns-using-cut"><span class="header-section-number">7.3</span> Selecting columns using <code>cut</code></h3>
 <p>We’ll now turn to some commands that may be described as Unix “data tools”: <code>cut</code>, <code>sort</code>, <code>uniq</code>, <code>tr</code>, and <code>grep</code>.</p>
 <p>Most of the examples will use the file <code>Pacifici2013_data.csv</code>, so let’s have a look at the contents of that file first:</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../data</span>
-<span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-n</span> 3 Pacifici2013_data.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb123"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../data</span>
+<span id="cb123-2"><a href="#cb123-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-n</span> 3 Pacifici2013_data.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>TaxID;Order;Family;Genus;Scientific_name;AdultBodyMass_g;Sources_AdultBodyMass;Max_longevity_d;Sources_Max_longevity;Rspan_d;AFR_d;Data_AFR;Calculated_GL_d;GenerationLength_d;Sources_GL
 7580;Rodentia;Cricetidae;Eligmodontia;Eligmodontia typus;17.37;PanTHERIA;292;PanTHERIA;254.64;73.74;calculated;147.5856;147.5856;Rspan-AFR(SM+Gest)
 42632;Rodentia;Cricetidae;Microtus;Microtus oregoni;20.35;PanTHERIA;456.25;PanTHERIA;445.85;58.06;calculated;187.3565;187.3565;Rspan-AFR(SM+Gest)</code></pre>
@@ -1397,8 +1394,8 @@ From looking at the first couple of lines that we printed above, the delimiter i
 <li>We’ll always have to use the <strong><code>-f</code></strong> option to specify the <strong>desired column(s) / “field”(s)</strong>.</li>
 <li>Because its default column delimiter is a Tab, for this file, we’ll have to specify the <strong>delimiter</strong> with <strong><code>-d</code></strong>.</li>
 </ul>
-<div class="sourceCode" id="cb127"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the first column of the file:</span></span>
-<span id="cb127-2"><a href="#cb127-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-d</span> <span class="st">";"</span> <span class="at">-f</span> 1 Pacifici2013_data.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb125"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the first column of the file:</span></span>
+<span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-d</span> <span class="st">";"</span> <span class="at">-f</span> 1 Pacifici2013_data.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>TaxID
 7580
 42632
@@ -1407,20 +1404,32 @@ From looking at the first couple of lines that we printed above, the delimiter i
 16652
 [...output truncated...]</code></pre>
 <p>That worked, but a ton of output was printed, and we may find ourselves scrolling to the top to see the first few lines – in many cases, it can be useful to <strong>pipe the output to <code>head</code></strong> to see if our command works:</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-d</span> <span class="st">";"</span> <span class="at">-f</span> 1 Pacifici2013_data.csv <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb127"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-d</span> <span class="st">";"</span> <span class="at">-f</span> 1 Pacifici2013_data.csv <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>TaxID
 7580
 42632</code></pre>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Selecting multiple columns with <code>cut</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>To select <strong>multiple columns</strong>, use a range or comma-delimited list:</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-d</span> <span class="st">";"</span> <span class="at">-f</span> 1-4 Pacifici2013_data.csv <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-d</span> <span class="st">";"</span> <span class="at">-f</span> 1-4 Pacifici2013_data.csv <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>TaxID;Order;Family;Genus
 7580;Rodentia;Cricetidae;Eligmodontia
 42632;Rodentia;Cricetidae;Microtus</code></pre>
-<div class="sourceCode" id="cb133"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-d</span> <span class="st">";"</span> <span class="at">-f</span> 2,8 Pacifici2013_data.csv <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb131"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-d</span> <span class="st">";"</span> <span class="at">-f</span> 2,8 Pacifici2013_data.csv <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>Order;Max_longevity_d
 Rodentia;292
 Rodentia;456.25</code></pre>
-<div class="callout callout-style-default callout-note callout-titled">
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -1443,28 +1452,28 @@ Unfortunately, we can’t <em>reorder</em> columns using <code>cut</code>. (The 
 <li><strong><code>uniq</code></strong> to remove duplicates (i.e., keep all distinct) entries <em>from a sorted file/list</em></li>
 </ul>
 <p>We’ll build up a small “pipeline” to do this, step-by-step and piping the output into <code>head</code> every time. First, we get rid of the header line with our <code>tail</code> trick:</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-n</span> +2 Pacifici2013_data.csv <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-n</span> +2 Pacifici2013_data.csv <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>7580;Rodentia;Cricetidae;Eligmodontia;Eligmodontia typus;17.37;PanTHERIA;292;PanTHERIA;254.64;73.74;calculated;147.5856;147.5856;Rspan-AFR(SM+Gest)
 42632;Rodentia;Cricetidae;Microtus;Microtus oregoni;20.35;PanTHERIA;456.25;PanTHERIA;445.85;58.06;calculated;187.3565;187.3565;Rspan-AFR(SM+Gest)
 42653;Rodentia;Cricetidae;Peromyscus;Peromyscus gossypinus;27.68;PanTHERIA;471.45833335;PanTHERIA;444.87833335;72.58;calculated;201.59471667;201.5947166715;Rspan-AFR(SM+Gest)
 42662;Macroscelidea;Macroscelididae;Elephantulus;Elephantulus myurus;59.51;PanTHERIA;401.5;PanTHERIA;412.34;90.48;calculated;210.0586;210.0586;Rspan-AFR(SM+Gest)
 16652;Rodentia;Cricetidae;Peromyscus;Peromyscus boylii;23.9;PanTHERIA;547.5;PanTHERIA;514.13;79.97;calculated;229.0677;229.0677;Rspan-AFR(SM+Gest)</code></pre>
 <p>Second, we select our column of interest with <code>cut</code>:</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-n</span> +2 Pacifici2013_data.csv <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span> <span class="st">";"</span> <span class="at">-f</span> 2 <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-n</span> +2 Pacifici2013_data.csv <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span> <span class="st">";"</span> <span class="at">-f</span> 2 <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>Rodentia
 Rodentia
 Rodentia
 Macroscelidea
 Rodentia</code></pre>
 <p>Third, we pipe to <code>sort</code> to sort the result:</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-n</span> +2 Pacifici2013_data.csv <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span> <span class="st">";"</span> <span class="at">-f</span> 2 <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb137-1"><a href="#cb137-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-n</span> +2 Pacifici2013_data.csv <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span> <span class="st">";"</span> <span class="at">-f</span> 2 <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>Afrosoricida
 Afrosoricida
 Afrosoricida
 Afrosoricida
 Afrosoricida</code></pre>
 <p>Fourth and finally, we use <code>uniq</code> to only keep unique rows (values):</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-n</span> +2 Pacifici2013_data.csv <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span> <span class="st">";"</span> <span class="at">-f</span> 2 <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">uniq</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb139-1"><a href="#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-n</span> +2 Pacifici2013_data.csv <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span> <span class="st">";"</span> <span class="at">-f</span> 2 <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">uniq</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>Afrosoricida
 Carnivora
 Cetartiodactyla
@@ -1475,7 +1484,7 @@ Dermoptera
 Didelphimorphia
 [...output truncated...]</code></pre>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1484,10 +1493,10 @@ Get a count table with <code>uniq -c</code> <em>(Click to expand)</em>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>With a very small modification to our pipeline, using <code>uniq</code>’s <code>-c</code> option (for count), we can generate a “count table” instead of a simple list:</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-n</span> +2 Pacifici2013_data.csv <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span> <span class="st">";"</span> <span class="at">-f</span> 2 <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">uniq</span> <span class="at">-c</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-n</span> +2 Pacifici2013_data.csv <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span> <span class="st">";"</span> <span class="at">-f</span> 2 <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">uniq</span> <span class="at">-c</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>     54 Afrosoricida
     280 Carnivora
     325 Cetartiodactyla
@@ -1499,63 +1508,19 @@ Get a count table with <code>uniq -c</code> <em>(Click to expand)</em>
 </div>
 <hr style="height:1pt; visibility:hidden;">
 </section>
-<section id="substituting-characters-using-tr" class="level3" data-number="7.5">
-<h3 data-number="7.5" class="anchored" data-anchor-id="substituting-characters-using-tr"><span class="header-section-number">7.5</span> Substituting characters using <code>tr</code></h3>
-<p><code>tr</code> for <strong><code>tr</code></strong>anslate will substitute characters – here, any <code>a</code> for a <code>b</code>:</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"aaaabbb"</span> <span class="kw">|</span> <span class="fu">tr</span> a b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="bash-out"><code>bbbbbbb</code></pre>
-<p>Deletion and “squeezing”:</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Delete all a's</span></span>
-<span id="cb147-2"><a href="#cb147-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"aabbccddee"</span> <span class="kw">|</span> <span class="fu">tr</span> <span class="at">-d</span> a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="bash-out"><code>bbccddee</code></pre>
-<div class="sourceCode" id="cb149"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove consecutive duplicates a's</span></span>
-<span id="cb149-2"><a href="#cb149-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"aabbccddee"</span> <span class="kw">|</span> <span class="fu">tr</span> <span class="at">-s</span> a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="bash-out"><code>abbccddee</code></pre>
-<p>Oddly enough <code>tr</code> does not take a file name as an argument, so how can we provide it with input from a file? The easiest way is by using a pipe (note that the book also shows another method):</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> inputfile.csv <span class="kw">|</span> <span class="fu">tr</span> <span class="st">","</span> <span class="st">"\t"</span> <span class="op">&gt;</span> outputfile.tsv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In the example above, we converted a CSV file to a TSV file, where <strong><code>\t</code></strong> is a regular expression meaning Tab (we’ll learn more about these in Week 4).</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<code>tr</code> also works well with multiple values and replacements <em>(Click to expand)</em>
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-16" class="callout-16-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<ul>
-<li>Replace multiple types of characters with one:</li>
-</ul>
-<div class="sourceCode" id="cb152"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb152-1"><a href="#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"123456789"</span> <span class="kw">|</span> <span class="fu">tr</span> 1-5 0    <span class="co"># Replace any of 1-5 with 0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="bash-out"><code>000006789</code></pre>
-<ul>
-<li>One-to-one mapping of input and replacement!</li>
-</ul>
-<div class="sourceCode" id="cb154"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb154-1"><a href="#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"ACtGGcAaTT"</span> <span class="kw">|</span> <span class="fu">tr</span> actg ACTG</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="bash-out"><code>ACTGGCAATT</code></pre>
-<div class="sourceCode" id="cb156"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb156-1"><a href="#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"aabbccddee"</span> <span class="kw">|</span> <span class="fu">tr</span> a-c 1-3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="bash-out"><code>112233ddee</code></pre>
-</div>
-</div>
-</div>
-<hr style="height:1pt; visibility:hidden;">
-</section>
-<section id="grep-to-print-lines-matching-a-pattern" class="level3" data-number="7.6">
-<h3 data-number="7.6" class="anchored" data-anchor-id="grep-to-print-lines-matching-a-pattern"><span class="header-section-number">7.6</span> <code>grep</code> to print lines matching a pattern</h3>
+<section id="grep-to-print-lines-matching-a-pattern" class="level3" data-number="7.5">
+<h3 data-number="7.5" class="anchored" data-anchor-id="grep-to-print-lines-matching-a-pattern"><span class="header-section-number">7.5</span> <code>grep</code> to print lines matching a pattern</h3>
 <p>The <code>grep</code> command is useful to find specific text or patterns in a file. By default, it will <strong>print each line that contains a “match” in full</strong>. It’s basic syntax is <code>grep "&lt;pattern&gt;" file</code>.</p>
 <p>For example, this will print all lines from <code>Pacifici2013_data.csv</code> that contain “Vombatidae”:</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb158-1"><a href="#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"Vombatidae"</span> Pacifici2013_data.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb143-1"><a href="#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"Vombatidae"</span> Pacifici2013_data.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>40555;Diprotodontia;Vombatidae;Lasiorhinus;Lasiorhinus latifrons;26163.8;PanTHERIA;9928;"PanTHERIA;AnAge";9317.5;652.24;calculated;3354.315;3354.315;Rspan-AFR(SM+Gest)
 40556;Diprotodontia;Vombatidae;Vombatus;Vombatus ursinus;26000;PanTHERIA;10238.25;"PanTHERIA;AnAge";9511.6;783.65;calculated;3542.014;3542.014;Rspan-AFR(SM+Gest)
 11343;Diprotodontia;Vombatidae;Lasiorhinus;Lasiorhinus krefftii;31849.99;PanTHERIA;10950;"PanTHERIA;AnAge";no information;no information;no information;no information;3354.315;Mean_congenerics_same_body_mass</code></pre>
 <p>Instead of printing matching lines, we can also <strong>count</strong> them with the <code>-c</code> option:</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb160-1"><a href="#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-c</span> <span class="st">"Chiroptera"</span> Pacifici2013_data.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb145-1"><a href="#cb145-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-c</span> <span class="st">"Chiroptera"</span> Pacifici2013_data.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>1144</code></pre>
 <p>The option <code>-v</code> <strong>inverts</strong> <code>grep</code>’s behavior and will print all lines <em>not</em> matching the pattern — here, we’ll combine <code>-v</code> and <code>-c</code> to count the number of lines that do not contain “Vombatidae”:</p>
-<div class="sourceCode" id="cb162"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb162-1"><a href="#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-vc</span> <span class="st">"Vombatidae"</span> Pacifici2013_data.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb147-1"><a href="#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-vc</span> <span class="st">"Vombatidae"</span> Pacifici2013_data.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>5424</code></pre>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -1570,16 +1535,73 @@ Get a count table with <code>uniq -c</code> <em>(Click to expand)</em>
 <ul>
 <li>It is best to always use quotes around the pattern.<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></li>
 <li>Incomplete matches, including in individual words, work: “<code>Vombat</code>” matches <code>Vombatidae</code>.</li>
-</ul>
-</div>
-</div>
-<p><code>grep</code> has many other useful options — more in Week 4:</p>
+<li><code>grep</code> has many other useful options — more in Week 4:
 <ul>
 <li><code>-i</code> to ignore case</li>
 <li><code>-r</code> to search files recursively</li>
 <li><code>-B</code> and <code>-A</code> to print lines surrounding matches</li>
 <li><code>-w</code> to match “words”</li>
+</ul></li>
 </ul>
+</div>
+</div>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+<section id="substituting-characters-using-tr" class="level3" data-number="7.6">
+<h3 data-number="7.6" class="anchored" data-anchor-id="substituting-characters-using-tr"><span class="header-section-number">7.6</span> Substituting characters using <code>tr</code></h3>
+<p><code>tr</code> for <strong><code>tr</code></strong>anslate will substitute characters – here, any <code>a</code> for a <code>b</code>:</p>
+<div class="sourceCode" id="cb149"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb149-1"><a href="#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"aaaabbb"</span> <span class="kw">|</span> <span class="fu">tr</span> a b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>bbbbbbb</code></pre>
+<p>Oddly enough <code>tr</code> does not take a file name as an argument, so how can we provide it with input from a file? The easiest way is by using a pipe (note that the book also shows another method):</p>
+<div class="sourceCode" id="cb151"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> inputfile.csv <span class="kw">|</span> <span class="fu">tr</span> <span class="st">","</span> <span class="st">"\t"</span> <span class="op">&gt;</span> outputfile.tsv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In the example above, we converted a CSV file to a TSV file, where <strong><code>\t</code></strong> is a regular expression meaning Tab (we’ll learn more about these in Week 4).</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Deletion and “squeezing” with <code>tr</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Delete all a’s:</p>
+<div class="sourceCode" id="cb152"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb152-1"><a href="#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"aabbccddee"</span> <span class="kw">|</span> <span class="fu">tr</span> <span class="at">-d</span> a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>bbccddee</code></pre></li>
+<li><p>Remove consecutive duplicates a’s:</p>
+<div class="sourceCode" id="cb154"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb154-1"><a href="#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"aabbccddee"</span> <span class="kw">|</span> <span class="fu">tr</span> <span class="at">-s</span> a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>abbccddee</code></pre></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<code>tr</code> also works well with multiple values and replacements <em>(Click to expand)</em>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>Replace multiple types of characters with one:</li>
+</ul>
+<div class="sourceCode" id="cb156"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb156-1"><a href="#cb156-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"123456789"</span> <span class="kw">|</span> <span class="fu">tr</span> 1-5 0    <span class="co"># Replace any of 1-5 with 0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>000006789</code></pre>
+<ul>
+<li>One-to-one mapping of input and replacement!</li>
+</ul>
+<div class="sourceCode" id="cb158"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb158-1"><a href="#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"ACtGGcAaTT"</span> <span class="kw">|</span> <span class="fu">tr</span> actg ACTG</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>ACTGGCAATT</code></pre>
+<div class="sourceCode" id="cb160"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb160-1"><a href="#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"aabbccddee"</span> <span class="kw">|</span> <span class="fu">tr</span> a-c 1-3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>112233ddee</code></pre>
+</div>
+</div>
+</div>
 <p><br></p>
 </section>
 </section>
@@ -1611,10 +1633,10 @@ Get a count table with <code>uniq -c</code> <em>(Click to expand)</em>
 </ul>
 <p><strong>Text “streams”?</strong></p>
 <p>Rather than loading entire files into memory, process them one line at a time. Very useful with large files!</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb164-1"><a href="#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This command would combine all files in the working dir ending in `.fa`</span></span>
-<span id="cb164-2"><a href="#cb164-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (i.e. FASTA files) into a single file -- even if that's multiple GBs,</span></span>
-<span id="cb164-3"><a href="#cb164-3" aria-hidden="true" tabindex="-1"></a><span class="co"># this will not be a heavy lift at all!</span></span>
-<span id="cb164-4"><a href="#cb164-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> <span class="pp">*</span>.fa <span class="op">&gt;</span> combined.fa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb162-1"><a href="#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This command would combine all files in the working dir ending in `.fa`</span></span>
+<span id="cb162-2"><a href="#cb162-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (i.e. FASTA files) into a single file -- even if that's multiple GBs,</span></span>
+<span id="cb162-3"><a href="#cb162-3" aria-hidden="true" tabindex="-1"></a><span class="co"># this will not be a heavy lift at all!</span></span>
+<span id="cb162-4"><a href="#cb162-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> <span class="pp">*</span>.fa <span class="op">&gt;</span> combined.fa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr style="height:1pt; visibility:hidden;">
 </section>
 <section id="the-unix-shell-in-the-weeks-ahead" class="level3" data-number="8.3">

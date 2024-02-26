@@ -207,10 +207,9 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#osc-ondemand" id="toc-osc-ondemand" class="nav-link" data-scroll-target="#osc-ondemand"><span class="header-section-number">4</span> OSC OnDemand</a>
   <ul class="collapse">
   <li><a href="#files-file-system-access" id="toc-files-file-system-access" class="nav-link" data-scroll-target="#files-file-system-access"><span class="header-section-number">4.1</span> Files: File system access</a></li>
-  <li><a href="#clusters-unix-shell-access" id="toc-clusters-unix-shell-access" class="nav-link" data-scroll-target="#clusters-unix-shell-access"><span class="header-section-number">4.2</span> Clusters: Unix shell access</a></li>
-  <li><a href="#interactive-apps" id="toc-interactive-apps" class="nav-link" data-scroll-target="#interactive-apps"><span class="header-section-number">4.3</span> Interactive Apps</a></li>
+  <li><a href="#interactive-apps" id="toc-interactive-apps" class="nav-link" data-scroll-target="#interactive-apps"><span class="header-section-number">4.2</span> Interactive Apps</a></li>
+  <li><a href="#clusters-unix-shell-access" id="toc-clusters-unix-shell-access" class="nav-link" data-scroll-target="#clusters-unix-shell-access"><span class="header-section-number">4.3</span> Clusters: Unix shell access</a></li>
   </ul></li>
-  <li><a href="#what-works-differently-on-a-supercomputer-like-at-osc" id="toc-what-works-differently-on-a-supercomputer-like-at-osc" class="nav-link" data-scroll-target="#what-works-differently-on-a-supercomputer-like-at-osc"><span class="header-section-number">5</span> What works differently on a supercomputer like at OSC?</a></li>
   </ul>
 </nav>
     </div>
@@ -284,12 +283,6 @@ ul.task-list li input[type="checkbox"] {
 <section id="the-ohio-supercomputer-center-osc" class="level4">
 <h4 class="anchored" data-anchor-id="the-ohio-supercomputer-center-osc">The Ohio Supercomputer Center (OSC)</h4>
 <p>The Ohio Supercomputer Center (OSC) is a facility provided by the state of Ohio in the US. It has two supercomputers, lots of storage space, and an excellent infrastructure for accessing these resources.</p>
-<p>OSC has <strong>three main websites</strong> — we will mostly or only use the first:</p>
-<ul>
-<li><strong><a href="https://ondemand.osc.edu" class="uri">https://ondemand.osc.edu</a></strong>: A web portal to use OSC resources through your browser (<em>login needed</em>).</li>
-<li><a href="https://my.osc.edu" class="uri">https://my.osc.edu</a>: Account and project management (<em>login needed</em>).</li>
-<li><a href="https://osc.edu" class="uri">https://osc.edu</a>: General website with information about the supercomputers, installed software, and usage.</li>
-</ul>
 <hr style="height:1pt; visibility:hidden;">
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -297,10 +290,16 @@ ul.task-list li input[type="checkbox"] {
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-OSC “Projects”
+OSC websites and “Projects”
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p>OSC has <strong>three main websites</strong> — we will mostly or only use the first:</p>
+<ul>
+<li><strong><a href="https://ondemand.osc.edu" class="uri">https://ondemand.osc.edu</a></strong>: A web portal to use OSC resources through your browser (<em>login needed</em>).</li>
+<li><a href="https://my.osc.edu" class="uri">https://my.osc.edu</a>: Account and project management (<em>login needed</em>).</li>
+<li><a href="https://osc.edu" class="uri">https://osc.edu</a>: General website with information about the supercomputers, installed software, and usage.</li>
+</ul>
 <p>Access to OSC’s computing power and storage space goes through <strong>OSC “Projects”</strong>:</p>
 <ul>
 <li>A project can be tied to a research project or lab, or be educational like this course’s project, <code>PAS2700</code>.</li>
@@ -318,20 +317,13 @@ OSC “Projects”
 <h3 data-number="3.1" class="anchored" data-anchor-id="terminology"><span class="header-section-number">3.1</span> Terminology</h3>
 <p>Let’s start with some (super)computing terminology, going from smaller things to bigger things:</p>
 <ul>
-<li><strong>Core / Processor / CPU / Thread</strong><br>
-Components of a computer (node) that can each (semi-)indedepently be asked to perform a computing task like running a bioinformatics program. For our purposes, we can treat these terms as synonyms (!).</li>
 <li><strong>Node</strong><br>
-A single computer that is a part of a supercomputer and has dozens of cores<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</li>
+A single computer that is a part of a supercomputer.</li>
 <li><strong>Supercomputer / Cluster</strong><br>
 A collection of computers connected by a high-speed network. OSC has two: “Pitzer” and “Owens”.</li>
 <li><strong>Supercomputer Center</strong><br>
 A facility like OSC that has one or more supercomputers.</li>
 </ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="img/terminology.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></p>
-</figure>
-</div>
 </section>
 <section id="supercomputer-components" class="level3" data-number="3.2">
 <h3 data-number="3.2" class="anchored" data-anchor-id="supercomputer-components"><span class="header-section-number">3.2</span> Supercomputer components</h3>
@@ -422,23 +414,44 @@ Directory is just another word for folder, often written as “dir” for short
 <h4 class="anchored" data-anchor-id="compute-nodes">Compute Nodes</h4>
 <p>Data processing and analysis is done on compute nodes. You can only use compute nodes after putting in a <strong>request</strong> for resources (a “job”). The Slurm <em>job scheduler</em>, which we will learn to use in week 5, will then assign resources to your request.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Interactive and batch use of compute nodes <em>(Click to expand)</em>
+Compute node types
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Compute nodes come in different shapes and sizes. Standard, default nodes work fine for the vast majority of analyses, even with large-scale omics data. But you will sometimes need non-standard nodes, such as when you need a lot of RAM memory or need GPUs<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+At-home reading: What works differently on a supercomputer like at OSC? <em>(Click to expand)</em>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Requests for compute jobs can be made through the OnDemand website or with Slurm commands like <code>srun</code> and <code>sbatch</code>.</p>
-<p>Jobs can either be <strong>interactive</strong> (like running Rstudio or interactive shell jobs) or be a “<strong>batch</strong>” job (sending a script away to be run on a compute node). Only with interactive jobs do you “move” to a compute node yourself.</p>
+<p>Compared to command-line computing on a laptop or desktop, a number of aspects are different when working on a supercomputer like at OSC. We’ll learn much more about these later on in the course, but here is an overview:</p>
+<ul>
+<li><strong>Login versus compute nodes</strong><br>
+“Login nodes”, the nodes you end up on after logging in, are not meant for heavy computing and you have to <em>request access to “compute nodes”</em> to run most analyses.</li>
+<li><strong>“Non-interactive” computing is common</strong><br>
+It is common to write and “submit” scripts to a queue instead of running programs interactively.</li>
+<li><strong>Software</strong><br>
+You generally can’t install “the regular way”, and a lot of installed software needs to be “loaded”.</li>
+<li><strong>Operating system</strong><br>
+Supercomputers run on the Linux operating system.</li>
+</ul>
 </div>
 </div>
 </div>
-<p>Compute nodes come in different shapes and sizes. Standard, default nodes work fine for the vast majority of analyses, even with large-scale omics data. But you will sometimes need non-standard nodes, such as when you need a lot of RAM memory or need GPUs<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
 <hr style="height:1pt; visibility:hidden;">
 </section>
 </section>
@@ -479,13 +492,24 @@ Interactive and batch use of compute nodes <em>(Click to expand)</em>
 <p><img src="img/ondemand_files_pas2700.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:95.0%"></p>
 </figure>
 </div>
-<p>This interface is <strong>much like the file browser on your own computer</strong>, so you can also create, delete, move and copy files and folders, and even upload (from your computer to OSC) and download (from OSC your computer) files<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> — see the buttons across the top.</p>
+<p>This interface is <strong>much like the file browser on your own computer</strong>, so you can also create, delete, move and copy files and folders, and even upload (from your computer to OSC) and download (from OSC your computer) files<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> — see the buttons across the top.</p>
 <hr style="height:1pt; visibility:hidden;">
 </section>
-<section id="clusters-unix-shell-access" class="level3" data-number="4.2">
-<h3 data-number="4.2" class="anchored" data-anchor-id="clusters-unix-shell-access"><span class="header-section-number">4.2</span> Clusters: Unix shell access</h3>
+<section id="interactive-apps" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="interactive-apps"><span class="header-section-number">4.2</span> Interactive Apps</h3>
+<p>We can access programs with Graphical User Interfaces (<strong>GUI</strong>s; point-and-click interfaces) via the <strong>Interactive Apps</strong> dropdown menu:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/ondemand_vscode_select.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:32.0%"></p>
+</figure>
+</div>
+<p>Next week, we will start using the VS Code text editor, which is listed here as <code>Code Server</code>.</p>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+<section id="clusters-unix-shell-access" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="clusters-unix-shell-access"><span class="header-section-number">4.3</span> Clusters: Unix shell access</h3>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -494,7 +518,7 @@ Interactive and batch use of compute nodes <em>(Click to expand)</em>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>In the “<strong>Clusters</strong>” dropdown menu, click on the item at the bottom, “<strong>System Status</strong>”:</p>
 <div class="quarto-figure quarto-figure-center">
@@ -523,37 +547,11 @@ Interactive and batch use of compute nodes <em>(Click to expand)</em>
 <p><img src="img/ondemand_shell2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:95.0%"></p>
 </figure>
 </div>
-<p>We’ll return to this Unix shell in the Thursday session.</p>
-<hr style="height:1pt; visibility:hidden;">
-</section>
-<section id="interactive-apps" class="level3" data-number="4.3">
-<h3 data-number="4.3" class="anchored" data-anchor-id="interactive-apps"><span class="header-section-number">4.3</span> Interactive Apps</h3>
-<p>We can access programs with Graphical User Interfaces (<strong>GUI</strong>s; point-and-click interfaces) via the <strong>Interactive Apps</strong> dropdown menu:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="img/ondemand_vscode_select.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:32.0%"></p>
-</figure>
-</div>
-<p>Next week, we will start using the VS Code text editor, which is listed here as <code>Code Server</code>.</p>
-<hr style="height:1pt; visibility:hidden;">
-</section>
-</section>
-<section id="what-works-differently-on-a-supercomputer-like-at-osc" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="what-works-differently-on-a-supercomputer-like-at-osc"><span class="header-section-number">5</span> What works differently on a supercomputer like at OSC?</h2>
-<p>Compared to command-line computing on a laptop or desktop, a number of aspects are different when working on a supercomputer like at OSC. We’ll learn much more about these later on in the course, but here is an overview:</p>
-<ul>
-<li><strong>Login versus compute nodes</strong><br>
-“Login nodes”, the nodes you end up on after logging in, are not meant for heavy computing and you have to <em>request access to “compute nodes”</em> to run most analyses.</li>
-<li><strong>“Non-interactive” computing is common</strong><br>
-It is common to write and “submit” scripts to a queue instead of running programs interactively.</li>
-<li><strong>Software</strong><br>
-You generally can’t install “the regular way”, and a lot of installed software needs to be “loaded”.</li>
-<li><strong>Operating system</strong><br>
-Supercomputers run on the Linux operating system.</li>
-</ul>
+<p>We’ll return to this Unix shell in the next session.</p>
 <p><br><br></p>
 
 
+</section>
 </section>
 
 
@@ -561,9 +559,8 @@ Supercomputers run on the Linux operating system.</li>
 
 <ol>
 <li id="fn1"><p> But we don’t have to pay anything for educational projects like this one. Otherwise, for OSC’s rates for academic research, see <a href="https://www.osc.edu/content/academic_fee_model_faq">this page</a>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>I.e., these nodes tend to be more powerful than a personal laptop or desktop.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>GPUs are e.g.&nbsp;used for Nanopore basecalling<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p>Though this is not meant for large (&gt;1 GB) transfers. Different methods are available — we’ll talk about those later on.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>GPUs are e.g.&nbsp;used for Nanopore basecalling<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>Though this is not meant for large (&gt;1 GB) transfers. Different methods are available — we’ll talk about those later on.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

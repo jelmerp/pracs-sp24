@@ -387,9 +387,9 @@ What is different about the output, and what do you think that means? <em>(Click
 <div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../data/Buzzard2015_about.txt .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We can also copy using a new name for the copy:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../data/Buzzard2015_about.txt buzz2.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><code>cp</code> will by default refuse to copy directories and their contents — that is, it is not “recursive by default”. The <code>-r</code> option is needed for recursive copying:</p>
+<p><code>cp</code> will by default refuse to copy directories and their contents — that is, it is not “recursive” by default. The <code>-r</code> option is needed for recursive copying:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-r</span> ../data/ . </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Check what you now have in your <code>sandbox</code> dir:</p>
+<p>Check the contents of the <code>sandbox</code> dir again now that we’ve copied several items there:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>buzz2.txt  Buzzard2015_about.txt  data  Papers and reviews</code></pre>
 <hr style="height:1pt; visibility:hidden;">
@@ -460,7 +460,7 @@ There is no thrash bin when deleting files in the shell, so use <code>rm</code> 
 <ul>
 <li>If the destination is an existing dir, the file will go into that dir and keep its original name.</li>
 <li>If the destination is <em>not</em> an existing dir, the (last bit of the) destination specifies the new file name.</li>
-<li>If you use a trailing slash in the destination, you are making explicit that you are referring to a dir and not a file.</li>
+<li>A trailing slash in the destination makes explicit that you are referring to a dir and not a file.</li>
 </ul>
 <hr>
 <p>With that in mind, try to answer the following questions about this command:</p>
@@ -604,8 +604,8 @@ n14.txt</code></pre>
 <p>However, most commands <em>also</em> accept input from so-called “standard input” (<em>stdin</em>) using the <strong>pipe</strong>, “<strong><code>|</code></strong>”:</p>
 <div class="sourceCode" id="cb53"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ../data/Saavedra2013 <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>59</code></pre>
-<p>When we use the pipe, the output of the command on the left-hand side (a file listing, in this case) is no longer printed to screen but is <strong>redirected into the <code>wc</code> command</strong>, which will gladly accept input that way instead of via an argument like in the earlier example.</p>
-<div class="callout callout-style-default callout-note callout-titled">
+<p>When we use the pipe, the output of the command on the left-hand side (a file listing, in this case) is no longer printed to screen but is <strong>redirected into the <code>wc</code> command</strong>, which will gladly accept input that way instead of via an argument with a file name like in the earlier example.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -615,14 +615,14 @@ Why pipes are useful
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Pipes avoid the need to write/read intermediate files — this saves typing, makes the operation quicker, and reduces file clobber.</p>
+<p>They avoid having to write/read intermediate files — this saves typing, makes the operation quicker, and reduces file clobber.</p>
 </div>
 </div>
 <hr style="height:1pt; visibility:hidden;">
 </section>
 <section id="selecting-columns-using-cut" class="level3" data-number="2.3">
 <h3 data-number="2.3" class="anchored" data-anchor-id="selecting-columns-using-cut"><span class="header-section-number">2.3</span> Selecting columns using <code>cut</code></h3>
-<p>We’ll now turn to some commands that may be described as “data tools”: <code>cut</code>, <code>sort</code>, <code>uniq</code>, <code>tr</code>, and <code>grep</code>.</p>
+<p>We’ll now turn to some commands that may be described as Unix “data tools”: <code>cut</code>, <code>sort</code>, <code>uniq</code>, <code>tr</code>, and <code>grep</code>.</p>
 <p>Most of the examples will use the file <code>Pacifici2013_data.csv</code>, so let’s have a look at the contents of that file first:</p>
 <div class="sourceCode" id="cb55"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../data</span>
 <span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-n</span> 3 Pacifici2013_data.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -639,7 +639,7 @@ Tabular plain-text files
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In this course, we’ll be working almost exclusively with so-called “<strong>plain-text</strong>” files. These are simple files that can be opened by any text editor and Unix shell tool, as opposed to more complex “binary” formats like Excel or Word files. Almost all common genomics file formats are plain-text, for example.</p>
+<p>In this course, we’ll be working almost exclusively with so-called “<strong>plain-text</strong>” files. These are simple files that can be opened by any text editor and Unix shell tool, as opposed to more complex “binary” formats like Excel or Word files. Almost all common genomics file formats are plain-text.</p>
 <p>“<strong>Tabular</strong>” files contain data that is arranged in a rows-and-columns format, like a table or an Excel worksheet.</p>
 <p><strong>Plain-text tabular</strong> files, like <code>Pacifici2013_data.csv</code>, contain a specific “delimiter” to delimit columns — most commonly:</p>
 <ul>
@@ -650,16 +650,18 @@ Tabular plain-text files
 </div>
 <details>
 <summary>
-What delimiter does the <code>Pacifici2013_data.csv</code> file contain? <em>(Click for the answer)</em>
+What delimiter does the <code>Pacifici2013_data.csv</code> file appear to contain? <em>(Click for the answer)</em>
 </summary>
 From looking at the first couple of lines that we printed above, the delimiter is a semicolon <code>;</code> — “even though” the file has a <code>.csv</code> extension.
 </details>
+<hr style="height:1pt; visibility:hidden;">
 <p>The <code>cut</code> command will select/cut out one or more columns from a tabular file:</p>
 <ul>
-<li>We’ll always have to use the <strong><code>-f</code></strong> option to specify the <strong>desired column(s) / “field(s)</strong>.</li>
+<li>We’ll always have to use the <strong><code>-f</code></strong> option to specify the <strong>desired column(s) / “field”(s)</strong>.</li>
 <li>Because its default column delimiter is a Tab, for this file, we’ll have to specify the <strong>delimiter</strong> with <strong><code>-d</code></strong>.</li>
 </ul>
-<div class="sourceCode" id="cb57"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-d</span> <span class="st">";"</span> <span class="at">-f</span> 1 Pacifici2013_data.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Select the first column of the file:</span></span>
+<span id="cb57-2"><a href="#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-d</span> <span class="st">";"</span> <span class="at">-f</span> 1 Pacifici2013_data.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>TaxID
 7580
 42632
@@ -667,7 +669,7 @@ From looking at the first couple of lines that we printed above, the delimiter i
 42662
 16652
 [...output truncated...]</code></pre>
-<p>That worked, but a ton of output was printed, and we may find ourselves scrolling to the top to see the first few lines – in many cases, it can be useful to pipe the output to <code>head</code> to see if our command works:</p>
+<p>That worked, but a ton of output was printed, and we may find ourselves scrolling to the top to see the first few lines – in many cases, it can be useful to <strong>pipe the output to <code>head</code></strong> to see if our command works:</p>
 <div class="sourceCode" id="cb59"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-d</span> <span class="st">";"</span> <span class="at">-f</span> 1 Pacifici2013_data.csv <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>TaxID
 7580
@@ -809,11 +811,14 @@ Get a count table with <code>uniq -c</code> <em>(Click to expand)</em>
 <p>The <code>grep</code> command is useful to find specific text or patterns in a file. By default, it will <strong>print each line that contains a “match” in full</strong>. It’s basic syntax is <code>grep "&lt;pattern&gt;" file</code>.</p>
 <p>For example, this will print all lines from <code>Pacifici2013_data.csv</code> that contain “Vombatidae”:</p>
 <div class="sourceCode" id="cb88"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"Vombatidae"</span> Pacifici2013_data.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>40555;Diprotodontia;Vombatidae;Lasiorhinus;Lasiorhinus latifrons;26163.8;PanTHERIA;9928;"PanTHERIA;AnAge";9317.5;652.24;calculated;3354.315;3354.315;Rspan-AFR(SM+Gest)
+40556;Diprotodontia;Vombatidae;Vombatus;Vombatus ursinus;26000;PanTHERIA;10238.25;"PanTHERIA;AnAge";9511.6;783.65;calculated;3542.014;3542.014;Rspan-AFR(SM+Gest)
+11343;Diprotodontia;Vombatidae;Lasiorhinus;Lasiorhinus krefftii;31849.99;PanTHERIA;10950;"PanTHERIA;AnAge";no information;no information;no information;no information;3354.315;Mean_congenerics_same_body_mass</code></pre>
 <p>Instead of printing matching lines, we can also <strong>count</strong> them with the <code>-c</code> option:</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-c</span> <span class="st">"Chiroptera"</span> Pacifici2013_data.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb90"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-c</span> <span class="st">"Chiroptera"</span> Pacifici2013_data.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>1144</code></pre>
 <p>The option <code>-v</code> <strong>inverts</strong> <code>grep</code>’s behavior and will print all lines <em>not</em> matching the pattern — here, we’ll combine <code>-v</code> and <code>-c</code> to count the number of lines that do not contain “Vombatidae”:</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-vc</span> <span class="st">"Vombatidae"</span> Pacifici2013_data.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb92"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-vc</span> <span class="st">"Vombatidae"</span> Pacifici2013_data.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>5424</code></pre>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -826,8 +831,8 @@ Get a count table with <code>uniq -c</code> <em>(Click to expand)</em>
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>It is best to always use quotes around the pattern<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></li>
-<li>Incomplete matches work: “<code>Vombat</code>” matches <code>Vombatidae</code></li>
+<li>It is best to always use quotes around the pattern.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></li>
+<li>Incomplete matches, including in individual words, work: “<code>Vombat</code>” matches <code>Vombatidae</code>.</li>
 </ul>
 </div>
 </div>
@@ -869,10 +874,10 @@ Get a count table with <code>uniq -c</code> <em>(Click to expand)</em>
 </ul>
 <p><strong>Text “streams”?</strong></p>
 <p>Rather than loading entire files into memory, process them one line at a time. Very useful with large files!</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This command would combine all files in the working dir ending in `.fa`</span></span>
-<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (i.e. FASTA files) into a single file -- even if that's multiple GBs,</span></span>
-<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a><span class="co"># this will not be a heavy lift at all!</span></span>
-<span id="cb93-4"><a href="#cb93-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> <span class="pp">*</span>.fa <span class="op">&gt;</span> combined.fa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb94"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This command would combine all files in the working dir ending in `.fa`</span></span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (i.e. FASTA files) into a single file -- even if that's multiple GBs,</span></span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a><span class="co"># this will not be a heavy lift at all!</span></span>
+<span id="cb94-4"><a href="#cb94-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> <span class="pp">*</span>.fa <span class="op">&gt;</span> combined.fa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr style="height:1pt; visibility:hidden;">
 </section>
 <section id="the-unix-shell-in-the-weeks-ahead" class="level3" data-number="3.3">
@@ -891,7 +896,7 @@ Get a count table with <code>uniq -c</code> <em>(Click to expand)</em>
 
 <ol>
 <li id="fn1"><p>We’ll see this in action in a bit<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Even though for “literal string” like in the examples above, as opposed to regular expresssions, this is not strictly necessary, it’s good habit to always quote.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Even though for “literal string” like in the examples above, as opposed to regular expressions, this is not strictly necessary, it’s good habit to always quote.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -93,26 +93,22 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html"> <i class="bi bi-house" role="img">
-</i> 
-<span class="menu-text"> </span></a>
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text"><i class="fa-solid fa-home" aria-label="home"></i></span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-modulesweeks" role="button" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Modules/Weeks</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-week-overviews" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Week overviews</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-modulesweeks">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-week-overviews">    
         <li>
     <a class="dropdown-item" href="../week0/overview.html">
  <span class="dropdown-text">Pre-course</span></a>
   </li>  
-        <li class="dropdown-header">Week 1</li>
-        <li class="dropdown-header">Week 2</li>
-        <li class="dropdown-header">Week 3</li>
-        <li class="dropdown-header">Week 4</li>
-        <li class="dropdown-header">Week 5</li>
-        <li class="dropdown-header">Week 6</li>
-        <li class="dropdown-header">Week 7</li>
+        <li>
+    <a class="dropdown-item" href="../week1/w1_overview.html">
+ <span class="dropdown-text">Week 1</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -120,24 +116,11 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Final project</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-final-project">    
-        <li class="dropdown-header">General info</li>
-        <li class="dropdown-header">Checkpoint I: Proposal</li>
-        <li class="dropdown-header">Checkpoint II: Progress report</li>
-        <li class="dropdown-header">Checkpoint III: Presentation</li>
-        <li class="dropdown-header">Checkpoint IV: Submission</li>
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-topic-overviews" role="button" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Topic overviews</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-topic-overviews">    
-        <li class="dropdown-header">Unix shell</li>
-        <li class="dropdown-header">Shell scripting</li>
-        <li class="dropdown-header">OSC, Slurm, and Conda</li>
-        <li class="dropdown-header">Markdown</li>
-        <li class="dropdown-header">Git</li>
-        <li class="dropdown-header">Nextflow</li>
+        <li class="dropdown-header">General info (TBA)</li>
+        <li class="dropdown-header">Checkpoint I: Proposal (TBA)</li>
+        <li class="dropdown-header">Checkpoint II: Progress report (TBA)</li>
+        <li class="dropdown-header">Checkpoint III: Presentation (TBA)</li>
+        <li class="dropdown-header">Checkpoint IV: Submission (TBA)</li>
     </ul>
   </li>
 </ul>
@@ -151,7 +134,16 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="../ref/glossary.html">
  <span class="dropdown-text">Glossary</span></a>
   </li>  
-        <li class="dropdown-header">List of Further Resources</li>
+        <li>
+    <a class="dropdown-item" href="../ref/shell.html">
+ <span class="dropdown-text">Unix shell</span></a>
+  </li>  
+        <li class="dropdown-header">Markdown (TBA)</li>
+        <li class="dropdown-header">Shell scripting (TBA)</li>
+        <li class="dropdown-header">OSC, Slurm, and Conda (TBA)</li>
+        <li class="dropdown-header">Git (TBA)</li>
+        <li class="dropdown-header">Nextflow (TBA)</li>
+        <li class="dropdown-header">List of Further Resources (TBA)</li>
     </ul>
   </li>
   <li class="nav-item">
@@ -205,12 +197,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#readings" id="toc-readings" class="nav-link active" data-scroll-target="#readings"><span class="header-section-number">1</span> Readings</a>
+  <li><a href="#assignments" id="toc-assignments" class="nav-link active" data-scroll-target="#assignments"><span class="header-section-number">1</span> Assignments</a></li>
+  <li><a href="#readings" id="toc-readings" class="nav-link" data-scroll-target="#readings"><span class="header-section-number">2</span> Readings</a>
   <ul class="collapse">
   <li><a href="#syllabus" id="toc-syllabus" class="nav-link" data-scroll-target="#syllabus">Syllabus</a></li>
   <li><a href="#additional-information" id="toc-additional-information" class="nav-link" data-scroll-target="#additional-information">Additional information</a></li>
   </ul></li>
-  <li><a href="#assignments" id="toc-assignments" class="nav-link" data-scroll-target="#assignments"><span class="header-section-number">2</span> Assignments</a></li>
   </ul>
 </nav>
     </div>
@@ -250,8 +242,17 @@ ul.task-list li input[type="checkbox"] {
 
 <hr>
 <p><br></p>
-<section id="readings" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="readings"><span class="header-section-number">1</span> Readings</h2>
+<section id="assignments" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="assignments"><span class="header-section-number">1</span> Assignments</h2>
+<p>Please complete these assignments in the week of Feb 19<sup>th</sup>:</p>
+<ol type="1">
+<li><a href="https://forms.gle/vx2va7qfnNjRhg2M7">Fill out the pre-course <strong>survey</strong></a></li>
+<li><a href="../week0/osc-setup.html">Create or check your <strong>OSC account</strong></a></li>
+</ol>
+<p><br></p>
+</section>
+<section id="readings" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="readings"><span class="header-section-number">2</span> Readings</h2>
 <section id="syllabus" class="level3 unnumbered">
 <h3 class="unnumbered anchored" data-anchor-id="syllabus">Syllabus</h3>
 <p>Please read the updated <strong>syllabus</strong>, which you can find <a href="../assets/PLNTPTH6193_OmicsData_SP2024.pdf">here</a> and on the <a href="https://osu.instructure.com/courses/163340">CarmenCanvas site for the course</a>.</p>
@@ -269,19 +270,10 @@ ul.task-list li input[type="checkbox"] {
 <section id="glossary" class="level4">
 <h4 class="anchored" data-anchor-id="glossary">Glossary</h4>
 <p>If some of the terms in the description of the course material are unfamiliar to you, take a look at the <a href="../ref/glossary.html">glossary page</a> of this website. Of course, you will learn a lot more about these terms and concepts during the course!</p>
-<p><br></p>
-</section>
-</section>
-</section>
-<section id="assignments" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="assignments"><span class="header-section-number">2</span> Assignments</h2>
-<p>Please complete these assignments in the week of Feb 19<sup>th</sup>:</p>
-<ol type="1">
-<li><a href="https://forms.gle/vx2va7qfnNjRhg2M7">Fill out the pre-course <strong>survey</strong></a></li>
-<li><a href="../week0/osc-setup.html">Create or check your <strong>OSC account</strong></a></li>
-</ol>
 
 
+</section>
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->

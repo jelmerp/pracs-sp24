@@ -91,26 +91,22 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> <i class="bi bi-house" role="img">
-</i> 
-<span class="menu-text"> </span></a>
+    <a class="nav-link active" href="./index.html" aria-current="page"> 
+<span class="menu-text"><i class="fa-solid fa-home" aria-label="home"></i></span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-modulesweeks" role="button" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Modules/Weeks</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-week-overviews" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Week overviews</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-modulesweeks">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-week-overviews">    
         <li>
     <a class="dropdown-item" href="./week0/overview.html">
  <span class="dropdown-text">Pre-course</span></a>
   </li>  
-        <li class="dropdown-header">Week 1</li>
-        <li class="dropdown-header">Week 2</li>
-        <li class="dropdown-header">Week 3</li>
-        <li class="dropdown-header">Week 4</li>
-        <li class="dropdown-header">Week 5</li>
-        <li class="dropdown-header">Week 6</li>
-        <li class="dropdown-header">Week 7</li>
+        <li>
+    <a class="dropdown-item" href="./week1/w1_overview.html">
+ <span class="dropdown-text">Week 1</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -118,24 +114,11 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Final project</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-final-project">    
-        <li class="dropdown-header">General info</li>
-        <li class="dropdown-header">Checkpoint I: Proposal</li>
-        <li class="dropdown-header">Checkpoint II: Progress report</li>
-        <li class="dropdown-header">Checkpoint III: Presentation</li>
-        <li class="dropdown-header">Checkpoint IV: Submission</li>
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-topic-overviews" role="button" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Topic overviews</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-topic-overviews">    
-        <li class="dropdown-header">Unix shell</li>
-        <li class="dropdown-header">Shell scripting</li>
-        <li class="dropdown-header">OSC, Slurm, and Conda</li>
-        <li class="dropdown-header">Markdown</li>
-        <li class="dropdown-header">Git</li>
-        <li class="dropdown-header">Nextflow</li>
+        <li class="dropdown-header">General info (TBA)</li>
+        <li class="dropdown-header">Checkpoint I: Proposal (TBA)</li>
+        <li class="dropdown-header">Checkpoint II: Progress report (TBA)</li>
+        <li class="dropdown-header">Checkpoint III: Presentation (TBA)</li>
+        <li class="dropdown-header">Checkpoint IV: Submission (TBA)</li>
     </ul>
   </li>
 </ul>
@@ -149,7 +132,16 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="./ref/glossary.html">
  <span class="dropdown-text">Glossary</span></a>
   </li>  
-        <li class="dropdown-header">List of Further Resources</li>
+        <li>
+    <a class="dropdown-item" href="./ref/shell.html">
+ <span class="dropdown-text">Unix shell</span></a>
+  </li>  
+        <li class="dropdown-header">Markdown (TBA)</li>
+        <li class="dropdown-header">Shell scripting (TBA)</li>
+        <li class="dropdown-header">OSC, Slurm, and Conda (TBA)</li>
+        <li class="dropdown-header">Git (TBA)</li>
+        <li class="dropdown-header">Nextflow (TBA)</li>
+        <li class="dropdown-header">List of Further Resources (TBA)</li>
     </ul>
   </li>
   <li class="nav-item">
@@ -214,7 +206,7 @@ ul.task-list li input[type="checkbox"] {
 <th>Week</th>
 <th>Tue</th>
 <th>Thu</th>
-<th>Readings &amp; <br>Exercises</th>
+<th>Week overview <br> &amp; exercises</th>
 <th>Due for<br>final project</th>
 </tr>
 </thead>
@@ -223,21 +215,21 @@ ul.task-list li input[type="checkbox"] {
 <td></td>
 <td><em>(Pre-course work)</em></td>
 <td></td>
-<td><a href="./week0/overview.html"><i class="fa-solid fa-book" aria-label="book"></i></a> &nbsp; <a href="./week0/overview.html#assignments"><i class="fa-solid fa-user-edit" aria-label="user-edit"></i></a></td>
+<td><a href="./week0/overview.html"><i class="fa-solid fa-book" aria-label="book"></i></a></td>
 <td></td>
 </tr>
 <tr class="even">
 <td><strong>1</strong></td>
-<td>Feb 27: Course Intro</td>
-<td>Feb 29: Shell basics</td>
-<td><a href="./week1/overview.html"><i class="fa-solid fa-book" aria-label="book"></i></a> &nbsp; <a href="./week1/overview.html#assignments"><i class="fa-solid fa-user-edit" aria-label="user-edit"></i></a></td>
+<td>Feb 27: <strong>Course Intro</strong> &amp; <strong>OSC Intro</strong></td>
+<td>Feb 29: Shell basics <strong>Part I</strong> &amp; <strong>Part II</strong></td>
+<td><a href="./week1/w1_overview.html"><i class="fa-solid fa-book" aria-label="book"></i></a> &nbsp; <i class="fa-solid fa-user-edit" aria-label="user-edit"></i></td>
 <td></td>
 </tr>
 <tr class="odd">
 <td><strong>2</strong></td>
 <td>Mar 5: Project organization</td>
 <td>Mar 7: Markdown</td>
-<td><a href="./week2/overview.html"><i class="fa-solid fa-book" aria-label="book"></i></a> &nbsp; <a href="./week2/overview.html#assignments"><i class="fa-solid fa-user-edit" aria-label="user-edit"></i></a></td>
+<td><i class="fa-solid fa-book" aria-label="book"></i> &nbsp; <i class="fa-solid fa-user-edit" aria-label="user-edit"></i></td>
 <td></td>
 </tr>
 <tr class="even">
@@ -251,35 +243,35 @@ ul.task-list li input[type="checkbox"] {
 <td><strong>3</strong></td>
 <td>Mar 19: Version Control I</td>
 <td>Mar 21: Version Control II</td>
-<td><a href="./week3/overview.html"><i class="fa-solid fa-book" aria-label="book"></i></a> &nbsp; <a href="./week3/overview.html#assignments"><i class="fa-solid fa-user-edit" aria-label="user-edit"></i></a></td>
+<td><i class="fa-solid fa-book" aria-label="book"></i> &nbsp; <i class="fa-solid fa-user-edit" aria-label="user-edit"></i></td>
 <td></td>
 </tr>
 <tr class="even">
 <td><strong>4</strong></td>
 <td>Mar 26: Shell data tools</td>
 <td>Mar 28: CLI software &amp; shell scripting</td>
-<td><a href="./week4/overview.html"><i class="fa-solid fa-book" aria-label="book"></i></a> &nbsp; <a href="./week4/overview.html#assignments"><i class="fa-solid fa-user-edit" aria-label="user-edit"></i></a></td>
+<td><i class="fa-solid fa-book" aria-label="book"></i> &nbsp; <i class="fa-solid fa-user-edit" aria-label="user-edit"></i></td>
 <td>Proposal (3/25)</td>
 </tr>
 <tr class="odd">
 <td><strong>5</strong></td>
 <td>Apr 2: Data &amp; software management</td>
 <td>Apr 4: OSC Slurm batch jobs</td>
-<td><a href="./week5/overview.html"><i class="fa-solid fa-book" aria-label="book"></i></a> &nbsp; <a href="./week5/overview.html#assignments"><i class="fa-solid fa-user-edit" aria-label="user-edit"></i></a></td>
+<td><i class="fa-solid fa-book" aria-label="book"></i> &nbsp; <i class="fa-solid fa-user-edit" aria-label="user-edit"></i></td>
 <td></td>
 </tr>
 <tr class="even">
 <td><strong>6</strong></td>
 <td>Apr 9: Nextflow I</td>
 <td>Apr 11: Nextflow II</td>
-<td><a href="./week6/overview.html"><i class="fa-solid fa-book" aria-label="book"></i></a> &nbsp; <a href="./week6/overview.html#assignments"><i class="fa-solid fa-user-edit" aria-label="user-edit"></i></a></td>
+<td><i class="fa-solid fa-book" aria-label="book"></i> &nbsp; <i class="fa-solid fa-user-edit" aria-label="user-edit"></i></td>
 <td>Draft (4/8)</td>
 </tr>
 <tr class="odd">
 <td><strong>7</strong></td>
 <td>Apr 16: Recap</td>
 <td>Apr 18: Student presentations</td>
-<td><a href="./week7/overview.html"><i class="fa-solid fa-book" aria-label="book"></i></a> &nbsp; <a href="./week7/overview.html#assignments"><i class="fa-solid fa-user-edit" aria-label="user-edit"></i></a></td>
+<td><p><i class="fa-solid fa-book" aria-label="book"></i></p></td>
 <td>Submission (4/29)</td>
 </tr>
 </tbody>

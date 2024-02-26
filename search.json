@@ -140,158 +140,151 @@
     "text": "3 Readings\nThe first few pages of our primary book, Computing Skills for Biologists by Allesina & Wilmes (CSB for short), should give you an introduction to the rationale behind the book, and behind this course, too.\nOur main text for this week will be Chapter 1 from CSB, which will introduce you to using the Unix shell. Please read this chapter before Thursday’s class when we will go through the chapter by means of “participatory live-coding” (code-along).\n\nRequired readings\n\nCSB Chapter 0: “Introduction Building a Computing Toolbox” – Introduction & Section 0.1 only\nCSB Chapter 1: “Unix”\n\n\n\nOptional readings\n\nBuffalo Preface and Chapter 1: “How to Learn Bioinformatics”"
   },
   {
-    "objectID": "week1/w1_course-intro.html#todays-objectives",
-    "href": "week1/w1_course-intro.html#todays-objectives",
-    "title": "Week 1 - Lecture 1: Course Intro",
-    "section": "Today’s objectives",
-    "text": "Today’s objectives\n\nGet to know each other\nGet an overview of what we will cover in this course\nGet an overview of the course infrastructure\nWe may start with the Unix shell if time allows"
-  },
-  {
     "objectID": "week1/w1_course-intro.html#introductions-jelmer",
     "href": "week1/w1_course-intro.html#introductions-jelmer",
-    "title": "Week 1 - Lecture 1: Course Intro",
+    "title": "Course Intro",
     "section": "Introductions: Jelmer",
     "text": "Introductions: Jelmer\n\nBioinformatician at MCIC in Wooster since June 2020\n\nMost of my time is spent providing research assistance, working with grad students and postdocs on predominantly genomic & transcriptomics data\nAlso teach: some courses, workshops, Code Club (https://osu-codeclub.github.io)\n\n\n\n\n\nBackground in animal evolutionary genomics & speciation\n\n\n\nIn my free time, I enjoy bird watching, locally & all across the world"
   },
   {
     "objectID": "week1/w1_course-intro.html#introductions-you",
     "href": "week1/w1_course-intro.html#introductions-you",
-    "title": "Week 1 - Lecture 1: Course Intro",
+    "title": "Course Intro",
     "section": "Introductions: You!",
     "text": "Introductions: You!\n\nName\nLab and Department\nResearch interests and/or current topics\nSomething about you that is not work-related"
   },
   {
     "objectID": "week1/w1_course-intro.html#the-core-goals-of-this-course",
     "href": "week1/w1_course-intro.html#the-core-goals-of-this-course",
-    "title": "Week 1 - Lecture 1: Course Intro",
+    "title": "Course Intro",
     "section": "The core goals of this course",
     "text": "The core goals of this course\nLearning skills to:\n\nDo your research more reproducibly and efficiently\nPrepare yourself for working with large “omics” datasets"
   },
   {
     "objectID": "week1/w1_course-intro.html#course-background-reproducibility",
     "href": "week1/w1_course-intro.html#course-background-reproducibility",
-    "title": "Week 1 - Lecture 1: Course Intro",
+    "title": "Course Intro",
     "section": "Course background: Reproducibility",
     "text": "Course background: Reproducibility\n\nTwo related ideas:\n\nGetting same results with an independent experiment (replicable)\nGetting same results given the same data (reproducible)\n\nOur focus is on #2."
   },
   {
     "objectID": "week1/w1_course-intro.html#course-background-reproducibility-cont.",
     "href": "week1/w1_course-intro.html#course-background-reproducibility-cont.",
-    "title": "Week 1 - Lecture 1: Course Intro",
+    "title": "Course Intro",
     "section": "Course background: Reproducibility (cont.)",
-    "text": "Course background: Reproducibility (cont.)\n\n“The most basic principle for reproducible research is: Do everything via code.”\n\n\n\nAlso important:\n\nProject organization and documentation (week 2)\nSharing data and code (Github for code, week 3)\nHow you code (especially week 10 - Python, and 13 - Snakemake)\n\n\n\n\nAnother motivator: working reproducibly will benefit future you!"
+    "text": "Course background: Reproducibility (cont.)\n\n“The most basic principle for reproducible research is: Do everything via code.”\n\n\n\nAlso important:\n\nProject organization and documentation (week 2)\nSharing data and code (for code: Git & GitHub, week 3)\nHow you code (e.g. week 4 - shell scripts, and 6 - Nextflow)\n\n\n\n\nAnother motivator: working reproducibly will benefit future you!"
   },
   {
     "objectID": "week1/w1_course-intro.html#course-background-efficiency-and-automation",
     "href": "week1/w1_course-intro.html#course-background-efficiency-and-automation",
-    "title": "Week 1 - Lecture 1: Course Intro",
+    "title": "Course Intro",
     "section": "Course background: Efficiency and automation",
     "text": "Course background: Efficiency and automation\n\nUsing code enables you to work efficiently and largely automatically — particularly useful when having to:\n\nDo repetitive tasks\nRecreate a figure or redo an analysis after adding a sample\nRedo everything after uncovering a mistake in the first data processing step."
   },
   {
     "objectID": "week1/w1_course-intro.html#course-background-omics-data",
     "href": "week1/w1_course-intro.html#course-background-omics-data",
-    "title": "Week 1 - Lecture 1: Course Intro",
+    "title": "Course Intro",
     "section": "Course background: Omics data",
     "text": "Course background: Omics data"
   },
   {
     "objectID": "week1/w1_course-intro.html#the-unix-shell-shell-scripts",
     "href": "week1/w1_course-intro.html#the-unix-shell-shell-scripts",
-    "title": "Week 1 - Lecture 1: Course Intro",
+    "title": "Course Intro",
     "section": "The Unix shell & shell scripts",
     "text": "The Unix shell & shell scripts\nBeing able to work in the shell is a fundamental skill in computational biology.\n\n\nWeek 1, (2,) and 4: Working in the Unix shell.\nWeek 4: Shell scripting.\nWeek 5: Submitting shell scripts as OSC “batch jobs” with Slurm."
   },
   {
     "objectID": "week1/w1_course-intro.html#working-with-large-data-sets",
     "href": "week1/w1_course-intro.html#working-with-large-data-sets",
-    "title": "Week 1 - Lecture 1: Course Intro",
+    "title": "Course Intro",
     "section": "Working with large data sets",
     "text": "Working with large data sets"
   },
   {
     "objectID": "week1/w1_course-intro.html#project-organization-and-markdown-wk-2",
     "href": "week1/w1_course-intro.html#project-organization-and-markdown-wk-2",
-    "title": "Week 1 - Lecture 1: Course Intro",
+    "title": "Course Intro",
     "section": "Project organization and Markdown (Wk 2)",
     "text": "Project organization and Markdown (Wk 2)\nGood project organization & documentation is a necessary starting point for reproducible research.\n\n\nBest practices for project organization, file naming, etc., and how to use the Unix shell for this.\nTo document and report what we are doing: Markdown."
   },
   {
     "objectID": "week1/w1_course-intro.html#version-control-with-git-and-github-wk-3",
     "href": "week1/w1_course-intro.html#version-control-with-git-and-github-wk-3",
-    "title": "Week 1 - Lecture 1: Course Intro",
+    "title": "Course Intro",
     "section": "Version control with Git and GitHub (Wk 3)",
     "text": "Version control with Git and GitHub (Wk 3)\nUsing version control, you can more effectively keep track of project progress, collaborate, experiment, revisit earlier versions, and undo.\n\n\nGit is the version control software we will use,\nand GitHub is the website that hosts Git projects (repositories)."
   },
   {
     "objectID": "week1/w1_course-intro.html#automated-workflow-management-wk-6",
     "href": "week1/w1_course-intro.html#automated-workflow-management-wk-6",
-    "title": "Week 1 - Lecture 1: Course Intro",
+    "title": "Course Intro",
     "section": "Automated workflow management (Wk 6)",
     "text": "Automated workflow management (Wk 6)\nTo be able to run an entire analysis pipeline with a single command,\nand easily change and rerun parts of it, we need a workflow manager.\n\n\nWe’ll use Nextflow."
   },
   {
     "objectID": "week1/w1_course-intro.html#zoom-practicalities",
     "href": "week1/w1_course-intro.html#zoom-practicalities",
-    "title": "Week 1 - Lecture 1: Course Intro",
+    "title": "Course Intro",
     "section": "Zoom practicalities",
     "text": "Zoom practicalities\n\nBe muted by default, but feel free to unmute yourself to ask questions.\nQuestions can also be asked in the chat.\nHaving your camera turned on as much as possible is appreciated!\n\n\n\n“Screen real estate” — large/multiple monitors or multiple devices best.\nBe ready to share your screen."
   },
   {
     "objectID": "week1/w1_course-intro.html#carmencanvas-website",
     "href": "week1/w1_course-intro.html#carmencanvas-website",
-    "title": "Week 1 - Lecture 1: Course Intro",
+    "title": "Course Intro",
     "section": "CarmenCanvas website",
     "text": "CarmenCanvas website\nI will only use this for Announcements."
   },
   {
     "objectID": "week1/w1_course-intro.html#course-infrastructure-github-website",
     "href": "week1/w1_course-intro.html#course-infrastructure-github-website",
-    "title": "Week 1 - Lecture 1: Course Intro",
+    "title": "Course Intro",
     "section": "Course infrastructure: GitHub website",
     "text": "Course infrastructure: GitHub website\nThis is the main website for the course, containing all the material:\n\nOverviews of each week & readings\nSlide decks and lecture pages\nExercises\nFinal project assignment information\n\n\n\n\n\n\n\nWeekly materials\n\n\nI will try add the materials for each week on the preceding Friday – at the least the week’s overview and readings."
   },
   {
     "objectID": "week1/w1_course-intro.html#ohio-supercomputer-center-osc",
     "href": "week1/w1_course-intro.html#ohio-supercomputer-center-osc",
-    "title": "Week 1 - Lecture 1: Course Intro",
+    "title": "Course Intro",
     "section": "Ohio Supercomputer Center (OSC)",
     "text": "Ohio Supercomputer Center (OSC)\n\nAll of our work can be done at OSC, in a browser (!)\n\nAvoids local installs, different behavior for different OS’s, etc."
   },
   {
     "objectID": "week1/w1_course-intro.html#course-infrastructure-github",
     "href": "week1/w1_course-intro.html#course-infrastructure-github",
-    "title": "Week 1 - Lecture 1: Course Intro",
+    "title": "Course Intro",
     "section": "Course infrastructure: Github",
     "text": "Course infrastructure: Github\n\nYou’ll be submitting your assignments through GitHub.\nThis will double as practice with version control and sharing of scripts."
   },
   {
     "objectID": "week1/w1_course-intro.html#final-project-graded",
     "href": "week1/w1_course-intro.html#final-project-graded",
-    "title": "Week 1 - Lecture 1: Course Intro",
+    "title": "Course Intro",
     "section": "Final project (graded)",
     "text": "Final project (graded)\nPlan and implement a small computational project, with the following checkpoints:\n\nI: Proposal (due week 4, 10 points)\nII: Draft (due week 6, 10 points)\nIII: Presentations on Zoom (week 7, 10 points)\nIV: Final submission (due April 29, 20 points)\n\n\n\n\n\n\n\n\n\nData sets for the final project\n\n\nIf you have your own data set & analysis ideas, that is ideal. If not, I can provide you with this.\nMore information about the final project will follow in week 2 or 3."
   },
   {
     "objectID": "week1/w1_course-intro.html#ungraded-homework",
     "href": "week1/w1_course-intro.html#ungraded-homework",
-    "title": "Week 1 - Lecture 1: Course Intro",
+    "title": "Course Intro",
     "section": "Ungraded homework",
-    "text": "Ungraded homework\n\nWeekly readings\nWeekly exercises\nMiscellaneous small assignments such as surveys and account setup.\n\n\n\n\n\n\n\n\nNone of these have to be handed in."
+    "text": "Ungraded homework\n\nWeekly readings — somewhat up to you when to do these\nWeekly exercises — I recommend to do these on Fridays\nMiscellaneous small assignments such as surveys and account setup.\n\n\nI will try to post an overview for each week on the preceding Friday (but note that the readings are also in the syllabus if you want to read ahead and/or if I post late).\n\n\n\n\n\n\n\nNone of these have to be handed in."
   },
   {
     "objectID": "week1/w1_course-intro.html#weekly-recitation-on-monday",
     "href": "week1/w1_course-intro.html#weekly-recitation-on-monday",
-    "title": "Week 1 - Lecture 1: Course Intro",
+    "title": "Course Intro",
     "section": "Weekly recitation on Monday",
     "text": "Weekly recitation on Monday\nIf there is interest, we can have a weekly Monday meeting in which we go through the exercises for the preceding week.\n\nIf you’re interested, indicate your availability here:\nhttps://www.when2meet.com/?23841132-KV8fY"
   },
   {
     "objectID": "week1/w1_course-intro.html#rest-of-this-week",
     "href": "week1/w1_course-intro.html#rest-of-this-week",
-    "title": "Week 1 - Lecture 1: Course Intro",
+    "title": "Course Intro",
     "section": "Rest of this week",
-    "text": "Rest of this week\n\nUnix shell basics (code-along of CSB Chapter 1)\nHomework – from CSB Chapter 1:\n\nReadings\nExercises"
+    "text": "Rest of this week\n\nBrief introduction to the Ohio Supercomputer Center (OSC)\nUnix shell basics (largely following CSB Chapter 1)\nHomework – from CSB Chapter 1:\n\nReadings\nExercises"
   },
   {
     "objectID": "week1/w1_shell1.html#goals-for-this-session",
@@ -515,7 +508,7 @@
     "href": "week1/w1_overview.html#readings",
     "title": "Week 1: Course Intro & Shell Basics",
     "section": "3 Readings",
-    "text": "3 Readings\nThe first few pages of the book Computing Skills for Biologists by Allesina & Wilmes (CSB for short), should give you an introduction to the rationale behind the book as well as this course.\nOur main text for this week will be Chapter 1 from CSB, which will introduce you to using the Unix shell. I would recommend to read this this at least by Thursday’s class, when we will go through much of the chapter’s content.\n\nRequired readings\n\nCSB Chapter 0: “Introduction Building a Computing Toolbox” – Introduction & Section 0.1 only\nCSB Chapter 1: “Unix”\n\n\n\nOptional readings\n\nBuffalo Preface and Chapter 1: “How to Learn Bioinformatics”"
+    "text": "3 Readings\nThe first few pages of the book Computing Skills for Biologists by Allesina & Wilmes (CSB for short), should give you an introduction to the rationale behind the book as well as this course.\nOur main text for this week will be Chapter 1 from CSB, which will introduce you to using the Unix shell.\nI would recommend reading or at least skimming this before Thursday’s class, when we will go through much of the chapter’s content. That said, I will not assume you’ve read it during class, and you may prefer to focus your reading after the lectures. (We’ll discuss reading expectations and recommendations on Tuesday, too.)\n\nRequired readings\n\nCSB Chapter 0: “Introduction Building a Computing Toolbox” – Introduction & Section 0.1 only\nCSB Chapter 1: “Unix”\n\n\n\nOptional readings\n\nBuffalo Preface and Chapter 1: “How to Learn Bioinformatics”"
   },
   {
     "objectID": "week1/removed.html",

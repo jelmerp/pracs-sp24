@@ -112,6 +112,37 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-lectures" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Lectures</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-lectures">    
+        <li class="dropdown-header">Week 1</li>
+        <li>
+    <a class="dropdown-item" href="../week1/w1_course-intro.html">
+ <span class="dropdown-text">Course Intro (slides)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week1/w1_osc.html">
+ <span class="dropdown-text">OSC Intro</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week1/w1_shell.html">
+ <span class="dropdown-text">Shell Basics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-exercises" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Exercises</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-exercises">    
+        <li>
+    <a class="dropdown-item" href="../week1/w1_exercises.html">
+ <span class="dropdown-text">Week 1</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-final-project" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Final project</span>
     </a>
@@ -257,7 +288,7 @@ ul.task-list li input[type="checkbox"] {
 <p><br></p>
 <section id="goals-for-this-session" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="goals-for-this-session"><span class="header-section-number">1</span> Goals for this session</h2>
-<p>This session will provide a introduction to high-performance computing in general and to the Ohio Supercomputer Center (OSC) specifically.</p>
+<p>This session will provide an introduction to high-performance computing in general and to the Ohio Supercomputer Center (OSC).</p>
 <p>This is only meant as a brief introductory overview to give some context about the working environment that we will start using this week. During the course, you’ll learn a lot more about most topics touched on in this page — week 5 in particular focuses on OSC.</p>
 <hr style="height:1pt; visibility:hidden;">
 </section>
@@ -275,7 +306,7 @@ ul.task-list li input[type="checkbox"] {
 <li>Your analyses take a long time to run, need large numbers of CPUs, or a large amount of memory.</li>
 <li>You need to run some analyses many times.</li>
 <li>You need to store a lot of data.</li>
-<li>Your analyses require specialized hardware, such as GPUs.</li>
+<li>Your analyses require specialized hardware, such as GPUs (Graphical Processing Units).</li>
 <li>Your analyses require software available only for the Linux operating system, but you use Windows.</li>
 </ul>
 <p>When you’re working with omics data, many of these reasons typically apply. This can make it hard or sometimes simply impossible to do all your work on your personal workstation, and supercomputers provide a solution.</p>
@@ -300,6 +331,7 @@ OSC websites and “Projects”
 <li><a href="https://my.osc.edu" class="uri">https://my.osc.edu</a>: Account and project management (<em>login needed</em>).</li>
 <li><a href="https://osc.edu" class="uri">https://osc.edu</a>: General website with information about the supercomputers, installed software, and usage.</li>
 </ul>
+<hr>
 <p>Access to OSC’s computing power and storage space goes through <strong>OSC “Projects”</strong>:</p>
 <ul>
 <li>A project can be tied to a research project or lab, or be educational like this course’s project, <code>PAS2700</code>.</li>
@@ -329,7 +361,7 @@ A facility like OSC that has one or more supercomputers.</li>
 <h3 data-number="3.2" class="anchored" data-anchor-id="supercomputer-components"><span class="header-section-number">3.2</span> Supercomputer components</h3>
 <p>We can think of a supercomputer as having three main parts:</p>
 <ul>
-<li><strong>File Systems</strong>: Where files are stored (these are shared between the two clusters!)</li>
+<li><strong>File Systems</strong>: Where files are stored (these are shared between the two OSC supercomputers!)</li>
 <li><strong>Login Nodes</strong>: The handful of computers everyone shares after logging in</li>
 <li><strong>Compute Nodes</strong>: The many computers you can reserve to run your analyses</li>
 </ul>
@@ -406,7 +438,7 @@ Directory is just another word for folder, often written as “dir” for short
 </section>
 <section id="login-nodes" class="level4">
 <h4 class="anchored" data-anchor-id="login-nodes">Login Nodes</h4>
-<p>Login nodes are set aside as an initial landing spot for everyone who logs in to a supercomputer. There are only a handful of them on each supercomputer, and they are shared among everyone and cannot be “reserved”.</p>
+<p>Login nodes are set aside as an initial landing spot for everyone who logs in to a supercomputer. There are only a handful of them on each supercomputer, they are shared among everyone, and cannot be “reserved”.</p>
 <p>As such, login nodes are meant only to do things like organizing your files and creating scripts for compute jobs, and are <strong><em>not</em></strong> <strong>meant for any serious computing</strong>, which should be done on the compute nodes.</p>
 <hr style="height:1pt; visibility:hidden;">
 </section>
@@ -440,14 +472,15 @@ At-home reading: What works differently on a supercomputer like at OSC? <em>(Cli
 <div class="callout-body-container callout-body">
 <p>Compared to command-line computing on a laptop or desktop, a number of aspects are different when working on a supercomputer like at OSC. We’ll learn much more about these later on in the course, but here is an overview:</p>
 <ul>
-<li><strong>Login versus compute nodes</strong><br>
-“Login nodes”, the nodes you end up on after logging in, are not meant for heavy computing and you have to <em>request access to “compute nodes”</em> to run most analyses.</li>
 <li><strong>“Non-interactive” computing is common</strong><br>
 It is common to write and “submit” scripts to a queue instead of running programs interactively.</li>
 <li><strong>Software</strong><br>
 You generally can’t install “the regular way”, and a lot of installed software needs to be “loaded”.</li>
 <li><strong>Operating system</strong><br>
 Supercomputers run on the Linux operating system.</li>
+<li><strong>Login versus compute nodes</strong><br>
+As mentioned, the nodes you end up on after logging in are not meant for heavy computing and you have to <em>request access to “compute nodes”</em> to run most analyses.<br>
+</li>
 </ul>
 </div>
 </div>
@@ -464,7 +497,7 @@ Supercomputers run on the Linux operating system.</li>
 <li>A <strong>Unix shell</strong></li>
 <li>“<strong>Interactive Apps</strong>”: programs such as RStudio, Jupyter, VS Code and QGIS.</li>
 </ul>
-<p><i class="fa-solid fa-user-edit" aria-label="user-edit"></i> <strong>Go to <a href="https://ondemand.osc.edu" class="uri">https://ondemand.osc.edu</a> and log in</strong> (use the box on the left-hand side)</p>
+<p><i class="fa-solid fa-user-edit" aria-label="user-edit"></i> <strong>Go to <a href="https://ondemand.osc.edu" class="uri">https://ondemand.osc.edu</a> and log in</strong> (use the boxes on the left-hand side)</p>
 <p>You should see a landing page similar to the one below:</p>
 <p align="center">
 </p><p><img src="img/ondemand_home.png" width="90%"></p>
@@ -479,7 +512,7 @@ Supercomputers run on the Linux operating system.</li>
 <li>The <code>PAS2700</code> project’s “<strong>scratch</strong>” directory (<code>/fs/scratch/PAS2700</code>)</li>
 <li>The <code>PAS2700</code> project’s “<strong>project</strong>” directory (<code>/fs/ess/PAS2700</code>)</li>
 </ol>
-<p>You will only ever have one Home directory at OSC, but for every additional project you are a member of, you should usually see additional <code>/fs/ess</code> and a <code>/fs/scratch</code> directories appear.</p>
+<p>You will only ever have one Home directory at OSC, but for every additional project you are a member of, you should usually see additional <code>/fs/ess</code> and <code>/fs/scratch</code> directories appear.</p>
 <p><i class="fa-solid fa-user-edit" aria-label="user-edit"></i> <strong>Click on our focal directory <code>/fs/ess/PAS2700</code></strong>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -514,7 +547,7 @@ Supercomputers run on the Linux operating system.</li>
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<strong>System Status</strong> within <strong>Clusters</strong> <em>(Click to expand)</em>
+System Status within Clusters <em>(Click to expand)</em>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>

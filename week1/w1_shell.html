@@ -9,7 +9,7 @@
 <meta name="author" content="Jelmer Poelstra">
 <meta name="dcterms.date" content="2024-02-29">
 
-<title>pracs-sp24 - Week 1: Unix Shell Basics</title>
+<title>Shell Basics</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -141,6 +141,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
         <li>
     <a class="dropdown-item" href="../week1/w1_overview.html">
+ <span class="dropdown-text">Week 1</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-lectures" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Lectures</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-lectures">    
+        <li class="dropdown-header">Week 1</li>
+        <li>
+    <a class="dropdown-item" href="../week1/w1_course-intro.html">
+ <span class="dropdown-text">Course Intro (slides)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week1/w1_osc.html">
+ <span class="dropdown-text">OSC Intro</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week1/w1_shell.html">
+ <span class="dropdown-text">Shell Basics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-exercises" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Exercises</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-exercises">    
+        <li>
+    <a class="dropdown-item" href="../week1/w1_exercises.html">
  <span class="dropdown-text">Week 1</span></a>
   </li>  
     </ul>
@@ -333,11 +364,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tip
+See the <a href="../ref/shell.html">“Topic Overview” page on the Unix shell</a> for an overview of shell commands we’ll cover during this course.
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>See the <a href="../ref/shell.html">“Topic Overview” page on the Unix shell</a> for an overview of Unix shell commands we’ll cover during this course.</p>
+
 </div>
 </div>
 <p><br></p>
@@ -349,7 +380,6 @@ Tip
 <section id="unix-vs.-linux" class="level4">
 <h4 class="anchored" data-anchor-id="unix-vs.-linux">Unix (vs.&nbsp;Linux)</h4>
 <p>We can conceptualize Unix (or “Unix-like” / “*nix”)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> as a <strong>family of operating systems</strong>, which includes Linux and Mac but not Windows.</p>
-<p>Recall from the previous session that OSC runs on Linux — as do the vast majority of “servers” worldwide.</p>
 </section>
 <section id="unix-shell-related-terms" class="level4">
 <h4 class="anchored" data-anchor-id="unix-shell-related-terms">Unix shell-related terms</h4>
@@ -395,7 +425,7 @@ It is often only possible to work in a terminal when doing remote computing.</li
 <li>Click on <code>Clusters</code> and then <code>Pitzer Shell Access</code>.</li>
 </ol>
 <hr style="height:1pt; visibility:hidden;">
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -420,6 +450,13 @@ Copying and pasting in this shell
 <h2 data-number="4" class="anchored" data-anchor-id="getting-started-with-unix-ch.-1.3"><span class="header-section-number">4</span> Getting started with Unix (Ch. 1.3)</h2>
 <section id="unix-directory-structure" class="level4">
 <h4 class="anchored" data-anchor-id="unix-directory-structure">Unix directory structure</h4>
+<ul>
+<li><p>“Directory” (or “<strong>dir</strong>” for short) is the term for <em>folder</em> that is commonly used in Unix contexts.</p></li>
+<li><p>The Unix directory structure is hierarchical, with a single starting point: the <strong>root</strong>, depicted as <strong><code>/</code></strong>.</p></li>
+<li><p>A “<strong>path</strong>” gives the location of a file or directory, in which directories are separated by forward slashes <code>/</code>.</p></li>
+<li><p>For example, the path to our OSC project’s dir is <code>/fs/ess/PAS2700</code>. This means: the dir <code>PAS2700</code> is located inside the dir <code>ess</code>, which in turn is inside the dir <code>fs</code>, which in turn is in the computer’s root directory.</p></li>
+<li><p>The OSC dir structure is somewhat different from that of a personal computer. Our Home dir is not <code>/home/&lt;username&gt;</code> like in the book and the schematic on the left, but <code>/users/&lt;a-project&gt;/&lt;username&gt;</code>.</p></li>
+</ul>
 <div class="columns">
 <div class="column">
 <div class="quarto-figure quarto-figure-center">
@@ -437,13 +474,6 @@ Copying and pasting in this shell
 </div>
 </div>
 </div>
-<ul>
-<li><p>“Directory” (or “<strong>dir</strong>” for short) is the term for <em>folder</em> that is commonly used in Unix contexts.</p></li>
-<li><p>The Unix directory structure is hierarchical, with a single starting point: the <strong>root</strong>, depicted as <strong><code>/</code></strong>.</p></li>
-<li><p>A “<strong>path</strong>” gives the location of a file or directory, in which directories are separated by forward slashes <code>/</code>.</p></li>
-<li><p>For example, the path to our OSC project’s main/project dir is <code>/fs/ess/PAS2700</code>. This means: the dir <code>PAS2700</code> is located inside the dir <code>ess</code>, which in turn is located inside the dir <code>fs</code>, which in turn is located in the computer’s root directory.</p></li>
-<li><p>The OSC dir structure is somewhat different from that of a personal computer. For example, our Home dir is not <code>/home/&lt;username&gt;</code> like in the book and the schematic above on the left, but <code>/users/&lt;some-project&gt;/&lt;username&gt;</code>, as we’ll see below.</p></li>
-</ul>
 <p><br></p>
 </section>
 </section>
@@ -528,24 +558,11 @@ Sun Mon Tue Wed Thu Fri Sat  Sun Mon Tue Wed Thu Fri Sat  Sun Mon Tue Wed Thu Fr
 <li>Turning a 3-month display ON with <code>-3</code>.</li>
 </ul>
 <p>In general terms, options <strong>change the behavior</strong> of a command.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-A more complex type of option
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>When we get to commands like <code>cut</code> later in this session, we’ll also see <em>options that take an argument</em>: e.g., the <code>-f</code> option allows you to select a column, with <code>-f 3</code> selecting the 3rd column.</p>
-</div>
-</div>
 </section>
 <section id="arguments" class="level4">
 <h4 class="anchored" data-anchor-id="arguments">Arguments</h4>
 <p>Whereas options change the behavior of a command, arguments typically tell the command <strong>what to operate on</strong>. Most commonly, these are file or directory paths.</p>
-<p>Admittedly, the <code>cal</code> command is not the best illustration of this general pattern — when you give it one argument, this is supposed to be the year to show a calendar for:</p>
+<p>Admittedly, the <code>cal</code> command is not the best illustration of this pattern — when you give it one argument, this is supposed to be the year to show a calendar for:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cal</span> 2020</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>                              2020                               
 
@@ -597,7 +614,7 @@ Options:
  -V, --version    display version information and exit
  -h, --help       display this help text and exit</code></pre>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -606,7 +623,7 @@ Another way to see documentation: the <code>man</code> command <em>(Click to exp
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>An alternative way of getting help for Unix commands is with the <code>man</code> command:</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">man</span> cal</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -623,7 +640,7 @@ Another way to see documentation: the <code>man</code> command <em>(Click to exp
 <summary>
 Solution
 </summary>
-<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print a calendar with Monday as the first day of th week (instead of the default, SUnday) </span></span>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print a calendar with Monday as the first day of th week (instead of the default, Sunday) </span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cal</span> <span class="at">-m</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>    February 2024   
 Mo Tu We Th Fr Sa Su
@@ -650,6 +667,7 @@ Mon Tue Wed Thu Fri Sat Sun
  50  51  52  53  54  55  56
  57  58  59  60</code></pre>
 <p>The advantage of using long options is that it is much more likely that any reader of the code (including yourself next week) will immediately understand what these options are doing.</p>
+<p>Note that long options <strong>cannot</strong> be “pasted together” like short options.</p>
 </details>
 <ul>
 <li>Try to figure out / guess what the <code>cal [options] [[[day] month] year]</code> means. Can you print a calendar for April 2017?</li>
@@ -658,14 +676,14 @@ Mon Tue Wed Thu Fri Sat Sun
 <summary>
 Solution
 </summary>
-<p>First of all, the square brackets around <code>options</code> and all of the possible arguments means that none of these are required — as we’ve seen, just <code>cal</code> is a valid command.</p>
+<p>First of all, the square brackets around <code>options</code> and all of the possible arguments means that <em>none of these are required</em> — as we’ve seen, just <code>cal</code> (with no options or arguments) is a valid command.</p>
 <p>The structure of the multiple square brackets around the day-month-year arguments indicate that:</p>
 <ul>
-<li>If you provide only one argument, it should be a year</li>
-<li>If you provide a second argument, it should be a month</li>
-<li>If you provide a third argument, it should be a day</li>
+<li><em>If</em> you provide only one argument, it should be a year</li>
+<li><em>If</em> you provide a second argument, it should be a month</li>
+<li><em>If</em> you provide a third argument, it should be a day</li>
 </ul>
-<p>To print a calendar for April 2017:</p>
+<p>Therefore, to print a calendar for April 2017:</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cal</span> 4 2017</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>     April 2017     
 Su Mo Tu We Th Fr Sa
@@ -772,7 +790,7 @@ Basically, everything you type in the shell should start with a command. Just ty
 <div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -781,7 +799,7 @@ Table with useful keyboard shortcuts <em>(Click to expand)</em>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Note that even on Macs, you should use <kbd>Ctrl</kbd> instead of switching them out for <kbd>Cmd</kbd> as you may be used to doing (in some cases, like copy/paste, both work).</p>
 <table class="table">
@@ -1031,13 +1049,13 @@ These path shortcuts work with many commands
 <h2 data-number="6" class="anchored" data-anchor-id="basic-unix-commands-ch.-1.5"><span class="header-section-number">6</span> Basic Unix commands (Ch. 1.5)</h2>
 <section id="ls-to-list-files" class="level3" data-number="6.1">
 <h3 data-number="6.1" class="anchored" data-anchor-id="ls-to-list-files"><span class="header-section-number">6.1</span> <code>ls</code> to list files</h3>
-<p>The <code>ls</code> command, short for “list”, will list files and directories:</p>
+<p>The <code>ls</code> command, short for “list”, will list files and directories — by default those in your current working dir:</p>
 <div class="sourceCode" id="cb69"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (You should be in /fs/ess/PAS2700/users/$USER/CSB/unix/data)</span></span>
 <span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>Buzzard2015_about.txt  Gesquiere2011_about.txt  Marra2014_about.txt   miRNA                   Pacifici2013_data.csv  Saavedra2013_about.txt
 Buzzard2015_data.csv   Gesquiere2011_data.csv   Marra2014_data.fasta  Pacifici2013_about.txt  Saavedra2013</code></pre>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1046,7 +1064,7 @@ Buzzard2015_data.csv   Gesquiere2011_data.csv   Marra2014_data.fasta  Pacifici20
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>The <code>ls</code> output above does not show the different colors you should see in your shell — the most common ones are:</p>
 <ul>
@@ -1057,7 +1075,7 @@ Buzzard2015_data.csv   Gesquiere2011_data.csv   Marra2014_data.fasta  Pacifici20
 </div>
 </div>
 </div>
-<p>By default, <code>ls</code> will list files and dirs in your current working dir in the way shown above. <em>For which dir</em> <code>ls</code> lists its contents can be changed with arguments, and <em>how</em> it shows the output can be changed with options. For example, we can call <code>ls</code> with the <strong>option <code>-l</code></strong> (lowercase L):</p>
+<p><em>For which dir</em> <code>ls</code> lists its contents can be changed with arguments, and <em>how</em> it shows the output can be changed with options. For example, we can call <code>ls</code> with the <strong>option <code>-l</code></strong> (lowercase L):</p>
 <div class="sourceCode" id="cb71"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-l</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>total 1793
 -rw-rw----+ 1 jelmer PAS0471     562 Feb 24 20:30 Buzzard2015_about.txt
@@ -1071,7 +1089,7 @@ drwxrwx---+ 2 jelmer PAS0471    4096 Feb 24 20:30 miRNA
 -rw-rw----+ 1 jelmer PAS0471 1076150 Feb 24 20:30 Pacifici2013_data.csv
 drwxrwx---+ 2 jelmer PAS0471    4096 Feb 24 20:30 Saavedra2013
 -rw-rw----+ 1 jelmer PAS0471     322 Feb 24 20:30 Saavedra2013_about.txt</code></pre>
-<p>Notice that it lists the same items as above, but <strong>printed in a different format</strong>: one item per line, with additional information such as the date and time each file was last modified, and file sizes in bytes (to the left of the date).</p>
+<p>It lists the same items as earlier, but <strong>printed in a different format</strong>: one item per line, with additional information such as the date and time each file was last modified, and file sizes in bytes (to the left of the date).</p>
 <p>Let’s add another option, <strong><code>-h</code></strong>:</p>
 <div class="sourceCode" id="cb73"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>total 1.8M
@@ -1093,6 +1111,7 @@ What is different about the output, and what do you think that means? <em>(Click
 <p>The only difference is in the format of the column reporting the sizes of the items listed.</p>
 <p>We now have “Human-readable filesizes” (hence <code>-h</code>), where sizes on the scale of kilobytes will be shown with <code>K</code>s, of megabytes with <code>M</code>s, and of gigabytes with <code>G</code>s. That can be really useful especially for very large files.</p>
 </details>
+<hr style="height:1pt; visibility:hidden;">
 <p>We can also list files in directories other than the one we are in, by specifying that dir as an argument:</p>
 <div class="sourceCode" id="cb75"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> miRNA</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>ggo_miR.fasta  hsa_miR.fasta  miR_about.txt  miRNA_about.txt  ppa_miR.fasta  ppy_miR.fasta  ptr_miR.fasta  ssy_miR.fasta</code></pre>
@@ -1116,7 +1135,7 @@ What is different about the output, and what do you think that means? <em>(Click
 </section>
 <section id="cp-to-copy-files" class="level3" data-number="6.2">
 <h3 data-number="6.2" class="anchored" data-anchor-id="cp-to-copy-files"><span class="header-section-number">6.2</span> <code>cp</code> to copy files</h3>
-<p>The <code>cp</code> command copies files and/or directories from one location to another. It has two required arguments: what you want to copy (the <em>source</em>), and where you want to copy it to (the <em>destination</em>). Its basic syntax can be summarized as <code>cp &lt;source&gt; &lt;destination&gt;</code>.</p>
+<p>The <code>cp</code> command copies files and/or dirs from one location to another. It has two required arguments: what you want to copy (<em>source</em>), and where you want to copy it to (<em>destination</em>). Its basic syntax is <code>cp &lt;source&gt; &lt;destination&gt;</code>.</p>
 <p>For example, to copy a file to our current working directory using the <code>.</code> shortcut, keeping the original file name:</p>
 <div class="sourceCode" id="cb81"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../data/Buzzard2015_about.txt .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>We can also copy using a new name for the copy:</p>
@@ -1168,7 +1187,7 @@ Both the <code>mv</code> and <code>cp</code> commands will by default:
 <div class="sourceCode" id="cb91"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="co"># But it does work (silently!) with the '-r' option:</span></span>
 <span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-r</span> d1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1177,7 +1196,7 @@ There is no thrash bin when deleting files in the shell, so use <code>rm</code> 
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><code>rm -r</code> can be very dangerous — for example <code>rm -r /</code> would at least attempt to remove the entire contents of the computer, including the operating system.</p>
 <p>A couple ways to take precautions:</p>
@@ -1339,19 +1358,7 @@ n14.txt</code></pre>
 <div class="sourceCode" id="cb121"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ../data/Saavedra2013 <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>59</code></pre>
 <p>When we use the pipe, the output of the command on the left-hand side (a file listing, in this case) is no longer printed to screen but is <strong>redirected into the <code>wc</code> command</strong>, which will gladly accept input that way instead of via an argument with a file name like in the earlier example.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Why pipes are useful
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>They avoid having to write/read intermediate files — this saves typing, makes the operation quicker, and reduces file clobber.</p>
-</div>
-</div>
+<p>Pipes are useful because they avoid having to write/read intermediate files — this saves typing, makes the operation quicker, and reduces file clobber.</p>
 <hr style="height:1pt; visibility:hidden;">
 </section>
 <section id="selecting-columns-using-cut" class="level3" data-number="7.3">
@@ -1364,14 +1371,16 @@ Why pipes are useful
 7580;Rodentia;Cricetidae;Eligmodontia;Eligmodontia typus;17.37;PanTHERIA;292;PanTHERIA;254.64;73.74;calculated;147.5856;147.5856;Rspan-AFR(SM+Gest)
 42632;Rodentia;Cricetidae;Microtus;Microtus oregoni;20.35;PanTHERIA;456.25;PanTHERIA;445.85;58.06;calculated;187.3565;187.3565;Rspan-AFR(SM+Gest)</code></pre>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Tabular plain-text files
+Tabular plain-text files <em>(Click to expand)</em>
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>In this course, we’ll be working almost exclusively with so-called “<strong>plain-text</strong>” files. These are simple files that can be opened by any text editor and Unix shell tool, as opposed to more complex “binary” formats like Excel or Word files. Almost all common genomics file formats are plain-text.</p>
 <p>“<strong>Tabular</strong>” files contain data that is arranged in a rows-and-columns format, like a table or an Excel worksheet.</p>
@@ -1382,6 +1391,7 @@ Tabular plain-text files
 </ul>
 </div>
 </div>
+</div>
 <details>
 <summary>
 What delimiter does the <code>Pacifici2013_data.csv</code> file appear to contain? <em>(Click for the answer)</em>
@@ -1389,7 +1399,7 @@ What delimiter does the <code>Pacifici2013_data.csv</code> file appear to contai
 From looking at the first couple of lines that we printed above, the delimiter is a semicolon <code>;</code> — “even though” the file has a <code>.csv</code> extension.
 </details>
 <hr style="height:1pt; visibility:hidden;">
-<p>The <code>cut</code> command will select/cut out one or more columns from a tabular file:</p>
+<p>The <code>cut</code> command will select/“cut out” one or more columns from a tabular file:</p>
 <ul>
 <li>We’ll always have to use the <strong><code>-f</code></strong> option to specify the <strong>desired column(s) / “field”(s)</strong>.</li>
 <li>Because its default column delimiter is a Tab, for this file, we’ll have to specify the <strong>delimiter</strong> with <strong><code>-d</code></strong>.</li>
@@ -1408,15 +1418,17 @@ From looking at the first couple of lines that we printed above, the delimiter i
 <pre class="bash-out"><code>TaxID
 7580
 42632</code></pre>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-12-contents" aria-controls="callout-12" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Selecting multiple columns with <code>cut</code>
+Selecting multiple columns with <code>cut</code> <em>(Click to expand)</em>
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-12" class="callout-12-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>To select <strong>multiple columns</strong>, use a range or comma-delimited list:</p>
 <div class="sourceCode" id="cb129"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-d</span> <span class="st">";"</span> <span class="at">-f</span> 1-4 Pacifici2013_data.csv <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1428,18 +1440,6 @@ Selecting multiple columns with <code>cut</code>
 Rodentia;292
 Rodentia;456.25</code></pre>
 </div>
-</div>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Unfortunately, we can’t <em>reorder</em> columns using <code>cut</code>. (The <code>awk</code> command can do this.)
-</div>
-</div>
-<div class="callout-body-container callout-body">
-
 </div>
 </div>
 <hr style="height:1pt; visibility:hidden;">
@@ -1484,7 +1484,7 @@ Dermoptera
 Didelphimorphia
 [...output truncated...]</code></pre>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1493,7 +1493,7 @@ Get a count table with <code>uniq -c</code> <em>(Click to expand)</em>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-16" class="callout-16-contents callout-collapse collapse">
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>With a very small modification to our pipeline, using <code>uniq</code>’s <code>-c</code> option (for count), we can generate a “count table” instead of a simple list:</p>
 <div class="sourceCode" id="cb141"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb141-1"><a href="#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-n</span> +2 Pacifici2013_data.csv <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span> <span class="st">";"</span> <span class="at">-f</span> 2 <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">uniq</span> <span class="at">-c</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1539,7 +1539,6 @@ Get a count table with <code>uniq -c</code> <em>(Click to expand)</em>
 <ul>
 <li><code>-i</code> to ignore case</li>
 <li><code>-r</code> to search files recursively</li>
-<li><code>-B</code> and <code>-A</code> to print lines surrounding matches</li>
 <li><code>-w</code> to match “words”</li>
 </ul></li>
 </ul>
@@ -1554,16 +1553,18 @@ Get a count table with <code>uniq -c</code> <em>(Click to expand)</em>
 <pre class="bash-out"><code>bbbbbbb</code></pre>
 <p>Oddly enough <code>tr</code> does not take a file name as an argument, so how can we provide it with input from a file? The easiest way is by using a pipe (note that the book also shows another method):</p>
 <div class="sourceCode" id="cb151"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb151-1"><a href="#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> inputfile.csv <span class="kw">|</span> <span class="fu">tr</span> <span class="st">","</span> <span class="st">"\t"</span> <span class="op">&gt;</span> outputfile.tsv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In the example above, we converted a CSV file to a TSV file, where <strong><code>\t</code></strong> is a regular expression meaning Tab (we’ll learn more about these in Week 4).</p>
+<p>The example above converted a CSV file to a TSV file, where <strong><code>\t</code></strong> is a regular expression meaning Tab<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Deletion and “squeezing” with <code>tr</code>
+Deletion and “squeezing” with <code>tr</code> <em>(Click to expand)</em>
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-15" class="callout-15-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li><p>Delete all a’s:</p>
@@ -1575,8 +1576,9 @@ Deletion and “squeezing” with <code>tr</code>
 </ul>
 </div>
 </div>
+</div>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-19-contents" aria-controls="callout-19" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1585,7 +1587,7 @@ Deletion and “squeezing” with <code>tr</code>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-19" class="callout-19-contents callout-collapse collapse">
+<div id="callout-16" class="callout-16-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li>Replace multiple types of characters with one:</li>
@@ -1661,6 +1663,7 @@ Deletion and “squeezing” with <code>tr</code>
 <li id="fn5"><p>Because of this, anytime you see a word/string that starts with a <code>$</code> in the shell, you can safely assume that it is a variable.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn6"><p>We’ll see this in action in a bit<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn7"><p>Even though for “literal string” like in the examples above, as opposed to regular expressions, this is not strictly necessary, it’s good habit to always quote.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p>We’ll learn more about regular expressions in Week 4.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

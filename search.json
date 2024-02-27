@@ -186,14 +186,14 @@
     "href": "week1/w1_course-intro.html#introductions-jelmer",
     "title": "Course Intro",
     "section": "Introductions: Jelmer",
-    "text": "Introductions: Jelmer\n\nBioinformatician at MCIC in Wooster since June 2020\n\nMost of my time is spent providing research assistance, working with grad students and postdocs on predominantly genomic & transcriptomics data\nAlso teach: some courses, workshops, Code Club (https://osu-codeclub.github.io)\n\n\n\n\n\nBackground in animal evolutionary genomics & speciation\n\n\n\nIn my free time, I enjoy bird watching, locally & all across the world"
+    "text": "Introductions: Jelmer\n\nBioinformatician at MCIC in Wooster since June 2020\n\nThe majority of my time is spent providing research assistance,\nworking with grad students and postdocs on mostly genomic & transcriptomic data\nI also teach: some courses, workshops, Code Club (https://osu-codeclub.github.io)\n\n\n\n\n\nBackground in animal evolutionary genomics & speciation\n\n\n\nIn my free time, I enjoy bird watching – locally & all across the world"
   },
   {
     "objectID": "week1/w1_course-intro.html#introductions-you",
     "href": "week1/w1_course-intro.html#introductions-you",
     "title": "Course Intro",
-    "section": "Introductions: You!",
-    "text": "Introductions: You!\n\nName\nLab and Department\nResearch interests and/or current topics\nSomething about you that is not work-related"
+    "section": "Introductions: You",
+    "text": "Introductions: You\n\nName\nLab and Department\nResearch interests and/or current research topics\nSomething about you that is not work-related"
   },
   {
     "objectID": "week1/w1_course-intro.html#the-core-goals-of-this-course",
@@ -221,14 +221,14 @@
     "href": "week1/w1_course-intro.html#course-background-efficiency-and-automation",
     "title": "Course Intro",
     "section": "Course background: Efficiency and automation",
-    "text": "Course background: Efficiency and automation\n\nUsing code enables you to work efficiently and largely automatically — particularly useful when having to:\n\nDo repetitive tasks\nRecreate a figure or redo an analysis after adding a sample\nRedo everything after uncovering a mistake in the first data processing step."
+    "text": "Course background: Efficiency and automation\n\nUsing code enables you to work more efficiently and automatically —\nparticularly useful when having to:\n\nDo repetitive tasks\nRecreate a figure or redo an analysis after adding a sample\nRedo a project after uncovering a mistake in the first data processing step."
   },
   {
     "objectID": "week1/w1_course-intro.html#course-background-omics-data",
     "href": "week1/w1_course-intro.html#course-background-omics-data",
     "title": "Course Intro",
     "section": "Course background: Omics data",
-    "text": "Course background: Omics data"
+    "text": "Course background: Omics data\n\nOmics data is increasingly important in biology, and most notably includes:\n\nGenomics + Microbiomics + Metagenomics\nTranscriptomics\nProteomics\nMetabolomics\n\n\n\n\n\nWhile we will be using some example genomics/transcriptomics datasets, this course will not teach you how to analyze omics data in full.\nInstead, the focus is on learning a number of fundamental computational skills that are highly beneficial or perhaps necessary for the analysis of a lot of omics data.\n\n\n\n\n\n\n\nI should say that this course is less relevant for proteomics and metabolomics, especially in its slimmed-down half-semester form with no R."
   },
   {
     "objectID": "week1/w1_course-intro.html#the-unix-shell-shell-scripts-wk-1-4",
@@ -242,7 +242,7 @@
     "href": "week1/w1_course-intro.html#project-organization-and-markdown-wk-2",
     "title": "Course Intro",
     "section": "Project organization and Markdown (Wk 2)",
-    "text": "Project organization and Markdown (Wk 2)\nGood project organization & documentation is a necessary starting point for reproducible research.\n\n\nYou’ll learn best practices for project organization, file naming, etc.\nTo document and report what you are doing, you’ll use Markdown files."
+    "text": "Project organization and Markdown (Wk 2)\nGood project organization & documentation is a necessary starting point for reproducible research.\n\n\nYou’ll learn best practices for project organization, file naming, etc.\nTo document and report what you are doing, you’ll use Markdown files.\n\n\n\n\n\n\n\n\nMarkdown"
   },
   {
     "objectID": "week1/w1_course-intro.html#version-control-with-git-and-github-wk-3",
@@ -256,7 +256,7 @@
     "href": "week1/w1_course-intro.html#high-performance-computing-with-osc-wk-5",
     "title": "Course Intro",
     "section": "High-performance computing with OSC (Wk 5)",
-    "text": "High-performance computing with OSC (Wk 5)\nThanks to the resources of a supercomputer, you can work with very large datasets at speed — running up to 100s of analyses in parallel, and use much larger amounts of memory and storage space than on a personal computer.\n\n\n\nWe will use OSC throughout the course, and you’ll get a brief intro to it today.\nIn week 5, we’ll learn to submit shell scripts as OSC “batch jobs” with Slurm, and use Conda to manage software."
+    "text": "High-performance computing with OSC (Wk 5)\nThanks to supercomputer resources, you can work with very large datasets at speed — running up to 100s of analyses in parallel, and using much larger amounts of memory and storage space than a personal computer has.\n\n\n\nWe will use OSC throughout the course, and you’ll get a brief intro to it today.\nIn week 5, we’ll learn to submit shell scripts as OSC “batch jobs” with Slurm, and use Conda to manage software."
   },
   {
     "objectID": "week1/w1_course-intro.html#automated-workflow-management-wk-6",

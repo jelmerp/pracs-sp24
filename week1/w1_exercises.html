@@ -165,7 +165,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
         <li>
     <a class="dropdown-item" href="../week1/w1_shell.html">
- <span class="dropdown-text">Shell Basics</span></a>
+ <span class="dropdown-text">Shell basics</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Week 2</li>
+        <li>
+    <a class="dropdown-item" href="../week2/w2_project-org.html">
+ <span class="dropdown-text">Project organization</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week2/w2_vscode-markdown.html">
+ <span class="dropdown-text">VS Code &amp; Markdown</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week2/w2_shellfiles.html">
+ <span class="dropdown-text">Managing files in the shell</span></a>
   </li>  
     </ul>
   </li>
@@ -177,6 +191,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li>
     <a class="dropdown-item" href="../week1/w1_exercises.html">
  <span class="dropdown-text">Week 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week2/w2_exercises.html">
+ <span class="dropdown-text">Week 2</span></a>
   </li>  
     </ul>
   </li>
@@ -331,7 +349,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><strong>(a)</strong> <del>Go to your home directory</del>. Go to <code>/fs/ess/PAS2700/users/$USER</code></p>
 <p><strong>(b)</strong> Navigate to the <code>sandbox</code> directory within the <code>CSB/unix</code> directory.</p>
 <p><strong>(c)</strong> Use a <em>relative</em> path to go to the <code>data</code> directory within the <code>python</code> directory.</p>
-<p><strong>(d)</strong> Use an <em>absolute</em> path to go to the <code>sandbox</code> directory within <code>python.</code></p>
+<p><strong>(d)</strong> Use an <em>absolute</em> path to go to the <code>sandbox</code> directory within <code>CSB/python</code>.</p>
 <p><strong>(e)</strong> Return to the <code>data</code> directory within the <code>python</code> directory.</p>
 <details>
 <summary>
@@ -344,7 +362,7 @@ We didn’t see this in class, but the CSB book (page 21) mentions a shortcut yo
 <section id="intermezzo-1.2" class="level2">
 <h2 class="anchored" data-anchor-id="intermezzo-1.2">Intermezzo 1.2</h2>
 <p>To familiarize yourself with using basic Unix commands, try the following:</p>
-<p><strong>(a)</strong> Go to the data directory within <code>CSB/unix</code>.</p>
+<p><strong>(a)</strong> Go to the <code>data</code> directory within <code>CSB/unix</code>.</p>
 <p><strong>(b)</strong> How many lines are in the file <code>Marra2014_data.fasta</code>?</p>
 <p><strong>(c)</strong> Create the empty file <code>toremove.txt</code> in the <code>CSB/unix/sandbox</code> directory without leaving the current directory.</p>
 <details>
@@ -359,7 +377,7 @@ We didn’t see this in class, but the CSB book (page 23) demonstrates the use o
 </section>
 <section id="intermezzo-1.3" class="level2">
 <h2 class="anchored" data-anchor-id="intermezzo-1.3">Intermezzo 1.3</h2>
-<p><strong>(a)</strong> If we order all species names (fifth column) of <code>Pacifici2013_data.csv</code> in alphabetical order, which is the first species? Which is the last?</p>
+<p><strong>(a)</strong> If we order all species names (fifth column) of <code>Pacifici2013_data.csv</code> (in <code>CSB/unix/data/</code>) in alphabetical order, which is the first species? And which is the last?</p>
 <details>
 <summary>
 Show hints
@@ -374,9 +392,9 @@ To view just the first or the last line so you don’t have to scroll to get you
 Show hints
 </summary>
 <ul>
-<li>Start by selecting the relevant column.</li>
+<li>Check the first line of the file to see which column contains the family, and then select the relevant column with <code>cut</code>.</li>
 <li>Use the “<code>tail</code> trick” we saw in class to exclude the first line.</li>
-<li>Remember to sort before using <code>uniq</code>.</li>
+<li>Remember to <code>sort</code> before using <code>uniq</code>.</li>
 </ul>
 </details>
 <hr style="height:1pt; visibility:hidden;">
@@ -395,14 +413,14 @@ Show hints
 Recall that you can see file sizes by using specific options to the <code>ls</code> command.
 </details>
 <p><strong>3.</strong> Create a copy of <code>Marra2014_data.fasta</code> in the sandbox, and name it <code>my_file.fasta</code>.</p>
-<p><strong>4.</strong> How many contigs are classified as <code>isogroup00036</code>?</p>
+<p><strong>4.</strong> How many “contigs” (FASTA entries, in this case) are classified as <code>isogroup00036</code>?</p>
 <details>
 <summary>
 Show hints
 </summary>
 Is there a <code>grep</code> option that counts the number of occurrences? Alternatively, you can pass the output of <code>grep</code> to <code>wc -l</code>.
 </details>
-<p><strong>5.</strong> Modify <code>my_file.fasta</code> to replace the original “two-spaces” delimiter with a <strong>comma</strong>. You’ll probably want to take a look at the “output file hints” below to see how you can end up with modified file contents.</p>
+<p><strong>5.</strong> Modify <code>my_file.fasta</code> to replace the original “two-spaces” delimiter with a <strong>comma</strong> (i.e.&nbsp;don’t just print the output to screen, but end up with a modified file). You’ll probably want to take a look at the “output file hints” below to see how you can end up with modified file contents.</p>
 <details>
 <summary>
 Show output file hints
@@ -441,13 +459,14 @@ Use a combination of <code>grep</code> and <code>cut</code> to extract the conti
 </section>
 <section id="exercise-1.10.2-hormone-levels-in-baboons" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-1.10.2-hormone-levels-in-baboons">Exercise 1.10.2: Hormone Levels in Baboons</h2>
-<p>Gesquiere et al.&nbsp;(2011) studied hormone levels in the blood of baboons. Every individual was sampled several times. How many times were the levels of individuals 3 and 27 recorded?</p>
+<p>Gesquiere et al.&nbsp;(2011) studied hormone levels in the blood of baboons. The data file is in <code>CSB/unix/data/Gesquiere2011_data.csv</code>.</p>
+<p>Every individual was sampled several times. How many times were the levels of individuals 3 and 27 recorded?</p>
 <details>
 <summary>
 Show hints
 </summary>
 <ul>
-<li>You can use <code>cut</code> to extract just the <code>maleID</code> from the file.</li>
+<li>You can first use <code>cut</code> to extract just the <code>maleID</code> column from the file.</li>
 <li>To match an individual (3 or 27), you can use <code>grep</code> with the <code>-w</code> option to match whole “words” only: this will prevent and individual ID like “13” to match when you search for “3”.</li>
 </ul>
 </details>
@@ -470,9 +489,14 @@ Solution
 <p><strong>(d)</strong> Use an <em>absolute</em> path to go to the <code>sandbox</code> directory within <code>python.</code></p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /fs/ess/PAS2700/users/<span class="va">$USER</span>/CSB/python/sandbox</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>(e)</strong> Return to the <code>data</code> directory within the <code>python</code> directory.</p>
+<ul>
+<li><p>With <code>cd -</code>:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The '-' shortcut for cd will move you back to the previously visited dir</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (Note: you can't keep going back with this: using it a second time will toggle you "forward" again.)</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="at">-</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> <span class="at">-</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Using a relative path:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
 </details>
 <hr style="height:1pt; visibility:hidden;">
 </section>
@@ -483,17 +507,17 @@ Solution
 Solution
 </summary>
 <p><strong>(a)</strong> Go to the data directory within <code>CSB/unix</code>.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /fs/ess/PAS2700/users/<span class="va">$USER</span>/CSB/unix/data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /fs/ess/PAS2700/users/<span class="va">$USER</span>/CSB/unix/data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>(b)</strong> How many lines are in file <code>Marra2014_data.fasta</code>?</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wc</span> <span class="at">-l</span> Marra2014_data.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wc</span> <span class="at">-l</span> Marra2014_data.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>9515 Marra2014_data.fasta</code></pre>
 <p><strong>(c)</strong> Create the empty file <code>toremove.txt</code> in the <code>CSB/unix/sandbox</code> directory without leaving the current directory.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> ../sandbox/toremove.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> ../sandbox/toremove.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><strong>(d)</strong> List the contents of the directory <code>unix/sandbox</code>.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ../sandbox</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> ../sandbox</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>Papers and reviews  toremove.txt</code></pre>
 <p><strong>(e)</strong> Remove the file <code>toremove.txt</code>.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> ../sandbox/toremove.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> ../sandbox/toremove.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <hr style="height:1pt; visibility:hidden;">
 </section>
@@ -504,17 +528,17 @@ Solution
 Solution
 </summary>
 <p><strong>(a)</strong> If we order all species names (fifth column) of <code>Pacifici2013_data.csv</code> in alphabetical order, which is the first species? And which is the last?</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First species:</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-d</span> <span class="st">";"</span> <span class="at">-f</span> 5 Pacifici2013_data.csv <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First species:</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-d</span> <span class="st">";"</span> <span class="at">-f</span> 5 Pacifici2013_data.csv <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>Abditomys latidens</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Last species:</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-d</span> <span class="st">";"</span> <span class="at">-f</span> 5 Pacifici2013_data.csv <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Last species:</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-d</span> <span class="st">";"</span> <span class="at">-f</span> 5 Pacifici2013_data.csv <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>Zyzomys woodwardi</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Or, using sort directly, but then you get all columns unless you pipe to cut:</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> <span class="at">-t</span> <span class="st">";"</span> <span class="at">-k</span> 5 Pacifici2013_data.csv <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Or, using sort directly, but then you get all columns unless you pipe to cut:</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> <span class="at">-t</span> <span class="st">";"</span> <span class="at">-k</span> 5 Pacifici2013_data.csv <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>42641;Rodentia;Muridae;Abditomys;Abditomys latidens;268.09;PanTHERIA;no information;no information;no information;no information;no information;no information;639.6318318208;Mean_family_same_body_mass</code></pre>
 <p><strong>(b)</strong> How many families are represented in the database?</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-d</span> <span class="st">";"</span> <span class="at">-f</span> 3 Pacifici2013_data.csv <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> +2 <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">uniq</span> <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-d</span> <span class="st">";"</span> <span class="at">-f</span> 3 Pacifici2013_data.csv <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> +2 <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">uniq</span> <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>152</code></pre>
 </details>
 <hr style="height:1pt; visibility:hidden;">
@@ -525,33 +549,33 @@ Solution
 <summary>
 <strong>1.</strong> Change directory to <code>CSB/unix/sandbox</code>.
 </summary>
-<div class="sourceCode" id="cb24"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /fs/ess/PAS2700/users/<span class="va">$USER</span>/CSB/unix/sandbox</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /fs/ess/PAS2700/users/<span class="va">$USER</span>/CSB/unix/sandbox</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <details>
 <summary>
 <strong>2.</strong> What is the size of the file <code>Marra2014_data.fasta</code>?
 </summary>
-<div class="sourceCode" id="cb25"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span> ../data/Marra2014_data.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span> ../data/Marra2014_data.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>-rw-rw----+ 1 jelmer PAS0471 553K Feb 24 20:30 ../data/Marra2014_data.fasta</code></pre>
 <p>Alternatively, the command <code>du</code> (disk usage) can be used for more compact output:</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">du</span> <span class="at">-h</span> ../data/Marra2014_data.fasta </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">du</span> <span class="at">-h</span> ../data/Marra2014_data.fasta </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>560K    ../data/Marra2014_data.fasta</code></pre>
 </details>
 <details>
 <summary>
 <strong>3.</strong> Create a copy of <code>Marra2014_data.fasta</code> in the sandbox, and name it <code>my_file.fasta</code>.
 </summary>
-<div class="sourceCode" id="cb29"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../data/Marra2014_data.fasta my_file.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../data/Marra2014_data.fasta my_file.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <details>
 <summary>
 <strong>4.</strong> How many contigs are classified as <code>isogroup00036</code>?
 </summary>
 <p>To count the occurrences of a given string, use <code>grep</code> with the option <code>-c</code>:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-c</span> isogroup00036 my_file.fasta </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-c</span> isogroup00036 my_file.fasta </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>16</code></pre>
 <p>Slightly less efficient is to use a “regular” <code>grep</code> and then pipe to <code>wc -l</code>:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> isogroup00036 my_file.fasta <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> isogroup00036 my_file.fasta <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>16</code></pre>
 </details>
 <details>
@@ -560,11 +584,11 @@ Solution
 </summary>
 <ol type="1">
 <li><p>We use the <code>tr</code> option <code>-s</code> (squeeze) to change two spaces two one, and then replace the space with a <code>,</code>. Importantly, we also write the output to a new file (see the Hints for details):</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> my_file.fasta <span class="kw">|</span> <span class="fu">tr</span> <span class="at">-s</span> <span class="st">' '</span> <span class="st">','</span> <span class="op">&gt;</span> my_file.tmp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb35"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> my_file.fasta <span class="kw">|</span> <span class="fu">tr</span> <span class="at">-s</span> <span class="st">' '</span> <span class="st">','</span> <span class="op">&gt;</span> my_file.tmp</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>If we want to change the original file, we can now overwrite it as follows:</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> my_file.tmp my_file.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> my_file.tmp my_file.fasta</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Let’s take a look to check whether out delimiter replacement worked:</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"&gt;"</span> my_file.fasta <span class="kw">|</span> <span class="fu">head</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">"&gt;"</span> my_file.fasta <span class="kw">|</span> <span class="fu">head</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>&gt;contig00001,length=527,numreads=2,gene=isogroup00001,status=it_thresh
 &gt;contig00002,length=551,numreads=8,gene=isogroup00001,status=it_thresh
 &gt;contig00003,length=541,numreads=2,gene=isogroup00001,status=it_thresh
@@ -583,15 +607,15 @@ Solution
 </summary>
 <ol type="1">
 <li><p>First, searching for <code>&gt;</code> with grep will extract all lines with contig information:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">'&gt;'</span> my_file.fasta <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">'&gt;'</span> my_file.fasta <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>&gt;contig00001,length=527,numreads=2,gene=isogroup00001,status=it_thresh
 &gt;contig00002,length=551,numreads=8,gene=isogroup00001,status=it_thresh</code></pre></li>
 <li><p>Now, add <code>cut</code> to extract the 4th column:</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">'&gt;'</span> my_file.fasta <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span> <span class="st">','</span> <span class="at">-f</span> 4 <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">'&gt;'</span> my_file.fasta <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span> <span class="st">','</span> <span class="at">-f</span> 4 <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>gene=isogroup00001
 gene=isogroup00001</code></pre></li>
 <li><p>Finally, add <code>sort</code> -&gt; <code>uniq</code> -&gt; <code>wc -l</code> to count the number of unique occurrences:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">'&gt;'</span> my_file.fasta <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span> <span class="st">','</span> <span class="at">-f</span> 4 <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">uniq</span> <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">'&gt;'</span> my_file.fasta <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span> <span class="st">','</span> <span class="at">-f</span> 4 <span class="kw">|</span> <span class="fu">sort</span> <span class="kw">|</span> <span class="fu">uniq</span> <span class="kw">|</span> <span class="fu">wc</span> <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>43</code></pre></li>
 </ol>
 </details>
@@ -601,19 +625,19 @@ gene=isogroup00001</code></pre></li>
 </summary>
 <ol type="1">
 <li><p>First, we need to isolate the number of reads as well as the contig names. We can use a combination of <code>grep</code> and <code>cut</code>:</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">'&gt;'</span> my_file.fasta <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span> <span class="st">','</span> <span class="at">-f</span> 1,3 <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">'&gt;'</span> my_file.fasta <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span> <span class="st">','</span> <span class="at">-f</span> 1,3 <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>&gt;contig00001,numreads=2
 &gt;contig00002,numreads=8
 &gt;contig00003,numreads=2</code></pre></li>
 <li><p>Now we want to sort according to the number of reads. However, the number of reads is part of a more complex string. We can use <code>-t '='</code> to split according to the <code>=</code> sign, and then take the second column (<code>-k 2</code>) to sort numerically (<code>-n</code>):</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">'&gt;'</span> my_file.fasta <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span> <span class="st">','</span> <span class="at">-f</span> 1,3 <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-t</span> <span class="st">'='</span> <span class="at">-k</span> 2 <span class="at">-n</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">'&gt;'</span> my_file.fasta <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span> <span class="st">','</span> <span class="at">-f</span> 1,3 <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-t</span> <span class="st">'='</span> <span class="at">-k</span> 2 <span class="at">-n</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 5</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>&gt;contig00089,numreads=1
 &gt;contig00176,numreads=1
 &gt;contig00210,numreads=1
 &gt;contig00001,numreads=2
 &gt;contig00003,numreads=2</code></pre></li>
 <li><p>Adding the <code>sort</code> option <code>-r</code>, we can sort in reverse order, which tells us that <code>contig00302</code> has the highest coverage, with 3330 reads:</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">'&gt;'</span> my_file.fasta <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span> <span class="st">','</span> <span class="at">-f</span> 1,3 <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-t</span> <span class="st">'='</span> <span class="at">-k</span> 2 <span class="at">-n</span> <span class="at">-r</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="st">'&gt;'</span> my_file.fasta <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-d</span> <span class="st">','</span> <span class="at">-f</span> 1,3 <span class="kw">|</span> <span class="fu">sort</span> <span class="at">-t</span> <span class="st">'='</span> <span class="at">-k</span> 2 <span class="at">-n</span> <span class="at">-r</span> <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>&gt;contig00302,numreads=3330</code></pre></li>
 </ol>
 </details>
@@ -626,24 +650,26 @@ gene=isogroup00001</code></pre></li>
 How many times were the levels of individuals 3 and 27 recorded?
 </summary>
 <ol type="1">
-<li><p>First, let’s take a look at the structure of the file:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-n</span> 3 ../data/Gesquiere2011_data.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<li><p>First, let’s move back into the data dir:</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Next, let’s take a look at the structure of the file:</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-n</span> 3 Gesquiere2011_data.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>maleID        GC      T
 1     66.9    64.57
 1     51.09   35.57</code></pre></li>
 <li><p>We want to extract all the rows in which the first column is 3 (or 27), and count them. To extract only the first column, we can use <code>cut</code>:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-f</span> 1 ../data/Gesquiere2011_data.csv <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-f</span> 1 Gesquiere2011_data.csv <span class="kw">|</span> <span class="fu">head</span> <span class="at">-n</span> 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>maleID
 1
 1</code></pre></li>
 </ol>
 <ul>
 <li><p>Then we can pipe the results to <code>grep -c</code> to count the number of occurrences (note the option <code>-w</code> to match whole “words” – this will make it match 3 but not 13 or 23):</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For maleID 3</span></span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-f</span> 1 ../data/Gesquiere2011_data.csv <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-c</span> <span class="at">-w</span> 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For maleID 3</span></span>
+<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-f</span> 1 Gesquiere2011_data.csv <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-c</span> <span class="at">-w</span> 3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>61</code></pre>
-<div class="sourceCode" id="cb56"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For maleID 27</span></span>
-<span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-f</span> 1 ../data/Gesquiere2011_data.csv <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-c</span> <span class="at">-w</span> 27</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="co"># For maleID 27</span></span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cut</span> <span class="at">-f</span> 1 Gesquiere2011_data.csv <span class="kw">|</span> <span class="fu">grep</span> <span class="at">-c</span> <span class="at">-w</span> 27</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>5</code></pre></li>
 </ul>
 </details>

@@ -6,10 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Jelmer Poelstra">
-<meta name="dcterms.date" content="2022-02-19">
 
-<title>pracs-sp24 - Glossary of common terms in this course</title>
+<title>pracs-sp24</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -251,112 +249,34 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Glossary of common terms in this course</h1>
+
+
+
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
 </div>
-
-
-
-<div class="quarto-title-meta">
-
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>Jelmer Poelstra </p>
-          </div>
-  </div>
-    
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">February 19, 2022</p>
-    </div>
-  </div>
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p><br></p>
-<table class="table">
-<thead>
-<tr class="header">
-<th>Term</th>
-<th>Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Buffalo</strong></td>
-<td><a href="https://library.ohio-state.edu/record=b9490023~S7">Course book: Bioinformatics Data Skills (Buffalo 2015)</a>.</td>
-</tr>
-<tr class="even">
-<td><strong>CLI</strong></td>
-<td>Command-line Interface — a software interface in which one types commands (cf.&nbsp;“GUI”).</td>
-</tr>
-<tr class="odd">
-<td><strong>CSB</strong></td>
-<td><a href="https://library.ohio-state.edu/record=b8624007~S7">Course book: Computing Skills for Biologists (Allesina &amp; Wilmes 2019)</a>.</td>
-</tr>
-<tr class="even">
-<td><strong>cluster</strong></td>
-<td>Another word for <em>supercomputer</em>, a set of interconnected computers for high-performance computing</td>
-</tr>
-<tr class="odd">
-<td><strong>dir</strong></td>
-<td>Short for “directory”, which how a <em>folder</em> is often referred to in the Unix shell and Linux.</td>
-</tr>
-<tr class="even">
-<td><strong>Git</strong></td>
-<td>Software for “version control”, a system to track changes in code and other text files, and collaborate on those.</td>
-</tr>
-<tr class="odd">
-<td><strong>GitHub</strong></td>
-<td>A website that hosts Git projects, which are known as <strong><em>repositories</em></strong>.</td>
-</tr>
-<tr class="even">
-<td><strong>GUI</strong></td>
-<td>Graphical User Interface – a visual software interface with which one interacts by clicking (cf.&nbsp;“CLI”).</td>
-</tr>
-<tr class="odd">
-<td><strong>HPC</strong></td>
-<td>High-Performance Computing, for instance as can be done using a supercomputer.</td>
-</tr>
-<tr class="even">
-<td><strong>Linux</strong></td>
-<td>The operating system that OSC runs on. Free Linux distributions include Ubuntu.</td>
-</tr>
-<tr class="odd">
-<td><strong>Markdown</strong></td>
-<td>A simple text markup language (think LaTeX or HTML but much simpler).</td>
-</tr>
-<tr class="even">
-<td><strong>OSC</strong></td>
-<td>The <a href="https://www.osc.edu">Ohio Supercomputer Center</a>.</td>
-</tr>
-<tr class="odd">
-<td><strong>shell</strong></td>
-<td>The Unix shell is a command-line interface to the operating system that runs within a <strong><em>terminal</em></strong>. There are several shell flavors, and in this course, we will be working with the <strong><em>bash</em></strong> shell.</td>
-</tr>
-<tr class="even">
-<td><strong>Nextflow</strong></td>
-<td>Software for automated analysis workflow (pipeline) management.</td>
-</tr>
-<tr class="odd">
-<td><strong>Slurm</strong></td>
-<td>Software that schedules “compute jobs” (access to the main parts of the system) at OSC.</td>
-</tr>
-<tr class="even">
-<td><strong>Unix</strong></td>
-<td>A family of operating systems that includes Mac and Linux, but not Windows.</td>
-</tr>
-</tbody>
-</table>
+<div class="callout-title-container flex-fill">
+More shell keyboard shortcuts
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Press <strong><kbd>⇧</kbd></strong> to get the previous command back on the prompt, and then press <strong><kbd>Ctrl+U</kbd></strong> to delete text until the beginning of the line.</p></li>
+<li><p><kbd>Ctrl</kbd>+<kbd>U</kbd> actually <em>cuts</em> the text: “Yank” it back with <strong><kbd>Ctrl</kbd>+<kbd>Y</kbd></strong>. Press <kbd>Enter</kbd> again.</p></li>
+<li><p>Type <code>cd</code> and then space, and then press <strong><kbd>Alt</kbd>+<kbd>.</kbd></strong> (or <strong><kbd>Esc</kbd>+<kbd>.</kbd></strong> on a Mac). That should insert <code>/fs/ess/PAS2700</code> on the line. In general terms, this keyboard shortcut will insert the last word (argument) from the last command line (and you can cycle back by pressing it multiple times!).</p></li>
+</ul>
+</div>
+</div>
+<hr style="height:1pt; visibility:hidden;">
+<section id="exercise-add-keyboard-shortcut-to-run-shell-commands-from-the-editor" class="level4 exercise">
+<h4 class="anchored" data-anchor-id="exercise-add-keyboard-shortcut-to-run-shell-commands-from-the-editor"><i class="fa-solid fa-user-edit" aria-label="user-edit"></i> Exercise: Add keyboard shortcut to run shell commands from the editor:</h4>
+<ul>
+<li>Click the <i class="fa fa-cog"></i> (bottom-left) =&gt; <code>Keyboard Shortcuts</code>.</li>
+<li>Find <code>Terminal: Run Selected Text in Active Terminal</code>, click on it, then add a shortcut, e.g.&nbsp;<kbd>Ctrl</kbd>+<kbd>Enter</kbd>.</li>
+</ul>
+</section>
 
 
 

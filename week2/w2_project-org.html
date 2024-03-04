@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Jelmer Poelstra">
-<meta name="dcterms.date" content="2022-02-19">
+<meta name="dcterms.date" content="2024-03-05">
 
-<title>pracs-sp24 - Glossary of common terms in this course</title>
+<title>Project organization</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -21,6 +21,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -246,14 +280,30 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview-of-this-week" id="toc-overview-of-this-week" class="nav-link active" data-scroll-target="#overview-of-this-week"><span class="header-section-number">1</span> Overview of this week</a></li>
+  <li><a href="#project-organization-best-practices-recommendations" id="toc-project-organization-best-practices-recommendations" class="nav-link" data-scroll-target="#project-organization-best-practices-recommendations"><span class="header-section-number">2</span> Project organization: best practices &amp; recommendations</a>
+  <ul class="collapse">
+  <li><a href="#some-underlying-principles" id="toc-some-underlying-principles" class="nav-link" data-scroll-target="#some-underlying-principles"><span class="header-section-number">2.1</span> Some underlying principles</a></li>
+  <li><a href="#absolute-versus-relative-paths" id="toc-absolute-versus-relative-paths" class="nav-link" data-scroll-target="#absolute-versus-relative-paths"><span class="header-section-number">2.2</span> Absolute versus relative paths</a></li>
+  <li><a href="#but-how-to-define-and-separate-projects" id="toc-but-how-to-define-and-separate-projects" class="nav-link" data-scroll-target="#but-how-to-define-and-separate-projects"><span class="header-section-number">2.3</span> But how to define and separate projects?</a></li>
+  <li><a href="#example-project-dir-structure" id="toc-example-project-dir-structure" class="nav-link" data-scroll-target="#example-project-dir-structure"><span class="header-section-number">2.4</span> Example project dir structure</a></li>
+  </ul></li>
+  <li><a href="#file-naming" id="toc-file-naming" class="nav-link" data-scroll-target="#file-naming"><span class="header-section-number">3</span> File naming</a></li>
+  <li><a href="#slow-down-and-document" id="toc-slow-down-and-document" class="nav-link" data-scroll-target="#slow-down-and-document"><span class="header-section-number">4</span> Slow down and document</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Glossary of common terms in this course</h1>
+<h1 class="title">Project organization</h1>
+<p class="subtitle lead">Week 2 - Part I</p>
 </div>
 
 
@@ -270,7 +320,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 19, 2022</p>
+      <p class="date">March 5, 2024</p>
     </div>
   </div>
   
@@ -282,85 +332,334 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<hr>
 <p><br></p>
-<table class="table">
-<thead>
-<tr class="header">
-<th>Term</th>
-<th>Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Buffalo</strong></td>
-<td><a href="https://library.ohio-state.edu/record=b9490023~S7">Course book: Bioinformatics Data Skills (Buffalo 2015)</a>.</td>
-</tr>
-<tr class="even">
-<td><strong>CLI</strong></td>
-<td>Command-line Interface — a software interface in which one types commands (cf.&nbsp;“GUI”).</td>
-</tr>
-<tr class="odd">
-<td><strong>CSB</strong></td>
-<td><a href="https://library.ohio-state.edu/record=b8624007~S7">Course book: Computing Skills for Biologists (Allesina &amp; Wilmes 2019)</a>.</td>
-</tr>
-<tr class="even">
-<td><strong>cluster</strong></td>
-<td>Another word for <em>supercomputer</em>, a set of interconnected computers for high-performance computing</td>
-</tr>
-<tr class="odd">
-<td><strong>dir</strong></td>
-<td>Short for “directory”, which how a <em>folder</em> is often referred to in the Unix shell and Linux.</td>
-</tr>
-<tr class="even">
-<td><strong>Git</strong></td>
-<td>Software for “version control”, a system to track changes in code and other text files, and collaborate on those.</td>
-</tr>
-<tr class="odd">
-<td><strong>GitHub</strong></td>
-<td>A website that hosts Git projects, which are known as <strong><em>repositories</em></strong>.</td>
-</tr>
-<tr class="even">
-<td><strong>GUI</strong></td>
-<td>Graphical User Interface – a visual software interface with which one interacts by clicking (cf.&nbsp;“CLI”).</td>
-</tr>
-<tr class="odd">
-<td><strong>HPC</strong></td>
-<td>High-Performance Computing, for instance as can be done using a supercomputer.</td>
-</tr>
-<tr class="even">
-<td><strong>Linux</strong></td>
-<td>The operating system that OSC runs on. Free Linux distributions include Ubuntu.</td>
-</tr>
-<tr class="odd">
-<td><strong>Markdown</strong></td>
-<td>A simple text markup language (think LaTeX or HTML but much simpler).</td>
-</tr>
-<tr class="even">
-<td><strong>OSC</strong></td>
-<td>The <a href="https://www.osc.edu">Ohio Supercomputer Center</a>.</td>
-</tr>
-<tr class="odd">
-<td><strong>shell</strong></td>
-<td>The Unix shell is a command-line interface to the operating system that runs within a <strong><em>terminal</em></strong>. There are several shell flavors, and in this course, we will be working with the <strong><em>bash</em></strong> shell.</td>
-</tr>
-<tr class="even">
-<td><strong>Nextflow</strong></td>
-<td>Software for automated analysis workflow (pipeline) management.</td>
-</tr>
-<tr class="odd">
-<td><strong>Slurm</strong></td>
-<td>Software that schedules “compute jobs” (access to the main parts of the system) at OSC.</td>
-</tr>
-<tr class="even">
-<td><strong>Unix</strong></td>
-<td>A family of operating systems that includes Mac and Linux, but not Windows.</td>
-</tr>
-</tbody>
-</table>
+<section id="overview-of-this-week" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="overview-of-this-week"><span class="header-section-number">1</span> Overview of this week</h2>
+<ul>
+<li>This page:
+<ul>
+<li>Learn some best practices for project organization, documentation, and management.</li>
+</ul></li>
+<li><a href="../week2/w2_vscode-markdown.html">Also today:</a>
+<ul>
+<li>Get to know our text editor, <em>VS Code</em>.</li>
+<li>Learn how to use <em>Markdown</em> for documentation (and beyond).</li>
+</ul></li>
+<li><a href="../week2/w2_shellfiles.html">Thursday</a>
+<ul>
+<li>Learn how to manage files in the Unix shell.</li>
+</ul></li>
+</ul>
+<p><br></p>
+</section>
+<section id="project-organization-best-practices-recommendations" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="project-organization-best-practices-recommendations"><span class="header-section-number">2</span> Project organization: best practices &amp; recommendations</h2>
+<p>Good project organization and documentation facilitates:</p>
+<ul>
+<li>Collaborating with others (and yourself in the future…)</li>
+<li>Reproducibility</li>
+<li>Automation</li>
+<li>Version control</li>
+<li>Preventing your files slowly devolving into a state of incomprehensible chaos</li>
+</ul>
+<p>In short, it is a necessary foundation to use this course’s tools and to reach some of its goals.</p>
+<hr style="height:1pt; visibility:hidden;">
+<section id="some-underlying-principles" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="some-underlying-principles"><span class="header-section-number">2.1</span> Some underlying principles</h3>
+<section id="use-one-dir-dir-hierarchy-for-one-project" class="level4">
+<h4 class="anchored" data-anchor-id="use-one-dir-dir-hierarchy-for-one-project">Use one dir (dir hierarchy) for one project</h4>
+<p>Using one directory hierarchy for one project means:</p>
+<ul>
+<li>Don’t mix files/subdirs for multiple distinct projects inside one dir.</li>
+<li>Don’t keep files for one project in multiple places.</li>
+</ul>
+<p>When you have a single directory hierarchy for each project, it is:</p>
+<ul>
+<li>Easier to: find files, share your project, not throw away stuff in error, etc.</li>
+<li>Possible to use <em>relative paths</em> within a project’s scripts, which makes it more portable (more on that in a bit).</li>
+</ul>
+<hr style="height:1pt; visibility:hidden;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/proj-dirs-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<figcaption>Two project dir hierarchies, nicely separated and self-contained.</figcaption>
+</figure>
+</div>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+<section id="separate-different-kinds-of-files-using-a-consistent-dir-structure" class="level4">
+<h4 class="anchored" data-anchor-id="separate-different-kinds-of-files-using-a-consistent-dir-structure">Separate different kinds of files using a consistent dir structure</h4>
+<p>Within your project’s directory hierarchy:</p>
+<ul>
+<li>Separate code from data.</li>
+<li>Separate raw data from processed data &amp; results.</li>
+</ul>
+<p>Also:</p>
+<ul>
+<li>Treat raw data as read-only.</li>
+<li>Treat generated output as somewhat disposable and as possible to regenerate.</li>
+</ul>
+<p>And, as we’ll talk about below:</p>
+<ul>
+<li>Use consistent and dir and file naming that follow certain best pratices.</li>
+<li>Slow down and document what you’re doing.</li>
+</ul>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+</section>
+<section id="absolute-versus-relative-paths" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="absolute-versus-relative-paths"><span class="header-section-number">2.2</span> Absolute versus relative paths</h3>
+<p>Recall that:</p>
+<ul>
+<li><strong>Absolute paths</strong> start from the computer’s root dir and do not depend on your working dir.</li>
+<li><strong>Relative paths</strong> start from a specific <em>working dir</em> (and won’t work if you’re elsewhere).</li>
+</ul>
+<details>
+<summary>
+Don’t absolute paths sound better? What could be a disadvantage of them?
+</summary>
+<p>Absolute paths: - Don’t generally work across computers - Break when your move a project</p>
+<p>Whereas relative paths, as long as you consistently use the root of the project as the working dir, keep working when moving the project within and between computers.</p>
+</details>
+<hr style="height:1pt; visibility:hidden;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/proj-dirs-2.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figcaption>Two project dir hierarchies, and the absolute and relative path to a FASTQ file.</figcaption>
+</figure>
+</div>
+<hr style="height:1pt; visibility:hidden;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/proj-dirs-3.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figcaption>Now everything was moved into <code>Dropbox</code>.<br>The absolute path has changed, but the relative path remains the same.</figcaption>
+</figure>
+</div>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+<section id="but-how-to-define-and-separate-projects" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="but-how-to-define-and-separate-projects"><span class="header-section-number">2.3</span> But how to define and separate projects?</h3>
+<p>From <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005510">Wilson et al 2017 - Good Enough Practices in Scientific Computing</a>:</p>
+<blockquote class="blockquote">
+<p><em>As a rule of thumb, divide work into projects based on the overlap in data and code files:</em></p>
+<ul>
+<li><p><em>If 2 research efforts share no data or code,</em> <em>they will probably be easiest to manage independently.</em></p></li>
+<li><p><em>If they share more than half of their data and code, they are probably best</em> <em>managed together.</em></p></li>
+<li><p><em>If you are building tools that are used in several projects,</em> <em>the common code should probably be in a project of its own.</em></p></li>
+</ul>
+</blockquote>
+<section id="projects-with-shared-data-or-code" class="level4">
+<h4 class="anchored" data-anchor-id="projects-with-shared-data-or-code">Projects with shared data or code</h4>
+<p>To access files outside of the project (e.g., shared across projects), it is easiest to create <strong>links</strong> to these files:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/proj-dirs-4.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+<figcaption>The data is located in <code>project1</code> but used in both projects.<br><code>project2</code> contains a link to the data.</figcaption>
+</figure>
+</div>
+<p>But shared data or scripts are generally better stored in separate dirs, and then linked to by each project using them:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/proj-dirs-5.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
+<figcaption>Now, the data is in it’s own top-level dir, with links to it in both projects.</figcaption>
+</figure>
+</div>
+<p>These strategies do decrease the portability of your project, and moving the shared files even within your own computer will cause links to break.</p>
+<p>A more portable method is to <strong>keep shared (multi-project) files online</strong> — this is especially feasible for <strong>scripts</strong> under version control:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/proj-dirs-6.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figcaption>A set of scripts shared by two projects is stored in an online repository like at GitHub.</figcaption>
+</figure>
+</div>
+<div class="callout-info">
+<p>For <strong>data</strong>, this is also possible but often not practical due to file sizes. It’s easier after data has been deposited in a public repository.</p>
+</div>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+</section>
+<section id="example-project-dir-structure" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="example-project-dir-structure"><span class="header-section-number">2.4</span> Example project dir structure</h3>
+<p>Here is one good way of organizing a project with top-levels dirs:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/proj-ex_annot.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Other reasonable options
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>These recommendations only go so far, and several things do depend on personal preferences and project specifics:</p>
+<ul>
+<li><code>data</code> as single top-level dir, or separate <code>metadata</code>, <code>refdata</code>, <code>raw_data</code> dirs?<br>
+</li>
+<li>Naming of some dirs, like:
+<ul>
+<li><code>results</code> vs <code>analysis</code> (Buffalo)</li>
+<li><code>src</code> (source) vs <code>scripts</code></li>
+</ul></li>
+<li>Sometimes the order of subdirs can be done in multiple different ways. For example, where to put QC figures — <code>results/plots/qc</code> or <code>results/qc/plots/</code>?</li>
+</ul>
+</div>
+</div>
+<p>Another important good practice is to <strong>use subdirectories</strong> liberally and hierarchically. For example, in omics data analysis, it often makes sense to create subdirs within <code>results</code> for each piece of software that you are using:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/proj-ex-results.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:30.0%"></p>
+</figure>
+</div>
+<p><br></p>
+</section>
+</section>
+<section id="file-naming" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="file-naming"><span class="header-section-number">3</span> File naming</h2>
+<p>Three principles for good file names (<a href="https://speakerdeck.com/jennybc/how-to-name-files">from Jenny Bryan</a>):</p>
+<ul>
+<li>Machine-readable</li>
+<li>Human-readable</li>
+<li>Playing well with default ordering</li>
+</ul>
+<section id="machine-readable" class="level4">
+<h4 class="anchored" data-anchor-id="machine-readable">Machine-readable</h4>
+<p>Consistent and informative naming helps you to programmatically find and process files.</p>
+<ul>
+<li><p>In file names, provide <strong>metadata</strong> like Sample ID, date, and treatment:</p>
+<ul>
+<li><code>sample032_2016-05-03_low.txt</code><br>
+</li>
+<li><code>samples_soil_treatmentA_2019-01.txt</code></li>
+</ul></li>
+<li><p>With such file names, you can easily select samples from e.g.&nbsp;a certain month or treatment (<em>more on Thursday</em>):</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="pp">*</span>2016-05<span class="pp">*</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="pp">*</span>treatmentA<span class="pp">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Spaces in file names lead to inconvenience at best and disaster at worst (see example below).</p></li>
+<li><p>More generally, only use the following in file names:</p>
+<ul>
+<li>Alphanumeric characters <kbd>A-Za-z0-9</kbd></li>
+<li>Underscores <kbd>_</kbd></li>
+<li>Hyphens (dashes) <kbd>-</kbd></li>
+<li>Periods (dots) <kbd>.</kbd></li>
+</ul></li>
+</ul>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+<section id="spaces-in-file-names-what-could-go-wrong" class="level4 exercise">
+<h4 class="anchored" data-anchor-id="spaces-in-file-names-what-could-go-wrong"><i class="fa-solid fa-user-edit" aria-label="user-edit"></i> Spaces in file names — what could go wrong?</h4>
+<ul>
+<li><p>Say, you have a dir with some raw data in the dir <code>raw</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>raw</code></pre></li>
+<li><p>Now you create a dir for sequences, with a space in the file name:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="st">"raw sequences"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>You don’t want this dir after all, and carelessly try to remove it</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-r</span> raw sequences</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+<hr style="height:1pt; visibility:hidden;">
+<details>
+<summary>
+What will go wrong in the example above? <em>(Click for the answer)</em>
+</summary>
+The <code>rm</code> command will not remove the dir with the space in the file name, but it will remove the “earlier” <code>raw</code> dir.
+</details>
+</section>
+<hr style="height:1pt; visibility:hidden;">
+<section id="human-readable" class="level4">
+<h4 class="anchored" data-anchor-id="human-readable">Human-readable</h4>
+<blockquote class="blockquote">
+<p><em>“Name all files to reflect their content or function.</em> <em>For example, use names such as bird_count_table.csv, manuscript.md,</em> <em>or sightings_analysis.py.</em>”<br>
+— <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005510">Wilson et al.&nbsp;2017</a></p>
+</blockquote>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+<section id="combining-machine--and-human-readable" class="level4">
+<h4 class="anchored" data-anchor-id="combining-machine--and-human-readable">Combining machine- and human-readable</h4>
+<ul>
+<li><p>One good way (opinionated recommendations):</p>
+<ul>
+<li>Use <strong>underscores</strong> (<kbd>_</kbd>) to delimit units you may later want to separate on: sampleID, batch, treatment, date.</li>
+<li>Within such units, use <strong>dashes</strong> (<kbd>-</kbd>) to delimit words: <code>grass-samples</code>.</li>
+<li>Limit the use of <strong>periods</strong> (<kbd>.</kbd>) to indicate file extensions**.</li>
+<li>Generally <em>avoid capitals</em>.</li>
+</ul></li>
+<li><p>For example:</p>
+<pre class="bash-out"><code>mmus001_treatmentA_filtered-mq30-only_sorted_dedupped.bam
+mmus002_treatmentA_filtered-mq30-only_sorted_dedupped.bam
+.
+.
+mmus086_treatmentG_filtered-mq30-only_sorted_dedupped.bam</code></pre></li>
+</ul>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+<section id="playing-well-with-default-ordering" class="level4">
+<h4 class="anchored" data-anchor-id="playing-well-with-default-ordering">Playing well with default ordering</h4>
+<ul>
+<li><p>Use <strong>leading zeros</strong> for lexicographic sorting: <code>sample005</code>.</p></li>
+<li><p><strong>Dates</strong> should always be written as <code>YYYY-MM-DD</code>: <code>2020-10-11</code>.</p></li>
+<li><p><strong>Group similar files together</strong> by starting with same phrase, and <strong>number scripts</strong> by execution order:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">DE-01_normalize.R</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">DE-02_test.R</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="ex">DE-03_process-significant.R</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+<p><br></p>
+</section>
+</section>
+<section id="slow-down-and-document" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="slow-down-and-document"><span class="header-section-number">4</span> Slow down and document</h2>
+<section id="use-readme-files-to-document" class="level4">
+<h4 class="anchored" data-anchor-id="use-readme-files-to-document">Use README files to document</h4>
+<p>Use README files to document the following:</p>
+<ul>
+<li>Your methods</li>
+<li>Where/when/how each data and metadata file originated</li>
+<li>Versions of software, databases, reference genomes</li>
+<li><em>…Everything needed to rerun whole project</em></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+See this week’s Buffalo chapter (Ch. 2) for further details.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+<section id="for-documentation-use-plain-text-files" class="level4">
+<h4 class="anchored" data-anchor-id="for-documentation-use-plain-text-files">For documentation, use plain text files</h4>
+<p>Plain text files offer several benefits over proprietary &amp; binary formats (like <code>.docx</code> and <code>.xlsx</code>)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>:</p>
+<ul>
+<li>Can be accessed on any computer, including over remote connections</li>
+<li>Are future-proof</li>
+<li>Allow to be version-controlled</li>
+</ul>
+<p><strong>Markdown</strong> files are plaint-text and strike a nice balance between ease of writing and reading, and added functionality — we’ll talk about those next.</p>
+<p><br><br></p>
 
 
+</section>
+</section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>These considerations apply not just to files for documentation, but also to data files, etc!<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

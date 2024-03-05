@@ -6,8 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Jelmer Poelstra">
+<meta name="dcterms.date" content="2024-03-11">
 
-<title>pracs-sp24 - Week 6</title>
+<title>Final project info</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -247,21 +249,41 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#devising-a-project" id="toc-devising-a-project" class="nav-link active" data-scroll-target="#devising-a-project">Devising a project</a></li>
+  <li><a href="#graded-aspects" id="toc-graded-aspects" class="nav-link" data-scroll-target="#graded-aspects">Graded aspects</a></li>
+  <li><a href="#steps-checkpoints" id="toc-steps-checkpoints" class="nav-link" data-scroll-target="#steps-checkpoints">Steps (checkpoints)</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 6</h1>
+<h1 class="title">General information about your final project</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jelmer Poelstra </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 11, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -272,12 +294,59 @@ ul.task-list li input[type="checkbox"] {
 
 
 <hr>
-<hr style="height:1pt; visibility:hidden;">
-<p>Content TBA</p>
+<p><br></p>
+<section id="devising-a-project" class="level3">
+<h3 class="anchored" data-anchor-id="devising-a-project">Devising a project</h3>
+<p>The goal for your final project is to apply some of the things you have learned during this course, and allow you to get you more practice. While some aspects are required in order to get a good grade (see <a href="#graded-aspects">Graded aspects below</a>), you have a fair amount of freedom. I recommend that you take advantage of that to make your final project as useful as possible for your own research and/or personal development.</p>
+<p>Graded aspects for the project focus on documentation, reproducibility, and automation. Accordingly, there are no real requirements for the level of complexity or sophistication, the number of scripts, the real-world usefulness, and so on. I would actually recommend that you take care not to be too ambitious in this regard: start small and then expand if you are able to.</p>
+<p>Some examples of possible types of projects:</p>
+<ul>
+<li><p>Work with your own data or a publicly available dataset that is similar to what you are expecting to work with<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p></li>
+<li><p>You may decide it would be most useful for you to focus on coding and creating a reproducible workflow, and that this is easier with a trivial and maybe not-so-relevant dataset, so you don’t get bogged down in other details.</p></li>
+<li><p>Automate something “boring” and/or repetitive that you did manually until now.</p></li>
+</ul>
+<p>If you need help with selecting a dataset or a project topic, don’t hesitate to contact me. I could most easily provide you with a variety of genomic/transcriptomic data sets, like RNA-Seq, microbial metabarcoding, or microbial isolate whole-genome sequencing, but could also help you find or create other kinds of data sets.</p>
+<p><br></p>
+</section>
+<section id="graded-aspects" class="level3">
+<h3 class="anchored" data-anchor-id="graded-aspects">Graded aspects</h3>
+<p>Graded aspects of your project focus on <em>appropriate usage of many of the tools and principles we covered during the course</em>. To receive a high grade, your project should:</p>
+<ul>
+<li><p>Be <strong>well-organized</strong>: contained in a single parent directory with a clear and sensible structure of subdirectories, descriptive file and directory names, no files floating around with unclear purpose or source, and so on.</p></li>
+<li><p>Be <strong>well-documented</strong>, with <em>at least</em> one README in Markdown format in the root directory of your project, and preferably with additional READMEs elsewhere as appropriate.</p></li>
+<li><p>Be <strong>version-controlled</strong> with Git <em>throughout</em> with regular, meaningful commits. You will also need to push to GitHub for the proposal, draft, and final submission checkpoints.</p></li>
+<li><p>Contain <strong>shell scripts for data processing and/or analysis</strong> (see also the last point). Try not to do <em>any</em> manual work such as editing a data file in a text editor or using Excel to fix column names, since this hinders reproducibility.</p>
+<ul>
+<li><p>Having some components in <em>other languages</em> is fine, in case you know how to do things there that we didn’t learn in the course (for example, doing some plotting in R, or using Python for data processing).</p></li>
+<li><p>Similarly, it is fine for some or all of your scripts to call <em>external, command-line programs</em> (e.g.&nbsp;some of the bioinformatics programs we have run, or any program that may be useful for your research).</p></li>
+</ul></li>
+<li><p>Run one or more scripts as <strong>SLURM jobs at OSC</strong><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p></li>
+<li><p>Be easily <strong>re-runnable</strong> using a Nextflow workflow or a “master” / “controller” script that glues the entire project together<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p></li>
+</ul>
+<p><br></p>
+</section>
+<section id="steps-checkpoints" class="level3">
+<h3 class="anchored" data-anchor-id="steps-checkpoints">Steps (checkpoints)</h3>
+<p>Information about expectations for each of the steps (checkpoints) for the project will be provided in the content for individual weeks. Below is an overview which will be updated with the links:</p>
+<ul>
+<li>Proposal — due Monday, April 1 (10 points)</li>
+<li>Draft — due Monday, April 8 (10 points)</li>
+<li>In-class presentations – Thursday, April 18 (10 points)</li>
+<li>Final submission – due Monday, April 29 (20 points)</li>
+</ul>
 
 
+</section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p> Note that “subsetting” the data may be useful or necessary if you have a large genomic dataset, and I can help you with that<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p> A locally run project could be okay if your research does not and will not require the use of supercomputers like those at OSC – check in with me if this is the case and you would therefore prefer not to use OSC.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p> This is a challenging aspect, and your grade won’t plummet if you don’t succeed, but it is important to try!<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

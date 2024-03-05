@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>pracs-sp24 - Week 6</title>
+<title>pracs-sp24 - Final project: submission</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -247,14 +247,25 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#how-to-submit" id="toc-how-to-submit" class="nav-link active" data-scroll-target="#how-to-submit"><span class="header-section-number">0.1</span> How to submit</a></li>
+  <li><a href="#what-to-submit" id="toc-what-to-submit" class="nav-link" data-scroll-target="#what-to-submit"><span class="header-section-number">0.2</span> What to submit</a></li>
+  <li><a href="#graded-aspects" id="toc-graded-aspects" class="nav-link" data-scroll-target="#graded-aspects"><span class="header-section-number">0.3</span> Graded aspects</a></li>
+  <li><a href="#questions-and-advice" id="toc-questions-and-advice" class="nav-link" data-scroll-target="#questions-and-advice"><span class="header-section-number">0.4</span> Questions and advice</a></li>
+  <li><a href="#late-submissions" id="toc-late-submissions" class="nav-link" data-scroll-target="#late-submissions"><span class="header-section-number">0.5</span> Late submissions</a></li>
+  <li><a href="#good-luck" id="toc-good-luck" class="nav-link" data-scroll-target="#good-luck"><span class="header-section-number">0.6</span> Good luck!!</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 6</h1>
+<h1 class="title">Final project: submission</h1>
 </div>
 
 
@@ -271,11 +282,147 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<hr>
-<hr style="height:1pt; visibility:hidden;">
-<p>Content TBA</p>
+<p><strong>The submission of your final project is due on April 30th.</strong> <i>[20 points]</i></p>
+<section id="how-to-submit" class="level3" data-number="0.1">
+<h3 data-number="0.1" class="anchored" data-anchor-id="how-to-submit"><span class="header-section-number">0.1</span> How to submit</h3>
+<p>As usual, open a new GitHub issue for your repository and tag <code>@jelmerp</code> in the text body of the Issue.</p>
+</section>
+<section id="what-to-submit" class="level3" data-number="0.2">
+<h3 data-number="0.2" class="anchored" data-anchor-id="what-to-submit"><span class="header-section-number">0.2</span> What to submit</h3>
+<p>Your repository should now contain:</p>
+<ul>
+<li><p><strong>A finished set of scripts</strong>.</p></li>
+<li><p><strong>Final documentation</strong> in one or more README files that clearly describes:</p>
+<ul>
+<li>What the project does as a whole.</li>
+<li>What each script does.</li>
+<li>Where to access the data at OSC, assuming that the data is not in your repository.</li>
+<li>How the project’s scripts can be rerun using a single script or Snakefile.</li>
+</ul></li>
+<li><p><strong>A single script or Snakefile that aims to rerun the full workflow.</strong></p></li>
+<li><p>A file (e.g.&nbsp;<code>submission_notes.md</code>) or a section in your main README file that provides some <strong>additional information for the instructor to grade your project appropriately</strong>. Some hypothetical examples of things you may want to include:</p>
+<ul>
+<li><p>Additional instructions the instructor will need to try and rerun your project.</p></li>
+<li><p>You want to alert the instructor to some files files in the repository that should be ignored.</p></li>
+<li><p>You want to explain why you don’t have a functioning script or Snakefile, or why you didn’t run any SLURM jobs (which can be acceptable in some cases).</p></li>
+</ul></li>
+</ul>
+</section>
+<section id="graded-aspects" class="level3" data-number="0.3">
+<h3 data-number="0.3" class="anchored" data-anchor-id="graded-aspects"><span class="header-section-number">0.3</span> Graded aspects</h3>
+<p>Below is a long list of graded aspects and what to aim for if you want a perfect score. I’m providing a lot of detail here, so there are no surprises. <em>The TLDR is that you should aim to have a reproducible, well-organized and well-documented workflow – workflow size/complexity on the other hand, is fairly unimportant.</em> (See also the <a href="final_project.html">General Info</a> page for the final project for some more general background.)</p>
+<table class="table">
+<colgroup>
+<col style="width: 12%">
+<col style="width: 9%">
+<col style="width: 78%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Category</th>
+<th>Max. <br> score</th>
+<th>Max. score if your project (examples given):</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Project organization</td>
+<td>2</td>
+<td><ul>
+<li>Has a clear and appropriate directory structure.</li>
+<li>Has informative and appropriate directory and file names.</li>
+<li>Does not mix data, scripts, and results in individual directories.</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Project background and documentation</td>
+<td>2</td>
+<td><ul>
+<li>Has a clear description of its background and goals.</li>
+<li>Has a clear description of how different scripts are being used to achieve these goals.</li>
+<li>Where appropriate, indicates what is still a work-in-progress (and optionally future directions).</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>Script documentation</td>
+<td>2</td>
+<td><ul>
+<li>Uses extensive (yet succinct) comments to document what is being done within scripts.</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Good practices in scripts</td>
+<td>4</td>
+<td><ul>
+<li>Uses no absolute paths in scripts.</li>
+<li>Uses scripts that take arguments where appropriate and minimizes “hard-coding” of potentially variable things like input/output dirs, file names, and some software settings. Any hard-coded variables/constants that <em>are</em> present are clearly set at the top of scripts.</li>
+<li>Has individual scripts that are not overly long and don’t do multiple unrelated things.</li>
+<li>Has no or only clearly annotated lines that are “commented out” in scripts.</li>
+<li>Uses Bash scripts with proper <code>set</code> settings, and similar good practices as taught in the course.</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>Coding quality and complexity</td>
+<td>3</td>
+<td><ul>
+<li>Has code that demonstrates an understanding of topics covered in the course.</li>
+<li>Has code that is appropriately broken up in small parts within scripts, e.g.&nbsp;with functions in Python.</li>
+<li>Uses tools and commands that are (by and large) appropriate to accomplish its goals. (I will not dig in to fine details and parameter settings.)</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td>Workflow <br> reproducibility</td>
+<td>3</td>
+<td><ul>
+<li>Has a script or Snakefile that includes all steps in the workflow and that can be run by anybody with access to your repository and the raw data files.</li>
+<li>Has information for the instructor (or any other reader of the project!) about where at OSC to find the raw data files and other details needed to try to rerun the analyses.</li>
+<li><em>Bonus:</em> good software management, e.g.&nbsp;Conda environments (preferred) or OSC modules and no manual installs unless necessary; YAML files describing environments.</li>
+</ul></td>
+</tr>
+<tr class="odd">
+<td>SLURM jobs at OSC</td>
+<td>2</td>
+<td><ul>
+<li>Has one or more scripts that are run as OSC jobs at SLURM.</li>
+<li>Uses appropriate SLURM directives – either in the scripts or in a Snakemake profile YAML file.</li>
+</ul></td>
+</tr>
+<tr class="even">
+<td><p>Version control</p>
+<p><span style="color:white">ddddddddddddddddd</span></p></td>
+<td><p>2</p>
+<p><span style="color:white">dddddd</span></p></td>
+<td><ul>
+<li>Has Git commit messages that are informative.</li>
+<li>Has reasonably appropriate commits, e.g.&nbsp;individual Git commits don’t consist of multiple completely unrelated edits.</li>
+<li>Has a single <code>.gitignore</code> file that ignores files like large raw data files, and in most cases, results files.</li>
+<li><em>Bonus:</em> has a Git <em>tag</em> for the submitted version.</li>
+</ul>
+<p><span style="color:white">dddddddddddddddddddddddddddddddddddddddddddddd dddddddd dddddddd</span></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="questions-and-advice" class="level3" data-number="0.4">
+<h3 data-number="0.4" class="anchored" data-anchor-id="questions-and-advice"><span class="header-section-number">0.4</span> Questions and advice</h3>
+<p>Don’t hesitate to contact Jelmer (or, where fitting, Zach) for questions about topics like:</p>
+<ul>
+<li>Specific expectations for the final project that are unclear to you.</li>
+<li>Whether you are on the right track in making some adjustments that I asked for after your progress report.</li>
+<li>Advice on how to code or organize aspects of your project.</li>
+</ul>
+<p>We’re happy to answer questions by e-mail or in a Zoom meeting!</p>
+</section>
+<section id="late-submissions" class="level3" data-number="0.5">
+<h3 data-number="0.5" class="anchored" data-anchor-id="late-submissions"><span class="header-section-number">0.5</span> Late submissions</h3>
+<p>Late submission may be accommodated depending on circumstances, but you will need to contact Jelmer <em>before 3 pm on April 30th</em> and we can take it from there.</p>
+<p>For late submissions with no advance notice, 4 points will be subtracted for each day the submission is late. (Things like forgetting to open an Issue won’t lead to subtracted points.)</p>
+</section>
+<section id="good-luck" class="level3" data-number="0.6">
+<h3 data-number="0.6" class="anchored" data-anchor-id="good-luck"><span class="header-section-number">0.6</span> Good luck!!</h3>
 
 
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

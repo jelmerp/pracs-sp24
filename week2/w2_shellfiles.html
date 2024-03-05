@@ -345,16 +345,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><br></p>
 <section id="overview-setting-up" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="overview-setting-up"><span class="header-section-number">1</span> Overview &amp; setting up</h2>
-<p>In this session, we will learn some more Unix shell skills, focusing on commands to manage files, and with that, to organize your research projects.</p>
+<p>In this session, we will learn some more Unix shell skills, focusing on commands to manage files with an eye on organizing your research projects.</p>
 <p>Specifically, we will learn about:</p>
 <ul>
-<li>Wildcard expansion to select and operate on multiple files at once</li>
-<li>Brace expansion to help create regular series of files and dirs</li>
-<li>Command substitution to save the output of commands</li>
-<li>For loops</li>
-<li>Renaming multiple files using for loops</li>
+<li><strong>Wildcard expansion</strong> to select and operate on multiple files at once</li>
+<li><strong>Brace expansion</strong> to help create regular series of files and dirs</li>
+<li><strong>Command substitution</strong> to save the output of commands</li>
+<li><strong>For loops</strong> to repeat operations across, e.g., file</li>
+<li><strong>Renaming multiple files</strong> using for loops</li>
 </ul>
-<p>And for those that are interested, there is some optional at-home reading about changing file permissions (e.g.&nbsp;to make your raw data read-only) and creating symbolic links (to access files across different projects).</p>
+<p>And for those that are interested, there is some optional at-home reading about <strong>changing file permissions</strong> (e.g.&nbsp;to make your raw data read-only) and creating <strong>symbolic links</strong> (to access files across different projects).</p>
 <hr style="height:1pt; visibility:hidden;">
 <section id="vs-code-setup" class="level3" data-number="1.1">
 <h3 data-number="1.1" class="anchored" data-anchor-id="vs-code-setup"><span class="header-section-number">1.1</span> VS Code setup</h3>
@@ -392,15 +392,16 @@ Starting VS Code at OSC - with a Terminal <em>(Click to expand)</em>
 </section>
 <section id="create-a-dummy-project-following-buffalo" class="level3" data-number="1.2">
 <h3 data-number="1.2" class="anchored" data-anchor-id="create-a-dummy-project-following-buffalo"><span class="header-section-number">1.2</span> Create a dummy project – following Buffalo</h3>
-<p>Go into the dir for this week you created earlier:</p>
+<p>Go into the dir for this week that you created earlier:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You should be in /fs/ess/PAS2700/users/$USER/</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> week02</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>First, we’ll create a set of directories representing a dummy research project:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> zmays-snps</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> zmays-snps</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> data/fastq scripts results/figs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The <code>touch</code> command will create one or more empty files. We will use it to create some empty files (representing dummy sequence files with forward (R1) and reverse (R2) DNA sequence reads for 3 samples):</p>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># The -p option for mkdir will allow for 'recursive' (nested) dir creation</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> data/fastq scripts results/figs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>touch</code> command will create one or more empty files. We will use it to create some empty files that are supposed to represent sequence files with forward (“R1”) and reverse (“R2”) DNA sequence reads for 3 samples:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> data/fastq</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> sample1_R1.fastq.gz sample1_R2.fastq.gz</span>
@@ -429,10 +430,10 @@ Starting VS Code at OSC - with a Terminal <em>(Click to expand)</em>
 </section>
 <section id="wildcard-expansion" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="wildcard-expansion"><span class="header-section-number">2</span> Wildcard expansion</h2>
-<p>Shell wildcard expansion is a very useful technique to <strong>select files</strong>. Selecting files with wildcard expansion is called <em>globbing</em>. <em>Wildcards</em> are symbols that have a special meaning.</p>
+<p>Shell wildcard expansion is a very useful technique to select files. Selecting files with wildcard expansion is called <strong>globbing</strong>. <em>Wildcards</em> are symbols that have a special meaning.</p>
 <section id="the-wildcard" class="level4">
 <h4 class="anchored" data-anchor-id="the-wildcard">The <code>*</code> wildcard</h4>
-<p><strong>In globbing, the <code>*</code> wildcard matches any number of any character, including nothing.</strong></p>
+<p>In globbing, the <code>*</code> wildcard matches any number of any character, including nothing.</p>
 <p>With the following files in our directory:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>sample1_R1.fastq.gz  sample1_R2.fastq.gz  sample2_R1.fastq.gz
@@ -551,7 +552,7 @@ Click for the solution
 <li><p>Method 2 – Use a range like <code>[0-9]</code>, <code>[A-Z]</code>, <code>[a-z]</code>:</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> sample<span class="pp">[</span><span class="ss">1</span><span class="pp">-</span><span class="ss">2</span><span class="pp">]*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>sample1_R1.fastq.gz  sample1_R2.fastq.gz  sample2_R1.fastq.gz  sample2_R2.fastq.gz</code></pre></li>
-<li><p>Method 3 – <em>Exclude</em> the unwanted sample:</p>
+<li><p>Method 3 – Exclude the unwanted sample ID:</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> sample<span class="pp">[^</span><span class="ss">3</span><span class="pp">]*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>sample1_R1.fastq.gz  sample1_R2.fastq.gz  sample2_R1.fastq.gz  sample2_R2.fastq.gz</code></pre></li>
 </ul>
@@ -573,8 +574,8 @@ Click for the solution
 </section>
 <section id="expansion-is-done-by-the-shell-itself" class="level4">
 <h4 class="anchored" data-anchor-id="expansion-is-done-by-the-shell-itself">Expansion is done by the shell itself</h4>
-<p>The expansion –to all matching file names– is done <em>by the shell</em>, not by <code>ls</code> or another command you might be using wildcards with. <strong>Therefore, <code>ls</code> will see the list of files <em>after</em> the expansion.</strong></p>
-<p>You can make use of the fact that the shell, not an individual command, does the expansion when using shell expansion to <em>move</em> or <em>delete</em> files — first check what your command will see, then execute:</p>
+<p>The expansion –to all matching file names– is done <em>by the shell</em>, not by <code>ls</code> or another command you might be using wildcards with. <strong>Therefore, <code>ls</code> will “see”/“receive” the list of files <em>after</em> the expansion has already happened.</strong></p>
+<p>You can make use of the fact that the shell, not an individual command, does the expansion when using shell expansion to <em>move</em> or <em>delete</em> files — first check what your command will see with e.g.&nbsp;<code>echo</code>, then execute the command:</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> sample<span class="pp">[</span><span class="ss">12</span><span class="pp">]*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>sample1_R1.fastq.gz sample1_R2.fastq.gz sample2_R1.fastq.gz sample2_R2.fastq.gz</code></pre>
 <div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (The -v option will make rm report what it's removing)</span></span>
@@ -605,42 +606,32 @@ Wildcards vs.&nbsp;regular expressions
 <div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First move up to zmays-snps</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ../..</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Use <code>..</code> within <code>{}</code> to indicate ranges of numbers or letters:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> data/obs/2021-01-\{01..31\}</span>
-<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> data/obs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Here we'll create 31 _dirs_ for different dates</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> data/obs/2021-01-{01..31}</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> data/obs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>2021-01-01  2021-01-05  2021-01-09  2021-01-13  2021-01-17  2021-01-21  2021-01-25  2021-01-29
 2021-01-02  2021-01-06  2021-01-10  2021-01-14  2021-01-18  2021-01-22  2021-01-26  2021-01-30
 2021-01-03  2021-01-07  2021-01-11  2021-01-15  2021-01-19  2021-01-23  2021-01-27  2021-01-31
 2021-01-04  2021-01-08  2021-01-12  2021-01-16  2021-01-20  2021-01-24  2021-01-28</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> results/figs/fig-1\{A..F\}</span>
-<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> results/figs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Here we'll create 6 empty _files_</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> results/figs/fig-1{A..F}</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> results/figs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>fig-1A  fig-1B  fig-1C  fig-1D  fig-1E  fig-1F</code></pre>
 <hr style="height:1pt; visibility:hidden;">
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Side note: or use a comma-separated list
-</div>
-</div>
-<div class="callout-body-container callout-body">
 <p>Finally, you can also use a comma-separated list, and multiple brace expansions — with the latter, you will get <em>all combinations</em> among values in the expansions:</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> data/obs2/treatment-\{Kr,Df,Tr\}_temp-\{lo,med,hi\}</span>
+<div class="sourceCode" id="cb37"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> data/obs2/treatment-<span class="dt">{Kr</span><span class="op">,</span><span class="dt">Df</span><span class="op">,</span><span class="dt">Tr}</span>_temp-<span class="dt">{lo</span><span class="op">,</span><span class="dt">med</span><span class="op">,</span><span class="dt">hi}</span></span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> data/obs2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>treatment-Df_temp-hi   treatment-Kr_temp-hi   treatment-Tr_temp-hi
 treatment-Df_temp-lo   treatment-Kr_temp-lo   treatment-Tr_temp-lo
 treatment-Df_temp-med  treatment-Kr_temp-med  treatment-Tr_temp-med</code></pre>
-</div>
-</div>
 <hr style="height:1pt; visibility:hidden;">
 <section id="exercise-file-matching-2" class="level4 exercise">
 <h4 class="anchored" data-anchor-id="exercise-file-matching-2"><i class="fa-solid fa-user-edit" aria-label="user-edit"></i> Exercise: File matching 2</h4>
 <ol type="1">
-<li>Move into <code>zmays-snps/data/fastq/</code> and remove all files in there in one go.</li>
+<li>Move into <code>zmays-snps/data/fastq/</code> and remove all (remaining) files in there in one go.</li>
 </ol>
 <details>
 <summary>
@@ -656,7 +647,7 @@ Click for the solution
 <summary>
 Click for the solution
 </summary>
-<div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> sample<span class="dt">\{</span>001..100<span class="dt">\}</span>_R<span class="dt">\{</span>1,2<span class="dt">\}</span>.fastq</span>
+<div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> sample<span class="dt">{</span><span class="dv">001</span><span class="dt">..</span><span class="dv">100</span><span class="dt">}</span>_R<span class="dt">{1</span><span class="op">,</span><span class="dt">2}</span>.fastq</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>sample001_R1.fastq  sample026_R1.fastq  sample051_R1.fastq  sample076_R1.fastq
@@ -771,7 +762,7 @@ Recall that there cannot be any spaces around the equals sign (<code>=</code>)!
 <p>To <strong>reference</strong> a variable (i.e., to access its value):</p>
 <ul>
 <li>You need to put a dollar sign <code>$</code> in front of its name.</li>
-<li>It is good practice to double-quote (<code>"..."</code>) variable names <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</li>
+<li>It is good practice to double-quote (<code>"..."</code>) variable names<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</li>
 </ul>
 <p>As before with the environment variable <code>$HOME</code>, we’ll use the <code>echo</code> command to see what values our variables contain:</p>
 <div class="sourceCode" id="cb48"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"</span><span class="va">$location</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -784,7 +775,7 @@ Recall that there cannot be any spaces around the equals sign (<code>=</code>)!
 <span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span> <span class="st">"</span><span class="va">$input_file</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>-rw-rw----+ 1 jelmer PAS0471 0 Mar  4 09:25 data/fastq/sample001_R1.fastq</code></pre>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -793,7 +784,7 @@ Rules and tips for naming variables <em>(Click to expand)</em>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Variable names:</p>
 <ul>
@@ -968,11 +959,11 @@ eyelash_cup is an Ohio mushroom</code></pre>
 </section>
 <section id="renaming-files-with-loops" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="renaming-files-with-loops"><span class="header-section-number">5</span> Renaming files with loops</h2>
-<p>There are many different ways to do rename many files in a programmatic way in the shell – admittedly none as easy as one might have hoped.</p>
+<p>There are many different ways to rename many files in a programmatic way in the shell – admittedly none as easy as one might have hoped.</p>
 <p>Here, we’ll use the <code>basename</code> command and a <code>for</code> loop. <code>for</code> loops are a verbose method for tasks like renaming, but are relatively intuitive and good to get practice with.</p>
 <section id="basename" class="level4">
 <h4 class="anchored" data-anchor-id="basename"><code>basename</code></h4>
-<p>First, we’ll have to learn about the <strong><code>basename</code> command</strong>, which <strong>removes any dir name that may be present in a file name (path)</strong>, and optionally, removes a suffix too:</p>
+<p>First, we’ll have to learn about the <strong><code>basename</code> command</strong>, which removes any dir name that may be present in a file name (path), and optionally, removes a suffix too:</p>
 <div class="sourceCode" id="cb77"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">basename</span> data/fastq/sample001_R1.fastq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>sample001_R1.fastq</code></pre>
 <div class="sourceCode" id="cb79"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Specify a suffix to remove:</span></span>
@@ -1028,7 +1019,7 @@ mv -v sample002_R2_001.fastq sample002_R2_001.fq
 ‘sample003_R2_001.fastq’ -&gt; ‘sample003_R2_001.fq’
 # [...output truncated...]</code></pre>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1037,7 +1028,7 @@ Side note: Special characters and escaping them <em>(Click to expand)</em>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>We saw that wildcards like <strong><code>*</code></strong> have a special meaning. What if we had a terribly named file that contained a <code>*</code>, and we needed to match a <em>literal</em> <code>*</code>**?</p>
 <div class="sourceCode" id="cb93"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the poorly named file (this is giving away how we can escape the *...)</span></span>
@@ -1118,7 +1109,7 @@ read + write <em>but not</em> execute permissions for both the owner (first <cod
 <div class="sourceCode" id="cb99"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="co"># chmod &lt;who&gt;-&lt;permission-to-remove&gt;:</span></span>
 <span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="fu">chmod</span> o-w myfile.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1127,7 +1118,7 @@ Alternative: changing file permissions with numbers <em>(Click to expand)</em>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>You can also use a series of 3 numbers (for user, group, and others) to set permissions, where each number can take on the following values:</p>
 <table class="table">

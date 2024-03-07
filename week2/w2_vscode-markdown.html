@@ -363,9 +363,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>In the blue top bar, select <code>Interactive Apps</code> and near the bottom, click <code>Code Server</code>.</p></li>
 <li><p>Interactive Apps like VS Code and RStudio <strong>run on compute nodes</strong> (not login nodes). Because compute nodes always need to be “reserved”, we have to fill out a form and specify the following details:</p>
 <ul>
-<li>The <code>Number of hours</code> we want to make a reservation for: <code>2</code></li>
-<li>The <code>Working Directory</code> for the program: your personal folder in <code>/fs/ess/PAS2700/users</code> (e.g.&nbsp;<code>/fs/ess/PAS2700/users/jelmer</code>)</li>
-<li>The <code>Codeserver Version</code>: <code>4.8</code> (most recent)</li>
+<li>The OSC “<em>Project</em>” that we want to bill for the compute node usage: <code>PAS2700</code>.</li>
+<li>The “<em>Number of hours</em>” we want to make a reservation for: <code>2</code></li>
+<li>The “<em>Working Directory</em>” for the program: your personal folder in <code>/fs/ess/PAS2700/users</code> (e.g.&nbsp;<code>/fs/ess/PAS2700/users/jelmer</code>)</li>
+<li>The “<em>Codeserver Version</em>”: <code>4.8</code> (most recent)</li>
 </ul></li>
 <li><p>Click <code>Launch</code>.</p></li>
 <li><p>First, your job will be “<em>Queued</em>” — that is, waiting for the job scheduler to allocate compute node resources to it:</p></li>
@@ -1441,6 +1442,26 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>2024, Jelmer Poelstra</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jelmerp/pracs-sp24">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
 
 
 

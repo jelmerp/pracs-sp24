@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>pracs-sp24 - Week 2 Exercises</title>
+<title>pracs-sp24 - Week 3 exercises</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -247,14 +247,25 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#part-i-create-a-new-git-repo" id="toc-part-i-create-a-new-git-repo" class="nav-link" data-scroll-target="#part-i-create-a-new-git-repo"><span class="header-section-number">2</span> Part I – Create a new Git repo</a></li>
+  <li><a href="#part-ii-add-some-markdown-content" id="toc-part-ii-add-some-markdown-content" class="nav-link" data-scroll-target="#part-ii-add-some-markdown-content"><span class="header-section-number">3</span> Part II – Add some Markdown content</a></li>
+  <li><a href="#part-iii-add-some-data-files" id="toc-part-iii-add-some-data-files" class="nav-link" data-scroll-target="#part-iii-add-some-data-files"><span class="header-section-number">4</span> Part III – Add some “data” files</a></li>
+  <li><a href="#part-iv-renaming-files-on-a-new-branch" id="toc-part-iv-renaming-files-on-a-new-branch" class="nav-link" data-scroll-target="#part-iv-renaming-files-on-a-new-branch"><span class="header-section-number">5</span> Part IV – Renaming files on a new branch</a></li>
+  <li><a href="#part-v-create-and-sync-an-online-version-of-the-repo" id="toc-part-v-create-and-sync-an-online-version-of-the-repo" class="nav-link" data-scroll-target="#part-v-create-and-sync-an-online-version-of-the-repo"><span class="header-section-number">6</span> Part V – Create and sync an online version of the repo</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 2 Exercises</h1>
+<h1 class="title">Week 3 exercises</h1>
 </div>
 
 
@@ -273,9 +284,179 @@ ul.task-list li input[type="checkbox"] {
 
 <hr>
 <hr style="height:1pt; visibility:hidden;">
-<p>Content TBA</p>
+<p><br></p>
+<section id="introduction" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
+<p>In this assignment, you will primarily be practicing your Git skills. You will also show that you can write in Markdown and can write a <code>fo</code> loop to rename files.</p>
+<p>The instructions below will take you through it step-by-step. All of the the steps involve things that we have gone through in class and/or that you have practiced with in last week’s exercises.</p>
+<p>Grading information:</p>
+<ul>
+<li><p>The number of points (if any) that you can earn for each step are denoted in coral between square brackets (e.g.&nbsp;<span style="color:coral"><i>[0.5]</i></span>). In total, you can earn 10 points with this assignment, which is 10% of your grade for the class.</p></li>
+<li><p>If you make a mistake like an unnecessary commit, or something that requires you to subsequently make an extra commit: this is no problem. Points will not be subtracted for extra commits as long as you indicate what each commit is for &amp; I’m still able to figure out which commits are the ones that I requested.</p></li>
+<li><p>Points are not subtracted for minor things like typos in commit messages, either.</p></li>
+<li><p>Basically, you should not feel like you have to <em>restart</em> the assignment unless things have become a total mess…</p></li>
+</ul>
+<p>Some general hints:</p>
+<ul>
+<li><p>Don’t forget to constantly check the status of your repository (repo) with <code>git status</code>: before and after nearly all other Git commands that you issue. This will help prevent mistakes, and will also help you understand what’s going on as you get up and running with Git.</p></li>
+<li><p>It’s also a good idea to regularly check the log with <code>git log</code>; recall that <code>git log --oneline</code> will provide a quick overview with one line per commit.</p></li>
+</ul>
+<p><br></p>
+</section>
+<section id="part-i-create-a-new-git-repo" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="part-i-create-a-new-git-repo"><span class="header-section-number">2</span> Part I – Create a new Git repo</h2>
+<ol type="1">
+<li><strong>Create a new directory at OSC.</strong><br>
+</li>
+</ol>
+<ul>
+<li>A good place for this directory is in <code>/fs/ess/PAS1855/users/$USER/week03/</code>, but you are free to create it elsewhere (I will only be checking the online version of your repo).</li>
+<li>I suggest the name <code>pracs-sp21-GA1</code> for the dir, (“GA1” for “Graded Assignment 1”), but you are free to pick a name that makes sense to you.</li>
+</ul>
+<ol start="2" type="1">
+<li><p><strong>Load the OSC git module.</strong><br>
+Don’t forget to do this, or you will be working with a much older version of Git.</p></li>
+<li><p><strong>Initialize a local Git repository</strong> inside your new directory. <span style="color:coral"><i>[0.5]</i></span></p></li>
+<li><p><strong>Create a README file in Markdown format.</strong> <span style="color:coral"><i>[0.5]</i></span><br>
+The file should be named <code>README.md</code>, and for now, just contain a <em>header</em> saying that this is a repository for your assignment.</p></li>
+<li><p><strong><em>Stage</em> and then <em>commit</em> the README file.</strong> <span style="color:coral"><i>[0.5]</i></span><br>
+Include an appropriate commit message.</p></li>
+</ol>
+</section>
+<section id="part-ii-add-some-markdown-content" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="part-ii-add-some-markdown-content"><span class="header-section-number">3</span> Part II – Add some Markdown content</h2>
+<ol start="5" type="1">
+<li><p><strong>Create a second Markdown file with some more contents.</strong> <span style="color:coral"><i>[1.5]</i></span></p>
+<p>This file can have any name you want, and you can also choose what you want to write about.</p>
+<p>Use of a good variety of Markdown syntax, as discussed and practiced in week 2: headers, lists, hyperlinks, and so on. (You’ll have to include some inline code and a code block later on, so you may or may not choose to use those now.) Also, make sure to read the next step before you finish writing.</p>
+<p>As long as you are not writing minimalistic dummy text without any meaning (like “<em>Item 1, Item 2</em>”), you will not be graded for what you are writing about, so feel free to pick something you like – and don’t worry about the details.</p>
+<p>(If you’re not feeling inspired, here are some suggestions: lecture and reading notes for this week; a table of Unix and/or Git commands that we’ve covered; things that you so far find challenging or interesting about Git; how computational skills may help you with your research.)</p></li>
+</ol>
+<details>
+<summary>
+Hints
+</summary>
+<p>
+</p><p>In VS Code, open the Markdown preview on the side, so you can experiment and see whether your formatting is working the way you intend.</p>
+<p>
+</p></details>
+<ol start="6" type="1">
+<li><strong>Create at least two commits while you work on the Markdown file.</strong> <span style="color:coral"><i>[0.5]</i></span><br>
+Try to break your progress up into logical units that can be summarized with a descriptive commit message.</li>
+</ol>
+<details>
+<summary>
+Hints
+</summary>
+<p>
+</p><ul>
+<li><strong>Bad</strong> commits/commit messages:<br>
+“<em>First part of the file</em>” along with “<em>Second part of the file</em>”.</li>
+<li><strong>Good</strong> commits and commit messages:<br>
+“<em>Summarized key concepts in the Git workflow</em>” along with “<em>Made a table of common Git commands</em>”.</li>
+</ul>
+<p></p>
+</details>
+<ol start="7" type="1">
+<li><p><strong>Update the <code>README.md</code> file</strong>. <span style="color:coral"><i>[0.5]</i></span><br>
+Briefly describe the current contents of your repo now that you actually have some contents.</p></li>
+<li><p><strong>Stage and commit the updated README file.</strong> <span style="color:coral"><i>[0.5]</i></span></p></li>
+</ol>
+</section>
+<section id="part-iii-add-some-data-files" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="part-iii-add-some-data-files"><span class="header-section-number">4</span> Part III – Add some “data” files</h2>
+<ol start="9" type="1">
+<li><p><strong>Create a directory with dummy data files.</strong> <span style="color:coral"><i>[0.5]</i></span><br>
+Create a directory called <code>data</code> and inside this directory, create 100 empty files with a single <code>touch</code> command and at least one brace expansion (e.g.&nbsp;for samples numbered 1-100, or 20 samples for 5 treatments). Give the files the extension <code>.txt</code>.</p></li>
+<li><p><strong>Stage and commit the <code>data</code> directory and its contents.</strong> <span style="color:coral"><i>[0.5]</i></span><br>
+As always, include a descriptive message with your commit.</p></li>
+</ol>
+</section>
+<section id="part-iv-renaming-files-on-a-new-branch" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="part-iv-renaming-files-on-a-new-branch"><span class="header-section-number">5</span> Part IV – Renaming files on a new branch</h2>
+<p>As it turns out, there was a miscommunication, and and all the “data” files will have to be renamed. You realize that this is risky business, and you don’t want to lose any data.</p>
+<p>It occurs to you that one good way of going about this is creating a new Git <em>branch</em> and performing the renaming task on that branch. Then, if anything goes wrong, it will be easy to go back: you can just switch back to the master branch.<br>
+(<em>Note that there are many other ways of undoing and going back in Git, but this one is perhaps conceptually the easiest, and safe.</em>)</p>
+<ol start="11" type="1">
+<li><p><strong>Go to a new branch.</strong> <span style="color:coral"><i>[0.5]</i></span><br>
+Create a new branch called <code>rename-data-files</code> or something similar, and move to the new branch. (Also, check whether this worked.)</p></li>
+<li><p><strong>Write a <code>for</code> loop to rename the files.</strong> <span style="color:coral"><i>[1.5]</i></span><br>
+You can keep it as simple as switching the file extension to <code>.csv</code>, or do something more elaborate if you want.</p>
+<p>Because these files are being tracked by Git, recall that there is a Git-friendly modification to the command to rename files: use that in the loop.</p></li>
+</ol>
+<details>
+<summary>
+Hints
+</summary>
+<p>
+</p><ul>
+<li><p><a href="https://mcic-osu.github.io/pracs-sp21/posts/week-02/slides/02-3-shfiles.html#27">These slides</a> from last week have a similar renaming loop example.</p>
+<ul>
+<li><p>To replace the last part of the filename, like the extension, recall that you can strip suffices using the <code>basename</code> command.</p></li>
+<li><p>Before you go ahead and actually rename the files, use <code>echo</code> in your loop to print the (old and) new filenames: if it looks good, <em>then</em> add the renaming command to the loop.</p></li>
+</ul></li>
+<li><p><strong>If you just used <code>mv</code> and forgot to use <code>git mv</code></strong>, don’t fret. Have a look at the status of the repo, then do <code>git add --all</code> and check the status again: Git figured out the rename.</p></li>
+<li><p><strong>If things go wrong</strong>, for instance you renamed incorrectly, or even deleted the files, you can start over in a few ways:</p>
+<ul>
+<li><p>You can delete any files in <code>data/</code>, commit the deletion, and recreate the files. (The extra commits will not affect your grade, but use your commit messages to clarify what you’re doing.)</p></li>
+<li><p>A solution that would always work, including in case these files were actually valuable and you couldn’t just recreate them, is as follows:</p>
+<ul>
+<li>Like above, delete any files in <code>data/</code> and commit the deletion.</li>
+<li>Switch back to the <code>master</code> branch. Your <code>data/</code> files should be back.</li>
+<li>Create a new renaming branch and move there.</li>
+<li>Optionally, delete the old/failed renaming branch.</li>
+</ul></li>
+</ul></li>
+</ul>
+<p></p>
+</details>
+<ol start="13" type="1">
+<li><p><strong>Commit the changes made by the renaming operation.</strong></p></li>
+<li><p><strong>Merge into the <code>master</code> branch.</strong> <span style="color:coral"><i>[0.5]</i></span><br>
+With the files successfully renamed, go back to the <code>master</code> branch.<br>
+Then, merge the <code>rename-data-files</code> branch into the <code>master</code> branch.<br>
+(Optionally, remove the <code>rename-data-files</code> branch, since you will no longer need it.)</p></li>
+<li><p><strong>Update the README file.</strong><br>
+In the README file, describe what you did, including some inline code formatting, and put the code for the <code>for</code> loop in a code block.<br>
+(<em>No, the repo doesn’t really make sense as a cohesive unit anymore, but that’s okay while we’re practicing. :) </em>)</p></li>
+<li><p><strong>Stage and commit the updated README file.</strong> <span style="color:coral"><i>[0.5]</i></span></p></li>
+</ol>
+</section>
+<section id="part-v-create-and-sync-an-online-version-of-the-repo" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="part-v-create-and-sync-an-online-version-of-the-repo"><span class="header-section-number">6</span> Part V – Create and sync an online version of the repo</h2>
+<p>Phew, those were a lot of commits! Let’s share all of this work with the world.</p>
+<ol start="16" type="1">
+<li><p><strong>Create a Github repository.</strong> <span style="color:coral"><i>[0.5]</i></span><br>
+Go to <a href="https://github.com" class="uri">https://github.com</a>, sign in, and create a new repository.</p>
+<ul>
+<li>It’s a good idea to give it the same name as your local repo, but these names don’t <em>have to</em> match.</li>
+<li>You want to create an <em>empty</em> GitHub repository, because you will upload all the contents from your local repo: therefore, don’t check any of the boxes to create files like a README.</li>
+</ul></li>
+<li><p><strong>Push your local repo online.</strong> <span style="color:coral"><i>[0.5]</i></span><br>
+With your repo created, follow the instructions that Github now gives you, under the heading “<em>…or push an existing repository from the command line</em>”.</p>
+<p>These instructions will comprise three commands: <code>git remote add</code> to add the “remote” (online) connection, <code>git branch</code> to rename the default branch from <code>master</code> to <code>main</code>, and <code>git push</code> to actually “push” (upload) your local repo.</p>
+<p>When you’re done, click the <code>Code</code> button, and admire the nicely rendered README on the front page of your Github repo.</p></li>
+</ol>
+<details>
+<summary>
+Hints
+</summary>
+<p>
+</p><p>Assuming that you’re using SSH authentication, which you should have set up in this week’s ungraded assignment, make sure you use the SSH link type: starting with <code>git@github.com</code> rather than <code>HTTPS</code>.</p>
+<p></p>
+</details>
+<ol start="18" type="1">
+<li><p><strong>Create an issue to mark that you’re done!</strong> <span style="color:coral"><i>[0.5]</i></span><br>
+Find the “Issues” tab for your repo on Github:</p>
+<p align="center">
+</p><p><img src="img/github-issues-tab.png" width="80%"></p>
+<p></p>
+<p>In the Issues tab, click the green button <code>New Issue</code> to open a new issue for you repo.</p>
+<p>Give it a title like “I finished my assignment”, and in the issue text, tag <code>@jelmerp</code>. You can say, for instance, “<em>Hey <span class="citation" data-cites="jelmerp">@jelmerp</span>, can you please take a look at my repo?</em>”.</p></li>
+</ol>
 
 
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -666,6 +847,26 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>2024, Jelmer Poelstra</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jelmerp/pracs-sp24">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
 
 
 

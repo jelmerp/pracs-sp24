@@ -92,10 +92,6 @@ ul.task-list li input[type="checkbox"] {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
-<span class="menu-text"><i class="fa-solid fa-home" aria-label="home"></i></span></a>
-  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-week-overviews" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Week overviews</span>
@@ -112,6 +108,10 @@ ul.task-list li input[type="checkbox"] {
         <li>
     <a class="dropdown-item" href="../week2/w2_overview.html">
  <span class="dropdown-text">Week 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week3/w3_overview.html">
+ <span class="dropdown-text">Week 3</span></a>
   </li>  
     </ul>
   </li>
@@ -147,6 +147,20 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="../week2/w2_shellfiles.html">
  <span class="dropdown-text">Managing files in the shell</span></a>
   </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Week 3</li>
+        <li>
+    <a class="dropdown-item" href="../week3/w3_git1.html">
+ <span class="dropdown-text">Getting started with Git</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week3/w3_git2.html">
+ <span class="dropdown-text">Git remotes on GitHub</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week3/w3_git3.html">
+ <span class="dropdown-text">Git bonus material</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -156,34 +170,56 @@ ul.task-list li input[type="checkbox"] {
     <ul class="dropdown-menu" aria-labelledby="nav-menu-exercises">    
         <li>
     <a class="dropdown-item" href="../week1/w1_exercises.html">
- <span class="dropdown-text">Week 1</span></a>
+ <span class="dropdown-text">Week 1 (Shell basics)</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../week2/w2_exercises.html">
- <span class="dropdown-text">Week 2</span></a>
+ <span class="dropdown-text">Week 2 (Markdown / Shell files)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week3/w3_exercises.html">
+ <span class="dropdown-text">Week 3 (Git)</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-final-project" role="button" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Final project</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-assignments" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Assignments</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-final-project">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-assignments">    
+        <li>
+    <a class="dropdown-item" href="../week0/osc-setup.html">
+ <span class="dropdown-text">Pre-course: OSC account setup</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week2/w2_github-account.html">
+ <span class="dropdown-text">Week 2: GitHub account</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-project" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Project</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-project">    
         <li>
     <a class="dropdown-item" href="../finalproj/info.html">
  <span class="dropdown-text">General info</span></a>
   </li>  
-        <li class="dropdown-header">Checkpoint I: Proposal (TBA)</li>
-        <li class="dropdown-header">Checkpoint II: Progress report (TBA)</li>
-        <li class="dropdown-header">Checkpoint III: Presentation (TBA)</li>
-        <li class="dropdown-header">Checkpoint IV: Submission (TBA)</li>
+        <li>
+    <a class="dropdown-item" href="../finalproj/proposal.html">
+ <span class="dropdown-text">I: Proposal (Due Apr 1)</span></a>
+  </li>  
+        <li class="dropdown-header">II: Progress report (TBA) (Due Apr 8)</li>
+        <li class="dropdown-header">III: Oral presentation (TBA) (Apr 18)</li>
+        <li class="dropdown-header">IV: Final submission (TBA) (Due Apr 29)</li>
     </ul>
   </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference-pages" role="button" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Reference Pages</span>
+ <span class="menu-text">Reference pages</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-reference-pages">    
         <li>
@@ -195,9 +231,9 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Unix shell</span></a>
   </li>  
         <li class="dropdown-header">Markdown (TBA)</li>
+        <li class="dropdown-header">Git (TBA)</li>
         <li class="dropdown-header">Shell scripting (TBA)</li>
         <li class="dropdown-header">OSC, Slurm, and Conda (TBA)</li>
-        <li class="dropdown-header">Git (TBA)</li>
         <li class="dropdown-header">Nextflow (TBA)</li>
         <li class="dropdown-header">List of Further Resources (TBA)</li>
     </ul>
@@ -300,16 +336,16 @@ ul.task-list li input[type="checkbox"] {
 <section id="lecture-pages" class="level4">
 <h4 class="anchored" data-anchor-id="lecture-pages">Lecture pages</h4>
 <ul>
-<li>Part I – Getting started with Git</li>
-<li>Part II – Remotes on GitHub, and branching &amp; merging</li>
-<li>Bonus content: Undoing changes and viewing the past</li>
+<li>Part I – <a href="../week3/w3_git1.html">Getting started with Git</a></li>
+<li>Part II – <a href="../week3/w3_git2.html">Remotes on GitHub</a></li>
+<li>Bonus (optional self-study) content: <a href="../week3/w3_git3.html">Branching &amp; merging, undoing changes, and viewing the past</a></li>
 </ul>
 </section>
 <section id="exercises-assignments" class="level4">
 <h4 class="anchored" data-anchor-id="exercises-assignments">Exercises &amp; assignments</h4>
 <ul>
-<li>Assignment: <a href="w3_assign_git-setup.qmd">Git setup &amp; GitHub authentication</a></li>
-<li>Exercises</li>
+<li><strong>Make sure you have done the assignment from week 2 by Tuesday:</strong> <a href="../week2/w2_github-account.html"><strong>Create a GitHub account</strong></a></li>
+<li><a href="../week3/w3_exercises.html">Exercises</a></li>
 </ul>
 <hr style="height:1pt; visibility:hidden;">
 </section>
@@ -325,6 +361,9 @@ ul.task-list li input[type="checkbox"] {
 <li>Learn the basics of the most widely used VCS: Git.</li>
 <li>Learn how to put your local repositories online at GitHub, and how to keep local and online (“remote”) repositories in sync.</li>
 <li>Learn about single-user and multi-user workflows with Git and GitHub.</li>
+</ul>
+<p>Optional self-study content:</p>
+<ul>
 <li>Learn how to use Git branches to safely make experimental changes.</li>
 <li>Learn how to undo things and “travel back in time” for your project using Git.</li>
 </ul>
@@ -333,12 +372,12 @@ ul.task-list li input[type="checkbox"] {
 <section id="readings" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="readings"><span class="header-section-number">3</span> Readings</h2>
 <p>This week’s main reading is the CSB chapter on Git, chapter 2. We will also roughly work our way through this chapter in the Zoom sessions.</p>
-<p>The optional reading is the Buffalo chapter on Git, chapter 5. Like the CSB chapter, this starts with the very basics of Git; but it goes a bit further. As mentioned, Git is a challenging subject, so I recommend that you read both of these chapters to really get the hang of it.</p>
+<p>The optional reading is the Buffalo chapter on Git, chapter 5. Like the CSB chapter, this starts with the very basics of Git; but it goes a bit further.</p>
 <p>There are also some useful further resources mentioned below.</p>
 <section id="required-readings" class="level4">
 <h4 class="anchored" data-anchor-id="required-readings">Required readings</h4>
 <ul>
-<li><a href="https://library.ohio-state.edu/record=b8624007~S7">CSB</a> Chapter 2: “Version Control”</li>
+<li><a href="https://library.ohio-state.edu/record=b8624007~S7">CSB</a> Chapter 2: “Version Control” up until section 2.5 (the rest of the chapter is optional)</li>
 </ul>
 </section>
 <section id="optional-readings" class="level4">
@@ -350,10 +389,10 @@ ul.task-list li input[type="checkbox"] {
 <section id="further-resources" class="level4">
 <h4 class="anchored" data-anchor-id="further-resources">Further resources</h4>
 <ul>
-<li><p><a href="https://github.com/jlord/git-it-electron#git-it">Git-it</a> is a small application to learn and practice Git and GitHub basics. Download and installation instructions are here.</p></li>
 <li><p>GitHub has a <a href="https://guides.github.com/activities/hello-world/">nice little overview</a> of some Git and GitHub functionality including branching and Pull Requests, and how to do these things in your browser at GitHub.</p></li>
 <li><p>For some more background on why to use version control, and another perspective on some Git basics, I recommend the article “<a href="https://peerj.com/preprints/3159">Excuse me, do you have a moment to talk about version control?</a>” by Jenny Bryan.</p></li>
 <li><p>Especially if you work with R a lot, I would recommend checking out <a href="https://happygitwithr.com/">Happy Git and GitHub for the useR</a>, also by Jenny Bryan. This is a very accessible introduction to Git.</p></li>
+<li><p><a href="https://github.com/jlord/git-it-electron#git-it">Git-it</a> is a small application to learn and practice Git and GitHub basics.</p></li>
 <li><p>If you want to try some online exercises with Git with helpful visuals of what Git commands do, try <a href="https://learngitbranching.js.org/" class="uri">https://learngitbranching.js.org/</a>. (But be aware that this does fairly quickly move to fairly advanced topics, including several that we will not touch on in the course.)</p></li>
 <li><p><a href="https://gist.github.com/jaseemabid/1321592">A good list of even more Git resources…</a></p></li>
 </ul>

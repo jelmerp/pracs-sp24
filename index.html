@@ -90,10 +90,6 @@ ul.task-list li input[type="checkbox"] {
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
-<span class="menu-text"><i class="fa-solid fa-home" aria-label="home"></i></span></a>
-  </li>  
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-week-overviews" role="button" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Week overviews</span>
@@ -110,6 +106,10 @@ ul.task-list li input[type="checkbox"] {
         <li>
     <a class="dropdown-item" href="./week2/w2_overview.html">
  <span class="dropdown-text">Week 2</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./week3/w3_overview.html">
+ <span class="dropdown-text">Week 3</span></a>
   </li>  
     </ul>
   </li>
@@ -145,6 +145,20 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="./week2/w2_shellfiles.html">
  <span class="dropdown-text">Managing files in the shell</span></a>
   </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Week 3</li>
+        <li>
+    <a class="dropdown-item" href="./week3/w3_git1.html">
+ <span class="dropdown-text">Getting started with Git</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./week3/w3_git2.html">
+ <span class="dropdown-text">Git remotes on GitHub</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./week3/w3_git3.html">
+ <span class="dropdown-text">Git bonus material</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -154,34 +168,56 @@ ul.task-list li input[type="checkbox"] {
     <ul class="dropdown-menu" aria-labelledby="nav-menu-exercises">    
         <li>
     <a class="dropdown-item" href="./week1/w1_exercises.html">
- <span class="dropdown-text">Week 1</span></a>
+ <span class="dropdown-text">Week 1 (Shell basics)</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="./week2/w2_exercises.html">
- <span class="dropdown-text">Week 2</span></a>
+ <span class="dropdown-text">Week 2 (Markdown / Shell files)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./week3/w3_exercises.html">
+ <span class="dropdown-text">Week 3 (Git)</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-final-project" role="button" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Final project</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-assignments" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Assignments</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-final-project">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-assignments">    
+        <li>
+    <a class="dropdown-item" href="./week0/osc-setup.html">
+ <span class="dropdown-text">Pre-course: OSC account setup</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./week2/w2_github-account.html">
+ <span class="dropdown-text">Week 2: GitHub account</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-project" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Project</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-project">    
         <li>
     <a class="dropdown-item" href="./finalproj/info.html">
  <span class="dropdown-text">General info</span></a>
   </li>  
-        <li class="dropdown-header">Checkpoint I: Proposal (TBA)</li>
-        <li class="dropdown-header">Checkpoint II: Progress report (TBA)</li>
-        <li class="dropdown-header">Checkpoint III: Presentation (TBA)</li>
-        <li class="dropdown-header">Checkpoint IV: Submission (TBA)</li>
+        <li>
+    <a class="dropdown-item" href="./finalproj/proposal.html">
+ <span class="dropdown-text">I: Proposal (Due Apr 1)</span></a>
+  </li>  
+        <li class="dropdown-header">II: Progress report (TBA) (Due Apr 8)</li>
+        <li class="dropdown-header">III: Oral presentation (TBA) (Apr 18)</li>
+        <li class="dropdown-header">IV: Final submission (TBA) (Due Apr 29)</li>
     </ul>
   </li>
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item dropdown ">
     <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference-pages" role="button" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Reference Pages</span>
+ <span class="menu-text">Reference pages</span>
     </a>
     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-reference-pages">    
         <li>
@@ -193,9 +229,9 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">Unix shell</span></a>
   </li>  
         <li class="dropdown-header">Markdown (TBA)</li>
+        <li class="dropdown-header">Git (TBA)</li>
         <li class="dropdown-header">Shell scripting (TBA)</li>
         <li class="dropdown-header">OSC, Slurm, and Conda (TBA)</li>
-        <li class="dropdown-header">Git (TBA)</li>
         <li class="dropdown-header">Nextflow (TBA)</li>
         <li class="dropdown-header">List of Further Resources (TBA)</li>
     </ul>
@@ -282,43 +318,37 @@ ul.task-list li input[type="checkbox"] {
 <td><strong>2</strong></td>
 <td>3/05: <a href="./week2/w2_project-org.html">Project organization</a> &amp; <a href="./week2/w2_vscode-markdown.html">Markdown</a></td>
 <td>3/07: <a href="./week2/w2_shellfiles.html">Managing files in the shell</a></td>
-<td><a href="./week2/w2_overview.html"><i class="fa-solid fa-book" aria-label="book"></i></a> &nbsp; <i class="fa-solid fa-user-edit" aria-label="user-edit"></i></td>
+<td><a href="./week2/w2_overview.html"><i class="fa-solid fa-book" aria-label="book"></i></a> &nbsp; <a href="./week2/w2_exercises.html"><i class="fa-solid fa-user-edit" aria-label="user-edit"></i></a></td>
 </tr>
 <tr class="even">
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td><strong>3</strong></td>
+<td>3/19: <a href="./week3/w3_git1.html">Getting started with Git</a></td>
+<td>3/21: <a href="./week3/w3_git2.html">Git remotes on GitHub</a></td>
+<td><a href="./week3/w3_overview.html"><i class="fa-solid fa-book" aria-label="book"></i></a> &nbsp; <a href="./week3/w3_exercises.html"><i class="fa-solid fa-user-edit" aria-label="user-edit"></i></a></td>
 </tr>
 <tr class="odd">
-<td><strong>3</strong></td>
-<td>3/19: Version Control I</td>
-<td>3/21: Version Control II</td>
-<td><i class="fa-solid fa-book" aria-label="book"></i> &nbsp; <i class="fa-solid fa-user-edit" aria-label="user-edit"></i></td>
-</tr>
-<tr class="even">
 <td><strong>4</strong></td>
 <td>3/26: Shell data tools</td>
 <td>3/28: CLI software &amp; shell scripting</td>
 <td><i class="fa-solid fa-book" aria-label="book"></i> &nbsp; <i class="fa-solid fa-user-edit" aria-label="user-edit"></i></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong>5</strong></td>
 <td>4/02: Data &amp; software management</td>
 <td>4/04: OSC Slurm batch jobs</td>
-<td><i class="fa-solid fa-book" aria-label="book"></i> &nbsp; <i class="fa-solid fa-user-edit" aria-label="user-edit"></i></td>
+<td><i class="fa-solid fa-book" aria-label="book"></i> &nbsp; <i class="fa-solid fa-user-edit" aria-label="user-edit"></i> &nbsp; <a href="./finalproj/proposal.html"><i class="fa-solid fa-laptop-code" aria-label="laptop-code"></i></a></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><strong>6</strong></td>
 <td>4/09: Nextflow I</td>
 <td>4/11: Nextflow II</td>
-<td><i class="fa-solid fa-book" aria-label="book"></i> &nbsp; <i class="fa-solid fa-user-edit" aria-label="user-edit"></i></td>
+<td><i class="fa-solid fa-book" aria-label="book"></i> &nbsp; <i class="fa-solid fa-user-edit" aria-label="user-edit"></i> &nbsp; <i class="fa-solid fa-laptop-code" aria-label="laptop-code"></i></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><strong>7</strong></td>
 <td>4/16: Recap</td>
 <td>4/18: Student presentations</td>
-<td><p><i class="fa-solid fa-book" aria-label="book"></i></p></td>
+<td><i class="fa-solid fa-book" aria-label="book"></i> &nbsp; <i class="fa-solid fa-laptop-code" aria-label="laptop-code"></i> &nbsp; <i class="fa-solid fa-laptop-code" aria-label="laptop-code"></i></td>
 </tr>
 </tbody>
 </table>

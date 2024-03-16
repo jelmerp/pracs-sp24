@@ -210,7 +210,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../week2/w2_exercises.html">
  <span class="dropdown-text">Week 2 (Markdown / Shell files)</span></a>
   </li>  
-        <li class="dropdown-header">Week 3 (Git) (TBA)</li>
+        <li>
+    <a class="dropdown-item" href="../week3/w3_exercises.html">
+ <span class="dropdown-text">Week 3 (Git)</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -323,18 +326,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#overview" id="toc-overview" class="nav-link active" data-scroll-target="#overview"><span class="header-section-number">1</span> Overview</a></li>
   <li><a href="#remote-repositories" id="toc-remote-repositories" class="nav-link" data-scroll-target="#remote-repositories"><span class="header-section-number">2</span> Remote repositories</a>
   <ul class="collapse">
-  <li><a href="#creating-a-remote-repository" id="toc-creating-a-remote-repository" class="nav-link" data-scroll-target="#creating-a-remote-repository"><span class="header-section-number">2.1</span> Creating a remote repository</a></li>
-  <li><a href="#link-up-the-local-and-remote-repositories" id="toc-link-up-the-local-and-remote-repositories" class="nav-link" data-scroll-target="#link-up-the-local-and-remote-repositories"><span class="header-section-number">2.2</span> Link up the local and remote repositories</a></li>
-  <li><a href="#explore-the-repository-on-github" id="toc-explore-the-repository-on-github" class="nav-link" data-scroll-target="#explore-the-repository-on-github"><span class="header-section-number">2.3</span> Explore the repository on GitHub</a></li>
+  <li><a href="#one-time-setup-github-authentication" id="toc-one-time-setup-github-authentication" class="nav-link" data-scroll-target="#one-time-setup-github-authentication"><span class="header-section-number">2.1</span> One-time setup: GitHub authentication</a></li>
+  <li><a href="#creating-a-remote-repository" id="toc-creating-a-remote-repository" class="nav-link" data-scroll-target="#creating-a-remote-repository"><span class="header-section-number">2.2</span> Creating a remote repository</a></li>
+  <li><a href="#link-the-local-and-remote-repositories" id="toc-link-the-local-and-remote-repositories" class="nav-link" data-scroll-target="#link-the-local-and-remote-repositories"><span class="header-section-number">2.3</span> Link the local and remote repositories</a></li>
+  <li><a href="#explore-the-repository-on-github" id="toc-explore-the-repository-on-github" class="nav-link" data-scroll-target="#explore-the-repository-on-github"><span class="header-section-number">2.4</span> Explore the repository on GitHub</a></li>
   </ul></li>
-  <li><a href="#remote-repo-workflows" id="toc-remote-repo-workflows" class="nav-link" data-scroll-target="#remote-repo-workflows"><span class="header-section-number">3</span> Remote repo workflows</a>
+  <li><a href="#remote-repo-workflows-single-user" id="toc-remote-repo-workflows-single-user" class="nav-link" data-scroll-target="#remote-repo-workflows-single-user"><span class="header-section-number">3</span> Remote repo workflows: single-user</a></li>
+  <li><a href="#remote-repo-workflows-multi-user" id="toc-remote-repo-workflows-multi-user" class="nav-link" data-scroll-target="#remote-repo-workflows-multi-user"><span class="header-section-number">4</span> Remote repo workflows: multi-user</a>
   <ul class="collapse">
-  <li><a href="#single-user-workflow" id="toc-single-user-workflow" class="nav-link" data-scroll-target="#single-user-workflow"><span class="header-section-number">3.1</span> Single-user workflow</a></li>
-  <li><a href="#multi-user-workflow" id="toc-multi-user-workflow" class="nav-link" data-scroll-target="#multi-user-workflow"><span class="header-section-number">3.2</span> Multi-user workflow</a></li>
-  <li><a href="#what-can-you-do-with-someone-elses-github-repository" id="toc-what-can-you-do-with-someone-elses-github-repository" class="nav-link" data-scroll-target="#what-can-you-do-with-someone-elses-github-repository"><span class="header-section-number">3.3</span> What can you do with someone else’s GitHub repository?</a></li>
-  <li><a href="#github-issues" id="toc-github-issues" class="nav-link" data-scroll-target="#github-issues"><span class="header-section-number">3.4</span> GitHub “Issues”</a></li>
+  <li><a href="#what-can-you-do-with-someone-elses-github-repository" id="toc-what-can-you-do-with-someone-elses-github-repository" class="nav-link" data-scroll-target="#what-can-you-do-with-someone-elses-github-repository"><span class="header-section-number">4.1</span> What can you do with someone else’s GitHub repository?</a></li>
+  <li><a href="#github-issues" id="toc-github-issues" class="nav-link" data-scroll-target="#github-issues"><span class="header-section-number">4.2</span> GitHub “Issues”</a></li>
   </ul></li>
-  <li><a href="#some-git-best-practices" id="toc-some-git-best-practices" class="nav-link" data-scroll-target="#some-git-best-practices"><span class="header-section-number">4</span> Some Git best practices</a></li>
+  <li><a href="#some-git-best-practice-tips" id="toc-some-git-best-practice-tips" class="nav-link" data-scroll-target="#some-git-best-practice-tips"><span class="header-section-number">5</span> Some Git best-practice tips</a></li>
   </ul>
 </nav>
     </div>
@@ -375,20 +378,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <hr>
 <p><br></p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-This page is still under construction
-</div>
-</div>
-<div class="callout-body-container callout-body">
-
-</div>
-</div>
-<p><br></p>
 <section id="overview" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="overview"><span class="header-section-number">1</span> Overview</h2>
 <section id="overview-of-this-session" class="level4">
@@ -409,9 +398,9 @@ Getting set up at OSC
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Launch VS Code at <a href="https://ondemand.osc.edu" class="uri">https://ondemand.osc.edu</a> as before, and open a terminal in VS Code.</li>
+<li>Launch VS Code at <a href="https://ondemand.osc.edu" class="uri">https://ondemand.osc.edu</a> as before, at the dir <code>/fs/ess/PAS2700/users/$USER</code>, and open a terminal in VS Code.</li>
 <li>Load the OSC Git module<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>: run <strong><code>module load git/2.39.0</code></strong>.</li>
-<li>Move to /fs/ess/PAS2700/users/$USER/week03/originspecies</li>
+<li>In the terminal, <code>cd</code> to your <code>week03/originspecies</code> dir.</li>
 </ul>
 </div>
 </div>
@@ -420,22 +409,70 @@ Getting set up at OSC
 </section>
 <section id="remote-repositories" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="remote-repositories"><span class="header-section-number">2</span> Remote repositories</h2>
-<p>So far, we have been locally version-controlling our <code>originspecies</code> repository. Now, we also want to put this repo online, to:</p>
+<p>So far, we have been locally version-controlling our <code>originspecies</code> repository. Now, we also want to put this repo online, so we can:</p>
 <ul>
-<li>Share our work and/or</li>
+<li>Share our work (e.g.&nbsp;alongside a publication) and/or</li>
 <li>Collaborate with others and/or</li>
 <li>Have an online backup.</li>
 </ul>
 <p>We will use the <strong>GitHub website</strong> as the place to host our online repositories.</p>
-<p>Online counterparts of repositories that we also have locally are usually referred to as “remote repositories” or “remotes”. To add and manage remotes, we use the <code>git remote</code> command.</p>
+<p>Online counterparts of repositories that we also have locally are usually referred to as “remote repositories” or simple “<strong>remotes</strong>”. To add and manage remotes, we use the <code>git remote</code> command.</p>
+<section id="one-time-setup-github-authentication" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="one-time-setup-github-authentication"><span class="header-section-number">2.1</span> One-time setup: GitHub authentication</h3>
+<p>To be able to link local Git repositories to their online counterparts on GitHub, we need to set up GitHub authentication.</p>
+<p>Regular password access (over <code>HTTP</code>/<code>HTTPS</code>) is now “deprecated” by GitHub, and two better options are to set up <code>SSH</code> access with an <em>SSH key</em>, or <code>HTTPS</code> access with a <em>Public Access Token</em>.</p>
+<p>We’ll use <code>SSH</code>, as it is easier – though still a bit of drag – and because learning this procedure will also be useful for when you’ll be setting up SSH access to the Ohio Supercomputer Center. (But note that GitHub now labels <code>HTTPS</code> access as the “preferred” method.)</p>
+<p>For everything on GitHub, there are separate SSH and HTTPS URLs, and GitHub can always show you both types of URLs. When using <code>SSH</code>, we need to use URLs with the following format:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">git@github.com:</span><span class="op">&lt;</span>USERNAME<span class="op">&gt;</span>/<span class="op">&lt;</span>REPOSITORY<span class="op">&gt;</span>.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>(And when using <code>HTTPS</code>, you would use URLs like <code>https://github.com/&lt;USERNAME&gt;/&lt;REPOSITORY&gt;.git</code>)</p>
+<ol type="1">
+<li><p>Use the <code>ssh-keygen</code> command to generate a public-private <em>SSH key pair</em> like so:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> rsa</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>You’ll be asked three questions, and for all three, you can accept the default by just pressing <kbd>Enter</kbd>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter file in which to save the key (&lt;default path&gt;):</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter passphrase (empty for no passphrase):</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Enter same passphrase again: </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/ssh-key-randomart2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+<ol start="3" type="1">
+<li><p>Now, you have a file called <code>id_rsa.pub</code> in your <code>~/.ssh</code> folder, which is your <strong>public key</strong>. To enable authentication, we will put this public key on GitHub — our public key interacts with our <em>private key</em>, which we do <em>not</em> share.<br>
+Print the public key to screen using <code>cat</code>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_rsa.pub</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Copy the public key, i.e.&nbsp;the contents of the public key file, to your clipboard. Make sure you get all of it, including the “<code>ssh-rsa</code>” part (but beware that your new prompt may start on the same line as the end the key):</p></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/ssh-copy-key.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+<ol start="5" type="1">
+<li><p>In your browser, go to <a href="https://github.com" class="uri">https://github.com</a> and log in.</p></li>
+<li><p>Go to your personal Settings. (Click on your avatar in the far top-right of the page, and select <code>Settings</code> in the drop-down menu.)</p></li>
+<li><p>Click on <code>SSH and GPG keys</code> in the sidebar.</p></li>
+<li><p>Click the green <code>New SSH key</code> button.</p></li>
+<li><p>Give the key an arbitrary, informative name, e.g.&nbsp;“OSC” to indicate that you are using this key at OSC.</p></li>
+<li><p>Paste the public key, which you copied to your clipboard earlier, into the box.</p></li>
+</ol>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/ssh-key-add-github.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+<ol start="11" type="1">
+<li>Click the green <code>Add SSH key</code> button. Done!</li>
+</ol>
 <hr style="height:1pt; visibility:hidden;">
-<section id="creating-a-remote-repository" class="level3" data-number="2.1">
-<h3 data-number="2.1" class="anchored" data-anchor-id="creating-a-remote-repository"><span class="header-section-number">2.1</span> Creating a remote repository</h3>
-<p>While we can <em>interact</em> with online repos using Git commands, we can’t <em>create</em> a new online repo with the Git CLI.</p>
-<p>Therefore, we will to go to the GitHub website to create a new online repo:</p>
+</section>
+<section id="creating-a-remote-repository" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="creating-a-remote-repository"><span class="header-section-number">2.2</span> Creating a remote repository</h3>
+<p>While we can <em>interact</em> with online repos using Git commands, we can’t <em>create</em> a new online repo with the Git CLI. Therefore, we will to go to the GitHub website to create a new online repo:</p>
 <ol type="1">
 <li>Go to <a href="https://github.com" class="uri">https://github.com</a> and sign in.</li>
-<li>In the top-right, click the <strong><code>+</code></strong> next to your avatar and then select <code>New repository</code>.</li>
+<li>In the top-right, click the <strong><code>+</code></strong> next to your avatar and then select “New repository”:</li>
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -443,7 +480,7 @@ Getting set up at OSC
 </figure>
 </div>
 <ol start="3" type="1">
-<li>In the box <code>Repository name</code>, we’ll use the same name that we gave to our local directory: <code>originspecies</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</li>
+<li>In the box “Repository name”, we’ll use the same name that we gave to our local directory: <code>originspecies</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</li>
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -455,16 +492,16 @@ Getting set up at OSC
 </ol>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="img/github-newrepo-file-options.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:45.0%"></p>
+<p><img src="img/github-newrepo-file-options.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="img/github-newrepo-confirm.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+<p><img src="img/github-newrepo-confirm.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:35.0%"></p>
 </figure>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -473,23 +510,23 @@ VS Code Git functionality also allows you to create GitHub repos <em>(Click to e
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>VS Code does provide functionality to create GitHub repos directly. We may look at this later in the course, but if you’re interested, look for the <code>GitLens</code> VS Code extension by Eric Amodio.</p>
+<p>VS Code does provide functionality to create GitHub repos directly. If you’re interested, look for the <code>GitLens</code> VS Code extension by Eric Amodio.</p>
 </div>
 </div>
 </div>
 <hr style="height:1pt; visibility:hidden;">
 </section>
-<section id="link-up-the-local-and-remote-repositories" class="level3" data-number="2.2">
-<h3 data-number="2.2" class="anchored" data-anchor-id="link-up-the-local-and-remote-repositories"><span class="header-section-number">2.2</span> Link up the local and remote repositories</h3>
+<section id="link-the-local-and-remote-repositories" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="link-the-local-and-remote-repositories"><span class="header-section-number">2.3</span> Link the local and remote repositories</h3>
 <p>After you clicked the “Create repository”, a page with information similar to this screenshot should appear, which gives us some information about linking the remote and local repositories:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/github-newrepo2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
 </figure>
 </div>
-<p>We go back to our Unix shell in VS Code, where we’ll enter the commands that GitHub provided to us under the “<em>…or push an existing repository from the command line</em>” heading shown in the screenshot above:</p>
+<p>We go back to our Unix shell in VS Code, where we’ll enter the commands that GitHub provided to us under the “<em>…or push an existing repository from the command line</em>” heading shown at the bottom of the screenshot above:</p>
 <ol type="1">
 <li><p>First, we tell Git to add a “remote” connection with <code>git remote</code>. We provide three arguments to this command:</p>
 <ul>
@@ -498,24 +535,36 @@ VS Code Git functionality also allows you to create GitHub repos <em>(Click to e
 </li>
 <li>The SSH URL to the GitHub repo (you can click on the <code>HTTPS</code>/<code>SSH</code> button to toggle the URL type).</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># git remote add &lt;remote-nickname&gt; &lt;URL&gt;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin git@github.com:<span class="op">&lt;</span>user<span class="op">&gt;</span>/originspecies.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># git remote add &lt;remote-nickname&gt; &lt;URL&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin git@github.com:<span class="op">&lt;</span>user<span class="op">&gt;</span>/originspecies.git</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Second, we push our local repo to remote using <code>git push</code>. Whenever we push a repository<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> <em>for the first time</em>, we need to use the <code>-u</code> option to set up an “<strong>u</strong>pstream” counterpart:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># git push -u &lt;connection&gt; &lt;branch&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># git push -u &lt;connection&gt; &lt;branch&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
 <hr style="height:1pt; visibility:hidden;">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pushing will be easier from now on
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>Note that when we don’t give <code>git push</code> any arguments, it will push:</p>
 <ul>
 <li>To &amp; from the <strong>currently active <em>branch</em></strong> (default: <code>main</code>)</li>
 <li>To the <strong>default remote connection</strong>.</li>
 </ul>
 <p>Therefore, from now on, we can simply use the following to push:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
 <hr style="height:1pt; visibility:hidden;">
 </section>
-<section id="explore-the-repository-on-github" class="level3" data-number="2.3">
-<h3 data-number="2.3" class="anchored" data-anchor-id="explore-the-repository-on-github"><span class="header-section-number">2.3</span> Explore the repository on GitHub</h3>
+<section id="explore-the-repository-on-github" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="explore-the-repository-on-github"><span class="header-section-number">2.4</span> Explore the repository on GitHub</h3>
 <p>Back at GitHub, click on <code>&lt;&gt; Code</code> in the lower of the top bars. There, we can see the files that we just uploaded from our local repo.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -541,130 +590,132 @@ VS Code Git functionality also allows you to create GitHub repos <em>(Click to e
 <hr style="height:1pt; visibility:hidden;">
 </section>
 </section>
-<section id="remote-repo-workflows" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="remote-repo-workflows"><span class="header-section-number">3</span> Remote repo workflows</h2>
-<section id="single-user-workflow" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="single-user-workflow"><span class="header-section-number">3.1</span> Single-user workflow</h3>
+<section id="remote-repo-workflows-single-user" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="remote-repo-workflows-single-user"><span class="header-section-number">3</span> Remote repo workflows: single-user</h2>
 <p>In a single-user workflow, all changes are made in the <em>local repo</em>, and the remote repo is simply periodically updated (<em>pushed to</em>). So, the interaction between local and remote is unidirectional:</p>
+<div class="columns">
+<div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="img/git-remote-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%"></p>
+<p><img src="img/git-remote-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
+</div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="img/git-remote-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%"></p>
+<p><img src="img/git-remote-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 </figure>
 </div>
+</div>
+</div>
+<hr>
+<div class="columns">
+<div class="column" style="width:33%;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="img/git-remote-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%"></p>
+<p><img src="img/git-remote-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
+</div><div class="column" style="width:33%;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="img/git-remote-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%"></p>
+<p><img src="img/git-remote-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
+</div><div class="column" style="width:33%;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="img/git-remote-5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%"></p>
+<p><img src="img/git-remote-5.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
 </figure>
 </div>
-<p>In our day-to-day work, we now commit as usual, and in addition, <em>push</em> to remote occasionally:</p>
+</div>
+</div>
+<hr style="height:1pt; visibility:hidden;">
+<p>When we have a remote in a single-user workflow, we commit as usual in our day-to-day work, and in addition, <em>push</em> to remote occasionally — let’s run through an example.</p>
 <ul>
-<li><p>Let’s create a <code>README.md</code> file:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Origin"</span> <span class="op">&gt;</span> README.md</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Repo for book draft on my new **theory**"</span> <span class="op">&gt;&gt;</span> README.md</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>We start by creating a <code>README.md</code> file for our repo:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Origin"</span> <span class="op">&gt;</span> README.md</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Repo for book draft on my new **theory**"</span> <span class="op">&gt;&gt;</span> README.md</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>We add and commit the file:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Added a README"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="bash-out"><code>TODO</code></pre></li>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Added a README file"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>[main 63ce484] Added a README file
+1 file changed, 2 insertions(+)
+create mode 100644 README.md</code></pre></li>
 <li><p>Now, we push to the remote repository:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>TODO</code></pre></li>
 </ul>
 <hr style="height:1pt; visibility:hidden;">
 <p>Let’s go back to GitHub: we should see that the contents of the <code>README.md</code> automatically shows up as a rendered Markdown file!</p>
 <p>TODO ADD SCREENSHOT</p>
-<hr style="height:1pt; visibility:hidden;">
+<p><br></p>
 </section>
-<section id="multi-user-workflow" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="multi-user-workflow"><span class="header-section-number">3.2</span> Multi-user workflow</h3>
-<ul>
-<li>First, a second user downloads (<em>clones</em>) the online repo:</li>
-</ul>
+<section id="remote-repo-workflows-multi-user" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="remote-repo-workflows-multi-user"><span class="header-section-number">4</span> Remote repo workflows: multi-user</h2>
+<p>The added command is <code>git pull</code> EXPAND</p>
+<div class="columns">
+<div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="img/git-remote-mult-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%"></p>
+<p><img src="img/git-remote-mult-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:95.0%"></p>
+<figcaption>First, a second user downloads (<em>clones</em>) the online repo.</figcaption>
 </figure>
 </div>
-<ul>
-<li>Then, the second user can push their changes to the shared remote:</li>
-</ul>
+</div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="img/git-remote-mult-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%"></p>
+<p><img src="img/git-remote-mult-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:95.0%"></p>
+<figcaption>Then, the second user can push their changes to the shared remote.</figcaption>
 </figure>
 </div>
+</div>
+</div>
+<hr>
+<div class="columns">
+<div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="img/git-remote-mult-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%"></p>
+<p><img src="img/git-remote-mult-3.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:95.0%"></p>
 </figure>
 </div>
-<ul>
-<li>To go full circle, you <em>pull</em> in the changes made by the second user:</li>
-</ul>
+</div><div class="column" style="width:50%;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="img/git-remote-mult-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:55.0%"></p>
+<p><img src="img/git-remote-mult-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:95.0%"></p>
+<figcaption>To go full circle, you <em>pull</em> in the changes made by the second user.</figcaption>
 </figure>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p><code>git pull</code> is two commands in one: <code>git fetch</code> to download the updates from remote and store them in a branch, and <code>git merge</code> to merge the newly fetched branch into you current branch.</p>
-</div>
-</div>
-<p>With a multi-user workflow, changes made by different users are <em>shared via the online copy of the repo.</em></p>
-<p><em>Syncing is not automatic</em>:</p>
+<p>With a multi-user workflow, changes made by different users are <strong>shared via the online copy of the repo</strong>. But note that syncing is not automatic:</p>
 <ul>
 <li>Changes to your local repo remain local-only until you <strong>push</strong> to remote.</li>
 <li>Someone else’s changes to the remote repo do not make it into your local repo until you <strong>pull</strong> from remote.</li>
 </ul>
-<p>But Git will tell you about “divergence” between local remote, when you check <code>git status</code>:</p>
+<p>When your collaborator has made changes, Git <em>will</em> tell you about “divergence” between your local repository and the remote when you run <code>git status</code>:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="img/git-sync.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+<p><img src="img/git-sync.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
 </figure>
 </div>
 <hr style="height:1pt; visibility:hidden;">
-</section>
-<section id="what-can-you-do-with-someone-elses-github-repository" class="level3" data-number="3.3">
-<h3 data-number="3.3" class="anchored" data-anchor-id="what-can-you-do-with-someone-elses-github-repository"><span class="header-section-number">3.3</span> What can you do with someone else’s GitHub repository?</h3>
-<p>If you do not have rights to <em>push</em>, you can:</p>
+<section id="what-can-you-do-with-someone-elses-github-repository" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="what-can-you-do-with-someone-elses-github-repository"><span class="header-section-number">4.1</span> What can you do with someone else’s GitHub repository?</h3>
+<p>In some cases, you may be interested in working in some way with someone else’s repository that you found on GitHub. If you do not have rights to push, you can:</p>
 <ul>
-<li><p><strong>Clone</strong> the repo and make changes locally (as we do with <code>CSB</code>).<br>
-You can also <em>pull</em> to remain up-to-date with changes in the original repo.</p></li>
-<li><p><strong>Fork</strong> the repository on GitHub and develop it independently.<br>
-Forking creates <em>a new personal GitHub repo</em>, to which you can push.</p></li>
-<li><p>Using a forked repo, you can also submit a <strong>Pull Request</strong> with proposed changes to the <em>original repo</em>.</p></li>
+<li><strong>Clone</strong> the repo and make changes locally (as we have been doing with the <code>CSB</code> repo). When you do this, you can also periodically <em>pull</em> to remain up-to-date with changes in the original repo.</li>
+<li><strong>Fork</strong> the repository on GitHub and develop it independently. Forking creates <em>a new personal GitHub repo</em>, to which you can push.</li>
+<li>Using a forked repo, you can also submit a <strong>Pull Request</strong> with proposed changes to the <em>original repo</em>: for example, if you’ve fixed a bug in someone else’s program.</li>
 </ul>
-<p>If you’re collaborating on a project, you should ask your collaborator to give you admin rights for the repo.</p>
+<p>If you’re actually <em>collaborating</em> on a project, though, you should ask your collaborator to give you admin rights for the repo, which makes things easier.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Forking, Pull Requests, and Issues are GitHub functionality, and not part of Git.
+Forking, Pull Requests, and Issues (below) are GitHub functionality, and not part of Git.
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -673,8 +724,8 @@ Forking, Pull Requests, and Issues are GitHub functionality, and not part of Git
 </div>
 <hr style="height:1pt; visibility:hidden;">
 </section>
-<section id="github-issues" class="level3" data-number="3.4">
-<h3 data-number="3.4" class="anchored" data-anchor-id="github-issues"><span class="header-section-number">3.4</span> GitHub “Issues”</h3>
+<section id="github-issues" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="github-issues"><span class="header-section-number">4.2</span> GitHub “Issues”</h3>
 <p>Each GitHub repository has an “Issues” tab — issues are mainly used to track bugs and other (potential) problems with a repository. In an issue, you can reference specific commits and people, and use Markdown formatting.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -692,14 +743,14 @@ When you hand in your final project submissions, you will create an issue simply
 <p><br></p>
 </section>
 </section>
-<section id="some-git-best-practices" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="some-git-best-practices"><span class="header-section-number">4</span> Some Git best practices</h2>
+<section id="some-git-best-practice-tips" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="some-git-best-practice-tips"><span class="header-section-number">5</span> Some Git best-practice tips</h2>
 <ul>
-<li><p><strong>Write informative commit messages.</strong><br>
-Imagine looking back at your project in a few months, after finding an error that you introduced a while ago.</p>
+<li><strong>Write informative commit messages.</strong><br>
+Imagine looking back at your project in a few months, after finding an error that you introduced a while ago.
 <ul>
-<li><strong>Bad:</strong> “Updated file”</li>
-<li><strong>Good:</strong> “Updated function x to include y”</li>
+<li>Not-so-good commit message: “Updated file”</li>
+<li>Good commit message: “In file x, updated function y to include z”</li>
 </ul></li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
@@ -714,11 +765,11 @@ Imagine looking back at your project in a few months, after finding an error tha
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+Commit messages for the truly committed
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>It is often argued that commit messages should preferably be in the form of completing the sentence “<em>This commit will…</em>”: When adhering to this, the above commit message would instead say “<em>Update x function to include y</em>”.</p>
+<p>It is often argued that commit messages should preferably be in the form of completing the sentence “<em>This commit will…</em>”: When adhering to this, the above commit message would instead say “<em>In file x, update function y to include z.</em>”.</p>
 </div>
 </div>
 <ul>
@@ -726,16 +777,16 @@ Note
 This will also help to keep commit messages informative!</p></li>
 <li><p><strong>Before committing, check what you’ve changed.</strong><br>
 Use <code>git diff [--staged]</code> or VS Code functionality.</p></li>
-<li><p><strong>Avoid including unrelated changes in commits</strong><br>
+<li><p><strong>Avoid including unrelated changes in commits.</strong><br>
 Separate commits if your working dir contains work from disparate edits: use <code>git add</code> + <code>git commit</code> separately for two sets of files.</p></li>
 <li><p><strong>When collaborating: pull often.</strong><br>
-This will reduce the chances of <em><a href="#merge-conflict">merge conflicts</a></em>.</p></li>
+This will reduce the chances of <em><a href="../week3/w3_git3.html#merge-conflicts">merge conflicts</a></em>.</p></li>
 <li><p><strong>Don’t commit unnecessary files.</strong><br>
 These can also lead to conflicts — especially automatically generated, temporary files.</p></li>
-<li><p>If you have a repo with general scripts, which you continue to develop and use in multiple projects, and you publish a paper in which you use these scripts:</p>
-<p>Add a “<strong><em>tag</em></strong>” to a commit to mark the version of the scripts used in your analysis.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-a</span> v1.2.0 <span class="at">-m</span> <span class="st">"Clever release title"</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--follow-tags</span> <span class="co"># To push all annotated tags to the remote</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p><strong>Tags</strong><br>
+If you have a repo with general scripts, which you continue to develop and use in multiple projects, and you publish a paper in which you use these scripts, it is a good idea to add a “<strong><em>tag</em></strong>” to a commit to mark the version of the scripts used in your analysis:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-a</span> v1.2.0 <span class="at">-m</span> <span class="st">"Clever release title"</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--follow-tags</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 <p><br> <br></p>
 

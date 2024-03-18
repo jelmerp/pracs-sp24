@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -288,11 +322,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
-  <li><a href="#part-i-create-a-new-git-repo" id="toc-part-i-create-a-new-git-repo" class="nav-link" data-scroll-target="#part-i-create-a-new-git-repo"><span class="header-section-number">2</span> Part I – Create a new Git repo</a></li>
-  <li><a href="#part-ii-add-some-markdown-content" id="toc-part-ii-add-some-markdown-content" class="nav-link" data-scroll-target="#part-ii-add-some-markdown-content"><span class="header-section-number">3</span> Part II – Add some Markdown content</a></li>
-  <li><a href="#part-iii-add-some-data-files" id="toc-part-iii-add-some-data-files" class="nav-link" data-scroll-target="#part-iii-add-some-data-files"><span class="header-section-number">4</span> Part III – Add some “data” files</a></li>
-  <li><a href="#part-iv-create-and-sync-an-online-version-of-the-repo" id="toc-part-iv-create-and-sync-an-online-version-of-the-repo" class="nav-link" data-scroll-target="#part-iv-create-and-sync-an-online-version-of-the-repo"><span class="header-section-number">5</span> Part IV – Create and sync an online version of the repo</a></li>
+  <li><a href="#exercise" id="toc-exercise" class="nav-link active" data-scroll-target="#exercise"><span class="header-section-number">1</span> Exercise</a></li>
+  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions"><span class="header-section-number">2</span> Solutions</a></li>
   </ul>
 </nav>
     </div>
@@ -320,124 +351,68 @@ ul.task-list li input[type="checkbox"] {
 
 <hr>
 <p><br></p>
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-This page is still under construction
-</div>
-</div>
-<div class="callout-body-container callout-body">
-
-</div>
-</div>
-<p><br></p>
-<section id="introduction" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
-<p>In these exercises, you will primarily be practicing your Git skills. You will also practice Markdown and a <code>for</code> loop to rename files.</p>
-<p>Some general hints:</p>
+<p>In this exercise, you will primarily be practicing your Git skills. Some tips:</p>
 <ul>
-<li><p>Don’t forget to constantly check the status of your repository (repo) with <code>git status</code>: before and after nearly all other Git commands that you issue. This will help prevent mistakes, and will also help you understand what’s going on as you get up and running with Git.</p></li>
-<li><p>It’s also a good idea to regularly check the log with <code>git log</code>; recall that <code>git log --oneline</code> will provide a quick overview with one line per commit.</p></li>
+<li>Keep checking the status of your repository (repo) with <code>git status</code> before and after nearly all other Git commands that you issue. This will help prevent mistakes, and will also help you understand Git better.</li>
+<li>You won’t be doing anything new relative to what we did in class, and you can refer to those pages to see which commands and options you need to use.</li>
 </ul>
 <hr style="height:1pt; visibility:hidden;">
-</section>
-<section id="part-i-create-a-new-git-repo" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="part-i-create-a-new-git-repo"><span class="header-section-number">2</span> Part I – Create a new Git repo</h2>
+<section id="exercise" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="exercise"><span class="header-section-number">1</span> Exercise</h2>
+<section id="local-git-workflow" class="level4">
+<h4 class="anchored" data-anchor-id="local-git-workflow">Local Git workflow</h4>
 <ol type="1">
-<li><strong>Create a new directory at OSC.</strong><br>
-</li>
-</ol>
-<ul>
-<li>A good place for this directory is in <code>/fs/ess/PAS2714/users/$USER/week03/</code>, but you are free to create it elsewhere (I will only be checking the online version of your repo).</li>
-<li>I suggest the name <code>exercises</code> for the dir, but you are free to pick a name that makes sense to you.</li>
-</ul>
-<ol start="2" type="1">
-<li><p><strong>Load the OSC git module.</strong><br>
+<li><p><strong>Create a new directory at OSC.</strong><br>
+For example, <code>/fs/ess/PAS2714/users/$USER/week03/exercises</code>.</p></li>
+<li><p><strong>Load the OSC Git module.</strong><br>
 Don’t forget to do this, or you will be working with a much older version of Git.</p></li>
 <li><p><strong>Initialize a local Git repository</strong> inside your new directory.</p></li>
 <li><p><strong>Create a README file in Markdown format.</strong><br>
 The file should be named <code>README.md</code>, and for now, just contain a <em>header</em> saying that this is a repository for your exercises.</p></li>
-<li><p><strong><em>Stage</em> and then <em>commit</em> the README file.</strong><br>
-Include an appropriate commit message.</p></li>
-</ol>
-<hr style="height:1pt; visibility:hidden;">
-</section>
-<section id="part-ii-add-some-markdown-content" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="part-ii-add-some-markdown-content"><span class="header-section-number">3</span> Part II – Add some Markdown content</h2>
-<ol start="5" type="1">
-<li><p><strong>Create a second Markdown file with some more contents.</strong></p>
-<p>This file can have any name you want, and you can also choose what you want to write about.</p>
-<p>Try to use of avariety of Markdown syntax, as discussed and practiced in week 2: headers, lists, hyperlinks, and so on. Also, make sure to read the next step before you finish writing.</p>
-<p>(If you’re not feeling inspired, here are some suggestions: lecture and reading notes for this week; a table of Unix and/or Git commands that we’ve covered; things that you so far find challenging or interesting about Git; how computational skills may help you with your research.)</p></li>
-</ol>
-<details>
-<summary>
-Hints
-</summary>
-In VS Code, open the Markdown preview on the side, so you can experiment and see whether your formatting is working the way you intend.
-</details>
-<ol start="6" type="1">
-<li><strong>Create at least two commits while you work on the Markdown file.</strong> Try to break your progress up into logical units that can be summarized with a descriptive commit message.</li>
-</ol>
-<details>
-<summary>
-Hints
-</summary>
-<ul>
-<li><strong>Bad</strong> commits/commit messages:<br>
-“<em>First part of the file</em>” along with “<em>Second part of the file</em>”.</li>
-<li><strong>Good</strong> commits and commit messages:<br>
-“<em>Summarized key concepts in the Git workflow</em>” along with “<em>Made a table of common Git commands</em>”.</li>
-</ul>
-</details>
-<ol start="7" type="1">
+<li><p><strong>Stage and then commit the README file</strong> with an appropriate commit message.</p></li>
+<li><p><strong>Create a second Markdown file with some more contents.</strong><br>
+Name it as you like and in it, describe the basic Git workflow and commands with bullet points and headers<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p></li>
+<li><p><strong>Create at least two commits while you work on the Markdown file.</strong><br>
+Try to break your progress up into logical units that can be summarized with a descriptive commit message.</p></li>
 <li><p><strong>Update the <code>README.md</code> file</strong>.<br>
 Briefly describe the current contents of your repo now that you actually have some contents.</p></li>
 <li><p><strong>Stage and commit the updated README file.</strong><br>
 </p></li>
+<li><p><strong>Create a <code>results</code> directory and make Git ignore this directory.</strong><br>
+Also, commit your <code>.gitignore</code> file.</p></li>
 </ol>
 <hr style="height:1pt; visibility:hidden;">
 </section>
-<section id="part-iii-add-some-data-files" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="part-iii-add-some-data-files"><span class="header-section-number">4</span> Part III – Add some “data” files</h2>
-<ol start="9" type="1">
-<li><p><strong>Create a directory with dummy data files.</strong><br>
-Create a directory called <code>data</code> and inside this directory, create 100 empty files with a single <code>touch</code> command and at least one brace expansion (e.g.&nbsp;for samples numbered 1-100, or 20 samples for 5 treatments). Give the files the extension <code>.txt</code>.</p></li>
-<li><p><strong>Stage and commit the <code>data</code> directory and its contents.</strong><br>
-As always, include a descriptive message with your commit.</p></li>
-</ol>
-<hr style="height:1pt; visibility:hidden;">
-</section>
-<section id="part-iv-create-and-sync-an-online-version-of-the-repo" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="part-iv-create-and-sync-an-online-version-of-the-repo"><span class="header-section-number">5</span> Part IV – Create and sync an online version of the repo</h2>
-<p>Phew, we made several commits! Let’s share all of this work with the world.</p>
-<ol start="16" type="1">
+<section id="create-and-sync-an-online-version-of-the-repo" class="level4">
+<h4 class="anchored" data-anchor-id="create-and-sync-an-online-version-of-the-repo">Create and sync an online version of the repo</h4>
+<p>Phew, you made several commits! Time to share all this work with the world.</p>
+<ol start="10" type="1">
 <li><p><strong>Create a Github repository.</strong><br>
-Go to <a href="https://github.com" class="uri">https://github.com</a>, sign in, and create a new repository.</p>
-<ul>
-<li>It’s a good idea to give it the same name as your local repo, but these names don’t <em>have to</em> match.</li>
-<li>You want to create an <em>empty</em> GitHub repository, because you will upload all the contents from your local repo: therefore, don’t check any of the boxes to create files like a README.</li>
-</ul></li>
-<li><p><strong>Push your local repo online.</strong><br>
-With your repo created, follow the instructions that Github now gives you, under the heading “<em>…or push an existing repository from the command line</em>”.</p>
-<p>These instructions will comprise three commands: <code>git remote add</code> to add the “remote” (online) connection, <code>git branch</code> to rename the default branch from <code>master</code> to <code>main</code>, and <code>git push</code> to actually “push” (upload) your local repo.</p>
-<p>When you’re done, click the <code>Code</code> button, and admire the nicely rendered README on the front page of your Github repo.</p></li>
+Go to <a href="https://github.com" class="uri">https://github.com</a>, sign in, and create a new repository. It’s a good idea to give it the same name as your local repo, but these names don’t <em>have to</em> match. Like in class, you want to create an <em>empty</em> GitHub repository, because you will upload all the contents from your local repo.</p></li>
+<li><p><strong>Push your local repo to the online one you just created.</strong><br>
+When you’re done, click the <code>Code</code> button, and admire the nicely rendered README on the front page of your Github repo.</p></li>
+<li><p><strong>Open a GitHub Issue</strong><br>
+As practice for when you need to do this for your Final Project submissions, open an Issue for your repo: in the Issues tab, click “New Issue”, and in the box where you can type your issue, tag me. For example:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>Hey @jelmerp, can you please take a look at my repo?</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
-<details>
-<summary>
-Hints
-</summary>
-Assuming that you’re using SSH authentication, make sure you use the SSH link type: starting with <code>git@github.com</code> rather than <code>HTTPS</code>.
-</details>
-<p><br> <br></p>
+<p><br></p>
+</section>
+</section>
+<section id="solutions" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="solutions"><span class="header-section-number">2</span> Solutions</h2>
+<p>TBA</p>
+<p><br></p>
 
 
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p> Recall that in VS Code, you can open the Markdown preview on the side, so you can experiment and see whether your formatting is working the way you intend.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

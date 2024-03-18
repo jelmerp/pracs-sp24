@@ -619,11 +619,11 @@ Alternatively, <code>chmod</code> also has an <code>-R</code> argument to act <s
 # [...output truncated...]</code></pre></li>
 <li><p>Report what we did, including a command substitution to insert the current date:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"On </span><span class="va">$(</span><span class="fu">date</span><span class="va">)</span><span class="st">, created a dir 'subset' and copied only files for samples 1-29</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="st">and treatments A-D into this dir."</span> <span class="op">&gt;</span> subset/README.md</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="st">and treatments A-C into this dir."</span> <span class="op">&gt;</span> subset/README.md</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Check the resulting README files:</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> subset/README.md</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>On Mon Mar 18 10:07:17 EDT 2024, created a dir 'subset' and copied only files for samples 1-29
-and treatments A-D into this dir.</code></pre></li>
+and treatments A-C into this dir.</code></pre></li>
 </ul>
 </details>
 <details>

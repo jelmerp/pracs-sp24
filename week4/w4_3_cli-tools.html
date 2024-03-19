@@ -6,9 +6,10 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Jelmer Poelstra">
 <meta name="dcterms.date" content="2024-03-28">
 
-<title>PRACS24: CLI tools</title>
+<title>PRACS24: CLI tools in shell script</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -333,11 +334,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#running-fastqc-interactively" id="toc-running-fastqc-interactively" class="nav-link" data-scroll-target="#running-fastqc-interactively"><span class="header-section-number">2</span> Running FastQC interactively</a></li>
   <li><a href="#running-fastqc-with-a-shell-script" id="toc-running-fastqc-with-a-shell-script" class="nav-link" data-scroll-target="#running-fastqc-with-a-shell-script"><span class="header-section-number">3</span> Running FastQC with a shell script</a>
   <ul class="collapse">
-  <li><a href="#the-components-of-our-script" id="toc-the-components-of-our-script" class="nav-link" data-scroll-target="#the-components-of-our-script"><span class="header-section-number">3.1</span> The components of our script</a></li>
-  <li><a href="#our-final-script" id="toc-our-final-script" class="nav-link" data-scroll-target="#our-final-script"><span class="header-section-number">3.2</span> Our final script</a></li>
-  <li><a href="#running-the-script" id="toc-running-the-script" class="nav-link" data-scroll-target="#running-the-script"><span class="header-section-number">3.3</span> Running the script</a></li>
+  <li><a href="#arguments-to-the-script" id="toc-arguments-to-the-script" class="nav-link" data-scroll-target="#arguments-to-the-script"><span class="header-section-number">3.1</span> Arguments to the script</a></li>
+  <li><a href="#creating-the-full-script" id="toc-creating-the-full-script" class="nav-link" data-scroll-target="#creating-the-full-script"><span class="header-section-number">3.2</span> Creating the full script</a></li>
   </ul></li>
-  <li><a href="#looping-over-samples-rather-than-files" id="toc-looping-over-samples-rather-than-files" class="nav-link" data-scroll-target="#looping-over-samples-rather-than-files"><span class="header-section-number">4</span> Looping over samples rather than files</a></li>
+  <li><a href="#a-runner-script" id="toc-a-runner-script" class="nav-link" data-scroll-target="#a-runner-script"><span class="header-section-number">4</span> A “runner” script</a>
+  <ul class="collapse">
+  <li><a href="#what-are-runner-scripts-and-why-do-we-need-them" id="toc-what-are-runner-scripts-and-why-do-we-need-them" class="nav-link" data-scroll-target="#what-are-runner-scripts-and-why-do-we-need-them"><span class="header-section-number">4.1</span> What are runner scripts and why do we need them</a></li>
+  <li><a href="#adding-code-to-the-runner-script" id="toc-adding-code-to-the-runner-script" class="nav-link" data-scroll-target="#adding-code-to-the-runner-script"><span class="header-section-number">4.2</span> Adding code to the runner script</a></li>
+  </ul></li>
+  <li><a href="#looping-over-samples-rather-than-files" id="toc-looping-over-samples-rather-than-files" class="nav-link" data-scroll-target="#looping-over-samples-rather-than-files"><span class="header-section-number">5</span> Looping over samples rather than files</a></li>
   </ul>
 </nav>
     </div>
@@ -354,6 +359,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jelmer Poelstra </p>
+          </div>
+  </div>
     
     <div>
     <div class="quarto-title-meta-heading">Published</div>
@@ -480,8 +491,7 @@ FASTQ quality scores <em>(Click to expand)</em>
 </section>
 <section id="viewing-the-contents-of-fastq-files" class="level3" data-number="1.3">
 <h3 data-number="1.3" class="anchored" data-anchor-id="viewing-the-contents-of-fastq-files"><span class="header-section-number">1.3</span> Viewing the contents of FASTQ files</h3>
-<p>Next, we’ll take a peak inside one of these FASTQ files.</p>
-<p>The <code>head</code> command prints the first lines of a file. Let’s use it try to and print 8 lines, which should show us two reads:</p>
+<p>Next, we’ll take a peak inside one of these FASTQ files. We can use <code>-n 8</code> with <code>head</code> to make it print the first 8 lines (= 2 reads of the file):</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-n</span> 8 data/fastq/NW102AB_R1.fastq.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>�
 Խے�8�E��_1f�"�QD�J��D�fs{����Yk����d��*��
@@ -517,7 +527,7 @@ No need to decompress
 </ul>
 </div>
 </div>
-<p>Instead, we’ll use the <code>less</code> command, which will automatically display gzip-compressed files in human-readable form:</p>
+<p>Instead, we’ll use the <code>less</code> command, which automatically displays gzip-compressed files in human-readable form:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> <span class="at">-S</span> data/fastq/NW102AB_R1.fastq.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>@M02815:77:000000000-KPK85:1:2101:3678:10660 1:N:0:CCTAAGAC+TTCTAGCT
 CGAGCAATCCACTCGAGTGCCAGCAGCCGCAGTAATACGGAGGGTGCGAGCGTTGTCCGGAATCACTGGGCGTAAAGGGCGCGTAGGCGGCGCGGATAGTCGGCGGTGAAAGCCCGGAGCTCAACTCCGGGTCGGCCGTCGATACTTCCGGGCTTGAGCACTGTAGAGGCAGATGGAATTCCGGGTGTAGCGGTGGAATGCGTAGAGATCCGGAAGAACACCGGTGGCGAAGGCGGTCTGCTGGGCAGTTGCTGACGCTGATGCGCGACAGCGTGGGGAGCAAACAGGATTAGATACC
@@ -528,33 +538,30 @@ CGAGCAATCCACTCGAGTGTCAGCCGCCGCGGTAATACAGAGGTCCCGAGCGTTGTTCGGATTCATTGGGCGTAAAGGGT
 +
 CCCCCCGFGFGGGC-FFFGFGFFGGDFFGGGGGECGEGGAEGGGGGGGFGGDGG7CFFGGDCCFGGFCF8FGGGGGGCEGDGGGGGCGGGGGGDEGGGGBFGGDFGGGDG&lt;DFGGGGCEGGGD:FFGGGGFFGFGGFFFFGGGFGGCFGGFGGGGG9CGCGGGG7FGGC:FFGGGGGFGG&lt;?FCGGGGGGGGGGG9CG&lt;ACC?EG5CFGGGGF8CCCC:C@FGCFGGGGGC58=EEG8??77:9@:&lt;3A&gt;7AGFGGGGC?DFC?5&lt;5&gt;&gt;BGGGFGGGGG&gt;4?C42::3:DG=&gt;&lt;&lt;*)*</code></pre>
 <div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<code>less -S</code> suppresses line-wrapping: lines in the file will not be “wrapped” across multiple lines
+The <code>-S</code> option to <code>less</code> suppresses line-wrapping: lines in the file will not be “wrapped” across multiple lines.
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 
-</div>
 </div>
 </div>
 <hr style="height:1pt; visibility:hidden;">
 <section id="exercise-explore-the-file-with-less" class="level4 exercise">
 <h4 class="anchored" data-anchor-id="exercise-explore-the-file-with-less"><i class="fa-solid fa-user-edit" aria-label="user-edit"></i> <strong>Exercise</strong>: Explore the file with <code>less</code></h4>
-<p><code>less</code> doesn’t print stuff to screen but instead opens it in a “pager”. After running the command above, you should be viewing the file inside the <code>less</code> pager.</p>
+<p>After running the command above, you should be viewing the file inside the <code>less</code> pager.</p>
 <p>You can move around in the file in several ways: by scrolling with your mouse, with up and down arrows, or, if you have them, <kbd>PgUp</kbd> and <kbd>PgDn</kbd> keys (also, <kbd>u</kbd> will move up half a page and <kbd>d</kbd> down half a page).</p>
-<p>Notice you won’t get your shell prompt back until you <strong>press</strong> <kbd>q</kbd> to quit <code>less</code>.</p>
+<p>Recall that you won’t get your shell prompt back until you <strong>press</strong> <kbd>q</kbd> to quit <code>less</code>.</p>
 </section>
 <hr style="height:1pt; visibility:hidden;">
 </section>
 <section id="fastqc" class="level3" data-number="1.4">
 <h3 data-number="1.4" class="anchored" data-anchor-id="fastqc"><span class="header-section-number">1.4</span> FastQC</h3>
-<p>FastQC is a ubiquitous tools for <strong>quality control of FASTQ files</strong>. Running FastQC or a similar program is the first step in nearly any high-throughput sequencing project. FastQC is also a good introductory example of a tool with a command-line interface.</p>
+<p>FastQC is a ubiquitous tool for <strong>quality control of FASTQ files</strong>. Running FastQC or a similar program is the first step in nearly any high-throughput sequencing project. FastQC is also a good introductory example of a tool with a command-line interface.</p>
 <p>For each FASTQ file, FastQC outputs an <strong>HTML file</strong> that you can open in your browser with about a dozen graphs showing different QC metrics. The most important one is the <em>per-base quality score</em> graph:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -571,12 +578,12 @@ CCCCCCGFGFGGGC-FFFGFGFFGGDFFGGGGGECGEGGAEGGGGGGGFGGDGG7CFFGGDCCFGGFCF8FGGGGGGCEG
 <p>If you want to analyze one of your FASTQ files with default FastQC settings, a complete FastQC command to do so would simply be <code>fastqc</code> followed by the name of the file:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (Don't run this)</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> data/fastq/NW102AB_R1.fastq.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>However, an annoying FastQC <strong>default behavior</strong> is that it writes its output files in the dir where the input files are — in general, it’s not great practice to directly mix your primary data and results like that!</p>
+<p>However, an annoying FastQC default behavior is that it writes its output files in the same dir that contains the input FASTQ files — this means mixing your raw data with your results, which we don’t want!</p>
 <p>To figure out how we can change that behavior, first consider that many commands and bioinformatics tools alike have an <strong>option <code>-h</code> and/or <code>--help</code></strong> to print usage information to the screen. Let’s try that:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> <span class="at">-h</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>bash: fastqc: command not found...</code></pre>
-<p>However, there is a wrinkle: while FastQC is installed at OSC[^2], we have to first <strong>“load it”</strong>: [^2]: For a full list of installed software at OSC: <a href="https://www.osc.edu/resources/available_software/software_list" class="uri">https://www.osc.edu/resources/available_software/software_list</a></p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load fastqc/VERSION</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>However, there is a wrinkle — while FastQC is installed at OSC<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, we have to first <strong>“load it”</strong>:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load fastqc/0.11.8</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr style="height:1pt; visibility:hidden;">
 <section id="exercise-fastqc-help-and-output-dir" class="level4 exercise">
 <h4 class="anchored" data-anchor-id="exercise-fastqc-help-and-output-dir"><i class="fa-solid fa-user-edit" aria-label="user-edit"></i> <strong>Exercise</strong>: FastQC help and output dir</h4>
@@ -585,8 +592,7 @@ CCCCCCGFGFGGGC-FFFGFGFFGGDFFGGGGGECGEGGAEGGGGGGGFGGDGG7CFFGGDCCFGGFCF8FGGGGGGCEG
 <summary>
 <em>Click for the solution</em>
 </summary>
-<p><code>fastqc -h</code> and <code>fastqc --help</code> will both work to show the help info.</p>
-<p>You’ll get quite a bit of output printed to screen, including the snippet about output directories that is reproduced below:</p>
+<p>Running <code>fastqc -h</code> or <code>fastqc --help</code> will work to show the help info. You’ll get quite a bit of output printed to screen, including the snippet about output directories that is reproduced below:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> <span class="at">-h</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>  -o --outdir     Create all output files in the specified output directory.
                     Please note that this directory must exist as the program
@@ -611,29 +617,28 @@ Approx 15% complete for NW102AB_R1.fastq.gz
 [...truncated...]
 Analysis complete for NW102AB_R1.fastq.gz</code></pre>
 <p>Success!! 🎉</p>
-<section id="specifying-an-output-dir-vs.-output-files" class="level4 calllout-note">
-<h4 class="anchored" data-anchor-id="specifying-an-output-dir-vs.-output-files">Specifying an output dir vs.&nbsp;output file(s)</h4>
-<p>FastQC allows us to specify the output directory, but not the output file names, which will be automatically determined based on the input file name.</p>
-<p>This kind of behavior is fairly common for bioinformatics programs, since they will often produce multiple output files.</p>
-<p>Unfortunately, with some tools, the automatically chosen file names are suboptimal, and you may want to do a separate file renaming step after running such a tool.</p>
-</section>
-<hr style="height:1pt; visibility:hidden;">
-<section id="fastqc-output-files" class="level4">
-<h4 class="anchored" data-anchor-id="fastqc-output-files">FastQC output files</h4>
-<p>Let’s take a look at the files in the output dir we specified:</p>
-<ul>
-<li>There is a <code>.zip</code> file, which contains tables with FastQC’s data summaries.</li>
-<li>There is an <code>.html</code> (HTML) file, which contains the graphs.</li>
-</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Specifying an output dir vs.&nbsp;output file(s)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>FastQC allows us to specify the output directory, but not the output file names: these will be automatically determined based on the input file name(s). This kind of behavior is fairly common for bioinformatics programs, since they will often produce multiple output files.</p>
+</div>
+</div>
+<p>In the output dir we specified, we have a <code>.zip</code> file, which contains tables with FastQC’s data summaries, and an <code>.html</code> (HTML) file, which contains the graphs:</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span> results/fastqc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>total 1.2M
 -rw-r--r-- 1 jelmer PAS0471 241K Mar 13 14:50 NW102AB_R1_fastqc.html
 -rw-r--r-- 1 jelmer PAS0471 256K Mar 13 14:50 NW102AB_R1_fastqc.zip</code></pre>
 <hr style="height:1pt; visibility:hidden;">
-</section>
 <section id="exercise-another-fastqc-run" class="level4 exercise">
 <h4 class="anchored" data-anchor-id="exercise-another-fastqc-run"><i class="fa-solid fa-user-edit" aria-label="user-edit"></i> <strong>Exercise</strong>: Another FastQC run</h4>
-<p>Run FastQC for the corresponding R2 FASTQ file. Would you use the same output dir?</p>
+<p>Run FastQC for the corresponding R2 FASTQ file. Would you use the same output dir or a separate one?</p>
 <details>
 <summary>
 <em>Click for the solution</em>
@@ -659,141 +664,240 @@ Analysis complete for NW102AB_R2.fastq.gz</code></pre>
 </section>
 <section id="running-fastqc-with-a-shell-script" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="running-fastqc-with-a-shell-script"><span class="header-section-number">3</span> Running FastQC with a shell script</h2>
-<p>If we want to run FastQC for all samples, it will be much better to write a shell script and submit that as a so-called Slurm batch job, rather than running FastQC “interactively” like we did for the first sample. This is especially true for a complete data set, which would have much larger FASTQ files and possibly more samples.</p>
-<section id="the-components-of-our-script" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="the-components-of-our-script"><span class="header-section-number">3.1</span> The components of our script</h3>
-<p>Here is the code we needed for out first FastQC run:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the software</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load fastqc/VERSION</span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the output dir</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> results/fastqc</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Run FastQC</span></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> <span class="at">--outdir</span> results/fastqc data/fastq/NW102AB_R1.fastq.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>We will need that same code in the script, except that we need to modify our call to <code>fastqc</code> — we will <strong>loop over all FASTQ files</strong> as follows:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run FastQC (replacement for fastqc line above)</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> fastq_file <span class="kw">in</span> data/fastq/<span class="pp">*</span>fastq.gz<span class="kw">;</span> <span class="cf">do</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">fastqc</span> <span class="at">--outdir</span> results/fastqc <span class="st">"</span><span class="va">$fastq_file</span><span class="st">"</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Instead of running FastQC interactively, we’ll want to write a script that runs FastQC. Specifically, our script will deliberately run FastQC on <strong>only one FASTQ file</strong>.</p>
+<p>Generally speaking, for CLI tools that you need to run many times because they are independently run for each file or sample (a very common occurrence in bioinformatics), an alternative approach would be to write the script such that it will <em>process all files/samples in a single run</em>. That in turn can be accomplished by:</p>
 <ul>
-<li>We are looping over all FASTQ files with the globbing pattern <code>data/fastq/*fastq.gz</code>. The loop will run as many times as we have FASTQ files.</li>
-<li>In every iteration of the loop, the <code>"$fastq_file"</code> variable will contain 1 FASTQ file name, and we will run <code>fastqc</code> for that file<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</li>
+<li>Looping over files/samples inside the script.</li>
+<li>Simply passing many file names (or a glob with <code>*</code>) as arguments to a single run of the command — note that this can be done with <em>some</em> programs, including FastQC.</li>
 </ul>
+<p>However, given that we have access to OSC’s clusters, it will save -potentially <em>a lot of</em>- running time when we submit a separate batch job for each FASTQ file.</p>
 <hr style="height:1pt; visibility:hidden;">
-<p>We will be <strong>submitting this script as a batch job</strong> to the Slurm compute job scheduler. To do so, we should also add some lines at the top of the script:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --account=PAS2714</span></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --output=slurm-fastqc.out</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>The first line <code>#!/bin/bash</code> merely indicates that this is a shell script<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> rather than, say, an R or Python script.</li>
-<li>The lines starting with <code>#SBATCH</code> tell Slurm some details about our compute job request (much like we did when we filled out the form to start a VS Code session):
-<ul>
-<li>We always need to specify an “<code>account</code>”, i.e.&nbsp;OSC project, that should be billed.</li>
-<li>The only other option (of many possible!) we will use here is to specify the <code>output</code> file: this is where any output will go that would otherwise be printed to screen, such as the FastQC progress output we saw above.</li>
-</ul></li>
-</ul>
+<section id="arguments-to-the-script" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="arguments-to-the-script"><span class="header-section-number">3.1</span> Arguments to the script</h3>
+<p>This approach of running the script for one FASTQ file at a time means that our script needs to <strong>accept an argument</strong> (with in this case a FASTQ file name), something we have practiced with in the previous session. So instead of using a line like this in the script, in which the FASTQ file name (<code>data/fastq/NW102AB_R1.fastq.gz</code>) is “hardcoded”…</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> <span class="at">--outdir</span> results/fastqc data/fastq/NW102AB_R1.fastq.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>…we would use a variable for it — for example:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> <span class="at">--outdir</span> results/fastqc <span class="st">"</span><span class="va">$fastq_file</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And while we’re at it, we may also want to use a variable for the output dir, as that is another thing we may want to vary among runs of the program:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> <span class="at">--outdir</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span> <span class="st">"</span><span class="va">$fastq_file</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Of course, these variables don’t appear out of thin air completely — in a basic script along these lines we would have to re-assign the placeholder variables:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy the placeholder variables</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="va">fastq_file</span><span class="op">=</span><span class="va">$1</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="va">outdir</span><span class="op">=</span><span class="va">$2</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Run FastQC</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> <span class="at">--outdir</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span> <span class="st">"</span><span class="va">$fastq_file</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr style="height:1pt; visibility:hidden;">
-<p>We will also add the following line to change some shell script settings, which will cause the script to stop running if any <strong>errors</strong> occur:</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Strict bash settings</span></span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Running the script
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>And such a script would be run for a single sample as follows:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># bash &lt;script&gt; &lt;arg1&gt; &lt;arg2&gt;</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/fastqc.sh data/fastq/NW102AB_R1.fastq.gz results/fastqc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>And by looping over all files as follows:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the script separately for each FASTQ file</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> fastq_file <span class="kw">in</span> data/fastq/<span class="pp">*</span>fastq.gz<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bash</span> scripts/fastqc.sh <span class="st">"</span><span class="va">$fastq_file</span><span class="st">"</span> results/fastqc</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>However, note that the above would run FastQC sequentially for each file, just like it would if the loop was in our script! To get the promised running-time benefits, we’d have to submit it as a batch job to OSC’s Slurm queue. We’ll get into the details of doing this next week, but the main think we would need to do is replacing <code>bash</code> by <code>sbatch</code>, which is the Slurm command to submit a batch job:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Submit a Slurm batch job for each FASTQ file</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> fastq_file <span class="kw">in</span> data/fastq/<span class="pp">*</span>fastq.gz<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">sbatch</span> scripts/fastqc.sh <span class="st">"</span><span class="va">$fastq_file</span><span class="st">"</span> results/fastqc</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
 <hr style="height:1pt; visibility:hidden;">
 </section>
-<section id="our-final-script" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="our-final-script"><span class="header-section-number">3.2</span> Our final script</h3>
-<ol type="1">
-<li>Open a new file in VS Code: click <i class="fa fa-bars"></i>, then <code>File</code>, then <code>New File</code>.</li>
-<li>Save the file (e.g.&nbsp;press <kbd>Ctrl/⌘</kbd>+<kbd>S</kbd>) in your <code>scripts</code> directory as <code>fastqc.sh</code>.</li>
-<li>Paste the following code in the script:</li>
-</ol>
-<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --account=PAS2714</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --output=slurm-fastqc.out</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Strict bash settings</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the software</span></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load miniconda3</span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> activate /fs/ess/PAS0471/jelmer/conda/mbar24</span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the output dir</span></span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> results/fastqc</span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Run FastQC for all FASTQ files</span></span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> fastq_file <span class="kw">in</span> data/fastq/<span class="pp">*</span>fastq.gz<span class="kw">;</span> <span class="cf">do</span></span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>    <span class="ex">fastqc</span> <span class="at">--outdir</span> results/fastqc <span class="st">"</span><span class="va">$fastq_file</span><span class="st">"</span></span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span>
-<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Report</span></span>
-<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Done with script fastqc.sh"</span></span>
-<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr style="height:1pt; visibility:hidden;">
-</section>
-<section id="running-the-script" class="level3" data-number="3.3">
-<h3 data-number="3.3" class="anchored" data-anchor-id="running-the-script"><span class="header-section-number">3.3</span> Running the script</h3>
-<div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> fastq_file <span class="kw">in</span> data/fastq/<span class="pp">*</span>fastq.gz<span class="kw">;</span> <span class="cf">do</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bash</span> scripts/fastqc.sh</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="bash-out"><code>application/gzip
-Started analysis of NW102AB_R1.fastq.gz
-Approx 5% complete for NW102AB_R1.fastq.gz
-Approx 15% complete for NW102AB_R1.fastq.gz
-#[...output truncated...]
-Started analysis of NW102AB_R2.fastq.gz
-Approx 5% complete for NW102AB_R2.fastq.gz
-Approx 15% complete for NW102AB_R2.fastq.gz
-#[...output truncated...]</code></pre>
-<p>Let’s check the output dir:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> results/fastqc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="bash-out"><code>NW102AB_R1_fastqc.html  NW103C_R1_fastqc.zip    NW203A_R2_fastqc.html   NW304BC_R2_fastqc.zip   NW403BC_R1_fastqc.html  W101AB_R1_fastqc.zip   W103C_R2_fastqc.html   W205A_R2_fastqc.zip    W304AB_R1_fastqc.html  W403C_R1_fastqc.zip
-NW102AB_R1_fastqc.zip   NW103C_R2_fastqc.html   NW203A_R2_fastqc.zip    NW305AB_R1_fastqc.html  NW403BC_R1_fastqc.zip   W101AB_R2_fastqc.html  W103C_R2_fastqc.zip    W205BC_R1_fastqc.html  W304AB_R1_fastqc.zip   W403C_R2_fastqc.html
-NW102AB_R2_fastqc.html  NW103C_R2_fastqc.zip    NW203BC_R1_fastqc.html  NW305AB_R1_fastqc.zip   NW403BC_R2_fastqc.html  W101AB_R2_fastqc.zip   W204A_R1_fastqc.html   W205BC_R1_fastqc.zip   W304AB_R2_fastqc.html  W403C_R2_fastqc.zip
-NW102AB_R2_fastqc.zip   NW201AB_R1_fastqc.html  NW203BC_R1_fastqc.zip   NW305AB_R2_fastqc.html  NW403BC_R2_fastqc.zip   W101C_R1_fastqc.html   W204A_R1_fastqc.zip    W205BC_R2_fastqc.html  W304AB_R2_fastqc.zip   W404A_R1_fastqc.html
-NW102C_R1_fastqc.html   NW201AB_R1_fastqc.zip   NW203BC_R2_fastqc.html  NW305AB_R2_fastqc.zip   NW404A_R1_fastqc.html   W101C_R1_fastqc.zip    W204A_R2_fastqc.html   W205BC_R2_fastqc.zip   W304C_R1_fastqc.html   W404A_R1_fastqc.zip
-NW102C_R1_fastqc.zip    NW201AB_R2_fastqc.html  NW203BC_R2_fastqc.zip   NW305C_R1_fastqc.html   NW404A_R1_fastqc.zip    W101C_R2_fastqc.html   W204A_R2_fastqc.zip    W303AB_R1_fastqc.html  W304C_R1_fastqc.zip    W404A_R2_fastqc.html
-NW102C_R2_fastqc.html   NW201AB_R2_fastqc.zip   NW304A_R1_fastqc.html   NW305C_R1_fastqc.zip    NW404A_R2_fastqc.html   W101C_R2_fastqc.zip    W204BC_R1_fastqc.html  W303AB_R1_fastqc.zip   W304C_R2_fastqc.html   W404A_R2_fastqc.zip
-NW102C_R2_fastqc.zip    NW201C_R1_fastqc.html   NW304A_R1_fastqc.zip    NW305C_R2_fastqc.html   NW404A_R2_fastqc.zip    W103AB_R1_fastqc.html  W204BC_R1_fastqc.zip   W303AB_R2_fastqc.html  W304C_R2_fastqc.zip    W404BC_R1_fastqc.html
-NW103AB_R1_fastqc.html  NW201C_R1_fastqc.zip    NW304A_R2_fastqc.html   NW305C_R2_fastqc.zip    NW404BC_R1_fastqc.html  W103AB_R1_fastqc.zip   W204BC_R2_fastqc.html  W303AB_R2_fastqc.zip   W403AB_R1_fastqc.html  W404BC_R1_fastqc.zip
-NW103AB_R1_fastqc.zip   NW201C_R2_fastqc.html   NW304A_R2_fastqc.zip    NW403A_R1_fastqc.html   NW404BC_R1_fastqc.zip   W103AB_R2_fastqc.html  W204BC_R2_fastqc.zip   W303C_R1_fastqc.html   W403AB_R1_fastqc.zip   W404BC_R2_fastqc.html
-NW103AB_R2_fastqc.html  NW201C_R2_fastqc.zip    NW304BC_R1_fastqc.html  NW403A_R1_fastqc.zip    NW404BC_R2_fastqc.html  W103AB_R2_fastqc.zip   W205A_R1_fastqc.html   W303C_R1_fastqc.zip    W403AB_R2_fastqc.html  W404BC_R2_fastqc.zip
-NW103AB_R2_fastqc.zip   NW203A_R1_fastqc.html   NW304BC_R1_fastqc.zip   NW403A_R2_fastqc.html   NW404BC_R2_fastqc.zip   W103C_R1_fastqc.html   W205A_R1_fastqc.zip    W303C_R2_fastqc.html   W403AB_R2_fastqc.zip
-NW103C_R1_fastqc.html   NW203A_R1_fastqc.zip    NW304BC_R2_fastqc.html  NW403A_R2_fastqc.zip    W101AB_R1_fastqc.html   W103C_R1_fastqc.zip    W205A_R2_fastqc.html   W303C_R2_fastqc.zip    W403C_R1_fastqc.html</code></pre>
-<p>That’s a lot of files! Do we need to check all of them? Luckily not, thanks to MultiQC.</p>
+<section id="creating-the-full-script" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="creating-the-full-script"><span class="header-section-number">3.2</span> Creating the full script</h3>
+<p>We should add a number of things to our partial script from above:</p>
+<ul>
+<li><p>The shebang line and strict Bash settings:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Strict Bash settings</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>A line to load the relevant OSC software module:</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the OSC module for FastQC</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load fastqc/0.11.8</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Several <code>echo</code> statements to report what’s going on (see below)</p></li>
+<li><p>A line to create the output directory if it doesn’t yet exist:</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Refresher: the <code>-p</code> option to <code>mkdir</code> <em>(Click to expand)</em>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Using the <code>-p</code> option does two things at once, and both are necessary for a foolproof inclusion of this command in a script:</p>
+<ul>
+<li><p>It will enable <code>mkdir</code> to create multiple levels of directories at once (i.e., to act <em>recursively</em>): by default, <code>mkdir</code> errors out if the parent directory/ies of the specified directory don’t yet exist.</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> newdir1/newdir2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>mkdir: cannot create directory ‘newdir1/newdir2’: No such file or directory</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This successfully creates both directories</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> newdir1/newdir2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>If the directory already exists, it won’t do anything and won’t return an error. Without this option, <code>mkdir</code> would return an error in this case, which would in turn lead the script to abort at that point with our <code>set</code> settings:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> newdir1/newdir2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>mkdir: cannot create directory ‘newdir1/newdir2’: File exists</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This does nothing since the dirs already exist</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> newdir1/newdir2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+</div>
+</div>
+</div>
+<p>Here is what our script looks like with those additions:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Strict Bash settings</span></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the OSC module for FastQC</span></span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load fastqc</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy the placeholder variables</span></span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a><span class="va">fastq_file</span><span class="op">=</span><span class="va">$1</span></span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a><span class="va">outdir</span><span class="op">=</span><span class="va">$2</span></span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial reporting</span></span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Starting script fastqc.ch"</span></span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span></span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Input FASTQ file:   </span><span class="va">$fastq_file</span><span class="st">"</span></span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Output dir:         </span><span class="va">$outdir</span><span class="st">"</span></span>
+<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span></span>
+<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the output dir if needed</span></span>
+<span id="cb37-21"><a href="#cb37-21" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span></span>
+<span id="cb37-22"><a href="#cb37-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-23"><a href="#cb37-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Run FastQC</span></span>
+<span id="cb37-24"><a href="#cb37-24" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> <span class="at">--outdir</span><span class="op">=</span><span class="st">"</span><span class="va">$outdir</span><span class="st">"</span> <span class="st">"</span><span class="va">$fastq_file</span><span class="st">"</span></span>
+<span id="cb37-25"><a href="#cb37-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-26"><a href="#cb37-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Final reporting</span></span>
+<span id="cb37-27"><a href="#cb37-27" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span></span>
+<span id="cb37-28"><a href="#cb37-28" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Listing the output files:"</span></span>
+<span id="cb37-29"><a href="#cb37-29" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span></span>
+<span id="cb37-30"><a href="#cb37-30" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span></span>
+<span id="cb37-31"><a href="#cb37-31" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Done with script fastqc.sh"</span></span>
+<span id="cb37-32"><a href="#cb37-32" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><i class="fa-solid fa-user-edit" aria-label="user-edit"></i> Open a new file in VS Code (&nbsp; <i class="fa-solid fa-bars" aria-label="bars"></i> &nbsp; =&gt; &nbsp; <code>File</code> &nbsp; =&gt; &nbsp; <code>New File</code>) and save it as <code>fastqc.sh</code> within your <code>scripts/</code> directory. Paste in the code above and save the file.</p>
+<p>Notice that this script is very similar to our toy scripts from the previous sessions: mostly standard (“boilerplate”) code with <strong>just a single command to run our program of interest.</strong> Therefore, you can adopt this script as a template for scripts that run other command-line programs, and will generally only need minor modifications!</p>
 <p><br></p>
 </section>
 </section>
-<section id="looping-over-samples-rather-than-files" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="looping-over-samples-rather-than-files"><span class="header-section-number">4</span> Looping over samples rather than files</h2>
+<section id="a-runner-script" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="a-runner-script"><span class="header-section-number">4</span> A “runner” script</h2>
+<section id="what-are-runner-scripts-and-why-do-we-need-them" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="what-are-runner-scripts-and-why-do-we-need-them"><span class="header-section-number">4.1</span> What are runner scripts and why do we need them</h3>
+<p>Above, we created a <code>fastqc.sh</code> script, which we’ll eventually want to submit a bunch of times with a <code>for</code> loop. The code with that loop <em>could</em> be directly typed in the terminal. But it’s <strong>better to save the commands used for job submission in a file/script as well.</strong></p>
+<p>We will now create such a file, which has the overall purpose of documenting the steps we took. You can think of this file as your analysis lab notebook<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<p>This kind of script is sometimes called a “runner” or “master” script. Because it will contain shell code, we will save it as a shell script (<code>.sh</code>) just like the script to run <code>fastqc.sh</code> and other individual analysis steps.</p>
+<p>However, it is important to realize that <strong>the runner script is conceptually different</strong> <strong>from the scripts that run individual steps of your analysis.</strong> The latter are meant to be run/submitted in their entirety by the runner script, whereas commands in runner scripts typically have to be run one-by-one, i.e.&nbsp;interactively.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Why the runner script generally can’t itself be run at once in its entirety <em>(Click to expand)</em>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Once we’ve added multiple batch job steps, and the input of a later step uses the output of an earlier step, we won’t be able to just <em>run</em> the script as is. <strong>This is because the runner script would then submit jobs from different steps</strong> <strong>all at once,</strong> <strong>and that later step would start running before the earlier step has finished.</strong></p>
+<p>For example, consider the following series of two steps, in which the second step uses the output of the first step:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This script would create a genome "index" for STAR, that will be used in the next step</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ('my_genome.fa' = input genome FASTA, 'results/star_index' = output index dir)</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> scripts/star_index.sh my_genome.fa results/star_index</span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="co"># This script would align a FASTQ file to the genome index created in the previous step</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ('results/star_index' = input index dir, 'sampleA.fastq.gz' = input FASTQ file,</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="co"># 'results/star_align' = output dir)</span></span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> scripts/star_align.sh results/star_index sampleA.fastq.gz results/star_align </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>If these two lines were included in your runner script, and you would run that script in its entirety all at once, the script in the second step would be submitted just a split-second after the first one (when using <code>sbatch</code>, you get your prompt back immediately – there is no waiting). As such, it would fail because of the missing output from the first step.</p>
+<p>It <em>is</em> possible to make <code>sbatch</code> batch jobs wait for earlier steps to finish (e.g.&nbsp;with the <code>--dependency</code> option), but this quickly gets tricky. If you want to create a workflow/pipeline that can run from start to finish in an automated way, you should consider using a workflow management system like <a href="https://snakemake.readthedocs.io/en/stable/">Snakemake</a> or <a href="https://www.nextflow.io/">NextFlow</a> — we will talk about Nextflow in week 6!</p>
+</div>
+</div>
+</div>
+<p>To summarize, we’ll <strong>separate our code into two hierarchical levels of scripts</strong>:</p>
+<ul>
+<li>The scripts that run <em>individual steps of your analysis</em>, like <code>fastqc.sh</code>.</li>
+<li>An <em>overarching “runner” script</em> that orchestrates the batch job submission of these individual steps.</li>
+</ul>
+<p>To make this division clearer, we’ll also save these scripts in separate dirs:</p>
+<ul>
+<li><code>scripts</code> for the analysis scripts.</li>
+<li><code>run</code> for the runner script.</li>
+</ul>
+<hr style="height:1pt; visibility:hidden;">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Keep the scripts for individual steps simple
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It is a good idea to keep the shell scripts you will submit (e.g., <code>fastqc.sh</code>) simple <em>in the sense that they should generally just run one program</em>, and not a sequence of programs.</p>
+<p>Once you get the hang of writing these scripts, it may seem appealing to string a series of programs/steps together in a single script, so that it’s easier to rerun everything at once — but in practice, that will often end up leading to more difficulties than convenience. Once again, if you do want to develop a workflow that can run from start to finish, you’ll have to bite the bullet and learn a workflow management system like Snakemake or Nextflow — we will talk about Nextflow in week 6.</p>
+</div>
+</div>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+<section id="adding-code-to-the-runner-script" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="adding-code-to-the-runner-script"><span class="header-section-number">4.2</span> Adding code to the runner script</h3>
+<p>Open a new text file, and save it as <code>run/run.sh</code>. In this script, add the code that runs out script for each FASTQ file:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Run FastQC for each FASTQ file</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> fastq_file <span class="kw">in</span> data/fastq/<span class="pp">*</span>fastq.gz<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bash</span> scripts/fastqc.sh <span class="st">"</span><span class="va">$fastq_file</span><span class="st">"</span> results/fastqc</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><br></p>
+</section>
+</section>
+<section id="looping-over-samples-rather-than-files" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="looping-over-samples-rather-than-files"><span class="header-section-number">5</span> Looping over samples rather than files</h2>
 <p>In our script, we will run Cutadapt inside a loop, similar to how we ran FastQC. However, this case is a bit more complicated, because we need to run Cutadapt for one <strong>sample</strong> and therefore two FASTQ files at a time, rather than for one FASTQ file at a time.</p>
 <p>We will do that by <strong>looping over the R1 (forward read) files only</strong>, and inside the loop, inferring the name of the R2 file:</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (Don't run this - this will be part of our script)</span></span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop over the R1 files</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> R1_in <span class="kw">in</span> data/fastq/<span class="pp">*</span>R1.fastq.gz<span class="kw">;</span> <span class="cf">do</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get the R2 file name with "parameter expansion"</span></span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># This does a search-and-replace: replace "_R1" with "_R2"</span></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">R2_in</span><span class="op">=</span><span class="va">${R1_in</span><span class="op">/</span><span class="ss">_R1</span><span class="op">/</span>_R2<span class="va">}</span></span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Report</span></span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Input files: </span><span class="va">$R1_in</span><span class="st"> </span><span class="va">$R2_in</span><span class="st">"</span></span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Define the output files</span></span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>    <span class="va">R1_out</span><span class="op">=</span><span class="st">"</span><span class="va">$outdir</span><span class="st">"</span>/<span class="va">$(</span><span class="fu">basename</span> <span class="st">"</span><span class="va">$R1_in</span><span class="st">"</span><span class="va">)</span></span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>    <span class="va">R2_out</span><span class="op">=</span><span class="st">"</span><span class="va">$outdir</span><span class="st">"</span>/<span class="va">$(</span><span class="fu">basename</span> <span class="st">"</span><span class="va">$R2_in</span><span class="st">"</span><span class="va">)</span></span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Run Cutadapt</span></span>
-<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>    <span class="ex">cutadapt</span> <span class="dt">\</span></span>
-<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">-a</span> <span class="st">"</span><span class="va">$primer_f</span><span class="st">"</span>...<span class="st">"</span><span class="va">$primer_r_rc</span><span class="st">"</span> <span class="dt">\</span></span>
-<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">-A</span> <span class="st">"</span><span class="va">$primer_r</span><span class="st">"</span>...<span class="st">"</span><span class="va">$primer_f_rc</span><span class="st">"</span> <span class="dt">\</span></span>
-<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">--trimmed-only</span> <span class="dt">\</span></span>
-<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">--cores</span> 8 <span class="dt">\</span></span>
-<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>            <span class="at">--output</span> <span class="st">"</span><span class="va">$R1_out</span><span class="st">"</span> <span class="dt">\</span></span>
-<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>            <span class="at">--paired-output</span> <span class="st">"</span><span class="va">$R2_out</span><span class="st">"</span> <span class="dt">\</span></span>
-<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a>            <span class="st">"</span><span class="va">$R1_in</span><span class="st">"</span> <span class="st">"</span><span class="va">$R2_in</span><span class="st">"</span></span>
-<span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (Don't run this - this will be part of our script)</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Loop over the R1 files</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> R1_in <span class="kw">in</span> data/fastq/<span class="pp">*</span>R1.fastq.gz<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Get the R2 file name with "parameter expansion"</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># This does a search-and-replace: replace "_R1" with "_R2"</span></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>    <span class="va">R2_in</span><span class="op">=</span><span class="va">${R1_in</span><span class="op">/</span><span class="ss">_R1</span><span class="op">/</span>_R2<span class="va">}</span></span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Report</span></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Input files: </span><span class="va">$R1_in</span><span class="st"> </span><span class="va">$R2_in</span><span class="st">"</span></span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Define the output files</span></span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a>    <span class="va">R1_out</span><span class="op">=</span><span class="st">"</span><span class="va">$outdir</span><span class="st">"</span>/<span class="va">$(</span><span class="fu">basename</span> <span class="st">"</span><span class="va">$R1_in</span><span class="st">"</span><span class="va">)</span></span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>    <span class="va">R2_out</span><span class="op">=</span><span class="st">"</span><span class="va">$outdir</span><span class="st">"</span>/<span class="va">$(</span><span class="fu">basename</span> <span class="st">"</span><span class="va">$R2_in</span><span class="st">"</span><span class="va">)</span></span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Run Cutadapt</span></span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a>    <span class="ex">cutadapt</span> <span class="dt">\</span></span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a>            <span class="at">-a</span> <span class="st">"</span><span class="va">$primer_f</span><span class="st">"</span>...<span class="st">"</span><span class="va">$primer_r_rc</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb40-19"><a href="#cb40-19" aria-hidden="true" tabindex="-1"></a>            <span class="at">-A</span> <span class="st">"</span><span class="va">$primer_r</span><span class="st">"</span>...<span class="st">"</span><span class="va">$primer_f_rc</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb40-20"><a href="#cb40-20" aria-hidden="true" tabindex="-1"></a>            <span class="at">--trimmed-only</span> <span class="dt">\</span></span>
+<span id="cb40-21"><a href="#cb40-21" aria-hidden="true" tabindex="-1"></a>            <span class="at">--cores</span> 8 <span class="dt">\</span></span>
+<span id="cb40-22"><a href="#cb40-22" aria-hidden="true" tabindex="-1"></a>            <span class="at">--output</span> <span class="st">"</span><span class="va">$R1_out</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb40-23"><a href="#cb40-23" aria-hidden="true" tabindex="-1"></a>            <span class="at">--paired-output</span> <span class="st">"</span><span class="va">$R2_out</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb40-24"><a href="#cb40-24" aria-hidden="true" tabindex="-1"></a>            <span class="st">"</span><span class="va">$R1_in</span><span class="st">"</span> <span class="st">"</span><span class="va">$R2_in</span><span class="st">"</span></span>
+<span id="cb40-25"><a href="#cb40-25" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>
 
 
@@ -803,8 +907,8 @@ NW103C_R1_fastqc.html   NW203A_R1_fastqc.zip    NW304BC_R2_fastqc.html  NW403A_R
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>Therefore, our FastQC analysis will run sequentially (1-by-1) for each file, not in parallel.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p> Using the shell language Bash, specifically<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>For a full list of installed software at OSC: <a href="https://www.osc.edu/resources/available_software/software_list" class="uri">https://www.osc.edu/resources/available_software/software_list</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p> Or depending on how you use this exactly, as your notebook entry that contains the final protocol you followed.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

@@ -9,7 +9,7 @@
 <meta name="author" content="Jelmer Poelstra">
 <meta name="dcterms.date" content="2024-03-28">
 
-<title>Shell scripting</title>
+<title>PRACS24: Shell scripting</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -324,8 +324,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#overview-setting-up" id="toc-overview-setting-up" class="nav-link active" data-scroll-target="#overview-setting-up">Overview &amp; setting up</a></li>
-  <li><a href="#a-basic-shell-script" id="toc-a-basic-shell-script" class="nav-link" data-scroll-target="#a-basic-shell-script"><span class="header-section-number">1</span> A basic shell script</a>
+  <li><a href="#a-basic-shell-script" id="toc-a-basic-shell-script" class="nav-link active" data-scroll-target="#a-basic-shell-script"><span class="header-section-number">1</span> A basic shell script</a>
   <ul class="collapse">
   <li><a href="#our-first-script" id="toc-our-first-script" class="nav-link" data-scroll-target="#our-first-script"><span class="header-section-number">1.1</span> Our first script</a></li>
   <li><a href="#shebang-line" id="toc-shebang-line" class="nav-link" data-scroll-target="#shebang-line"><span class="header-section-number">1.2</span> Shebang line</a></li>
@@ -336,7 +335,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#calling-a-script-with-arguments" id="toc-calling-a-script-with-arguments" class="nav-link" data-scroll-target="#calling-a-script-with-arguments"><span class="header-section-number">2.1</span> Calling a script with arguments</a></li>
   <li><a href="#placeholder-variables" id="toc-placeholder-variables" class="nav-link" data-scroll-target="#placeholder-variables"><span class="header-section-number">2.2</span> Placeholder variables</a></li>
-  <li><a href="#on-your-own-command-line-arguments" id="toc-on-your-own-command-line-arguments" class="nav-link" data-scroll-target="#on-your-own-command-line-arguments">On Your Own: Command-line arguments</a></li>
+  <li><a href="#exercise-command-line-arguments" id="toc-exercise-command-line-arguments" class="nav-link" data-scroll-target="#exercise-command-line-arguments"><i class="fa-solid fa-user-edit" aria-label="user-edit"></i> Exercise: Command-line arguments</a></li>
   <li><a href="#copying-placeholders-to-variables-with-descriptive-names" id="toc-copying-placeholders-to-variables-with-descriptive-names" class="nav-link" data-scroll-target="#copying-placeholders-to-variables-with-descriptive-names"><span class="header-section-number">2.3</span> Copying placeholders to variables with descriptive names</a></li>
   </ul></li>
   <li><a href="#script-variations-and-enhancements" id="toc-script-variations-and-enhancements" class="nav-link" data-scroll-target="#script-variations-and-enhancements"><span class="header-section-number">3</span> Script variations and enhancements</a>
@@ -385,66 +384,40 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <hr>
 <p><br></p>
-<section id="overview-setting-up" class="level2 unnumbered">
-<h2 class="unnumbered anchored" data-anchor-id="overview-setting-up">Overview &amp; setting up</h2>
-<p>Shell scripts enable us to <strong>run sets of commands non-interactively</strong>, which is useful:</p>
-<ul>
-<li>When these commands takes a long time to run and/or should be run many times.</li>
-<li>To help keep our code clean and clear by using separate scripts for individual parts of our analysis pipeline.</li>
-<li>To run our analyses as Slurm batch jobs at OSC. That in turn will allow us, for example, to run analyses simultaneously for different samples.</li>
-</ul>
-<p>Scripts form the basis for <em>analysis pipelines</em> and if we code things cleverly, it should be relatively straightforward to rerun much of our project workflow: after removing or adding some samples, with different parameter settings, and possibly even for an entirely different dataset.</p>
-<blockquote class="blockquote">
-<p><em>“Most Bash scripts in bioinformatics are simply commands organized into a rerunnable script with some added bells and whistles to check that files exist and ensuring any error causes the script to abort.”</em> — Buffalo Ch. 12</p>
-</blockquote>
-<p>Therefore, relatively straightforward to write with what you already know!</p>
-<section id="start-vs-code-and-open-your-folder" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="start-vs-code-and-open-your-folder">Start VS Code and open your folder</h4>
+<p>In this session, …</p>
 <p><br></p>
-</section>
-</section>
 <section id="a-basic-shell-script" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="a-basic-shell-script"><span class="header-section-number">1</span> A basic shell script</h2>
+<p>TODO - shell vs.&nbsp;Bash</p>
 <section id="our-first-script" class="level3" data-number="1.1">
 <h3 data-number="1.1" class="anchored" data-anchor-id="our-first-script"><span class="header-section-number">1.1</span> Our first script</h3>
 <p>We’ll be writing our shell scripts in the editor pane of VS Code. To create our first one, open a new file in the <code>VS Code</code> editor (&nbsp; <i class="fa-solid fa-bars" aria-label="bars"></i> &nbsp; =&gt; &nbsp; <code>File</code> &nbsp; =&gt; &nbsp; <code>New File</code>) and save it as <code>printname.sh</code> within the <code>sandbox</code> dir (shell scripts most commonly have the extension <code>.sh</code>).</p>
 <p>Then, type or paste the following <em>inside the script</em> in your editor pane (and <em>not</em> in the terminal):</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Paste this line into the 'printname.sh' script</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"This script will print a first and a last name"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Auto Save in VS Code
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Any changes you make to this and other files in the editor pane should be immediately, automatically saved by VS Code. If that’s not happening for some reason, you should see an indication of unsaved changes like a large black dot next to the script’s file name in the editor pane tab header (if that’s the case, see the box below on how to fix this).</p>
+<hr style="height:1pt; visibility:hidden;">
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Auto Save not happening? (Click to expand)
+Auto Save in VS Code <em>(Click to expand)</em>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>If the file is not auto-saving, you can always save it manually (including with <kbd>Ctrl/Cmd</kbd>+<kbd>S</kbd>) like you would do in other programs.</p>
-<p>However, it may be convenient to turn Auto Save on: press <kbd>Ctrl/Cmd</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd> to open the Command Palette and type “Auto Save”. You should see an option “<strong><em>Toggle Auto Save</em></strong>”: click on that.</p>
+<p>Any changes you make to this and other files in the editor pane should be immediately, automatically saved by VS Code. If that’s not happening for some reason, you should see an indication of unsaved changes like a large black dot next to the script’s file name in the editor pane tab header.</p>
+<p>If the file is not auto-saving, you can always save it manually (including with <kbd>Ctrl/Cmd</kbd>+<kbd>S</kbd>) like you would do in other programs. However, it may be convenient to turn Auto Save on: press <kbd>Ctrl/Cmd</kbd>+<kbd>Shift</kbd>+<kbd>S</kbd> to open the Command Palette and type “Auto Save”. You should see an option “<strong><em>Toggle Auto Save</em></strong>”: click on that.</p>
 </div>
 </div>
 </div>
-</div>
-</div>
-<p>Shell scripts mostly contain the same regular Unix shell (specifically, Bash shell) code that we have gotten familiar with, but have so far directly typed in the terminal. As such, <strong>our single line with an <code>echo</code> command already consitutes a functional shell script!</strong> One way of running the script is by typing <code>bash</code> followed by the path to the script:</p>
+<p>Shell scripts mostly contain the same regular Unix shell code that we have gotten familiar with, but have so far directly typed in the terminal. As such, our single line with an <code>echo</code> command constitutes a functional shell script!</p>
+<p>One way of running the script is by typing <code>bash</code> followed by the path to the script:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> sandbox/printname.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>This script will print a first and a last name</code></pre>
-<p>That worked! The script doesn’t yet print any names like it “promises” to do, but we will add that functionality in a little bit. First, though, we’ll learn about two header lines that are good practice to add to every shell script.</p>
+<p>That worked! The script doesn’t yet print any names like it “promises” to do, but we will add that functionality in a little bit. But first, we’ll learn about two header lines that are good practice to add to every shell script.</p>
 <hr style="height:1pt; visibility:hidden;">
 </section>
 <section id="shebang-line" class="level3" data-number="1.2">
@@ -457,14 +430,19 @@ Auto Save not happening? (Click to expand)
 </section>
 <section id="shell-script-settings" class="level3" data-number="1.3">
 <h3 data-number="1.3" class="anchored" data-anchor-id="shell-script-settings"><span class="header-section-number">1.3</span> Shell script settings</h3>
-<p>Another boilerplate line that is good practice to add to your shell scripts will change some default Bash settings to safer alternatives.</p>
+<p>Another best-practice line you should add to your shell scripts will change some default settings to safer alternatives.</p>
 <section id="bad-default-shell-settings" class="level4 unnumbered">
 <h4 class="unnumbered anchored" data-anchor-id="bad-default-shell-settings">Bad default shell settings</h4>
 <p>The following two default settings of the Bash shell are bad ideas inside scripts:</p>
-<p><strong><em>First</em></strong>, when you <strong>reference a variable that does not exist</strong>, the shell will replace that with nothing without complaining:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Hello, my name is </span><span class="va">$myname</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="bash-out"><code>Hello, my name is</code></pre>
-<p>In scripts, this can lead to all sorts of downstream problems, because you very likely tried and failed to do something with an existing variable (e.g.&nbsp;you misspelled its name, or forgot to assign it altogether). Even more problematically, this can lead to potentially very destructive file removal, as the box below illustrates.</p>
+<ul>
+<li><p>When you <strong>reference a variable that does not exist</strong>, the shell will replace that with nothing without complaining:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Hello, my name is </span><span class="va">$myname</span><span class="st">. What is yours?"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>Hello, my name is . What is yours?</code></pre>
+<p>In scripts, this can lead to all sorts of downstream problems, because you very likely tried and failed to do something with an existing variable (e.g.&nbsp;you misspelled its name, or forgot to assign it altogether). Even more problematically, this can lead to potentially very destructive file removal, as the box below illustrates.</p></li>
+<li><p>A Bash script <strong>keeps running after encountering errors</strong>. That is, if an error is encountered when running, say, line 2 of a script, any remaining lines in the script will nevertheless be executed.</p>
+<p>In the best case, this is a waste of computer resources, and in worse cases, it can lead to all kinds of unintended consequences. Additionally, if your script prints a lot of output, you might not notice an error somewhere in the middle if it doesn’t produce more errors downstream. But the downstream results from what we at that point might call a “zombie script” can still be completely wrong.</p></li>
+</ul>
+<hr style="height:1pt; visibility:hidden;">
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -475,16 +453,16 @@ Accidental file removal with unset variables
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The shell’s default behavior of ignoring (instead of giving an error) the referencing of unset variables can make you accidentally remove files as follows — and this is especially likely to happen inside scripts where we more commonly use variables and are not working interactively:</p>
+<p>The shell’s default behavior of ignoring (instead of giving an error) the referencing of unset variables can make you accidentally remove files as follows — and note this is especially likely to happen inside scripts, because we commonly use variables in those and are not working interactively:</p>
 <ul>
 <li><p>Using a variable, we try to remove some temporary files whose names start with <code>tmp_</code>:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="va">temp_prefix</span><span class="op">=</span><span class="st">"temp_"</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="st">"</span><span class="va">$tmp_prefix</span><span class="st">"</span><span class="pp">*</span>     <span class="co"># DON'T TRY THIS!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: DO NOT run this!</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="va">temp_prefix</span><span class="op">=</span><span class="st">"temp_"</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="st">"</span><span class="va">$tmp_prefix</span><span class="st">"</span><span class="pp">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Using a variable, we try to remove a temporary directory:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="va">tempdir</span><span class="op">=</span>output/tmp</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-r</span> <span class="va">$tmpdir</span>/<span class="pp">*</span>      <span class="co"># DON'T TRY THIS!</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">: DO NOT run this!</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="va">tempdir</span><span class="op">=</span>output/tmp</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-r</span> <span class="va">$tmpdir</span>/<span class="pp">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 <details>
 <summary>
@@ -499,16 +477,15 @@ Above, the text specified the <em>intent</em> of the commands. What would have a
 <p>Before you get too scared of creating terrible damage, note that at OSC, you would not be able to remove any essential files (and more generally, any files that are not yours unless you’ve explicitly been given permission for this), since you don’t have the permissions to do so. On your own computer, this could be more genuinely dangerous, though even there, you would not be able to remove operating system files without specifically requesting “admin” rights.</p>
 </div>
 </div>
-<p><strong><em>Second</em></strong>, a Bash script <strong>keeps running after encountering errors</strong>. That is, if an error is encountered when running, say, line 2 of a script, any remaining lines in the script will nevertheless be executed.</p>
-<p>In the best case, this is a waste of computer resources, and in worse cases, it can lead to all kinds of unintended consequences. Additionally, if your script prints a lot of output, you might not notice an error somewhere in the middle if it doesn’t produce more errors downstream. But the downstream results from what we at that point might call a “zombie script” can still be completely wrong.</p>
+<hr style="height:1pt; visibility:hidden;">
 </section>
-<section id="safer-settings" class="level4 unnumbered">
-<h4 class="unnumbered anchored" data-anchor-id="safer-settings">Safer settings</h4>
-<p>The following three settings will make your Bash scripts more robust and safer. With these settings, <strong>the script terminates</strong> with an appriate error message if:</p>
+<section id="safer-settings" class="level4">
+<h4 class="anchored" data-anchor-id="safer-settings">Safer settings</h4>
+<p>The following three settings will make your shell scripts more robust and safer. With these settings, <strong>the script terminates</strong> with an appriate error message if:</p>
 <ul>
-<li><code>set -u</code> — An unset (non-existent) variable is referenced.</li>
-<li><code>set -e</code> — Almost any error occurs.</li>
-<li><code>set -o pipefail</code> — An error occurs in a shell “pipeline” (e.g., <code>sort | uniq</code>).</li>
+<li><code>set -u</code> — an “unset” (non-existent) variable is referenced.</li>
+<li><code>set -e</code> — almost any error occurs.</li>
+<li><code>set -o pipefail</code> — an error occurs in a shell “pipeline” (e.g., <code>sort | uniq</code>).</li>
 </ul>
 <p>We can change all of these settings in one line in a script:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (For in a script - don't run in the terminal)</span></span>
@@ -531,21 +508,21 @@ Above, the text specified the <em>intent</em> of the commands. What would have a
 <pre class="bash-out"><code>This script will print a first and a last name</code></pre>
 <p>That didn’t change anything to the output, but at least we confirmed that the script still works.</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Running the script without using the <code>bash</code> command (Click to expand)
+Running the script without the <code>bash</code> command (Click to expand)
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Because our script has a <em>shebang</em> line, we have taken one step towards being able to execute the script without the <code>bash</code> command, simply using:</p>
+<p>Because our script has a <em>shebang</em> line, we have taken one step towards being able to execute the script without the <code>bash</code> command, or in other words, to run the script “as a command”. With that method, we could run a script simply using its path only:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sandbox/printname.sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>(Or if the script was in our current working dir, using <code>./printname.sh</code>. In that case the <code>./</code> is necessary to make it explicit that we are referring to a file name: otherwise, when running just <code>printname.sh</code>, the shell would look for a command or program of that name, and wouldn’t be able to find it.)</p>
-<p>However, this would also require us to “make the script executable”, which is beyond the scope of this material. But I’m mentioning it here because you might see this way of running scripts being used elsewhere.</p>
+<p>However, this would also require us to “make the script executable”, which we won’t talk about. But I’m mentioning it here because you might see this way of running scripts being used elsewhere.</p>
 </div>
 </div>
 </div>
@@ -583,6 +560,7 @@ Running the script without using the <code>bash</code> command (Click to expand)
 <section id="placeholder-variables" class="level3" data-number="2.2">
 <h3 data-number="2.2" class="anchored" data-anchor-id="placeholder-variables"><span class="header-section-number">2.2</span> Placeholder variables</h3>
 <p>Inside the script, any command-line arguments that you pass to it are <strong>automatically available in “placeholder” variables</strong>. Any first argument will be assigned to the variable <strong><code>$1</code></strong>, any second argument will be assigned to <strong><code>$2</code></strong>, any third argument will be assigned to <strong><code>$3</code></strong>, and so on.</p>
+<hr style="height:1pt; visibility:hidden;">
 <details>
 <summary>
 <i class="fa-solid fa-user-edit" aria-label="user-edit"></i> In the calls to <code>fastqc.sh</code> and <code>printname.sh</code> above, what are the placeholder variables and their values? <em>(Click for the solution)</em>
@@ -592,6 +570,7 @@ Running the script without using the <code>bash</code> command (Click to expand)
 <li><p>In <code>bash sandbox/printname.sh John Doe</code>, two arguments are passed to the script: the first one (<code>John</code>) will be stored in <code>$1</code>, and the second one (<code>Doe</code>) in <code>$2</code>.</p></li>
 </ul>
 </details>
+<hr style="height:1pt; visibility:hidden;">
 <p>However, while they are made <em>available</em>, these placeholder variables are not “automagically” <em>used</em>. So, unless we explicitly include code in the script to <em>do</em> something with these variables, nothing really happens with them.</p>
 <p>Therefore, let’s add some code to our <code>printname.sh</code> script to “process” any first and last name that are passed to the script. For now, our script will simply <code>echo</code> the placeholder variables, so that we can see what happens:</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
@@ -607,10 +586,11 @@ Running the script without using the <code>bash</code> command (Click to expand)
 <pre class="bash-out"><code>This script will print a first and a last name
 First name: John
 Last name: Doe</code></pre>
+<hr style="height:1pt; visibility:hidden;">
 </section>
-<section id="on-your-own-command-line-arguments" class="level3 unnumbered exercise">
-<h3 class="unnumbered anchored" data-anchor-id="on-your-own-command-line-arguments">On Your Own: Command-line arguments</h3>
-<p>In each case below, <strong>think about what might happen before you run the script</strong>. Then, run it, and if you didn’t make a successful prediction, try to figure out what happened instead.</p>
+<section id="exercise-command-line-arguments" class="level3 unnumbered exercise">
+<h3 class="unnumbered anchored" data-anchor-id="exercise-command-line-arguments"><i class="fa-solid fa-user-edit" aria-label="user-edit"></i> Exercise: Command-line arguments</h3>
+<p>In each case below, think about what might happen before you run the script. Then, run it, and if you didn’t make a successful prediction, try to figure out what happened instead.</p>
 <ol type="1">
 <li><p>Run the script (<code>sandbox/printname.sh</code>) without passing arguments to it.</p></li>
 <li><p>Deactivate (“comment out”) the line with <code>set</code> settings by inserting a <code>#</code> as the first character of that line. Then, run the script again without passing arguments to it.</p></li>
@@ -665,8 +645,8 @@ Other variables that are automatically available inside scripts
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li><strong><code>$0</code></strong> contains the script’s file name</li>
-<li><strong><code>$#</code></strong> contains the <em>number</em> of command-line arguments passed to the script</li>
+<li><strong><code>$0</code></strong> contains the script’s file name.</li>
+<li><strong><code>$#</code></strong> contains the <em>number</em> of command-line arguments passed to the script.</li>
 </ul>
 </div>
 </div>
@@ -738,7 +718,7 @@ ASPC1_A178V     ASPC1   A178V
 ---
 Miapaca2_G31V   Miapaca2        G31V
 Miapaca2_G31V   Miapaca2        G31V</code></pre>
-<p><br></p>
+<hr style="height:1pt; visibility:hidden;">
 </section>
 <section id="redirecting-output-to-a-file" class="level3" data-number="3.2">
 <h3 data-number="3.2" class="anchored" data-anchor-id="redirecting-output-to-a-file"><span class="header-section-number">3.2</span> Redirecting output to a file</h3>
@@ -747,14 +727,13 @@ Miapaca2_G31V   Miapaca2        G31V</code></pre>
 <li>In <code>printname.sh</code>, we simply <code>echo</code>’d, inside sentences, the arguments passed to the script.</li>
 <li>In <code>headtail.sh</code>, we printed the first and last few lines of a file with the <code>head</code> and <code>tail</code> commands.</li>
 </ul>
-<p>All this output was printed to screen because that is the default output mode of Unix commands, and this works the same way regardless of whether those commands are typed and run interactively in the shell, or are run inside a script.</p>
+<p>All this output was printed to screen because that is the default output mode of Unix commands, and this works the same way regardless of whether those commands are run interactively in the shell or inside a script.</p>
 <p>Along those same lines, we have already learned that we can “redirect” output to a file using <code>&gt;</code> (write/overwrite) and <code>&gt;&gt;</code> (append) when we run shell commands — and this, too, works exactly the same way inside a script.</p>
 <hr style="height:1pt; visibility:hidden;">
-<p>When working with genomics data, we commonly have <strong>files as input, and new/modified files as output</strong>. Let’s practice with this and <em>modify our <code>headtail.sh</code> script so that it writes output to a file.</em></p>
-<p>We’ll make the following changes:</p>
+<p>When working with genomics data, we commonly have <strong>files as input, and new/modified files as output</strong>. We will modify our <code>headtail.sh</code> script so that it writes output to a file, making the following changes:</p>
 <ul>
-<li>We will have the script accept a second argument: the output file name<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</li>
-<li>We will redirect the output of our <code>head</code>, <code>echo</code>, and <code>tail</code> commands to the output file. We’ll have to append (using <code>&gt;&gt;</code>) in the last two commands.</li>
+<li>Have the script accept a second argument: the output file name<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</li>
+<li>Redirect the output of our <code>head</code>, <code>echo</code>, and <code>tail</code> commands to the output file.</li>
 </ul>
 <div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
@@ -781,7 +760,7 @@ ASPC1_A178V     ASPC1   A178V
 ---
 Miapaca2_G31V   Miapaca2        G31V
 Miapaca2_G31V   Miapaca2        G31V</code></pre>
-<p><br></p>
+<hr style="height:1pt; visibility:hidden;">
 </section>
 <section id="report-whats-happening" class="level3" data-number="3.3">
 <h3 data-number="3.3" class="anchored" data-anchor-id="report-whats-happening"><span class="header-section-number">3.3</span> Report what’s happening</h3>
@@ -792,7 +771,7 @@ Miapaca2_G31V   Miapaca2        G31V</code></pre>
 <li>What are the output files</li>
 <li>Perhaps even summaries of the output.</li>
 </ul>
-<p>All of this can help with troubleshooting and record-keeping<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Let’s try this with our <code>headtail.sh</code> script.</p>
+<p>All of this can help with troubleshooting and record-keeping<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Let’s try this with our <code>headtail.sh</code> script:</p>
 <div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
 <span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -821,10 +800,10 @@ Miapaca2_G31V   Miapaca2        G31V</code></pre>
 <span id="cb41-26"><a href="#cb41-26" aria-hidden="true" tabindex="-1"></a><span class="co"># (Note: this is a script. Don't enter this directly in your terminal.)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>A couple of notes about the lines that were added to the script above:</p>
 <ul>
-<li><p>Running <code>date</code> at the end of the script (as well as at the beginning) allows you to check for how long the script ran</p></li>
-<li><p>Printing the input and output files (and the command-line arguments more generally) can be particularly useful for troubleshooting</p></li>
-<li><p>We printed a “marker line” like <code>Done with script</code>, indicating that the end of the script was reached. This is handy due to our <code>set</code> settings: <strong>seeing this line printed means that no errors were encountered</strong>.</p></li>
-<li><p>I also added some comment lines like “Initial logging” to make the script easier to read, and such comments can be made more extensive to really explain what is being done.</p></li>
+<li>Running <code>date</code> at the end of the script (as well as at the beginning) allows you to check for how long the script ran.</li>
+<li>Printing the input and output files (and the command-line arguments more generally) can be particularly useful for troubleshooting.</li>
+<li>We printed a “marker line” like <code>Done with script</code>, indicating that the end of the script was reached. This is handy due to our <code>set</code> settings: <strong>seeing this line printed means that no errors were encountered</strong>.</li>
+<li>We added some comment lines like “Initial logging” to make the script easier to read, and such comments can be made more extensive to really explain what is being done.</li>
 </ul>
 <p>Let’s run the script again:</p>
 <div class="sourceCode" id="cb42"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> sandbox/headtail.sh metadata/meta.tsv sandbox/tmp.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -844,6 +823,7 @@ ASPC1_A178V     ASPC1   A178V
 ---
 Miapaca2_G31V   Miapaca2        G31V
 Miapaca2_G31V   Miapaca2        G31V</code></pre>
+<hr style="height:1pt; visibility:hidden;">
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -854,32 +834,24 @@ Miapaca2_G31V   Miapaca2        G31V</code></pre>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The extensive logging output (<code>echo</code> statements) may seem silly for our little <code>headtail.sh</code> script, and it is at some level: a tiny utility script like this would ideally work much like a regular Unix shell command, and just print the main output and no logging output.</p>
-<p>However, this kind of fairly extensive logging is in fact useful when running scripts that execute long-running bioinformatics programs, and can eventually be a time-saver because it makes it easier to spot problems and helps with record-keeping. This is especially true for long-running scripts, or scripts that you often reuse and perhaps share with others.</p>
+<p>The extensive logging output (<code>echo</code> statements) is perhaps silly for our little <code>headtail.sh</code> script, as a tiny utility script like this would ideally work much like a regular Unix shell command, and just print the main output and no logging output.</p>
+<p>However, extensive logging is useful when running scripts that execute bioinformatics programs, and can eventually be a time-saver because it makes it easier to spot problems and helps with record-keeping. This is especially true for long-running scripts, or scripts that you often reuse and perhaps share with others.</p>
 </div>
 </div>
-<section id="on-your-own-a-fanciful-script" class="level4 exercise">
-<h4 class="anchored" data-anchor-id="on-your-own-a-fanciful-script">On Your Own: A fanciful script</h4>
+<hr style="height:1pt; visibility:hidden;">
+<section id="exercise-a-fanciful-script" class="level4 exercise">
+<h4 class="anchored" data-anchor-id="exercise-a-fanciful-script"><i class="fa-solid fa-user-edit" aria-label="user-edit"></i> Exercise: A fanciful script</h4>
 <p>Modify your <code>printline.sh</code> script to:</p>
 <ul>
-<li>Redirect the main output (the printed line) to a file</li>
-<li>The name of this output file should not be “hardcoded” in the script, but should be passed as an argument to the script, like we did above with <code>headtail.sh</code></li>
-<li>Add a bit of logging — <code>echo</code> statements, <code>date</code>, etc, similar to what we did above with <code>headtail.sh</code></li>
-<li>Add some comments to describe what the code in the script is doing</li>
+<li>Redirect the main output (the printed line) to a file.</li>
+<li>The name of this output file should not be “hardcoded” in the script, but should be passed as an argument to the script, like we did above with <code>headtail.sh</code>.</li>
+<li>Add a bit of logging — <code>echo</code> statements, <code>date</code>, etc, similar to what we did above with <code>headtail.sh</code>.</li>
+<li>Add some comments to describe what the code in the script is doing.</li>
 </ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-The original <code>printline.sh</code> script (Click to expand)
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-7" class="callout-7-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb46"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> sandbox/printline.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<details>
+<summary>
+Click to see the original <code>printline.sh</code> script
+</summary>
 <pre class="bash-out"><code>#!/bin/bash
 set -euo pipefail
   
@@ -887,61 +859,51 @@ input_file=$1
 line_nr=$2
 
 head -n "$line_nr" "$input_file" | tail -n 1</code></pre>
-</div>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-(One possible) solution (Click to expand)
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb48"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
-<span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy placeholder variables</span></span>
-<span id="cb48-5"><a href="#cb48-5" aria-hidden="true" tabindex="-1"></a><span class="va">input_file</span><span class="op">=</span><span class="va">$1</span></span>
-<span id="cb48-6"><a href="#cb48-6" aria-hidden="true" tabindex="-1"></a><span class="va">output_file</span><span class="op">=</span><span class="va">$2</span></span>
-<span id="cb48-7"><a href="#cb48-7" aria-hidden="true" tabindex="-1"></a><span class="va">line_nr</span><span class="op">=</span><span class="va">$3</span></span>
-<span id="cb48-8"><a href="#cb48-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-9"><a href="#cb48-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial logging </span></span>
-<span id="cb48-10"><a href="#cb48-10" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Starting script printline.sh"</span></span>
-<span id="cb48-11"><a href="#cb48-11" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span></span>
-<span id="cb48-12"><a href="#cb48-12" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Input file:   </span><span class="va">$input_file</span><span class="st">"</span></span>
-<span id="cb48-13"><a href="#cb48-13" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Output file:  </span><span class="va">$output_file</span><span class="st">"</span></span>
-<span id="cb48-14"><a href="#cb48-14" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Line number:  </span><span class="va">$line_nr</span><span class="st">"</span></span>
-<span id="cb48-15"><a href="#cb48-15" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span></span>
-<span id="cb48-16"><a href="#cb48-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-17"><a href="#cb48-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Print 1 specific line from the input file and redirect to an output file</span></span>
-<span id="cb48-18"><a href="#cb48-18" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-n</span> <span class="st">"</span><span class="va">$line_nr</span><span class="st">"</span> <span class="st">"</span><span class="va">$input_file</span><span class="st">"</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> 1 <span class="op">&gt;</span> <span class="va">$output_file</span></span>
-<span id="cb48-19"><a href="#cb48-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb48-20"><a href="#cb48-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Final logging</span></span>
-<span id="cb48-21"><a href="#cb48-21" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Listing the output file:"</span></span>
-<span id="cb48-22"><a href="#cb48-22" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span> <span class="st">"</span><span class="va">$output_file</span><span class="st">"</span></span>
-<span id="cb48-23"><a href="#cb48-23" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Done with script printline.sh"</span></span>
-<span id="cb48-24"><a href="#cb48-24" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+:::
+</details>
+<details>
+<summary>
+Click to see the/a solution
+</summary>
+<div class="sourceCode" id="cb47"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy placeholder variables</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="va">input_file</span><span class="op">=</span><span class="va">$1</span></span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="va">output_file</span><span class="op">=</span><span class="va">$2</span></span>
+<span id="cb47-7"><a href="#cb47-7" aria-hidden="true" tabindex="-1"></a><span class="va">line_nr</span><span class="op">=</span><span class="va">$3</span></span>
+<span id="cb47-8"><a href="#cb47-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-9"><a href="#cb47-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial logging </span></span>
+<span id="cb47-10"><a href="#cb47-10" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Starting script printline.sh"</span></span>
+<span id="cb47-11"><a href="#cb47-11" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span></span>
+<span id="cb47-12"><a href="#cb47-12" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Input file:   </span><span class="va">$input_file</span><span class="st">"</span></span>
+<span id="cb47-13"><a href="#cb47-13" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Output file:  </span><span class="va">$output_file</span><span class="st">"</span></span>
+<span id="cb47-14"><a href="#cb47-14" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Line number:  </span><span class="va">$line_nr</span><span class="st">"</span></span>
+<span id="cb47-15"><a href="#cb47-15" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span></span>
+<span id="cb47-16"><a href="#cb47-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-17"><a href="#cb47-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Print 1 specific line from the input file and redirect to an output file</span></span>
+<span id="cb47-18"><a href="#cb47-18" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-n</span> <span class="st">"</span><span class="va">$line_nr</span><span class="st">"</span> <span class="st">"</span><span class="va">$input_file</span><span class="st">"</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> 1 <span class="op">&gt;</span> <span class="va">$output_file</span></span>
+<span id="cb47-19"><a href="#cb47-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-20"><a href="#cb47-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Final logging</span></span>
+<span id="cb47-21"><a href="#cb47-21" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Listing the output file:"</span></span>
+<span id="cb47-22"><a href="#cb47-22" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span> <span class="st">"</span><span class="va">$output_file</span><span class="st">"</span></span>
+<span id="cb47-23"><a href="#cb47-23" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Done with script printline.sh"</span></span>
+<span id="cb47-24"><a href="#cb47-24" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>To run the script with the additional argument:</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> sandbox/printline.sh metadata/meta.tsv sandbox/meta_line.tsv 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> sandbox/printline.sh metadata/meta.tsv sandbox/meta_line.tsv 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code># Starting script printline.sh
-Wed Aug 16 21:27:48 EDT 2023
+Tue Mar 26 15:14:48 EDT 2024
 # Input file:   metadata/meta.tsv
 # Output file:  sandbox/meta_line.tsv
 # Line number:  4
 
 # Listing the output file:
--rw-r--r-- 1 jelmer PAS0471 22 Aug 16 21:27 sandbox/meta_line.tsv
+-rw-r--r-- 1 jelmer PAS0471 22 Mar 26 21:27 sandbox/meta_line.tsv
 # Done with script printline.sh
-Wed Aug 16 21:27:48 EDT 2023</code></pre>
-</div>
-</div>
-</div>
+Tue Mar 26 15:14:48 EDT 2024</code></pre>
+</details>
 </section>
+<p><br></p>
 
 
 </section>

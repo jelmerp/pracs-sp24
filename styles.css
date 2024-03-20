@@ -64,20 +64,15 @@
   border-radius: 25px;
 }
 
-/*
-.exercise {
-padding-left: 65px;
-  background-image: url("img/puzzle-div.png");
-  background-size: 45px;
-  background-repeat: no-repeat;
-  background-position: 10px center;
-  min-height: 80px;
-  background-color: #DFDCE0;
-}
-*/
-
 figure figcaption {
     text-align: center;
+}
+
+.legend2 {
+  text-align: center !important;
+  color: #bebfc2 !important;
+  font-size: 0.9em !important; 
+  font-style: italic !important; 
 }
 
 /* --------------------------------------------------------------------------/*
@@ -87,10 +82,9 @@ details > summary {
   padding-right: 10px;
   padding-bottom: 4px;
   padding-left: 10px;
-  background-color: #EDEFE8; /* #f1f6f1; F4F4F4;
+  background-color: #EDEFE8;
   border: none;
   border-radius: 25px;
-  /*box-shadow: 3px 3px 4px black;*/
 }
 
 details {

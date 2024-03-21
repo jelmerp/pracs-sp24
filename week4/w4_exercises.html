@@ -6,6 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Jelmer Poelstra">
+<meta name="dcterms.date" content="2024-03-25">
 
 <title>PRACS24: Week 4 exercises</title>
 <style>
@@ -331,7 +333,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#exercise-1-a-script-to-print-a-specific-line" id="toc-exercise-1-a-script-to-print-a-specific-line" class="nav-link active" data-scroll-target="#exercise-1-a-script-to-print-a-specific-line">Exercise 1: A script to print a specific line</a></li>
+  <li><a href="#exercise-2-a-script-to-run-trimgalore" id="toc-exercise-2-a-script-to-run-trimgalore" class="nav-link" data-scroll-target="#exercise-2-a-script-to-run-trimgalore">Exercise 2: A script to run TrimGalore</a>
+  <ul class="collapse">
+  <li><a href="#introduction-to-trimgalore" id="toc-introduction-to-trimgalore" class="nav-link" data-scroll-target="#introduction-to-trimgalore">Introduction to TrimGalore</a></li>
+  <li><a href="#part-i-write-your-trimgalore-script" id="toc-part-i-write-your-trimgalore-script" class="nav-link" data-scroll-target="#part-i-write-your-trimgalore-script">Part I: Write your TrimGalore script</a></li>
+  <li><a href="#part-ii-improve-your-trimgalore-script-optional" id="toc-part-ii-improve-your-trimgalore-script-optional" class="nav-link" data-scroll-target="#part-ii-improve-your-trimgalore-script-optional">Part II: Improve your TrimGalore script (optional)</a></li>
+  <li><a href="#part-iii-run-the-trimgalore-script-for-all-samples" id="toc-part-iii-run-the-trimgalore-script-for-all-samples" class="nav-link" data-scroll-target="#part-iii-run-the-trimgalore-script-for-all-samples">Part III: Run the TrimGalore script for all samples</a></li>
+  </ul></li>
+  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions">Solutions</a>
+  <ul class="collapse">
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -345,7 +365,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jelmer Poelstra </p>
+          </div>
+  </div>
     
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 25, 2024</p>
+    </div>
+  </div>
   
     
   </div>
@@ -355,26 +387,59 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+This page is still under construction.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
 <hr>
-<p><br></p>
-<p>Write a script to run the tool TrimGalore.</p>
-<section id="exercise-a-script-to-print-a-specific-line" class="level4 unnumbered exercise">
-<h4 class="unnumbered anchored" data-anchor-id="exercise-a-script-to-print-a-specific-line"><i class="fa-solid fa-user-edit" aria-label="user-edit"></i> Exercise: A script to print a specific line</h4>
-<p>Write a script that prints a specific line (identified by line number) from a file.</p>
+<hr style="height:1pt; visibility:hidden;">
+<section id="setting-up" class="level4">
+<h4 class="anchored" data-anchor-id="setting-up">Setting up</h4>
+<p>Start a VS Code session at OSC in the folder <code>/fs/ess/PAS2700/users/$USER</code>. In the terminal, create and move into a dir for these exercises:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (Assuming you are in /fs/ess/PAS2700/users/$USER)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> week04/exercises</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> week04/exercises</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>For your scripts, create files with the extension <code>.sh</code>, and open and edit them in the VS Code editor pane.</p>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+<section id="exercise-1-a-script-to-print-a-specific-line" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1-a-script-to-print-a-specific-line">Exercise 1: A script to print a specific line</h2>
+<p>Write a shell script that accepts a file name and a line number as arguments, and prints the requested line to screen.</p>
+<p>Additional notes:</p>
 <ul>
-<li>Open a new file and save it as <code>sandbox/printline.sh</code>.</li>
-<li>Start with the <em>shebang</em> and <code>set</code> lines.</li>
-<li>Your script takes two arguments: a file name (<code>$1</code>) and a line number (<code>$2</code>) .</li>
-<li>Copy the <code>$1</code> and <code>$2</code> variables to descriptively named variables.</li>
-<li>To print a specific line, think how you might combine <code>head</code> and <code>tail</code> to do this. If you’re at a loss, feel free to check out the top solution box.</li>
-<li>Test the script by printing line 4 from <code>metadata/meta.tsv</code>.</li>
+<li>As a simple utility script, I would suggest to make it not print anything else (no <code>echo</code> statements).</li>
+<li>Don’t forget the best-practice shell script header lines we discussed.</li>
+<li>Let the script check whether the correct number of arguments were passed to it, and if not, exit the script.</li>
+<li>Test your script by printing a couple of different lines from <code>../garrigos_data/meta/metadata.tsv</code>. Also test that your argument-number check works.</li>
 </ul>
 <details>
 <summary>
-Hint: how to print a specific line number <em>(Click to expand)</em>
+Hint 1: an overview of the steps to take <em>(Click to expand)</em>
+</summary>
+<ul>
+<li>Open a new text file and save it as e.g.&nbsp;<code>scripts/printline.sh</code>.</li>
+<li>Start with the <em>shebang</em> and <code>set</code> lines.</li>
+<li>Your script takes two arguments: a file name (<code>$1</code>) and a line number (<code>$2</code>) .</li>
+<li>Check the number of arguments in an <code>if</code> statement like we did in class.</li>
+<li>Copy the <code>$1</code> and <code>$2</code> variables to descriptively named variables.</li>
+<li>To print a specific line, think how you might combine <code>head</code> and <code>tail</code> to do this. If you’re at a loss, feel free to check out the top solution box.</li>
+</ul>
+</details>
+<details>
+<summary>
+Hint 2: how to print a specific line number <em>(Click to expand)</em>
 </summary>
 <p>For example, to print line 4 of <code>metadata/meta.tsv</code> directly:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-n</span> 4 metadata/meta.tsv <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-n</span> 4 metadata/meta.tsv <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>How this command works:</p>
 <ul>
 <li><code>head -n 4 metadata/meta.tsv</code> will print the first 4 lines of <code>metadata/meta.tsv</code></li>
@@ -382,26 +447,138 @@ Hint: how to print a specific line number <em>(Click to expand)</em>
 <li>We ask <code>tail</code> to just print the last line of its input, which will in this case be line 4 of the original input file.</li>
 </ul>
 </details>
+<p><br></p>
+</section>
+<section id="exercise-2-a-script-to-run-trimgalore" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2-a-script-to-run-trimgalore">Exercise 2: A script to run TrimGalore</h2>
+<section id="introduction-to-trimgalore" class="level3">
+<h3 class="anchored" data-anchor-id="introduction-to-trimgalore">Introduction to TrimGalore</h3>
+<p>TrimGalore is a tool that can trim and filter FASTQ files, removing:</p>
+<ul>
+<li>Any adapter sequences that are present in the reads</li>
+<li>Poor-quality bases at the start and end of the reads</li>
+<li>Reads that have become very short after the prior two steps</li>
+</ul>
+<p>Both the input and output of TrimGalore are FASTQ files. When you have paired-end reads (as you do with the Garrigos dataset you’ll continue to use), a single TrimGalore run should be done with both the R1 and R2 files.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+More about TrimGalore <em>(Click to expand)</em>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Several largely equivalent tools exist for this kind of FASTQ preprocessing — <em>Trimmomatic</em> and <em>fastp</em> are two other commonly used ones. <em>TrimGalore</em> itself is “just” a wrapper around another tool called <em>CutAdapt</em>, but it is simpler to use. Two advantages of of <em>TrimGalore</em> are that it will auto-detect the adapters that are present in your reads, and that it can automatically run <em>FastQC</em> on the processed sequences.</p>
+</div>
+</div>
+</div>
+<p>TrimGalore isn’t installed at OSC, but you can use a so-called “<em>Conda</em> environment” that I have created for it<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First load OSC's (mini)Conda module</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load miniconda3</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Then load ('activate') the Conda environment with TrimGalore</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> activate /fs/ess/PAS0471/jelmer/conda/trimgalore</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Check that you can run it as follows:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">trim_galore</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>            Quality-/Adapter-/RRBS-/Speciality-Trimming
+                    [powered by Cutadapt]
+                        version 0.6.10
+
+                    Last update: 02 02 2023</code></pre>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+<section id="part-i-write-your-trimgalore-script" class="level3">
+<h3 class="anchored" data-anchor-id="part-i-write-your-trimgalore-script">Part I: Write your TrimGalore script</h3>
+<p>Write a script that runs TrimGalore as follows (Check the help with <code>trim_galore --help</code> to figure out how!):</p>
+<ul>
+<li><p>For <strong>one sample at a time</strong>, passing both an R1 and its corresponding R2 file as arguments to <code>trim_galore</code>.</p></li>
+<li><p>Your <strong>script should accept and process arguments</strong> to set the FASTQ files and the output dir. For the FASTQ files, I suggest you follow the strategy <a href="w4_2_cli-tools.html#looping-over-samples-rather-than-files">used in class</a> where the script takes only an R1 file name as an argument<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, and you infer the name of the corresponding R2 file name in the script.</p></li>
+<li><p>Figure out which TrimGalore option tells the program that the reads are <strong>paired-end</strong>, and use that option.</p></li>
+<li><p>Figure out how you can set the <strong>output dir</strong> and use that option.</p></li>
+</ul>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+<section id="part-ii-improve-your-trimgalore-script-optional" class="level3">
+<h3 class="anchored" data-anchor-id="part-ii-improve-your-trimgalore-script-optional">Part II: Improve your TrimGalore script (optional)</h3>
+<p><em>(Even if you skip this part, do move on to Part III!)</em></p>
+<ul>
+<li><p>Get TrimGalore to automatically run FastQC on the trimmed FASTQ files.</p></li>
+<li><p>Take a look at what the default values are for the Phred quality score and read length thresholds. Do you understand what these do? You don’t have to change them here, the defaults will work fine for us.</p></li>
+<li><p>Annoyingly, the TrimGalore output FASTQ files are oddly named: <code>"$file_id"_R1_val_1.fq.gz</code> and <code>"$file_id"_R1_val_1.fq.gz</code>. In the script, after you run TrimGalore, rename the output files. I would suggest to use the exact same file names as the input files; alternatively, add a <code>_trimmed</code> marker.</p></li>
+<li><p>If you rename the output files to have the exact same file names as the input files, then it is critically important that output dir is not the same as the input dir. Otherwise, your renaming would overwrite the original input files! To prevent this from ever happening, include an <code>if</code> statement in your script that tests whether the input dir is the same as the output dir, and exits if it is.</p></li>
+</ul>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Cores: don’t use TrimGalore’s <code>--cores</code> option here <em>(Click to expand)</em>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Since you’re running the program interactively on our single-core VS Code compute job, we only have 1 core at our disposal and that’s TrimGalore’s default. Next week we’ll be submitting our scripts as batch jobs: that will give us the opportunity to use multiple cores with programs like this.</p>
+</div>
+</div>
+</div>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+<section id="part-iii-run-the-trimgalore-script-for-all-samples" class="level3">
+<h3 class="anchored" data-anchor-id="part-iii-run-the-trimgalore-script-for-all-samples">Part III: Run the TrimGalore script for all samples</h3>
+<p>Create a “runner” script and in it, write a <code>for</code> loop to run your TrimGalore script on all samples.</p>
+<p><br></p>
+</section>
+</section>
+<section id="solutions" class="level2">
+<h2 class="anchored" data-anchor-id="solutions">Solutions</h2>
+<section id="exercise-1" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-1">Exercise 1</h3>
 <details>
 <summary>
 Solution <em>(Click to expand)</em>
 </summary>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="va">input_file</span><span class="op">=</span><span class="va">$1</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="va">line_nr</span><span class="op">=</span><span class="va">$2</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-n</span> <span class="st">"</span><span class="va">$line_nr</span><span class="st">"</span> <span class="st">"</span><span class="va">$input_file</span><span class="st">"</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the number of command-line arguments</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="ot">!</span> <span class="st">"</span><span class="va">$#</span><span class="st">"</span> <span class="ot">-eq</span> 2 <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Error: wrong number of arguments"</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"You provided </span><span class="va">$#</span><span class="st"> arguments, while 2 are required."</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Usage: printline.sh &lt;first-name&gt; &lt;last-name&gt;"</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">exit</span> 1</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy the command-line arguments</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="va">input_file</span><span class="op">=</span><span class="va">$1</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="va">line_nr</span><span class="op">=</span><span class="va">$2</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Only print the requested line</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-n</span> <span class="st">"</span><span class="va">$line_nr</span><span class="st">"</span> <span class="st">"</span><span class="va">$input_file</span><span class="st">"</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>To run the script and make it print the 4th line of <code>meta.tsv</code>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> sandbox/printline.sh metadata/meta.tsv 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> sandbox/printline.sh metadata/meta.tsv 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>ASPC1_G31V      ASPC1   G31V</code></pre>
 </details>
 </section>
+<section id="exercise-2" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-2">Exercise 2</h3>
 
 
+</section>
+</section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>More about Conda environments next week<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p> Alternatively, it could take both R1 and R2 files as arguments.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

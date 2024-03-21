@@ -520,16 +520,16 @@ Bash vs.&nbsp;shell
 <h3 data-number="2.1" class="anchored" data-anchor-id="a-one-line-script-to-start"><span class="header-section-number">2.1</span> A one-line script to start</h3>
 <p>Create your first script, <code>printname.sh</code> (note that shell scripts usually have the extension <code>.sh</code>) as follows:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First, let's create and move into a new dir</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> week04/lectures</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> week04/lectures</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> week04/scripts</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> week04</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an empty file</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> printname.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> scripts/printname.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>A nice VS Code trick is that is if you hold <kbd>Ctrl</kbd> (<kbd>Cmd</kbd> on Mac) while hovering over a file path in the terminal, the path should become underlined and you can click on it to open the file. Try that with the <code>printname.sh</code> script<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
 <p>Once the file is open in your editor pane, type or paste the following inside the script:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"This script will print a first and a last name"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Shell scripts mostly contain the same regular Unix shell code that we have gotten familiar with, but have so far directly typed in the terminal. As such, our single line with an <code>echo</code> command <em>constitutes a functional shell script</em>!</p>
 <p>One way of running the script is by typing <code>bash</code> followed by the path to the script:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> printname.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/printname.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>This script will print a first and a last name</code></pre>
 <p>That worked! The script doesn’t yet print any names like it “promises” to do, but we will add that functionality in a little bit. But first, we’ll learn about two header lines that are good practice to add to every shell script.</p>
 <hr style="height:1pt; visibility:hidden;">
@@ -635,7 +635,7 @@ Above, the text specified the <em>intent</em> of the commands. What would have a
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"This script will print a first and a last name"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>And run the script again:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> printname.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/printname.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>This script will print a first and a last name</code></pre>
 <p>That didn’t change anything to the output, but at least we confirmed that the script still works.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -680,11 +680,11 @@ Can I run scripts without the <code>bash</code> command? <em>(Click to expand)</
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Run scripts without any arguments:</span></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/fastqc.sh</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> printname.sh</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/printname.sh</span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Run scripts with 1 or 2 arguments:</span></span>
 <span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/fastqc.sh data/sampleA.fastq.gz  <span class="co"># 1 argument: a filename</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> printname.sh John Doe                    <span class="co"># 2 arguments: strings representing names</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/printname.sh John Doe                    <span class="co"># 2 arguments: strings representing names</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In the next section, we’ll see what happens with the arguments we pass to a script inside that script.</p>
 <hr style="height:1pt; visibility:hidden;">
 </section>
@@ -704,7 +704,7 @@ Can I run scripts without the <code>bash</code> command? <em>(Click to expand)</
 <hr style="height:1pt; visibility:hidden;">
 <ul>
 <li><p>In <code>bash scripts/fastqc.sh data/sampleA.fastq.gz</code>, a single argument, <code>data/sampleA.fastq.gz</code>, is passed to the script, and will be assigned to <code>$1</code>.</p></li>
-<li><p>In <code>bash printname.sh John Doe</code>, two arguments are passed to the script: the first one (<code>John</code>) will be stored in <code>$1</code>, and the second one (<code>Doe</code>) in <code>$2</code>.</p></li>
+<li><p>In <code>bash scripts/printname.sh John Doe</code>, two arguments are passed to the script: the first one (<code>John</code>) will be stored in <code>$1</code>, and the second one (<code>Doe</code>) in <code>$2</code>.</p></li>
 </ul>
 </details>
 <hr style="height:1pt; visibility:hidden;">
@@ -719,7 +719,7 @@ Can I run scripts without the <code>bash</code> command? <em>(Click to expand)</
 <span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co"># (Note: this is a script. Don't enter this directly in your terminal.)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Next, we’ll <em>run</em> the script, passing the arguments <code>John</code> and <code>Doe</code>:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> printname.sh John Doe</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/printname.sh John Doe</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>This script will print a first and a last name
 First name: John
 Last name: Doe</code></pre>
@@ -735,7 +735,7 @@ Last name: Doe</code></pre>
 Click here for the solution
 </summary>
 <p>The script will error out because we are referencing variables that don’t exist: since we didn’t pass command-line arguments to the script, the <code>$1</code> and <code>$2</code> have not been set.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> printname.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/printname.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>printname.sh: line 4: $1: unbound variable</code></pre>
 </details>
 <ol start="2" type="1">
@@ -754,21 +754,21 @@ Click here to learn what “commenting out” means
 Click here for the solution
 </summary>
 <p>The script will run in its entirety and not throw any errors, because we are now using default Bash settings such that referencing non-existent variables does not throw an error. Of course, no names are printed either, since we didn’t specify any:</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> printname.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/printname.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>echo "First name:"
 echo "Last name:"</code></pre>
 <p>Being “commented out”, the <code>set</code> line should read:</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co">#set -euo pipefail</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <ol start="3" type="1">
-<li>Double-quoting the entire name when you run the script, e.g.: <code>bash printname.sh "John Doe"</code>.</li>
+<li>Double-quoting the entire name when you run the script, e.g.: <code>bash scripts/printname.sh "John Doe"</code>.</li>
 </ol>
 <details>
 <summary>
 Click here for the solution
 </summary>
 <p>Because we are quoting <code>"John Doe"</code>, both names are passed <em>as a single argument</em> and both names end up in <code>$1</code>, the “first name”:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> printname.sh <span class="st">"John Doe"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/printname.sh <span class="st">"John Doe"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>echo "First name: John Doe"
 echo "Last name:"</code></pre>
 </details>
@@ -1207,14 +1207,14 @@ Click for the solution
 <span id="cb69-15"><a href="#cb69-15" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"First name: </span><span class="va">$first_name</span><span class="st">"</span></span>
 <span id="cb69-16"><a href="#cb69-16" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Last name: </span><span class="va">$last_name</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Run it with different numbers of arguments:</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> printname.sh Jelmer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/printname.sh Jelmer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>Error: wrong number of arguments
 You provided 1 arguments, while 2 are required.
 Usage: printname.sh &lt;first-name&gt; &lt;last-name&gt;</code></pre>
-<div class="sourceCode" id="cb72"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> printname.sh Jelmer Poelstra</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/printname.sh Jelmer Poelstra</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>First name: Jelmer
 Last name: Poelstra</code></pre>
-<div class="sourceCode" id="cb74"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> printname.sh Jelmer Wijtze Poelstra</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb74"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/printname.sh Jelmer Wijtze Poelstra</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>Error: wrong number of arguments
 You provided 3 arguments, while 2 are required.
 Usage: printname.sh &lt;first-name&gt; &lt;last-name&gt;</code></pre>

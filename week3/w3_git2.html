@@ -417,11 +417,11 @@ Getting set up at OSC
 <p>So far, we have been locally version-controlling our <code>originspecies</code> repository. Now, we also want to put this repo online, so we can:</p>
 <ul>
 <li>Share our work (e.g.&nbsp;alongside a publication) and/or</li>
-<li>Collaborate with others and/or</li>
-<li>Have an online backup.</li>
+<li>Have an online backup and/or</li>
+<li>Collaborate with others<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</li>
 </ul>
-<p>We will use the <strong>GitHub website</strong><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> as the place to host our online repositories. Online counterparts of our local repositories are usually referred to as “remote repositories” or simple “<strong>remotes</strong>”.</p>
-<p>Using remote repositories will add a couple of Git commands to our toolbox:</p>
+<p>We will use the <strong>GitHub website</strong> as the place to host our online repositories. Online counterparts of local repositories are usually referred to as “remote repositories” or simply “<strong>remotes</strong>”.</p>
+<p>Using remote repositories will mean adding a couple of Git commands to our toolbox:</p>
 <ul>
 <li><strong><code>git remote</code></strong> to add and manage connections to remotes.</li>
 <li><strong><code>git push</code></strong> to upload (“push”) changes from local to remote.</li>
@@ -469,8 +469,8 @@ The key's randomart image is:
 <li><p>Click the green <code>New SSH key</code> button.</p></li>
 <li><p>In the form (see screenshot below):</p>
 <ul>
-<li>Give the key an arbitrary, informative name, e.g.&nbsp;“OSC” to indicate that you are using this key at OSC.</li>
-<li>Paste the public key, which you copied to your clipboard earlier, into the box.</li>
+<li>Give the key an arbitrary, informative “Title” (name), e.g.&nbsp;“OSC” to indicate that you will use this key at OSC.</li>
+<li>Paste the public key, which you copied to your clipboard earlier, into the “Key” box.</li>
 <li>Click the green <code>Add SSH key</code> button. Done!</li>
 </ul></li>
 </ol>
@@ -480,8 +480,16 @@ The key's randomart image is:
 </figure>
 </div>
 <hr style="height:1pt; visibility:hidden;">
-<section id="authentication-and-github-urls" class="level4">
-<h4 class="anchored" data-anchor-id="authentication-and-github-urls">Authentication and GitHub URLs</h4>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Authentication and GitHub URLs
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>The current two options to authenticate to GitHub when connecting with remotes are:</p>
 <ul>
 <li><code>SSH</code> access with an <em>SSH key</em> (which we have just set up)</li>
@@ -490,14 +498,14 @@ The key's randomart image is:
 <p>For everything on GitHub, <strong>there are separate SSH and HTTPS URLs</strong>. When using <code>SSH</code> (as we are), we need to use URLs with the following format:</p>
 <pre class="bash-out-solo"><code>git@github.com:&lt;USERNAME&gt;/&lt;REPOSITORY&gt;.git</code></pre>
 <p>(And when using <code>HTTPS</code>, you would use URLs like <code>https://github.com/&lt;USERNAME&gt;/&lt;REPOSITORY&gt;.git</code>)</p>
+</div>
+</div>
 <hr style="height:1pt; visibility:hidden;">
-</section>
 </section>
 <section id="create-a-remote-repository" class="level3" data-number="1.2">
 <h3 data-number="1.2" class="anchored" data-anchor-id="create-a-remote-repository"><span class="header-section-number">1.2</span> Create a remote repository</h3>
 <p>While we can <em>interact</em> with online repos using Git commands, we can’t <em>create</em> a new online repo with the Git CLI. Therefore, we will to go to the GitHub website to create a new online repo:</p>
 <ol type="1">
-<li>Go to <a href="https://github.com" class="uri">https://github.com</a> and sign in.</li>
 <li>On the GitHub website, click the <strong><code>+</code></strong> next to your avatar (top-right) and select “<strong>New repository</strong>”:</li>
 </ol>
 <div class="quarto-figure quarto-figure-center">
@@ -505,7 +513,7 @@ The key's randomart image is:
 <p><img src="img/github-newrepo-button2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
 </figure>
 </div>
-<ol start="3" type="1">
+<ol start="2" type="1">
 <li>In the box “<strong>Repository name</strong>”, we’ll use the same name that we gave to our local directory: <code>originspecies</code><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</li>
 </ol>
 <div class="quarto-figure quarto-figure-center">
@@ -513,7 +521,7 @@ The key's randomart image is:
 <p><img src="img/github-newrepo-name2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:45.0%"></p>
 </figure>
 </div>
-<ol start="4" type="1">
+<ol start="3" type="1">
 <li>Leave other options as they are, as shown below, and click “<strong>Create repository</strong>”:</li>
 </ol>
 <div class="quarto-figure quarto-figure-center">
@@ -565,7 +573,7 @@ Pushing will be easier from now on
 <p>Because we only have one remote connection and one branch, we can from now on simply use the following to push:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
-<p>Also, you can check your remote connection settings for a repo with <code>git remote -v</code>:</p>
+<p>Also, note that you can check your remote connection settings for a repo with <code>git remote -v</code>:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>origin  git@github.com:jelmerp/originspecies.git (fetch)
 origin  git@github.com:jelmerp/originspecies.git (push)</code></pre>
@@ -576,7 +584,7 @@ origin  git@github.com:jelmerp/originspecies.git (push)</code></pre>
 </section>
 <section id="explore-the-repository-on-github" class="level3" data-number="1.4">
 <h3 data-number="1.4" class="anchored" data-anchor-id="explore-the-repository-on-github"><span class="header-section-number">1.4</span> Explore the repository on GitHub</h3>
-<p>Back at GitHub, click where it says <code>&lt;&gt; Code</code> in the lower of the top bars:</p>
+<p>Back at GitHub on your repo page, click where it says <code>&lt;&gt; Code</code> in the lower of the top bars:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/github-code-button.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:40.0%"></p>
@@ -747,7 +755,7 @@ Want to collaborate on repositories?
 
 <ol>
 <li id="fn1"><p>Note that Git is available at OSC even without loading this module, but that’s a <em>much</em> older version.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p> GitHub is the most widely used but not the only website that hosts Git repositories – others include <em>GitLab</em>, <em>Bitbucket</em>, and <em>SourceForge</em>.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p> We will not cover collaboration workflows in class, though – see the <a href="w3_git3.html#collaboration-with-git-multi-user-remote-workflows">bonus material</a> for this.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>Though note that these names don’t <em>have to</em> match up.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p> Though we can skip the second one, <code>git branch -M main</code>, since our branch is already called “main”.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn5"><p> To learn more about branches, see the <a href="../week3/w3_git3.html">Git bonus material</a>.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>

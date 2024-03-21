@@ -553,6 +553,20 @@ Authentication and GitHub URLs
 <li><p>Second, we upload (“push”) our local repo to remote using <strong><code>git push</code></strong>. When we push a repository for the first time, we need to use the <code>-u</code> option to set up an “<strong>u</strong>pstream” counterpart:</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># git push -u &lt;connection&gt; &lt;branch&gt;</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>You should then get a message like this: type <code>yes</code> and press <kbd>Enter</kbd>.</p>
+<pre class="bash-out-solo"><code>The authenticity of host 'github.com (140.82.114.4)' can't be established.
+ECDSA key fingerprint is SHA256:p2QAMXNIC1TJYWeIOttrVc98/R1BUFWu3/LiyKgUfQM.
+ECDSA key fingerprint is MD5:7b:99:81:1e:4c:91:a5:0d:5a:2e:2e:80:13:3f:24:ca.
+Are you sure you want to continue connecting (yes/no)?</code></pre></li>
+<li><p>Then, the push/upload should go through, with a message along these lines printed to screen:</p>
+<pre class="bash-out-solo"><code>Counting objects: 18, done.
+Delta compression using up to 40 threads.
+Compressing objects: 100% (12/12), done.
+Writing objects: 100% (18/18), 1.67 KiB | 0 bytes/s, done.
+Total 18 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas: 100% (1/1), done.
+remote: To git@github.com:jelmerp/originspecies2.git
+* [new branch]      main -&gt; main</code></pre></li>
 </ol>
 <hr style="height:1pt; visibility:hidden;">
 <div class="callout callout-style-default callout-note callout-titled">
@@ -571,10 +585,10 @@ Pushing will be easier from now on
 <li>To &amp; from the <strong>currently active repository <em>“branch”</em></strong> (default: <code>main</code>)<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>.</li>
 </ul>
 <p>Because we only have one remote connection and one branch, we can from now on simply use the following to push:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 <p>Also, note that you can check your remote connection settings for a repo with <code>git remote -v</code>:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote <span class="at">-v</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>origin  git@github.com:jelmerp/originspecies.git (fetch)
 origin  git@github.com:jelmerp/originspecies.git (push)</code></pre>
 <hr style="height:1pt; visibility:hidden;">
@@ -706,16 +720,22 @@ When you hand in your final project submissions, you will create an issue simply
 <p>In a single-user workflow with a remote, you commit just like you would without a remote in your day-to-day work, and in addition, <em>push</em> to remote occasionally — let’s run through an example.</p>
 <ul>
 <li><p>Start by creating a <code>README.md</code> file for your repo:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Origin"</span> <span class="op">&gt;</span> README.md</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Repo for book draft on my new **theory**"</span> <span class="op">&gt;&gt;</span> README.md</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Origin"</span> <span class="op">&gt;</span> README.md</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Repo for book draft on my new **theory**"</span> <span class="op">&gt;&gt;</span> README.md</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Add and commit the file:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Added a README file"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Added a README file"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>[main 63ce484] Added a README file
 1 file changed, 2 insertions(+)
 create mode 100644 README.md</code></pre></li>
-<li><p>Now, push to the remote repository:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<li><p>If you now run <code>git status</code>, you’ll see that Git knows that your local repo is now one commit “ahead” of its remote counterpart:</p>
+<pre class="bash-out"><code>On branch main
+Your branch is ahead of 'origin/main' by 1 commit.
+(use "git push" to publish your local commits)
+
+nothing to commit, working tree clean</code></pre></li>
+<li><p>But Git will not automatically sync. So now, push to the remote repository:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>Counting objects: 4, done.
 Delta compression using up to 40 threads.
 Compressing objects: 100% (3/3), done.

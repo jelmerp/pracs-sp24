@@ -364,8 +364,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#recovering-a-version-from-the-repo" id="toc-recovering-a-version-from-the-repo" class="nav-link" data-scroll-target="#recovering-a-version-from-the-repo"><span class="header-section-number">8.1</span> Recovering a version from the repo</a></li>
   <li><a href="#unstaging-a-file" id="toc-unstaging-a-file" class="nav-link" data-scroll-target="#unstaging-a-file"><span class="header-section-number">8.2</span> Unstaging a file</a></li>
-  <li><a href="#undoing-staged-changes" id="toc-undoing-staged-changes" class="nav-link" data-scroll-target="#undoing-staged-changes"><span class="header-section-number">8.3</span> Undoing staged changes</a></li>
   </ul></li>
+  <li><a href="#some-git-best-practices" id="toc-some-git-best-practices" class="nav-link" data-scroll-target="#some-git-best-practices"><span class="header-section-number">9</span> Some Git best-practices</a></li>
   </ul>
 </nav>
     </div>
@@ -423,6 +423,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li>Showing changes between files</li>
 <li>Making Git ignore specific files and dirs</li>
 <li>Undoing accidental changes to your files</li>
+<li>Some Git best practices</li>
 </ul>
 <p><br></p>
 </section>
@@ -1285,9 +1286,10 @@ Click to see the solution
 <section id="recovering-a-version-from-the-repo" class="level3" data-number="8.1">
 <h3 data-number="8.1" class="anchored" data-anchor-id="recovering-a-version-from-the-repo"><span class="header-section-number">8.1</span> Recovering a version from the repo</h3>
 <p>We’ll practice with undoing changes to your working dir (that have not been staged) by recovering a version from the repo: in other words, using Git as an “undo button” after accidental file changes or removal.</p>
-<p>Let’s say you <strong>accidentally overwrote</strong> instead of appended to a file:</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Finish the taxidermy of the finches from Galapagos"</span> <span class="op">&gt;</span> todo.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Always start by checking the status:</p>
+<ol type="1">
+<li><p>Let’s say you <strong>accidentally overwrote</strong> instead of appended to a file:</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Finish the taxidermy of the finches from Galapagos"</span> <span class="op">&gt;</span> todo.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Always start by checking the status:</p>
 <div class="sourceCode" id="cb86"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>On branch main
 Changes not staged for commit:
@@ -1295,16 +1297,18 @@ Changes not staged for commit:
   (use "git restore &lt;file&gt;..." to discard changes in working directory)
         modified:   todo.txt
 
-no changes added to commit (use "git add" and/or "git commit -a")</code></pre>
-<p>You’ll want to “discard changes in working directory”, and Git told you how to do this — with <code>git restore</code>:</p>
-<div class="sourceCode" id="cb88"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore todo.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+no changes added to commit (use "git add" and/or "git commit -a")</code></pre></li>
+<li><p>You’ll want to “discard changes in working directory”, and Git told you how to do this — with <code>git restore</code>:</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore todo.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
 <hr style="height:1pt; visibility:hidden;">
 <p>If you <strong>accidentally deleted a file</strong>, you can similarly retrieve it with <code>git checkout</code>:</p>
-<div class="sourceCode" id="cb89"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Accidental removal of todo.txt</span></span>
-<span id="cb89-2"><a href="#cb89-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> todo.txt</span>
-<span id="cb89-3"><a href="#cb89-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb89-4"><a href="#cb89-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Use Git restore to get the file back!</span></span>
-<span id="cb89-5"><a href="#cb89-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore todo.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ol type="1">
+<li><p>Accidental removal of <code>todo.txt</code></p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb89-1"><a href="#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> todo.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Use <code>git restore</code> to get the file back!</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore todo.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ol>
 <hr style="height:1pt; visibility:hidden;">
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
@@ -1319,7 +1323,7 @@ Alternative, older command used in the CSB book: <code>git checkout</code> <em>(
 <div id="callout-13" class="callout-13-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Until recently, this action used to be done with with the <code>git checkout</code> command, for example:</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">--</span> README.md</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb91"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout <span class="at">--</span> README.md</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>git restore</code> is a relatively new command designed to avoid confusion with the <code>git checkout</code> and <code>git reset</code> commands, which have multiple functions. The CSB book still uses the <code>git checkout</code> command for a similar example<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a>.</p>
 </div>
 </div>
@@ -1328,23 +1332,24 @@ Alternative, older command used in the CSB book: <code>git checkout</code> <em>(
 </section>
 <section id="unstaging-a-file" class="level3" data-number="8.2">
 <h3 data-number="8.2" class="anchored" data-anchor-id="unstaging-a-file"><span class="header-section-number">8.2</span> Unstaging a file</h3>
-<p><code>git restore</code> can also <em>unstage</em> a file, which is most often needed when you added a file that was not supposed to be part of the next commit.</p>
-<p>For example, you modify two files and use <code>git add --all</code> — but then you realize that those two file changes should be part of separate commits:</p>
-<div class="sourceCode" id="cb91"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Variation under domestication"</span> <span class="op">&gt;&gt;</span> origin.txt</span>
-<span id="cb91-2"><a href="#cb91-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Prepare for the next journey"</span> <span class="op">&gt;&gt;</span> todo.txt</span>
-<span id="cb91-3"><a href="#cb91-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb91-4"><a href="#cb91-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add <span class="at">--all</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Again, check the status first:</p>
-<div class="sourceCode" id="cb92"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><code>git restore</code> can also <em>unstage</em> a file, which is most often needed when you added a file that was not supposed to be part of the next commit. For example:</p>
+<ol type="1">
+<li><p>You modify two files and use <code>git add --all</code>:</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb92-1"><a href="#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Variation under domestication"</span> <span class="op">&gt;&gt;</span> origin.txt</span>
+<span id="cb92-2"><a href="#cb92-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Prepare for the next journey"</span> <span class="op">&gt;&gt;</span> todo.txt</span>
+<span id="cb92-3"><a href="#cb92-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb92-4"><a href="#cb92-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add <span class="at">--all</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Then you realize that those two file changes should be part of separate commits. Again, check the status first:</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>On branch main
 Changes to be committed:
   (use "git restore --staged &lt;file&gt;..." to unstage)
         modified:   origin.txt
-        modified:   todo.txt</code></pre>
-<p>And use <code>git restore --staged</code> as suggested by Git:</p>
-<div class="sourceCode" id="cb94"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">--staged</span> todo.txt</span>
-<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+        modified:   todo.txt</code></pre></li>
+<li><p>And use <code>git restore --staged</code> as suggested by Git:</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb95-1"><a href="#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">--staged</span> todo.txt</span>
+<span id="cb95-2"><a href="#cb95-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-3"><a href="#cb95-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> status</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>On branch main
 Changes to be committed:
   (use "git restore --staged &lt;file&gt;..." to unstage)
@@ -1353,24 +1358,12 @@ Changes to be committed:
 Changes not staged for commit:
   (use "git add &lt;file&gt;..." to update what will be committed)
   (use "git restore &lt;file&gt;..." to discard changes in working directory)
-        modified:   todo.txt</code></pre>
+        modified:   todo.txt</code></pre></li>
+</ol>
 <p>Now, you can go ahead and add these changes to separate commits: see the exercise below.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note that in case you merely staged a file <em>prematurely</em>, you can just continue editing the file and re-add it.
-</div>
-</div>
-<div class="callout-body-container callout-body">
-
-</div>
-</div>
-<hr style="height:1pt; visibility:hidden;">
+<p>(Finally: in case you merely staged a file <em>prematurely</em>, you can just continue editing the file and re-add it.)</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-15-contents" aria-controls="callout-15" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-14-contents" aria-controls="callout-14" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1379,10 +1372,10 @@ Alternative, older command used in the CSB book: <code>git reset</code> <em>(Cli
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-15" class="callout-15-contents callout-collapse collapse">
+<div id="callout-14" class="callout-14-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Like with discarding changes in the working dir, this action used to be done with another command, this time <code>git reset</code>. For example:</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset HEAD README.md</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb97"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> reset HEAD README.md</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>The CSB book uses this but note that there is a mistake in the book: <code>git reset</code> will only unstage and <strong>not</strong> revert the file back to its state at the last commit. (<code>git reset --hard</code> <em>does</em> revert things back to the state of a desired commit, but only works on commits and not individual files.)</p>
 </div>
 </div>
@@ -1400,58 +1393,105 @@ Click for the solution
 </summary>
 <ol type="1">
 <li><p>Commit the currently staged changes to <code>origin.txt</code>.</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb97-1"><a href="#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Start writing about artificial selection"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb98"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Start writing about artificial selection"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Stage and commit the changes to <code>todo.txt</code>.</p>
-<div class="sourceCode" id="cb98"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add todo.txt</span>
-<span id="cb98-2"><a href="#cb98-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Update the TODO file"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb99"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add todo.txt</span>
+<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">"Update the TODO file"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ol>
 </details>
 </section>
 <hr style="height:1pt; visibility:hidden;">
-</section>
-<section id="undoing-staged-changes" class="level3" data-number="8.3">
-<h3 data-number="8.3" class="anchored" data-anchor-id="undoing-staged-changes"><span class="header-section-number">8.3</span> Undoing staged changes</h3>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Undoing staged changes
+</div>
+</div>
+<div class="callout-body-container callout-body">
 <p>What if you had made mistaken changes (like an accidental deletion) and also <em>staged</em> those changes? You can simply follow both of the two steps described above in order:</p>
 <ol type="1">
 <li>First unstage the file with <code>git restore --staged &lt;file&gt;</code>.</li>
 <li>Then discard changes in the working dir with <code>git restore &lt;file&gt;</code>.</li>
 </ol>
 <p>For instance, you overwrote the contents of the book and then staged the misshapen file:</p>
-<div class="sourceCode" id="cb99"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Instincts of the Cuckoo"</span> <span class="op">&gt;</span> origin.txt</span>
-<span id="cb99-2"><a href="#cb99-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add origin.txt</span>
-<span id="cb99-3"><a href="#cb99-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb99-4"><a href="#cb99-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> origin.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Instincts of the Cuckoo"</span> <span class="op">&gt;</span> origin.txt</span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add origin.txt</span>
+<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb100-4"><a href="#cb100-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> origin.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>Instincts of the Cuckoo</code></pre>
 <p>You can undo all of this as follows:</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb101-1"><a href="#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">--staged</span> origin.txt</span>
-<span id="cb101-2"><a href="#cb101-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore origin.txt</span>
-<span id="cb101-3"><a href="#cb101-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb101-4"><a href="#cb101-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> origin.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore <span class="at">--staged</span> origin.txt</span>
+<span id="cb102-2"><a href="#cb102-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> restore origin.txt</span>
+<span id="cb102-3"><a href="#cb102-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb102-4"><a href="#cb102-4" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> origin.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>On the Origin of Species
 Variation under domestication</code></pre>
-<hr style="height:1pt; visibility:hidden;">
+</div>
+</div>
+<p><br></p>
+</section>
+</section>
+<section id="some-git-best-practices" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="some-git-best-practices"><span class="header-section-number">9</span> Some Git best-practices</h2>
+<ul>
+<li><strong>Write informative commit messages.</strong><br>
+Imagine looking back at your project in a few months, after finding an error that you introduced a while ago.
+<ul>
+<li>Not-so-good commit message: “Updated file”</li>
+<li>Good commit message: “In file x, updated function y to include z”</li>
+</ul></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/xkcd-git-commit-msg.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+<figcaption><a href="https://xkcd.com/1296">Image source</a></figcaption>
+</figure>
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-16-contents" aria-controls="callout-16" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Alternative command: <code>git checkout</code> <em>(Click to expand)</em>
+Commit messages for the truly committed
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-16" class="callout-16-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>You can also do both of these steps in one fell swoop with <code>git checkout</code>:</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb103-1"><a href="#cb103-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> checkout HEAD <span class="at">--</span> README.md</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>However, be careful with the <code>git checkout</code> command. <code>git checkout</code> irrevocably discards non-committed changes. More broadly: your data is only safe with Git once it has been committed.</p>
+<p>It is often argued that commit messages should preferably be in the form of completing the sentence “<em>This commit will…</em>”: When adhering to this, the above commit message would instead say “<em>In file x, update function y to include z.</em>”.</p>
 </div>
+</div>
+<ul>
+<li><p><strong>Commit often, using small commits.</strong><br>
+This will also help to keep commit messages informative!</p></li>
+<li><p><strong>Before committing, check what you’ve changed.</strong><br>
+Use <code>git diff [--staged]</code> or VS Code functionality.</p></li>
+<li><p><strong>Avoid including unrelated changes in commits.</strong><br>
+Separate commits if your working dir contains work from disparate edits: use <code>git add</code> + <code>git commit</code> separately for two sets of files.</p></li>
+<li><p><strong>Don’t commit unnecessary files.</strong><br>
+These can also lead to conflicts — especially automatically generated, temporary files.</p></li>
+</ul>
+<hr style="height:1pt; visibility:hidden;">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+A more advanced tip: tags
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>If you have a repo with general scripts, which you continue to develop and use in multiple projects, and you publish a paper in which you use these scripts, it is a good idea to add a “<strong><em>tag</em></strong>” to a commit to mark the version of the scripts used in your analysis:</p>
+<div class="sourceCode" id="cb104"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> tag <span class="at">-a</span> v1.2.0 <span class="at">-m</span> <span class="st">"Clever release title"</span></span>
+<span id="cb104-2"><a href="#cb104-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">--follow-tags</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p><br></p>
 
 
-</section>
 </section>
 
 

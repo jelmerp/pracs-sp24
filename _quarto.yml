@@ -3,30 +3,122 @@ project:
   output-dir: docs
 
 website:
-  title: "Practical Computing Skills for Omics data"
-  site-url: https://jelmerp.github.io/cabana-workshop
-  repo-url: https://github.com/jelmerp/cabana-workshop
+  title: "pracs-sp24"
+  site-url: https://jelmerp.github.io/pracs-sp24
+  repo-url: https://github.com/jelmerp/pracs-sp24
   page-navigation: true
   back-to-top-navigation: true
   navbar:
     left:
-      - href: index.qmd
-        icon: house
-        text: " "
+      - text: Week overviews
+        menu: 
+        - text: Pre-course
+          href: week0/overview.qmd
+        - text: "Week 1: Course intro, OSC and shell basics"
+          href: week1/w1_overview.qmd
+        - text: "Week 2: Project organization, Markdown & files in the shell"
+          href: week2/w2_overview.qmd
+        - text: "Week 3: Git and GitHub"
+          href: week4/w4_overview.qmd
+        - text: "Week 4: Shell script and CLI tools"
+          href: week4/w4_overview.qmd
+      - text: "Lectures"
+        menu:
+        - text: "Week 1: Unix shell"
+        - text: "I: Course Intro (slides)"
+          href: week1/w1_course-intro.qmd
+        - text: "II: OSC Intro"
+          href: week1/w1_osc.qmd
+        - text: "III: Shell basics"
+          href: week1/w1_shell.qmd
+        - text: "--------"
+        - text: "Week 2: Project organization"
+        - text: "I: Project organization"
+          href: week2/w2_project-org.qmd
+        - text: "II: VS Code & Markdown"
+          href: week2/w2_vscode-markdown.qmd
+        - text: "III: Managing files in the shell"
+          href: week2/w2_shellfiles.qmd
+        - text: "--------"
+        - text: "Week 3: Git"
+        - text: "I: Getting started with Git"
+          href: week3/w3_git1.qmd
+        - text: "II: Git remotes on GitHub"
+          href: week3/w3_git2.qmd
+        - text: "(Git bonus material)"
+          href: week3/w3_git3.qmd
+        - text: "--------"
+        - text: "Week 4: Shell scripts"
+        - text: "I: Shell scripts"
+          href: week4/w4_1_scripts.qmd
+        - text: "II: Running CLI tools with shell scripts"
+          href: week4/w4_2_cli-tools.qmd
+        - text: "(Scripts bonus material)"
+          href: week4/w4_3_bonus.qmd
+      - text: "Homework"
+        menu:
+        - text: "Exercises"
+        - text: "Week 1: Shell basics"
+          href: week1/w1_exercises.qmd
+        - text: "Week 2: Markdown and files in the shell"
+          href: week2/w2_exercises.qmd
+        - text: "Week 3: Git and GitHub"
+          href: week3/w3_exercises.qmd
+        - text: "--------"
+        - text: "Assignments"
+        - text: "Pre-course: OSC account setup"
+          href: week0/osc-setup.qmd
+        - text: "Week 2: GitHub account"
+          href: week2/w2_github-account.qmd
+      - text: "Final project"
+        menu:
+        - text: "General info"
+          href: finalproj/info.qmd
+        - text: "I: Proposal (Due Apr 1)"
+          href: finalproj/proposal.qmd
+        - text: "II: Progress report (TBA) (Due Apr 8)"
+        - text: "III: Oral presentation (TBA) (Apr 18)"
+        - text: "IV: Final submission (TBA) (Due Apr 29)"
     right:
-      - about.qmd
+      - text: Reference pages
+        menu: 
+        - text: Glossary
+          href: ref/glossary.qmd
+        - text: "Unix shell"
+          href: ref/shell.qmd
+        - text: "Markdown (TBA)"
+        - text: "Git (TBA)"
+        - text: "Shell scripting (TBA)"
+        - text: "OSC, Slurm, and Conda (TBA)"
+        - text: "Nextflow (TBA)"
+        - text: List of Further Resources (TBA)
+      - text: About
+        href: about.qmd
+      - text: "{{< fa graduation-cap >}}"
+        href: https://osu.instructure.com/courses/163340
+      - text: "{{< fa desktop >}}"
+        href: https://ondemand.osc.edu
+      - text: "{{< fa book >}}"
+        href: https://library.ohio-state.edu/record=b8624007~S7
+      - text: "{{< fa book-open >}}"
+        href: https://library.ohio-state.edu/record=b9490023~S7
     tools:
       - icon: github
         menu:
           - text: Source Code
-            url:  https://github.com/jelmerp/cabana-workshop
+            url:  https://github.com/jelmerp/pracs-sp24
           - text: Report an Issue
-            url:  https://github.com/jelmerp/cabana-workshop/issues/new
+            url:  https://github.com/jelmerp/pracs-sp24/issues/new
+  page-footer:
+    left: "2024, Jelmer Poelstra"
+    right:
+      - icon: github
+        href: https://github.com/jelmerp/pracs-sp24
 
 format:
   html:
     highlight-style: atom-one
-    theme: yeti
+    theme: pulse
     css: styles.css
     toc: true
     number-sections: true
@@ -34,5 +126,9 @@ format:
     grid:
       body-width: 900px
 
-editor: source
+execute:
+  freeze: auto
+  
+engine: knitr
 
+editor: source

@@ -1,5 +1,55 @@
 ---
-title: "About this website"
+title: "About this site and course"
+author: Jelmer Poelstra
+date: 2024-02-19
+number-sections: false
 ---
 
-This the website for the course ...
+-----
+
+<hr style="height:1pt; visibility:hidden;" />
+
+This is the GitHub website for the course **Practical Computing Skills for Omics Data**
+(PLNTPTH 6193),
+a 2-credit Independent Studies course at Ohio State University during the Spring
+semester of 2024.
+
+The course is taught by by [Jelmer Poelstra](mailto:poelstra.1@osu.edu) from 
+OSU's [Molecular and Cellular Imaging Center (MCIC)](https://mcic.osu.edu)
+for the [Department of Plant Pathology](https://plantpath.osu.edu).
+
+<hr style="height:1pt; visibility:hidden;" />
+
+### Course description
+
+As datasets have rapidly grown larger in biology, coding has been recognized as an
+increasingly important skill for biologists. This is especially true in “omics” research with data from e.g. genomics and transcriptomics, which usually cannot be analyzed on a desktop computer, where most software has a command-line interface, and where workflows can include many steps that need to be coordinated.
+
+In this course, students will gain hands-on experience with a set of general and versatile tools for data-intensive research. The course will focus on foundational skills such as working in the Unix shell and writing shell scripts, installing software, and submitting jobs at a compute cluster (the Ohio Supercomputer Center), and building flexible, automated workflows. Additionally, the course will cover reproducibly organizing, documenting, and version-controlling research projects. Taken together, this course will allow students to reproduce their own research, and enable others to reproduce their research, with as little as a single command.
+
+<hr style="height:1pt; visibility:hidden;" />
+
+### More information
+
+#### Topics taught
+
+- Unix shell basics and tools
+- Shell scripting
+- Computing at OSC with Slurm batch jobs and Conda software management
+- Version control with Git and GitHub
+- Project documentation with Markdown and project organization
+- Reproducible workflows with Nextflow
+
+#### Course books
+
+- Allesina S, Wilmes M (2019).
+  *[Computing Skills for Biologists](https://library.ohio-state.edu/record=b8624007~S7)*.
+  Princeton UP.
+- Buffalo V (2015).
+  *[Bioinformatics Data Skills: Reproducible and Robust Research with Open Source Tools](https://library.ohio-state.edu/record=b9490023~S7)*.
+  O'Reilly Media, Inc.
+
+#### CarmenCanvas website
+
+If you are a student in this course, you should also refer to the
+[CarmenCanvas site for this course](https://osu.instructure.com/courses/163340).

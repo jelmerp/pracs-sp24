@@ -1,0 +1,98 @@
+---
+title: "Week 1: Course Intro & Shell Basics"
+author: Jelmer Poelstra
+date: 2024-02-25
+---
+
+---------
+
+<br>
+
+## Links
+
+#### Lecture pages
+
+- Tue: [**Course intro**](w1_course-intro.qmd) (slides)
+- Tue: [**OSC intro**](w1_osc.qmd)
+- Thu: [**Shell basics**](w1_shell.qmd)
+
+#### Exercises
+
+- [**Week 1 exercises**](w1_exercises.qmd)
+
+<hr style="height:1pt; visibility:hidden;" />
+
+::: callout-note
+#### Pre-course assignments (if you didn't do this already)
+
+- [Pre-course survey](https://forms.gle/vx2va7qfnNjRhg2M7)
+- [Get access to the Ohio Supercomputer Center (OSC)](../week0/osc-setup.qmd)
+
+:::
+
+<hr style="height:1pt; visibility:hidden;" />
+
+## Content overview
+
+This week, you will get an overview of the course and a brief intro to the Ohio
+Supercomputer (OSC) during the Tuesday meeting,
+and will be taught the basics of working in a Unix shell environment during the Thursday meeting.
+
+More specifically, some of the things you will learn this week:
+
+#### Course intro & overview (Tuesday class)
+
+- What to expect from this course.
+- Which tools and languages we will use.
+- What is expected of you during this course.
+- Get up to speed on the infrastructure of the course.
+
+#### OSC Intro (Tuesday class)
+
+- What is a supercomputer and why is it useful?
+- Overview of the resources the Ohio Supercomputer Center (OSC) provides.
+- How to use OSC OnDemand and access a Unix Shell in your browser.
+
+#### Unix shell basics (Thursday class, Readings, and Exercises)
+
+- Why using a command-line interface can be beneficial.
+- What the Unix shell is and what you can do with it. 
+- Using Unix commands, learn how to:
+  - Navigate around your computer.
+  - Create and manage directories and files.
+  - View text files.
+  - Search within, manipulate, and extract information from text files.
+
+<hr style="height:1pt; visibility:hidden;" />
+
+## Readings
+
+The first few pages of the book
+**Computing Skills for Biologists by Allesina & Wilmes** (**CSB** for short),
+should give you an introduction to the rationale behind the book as well as this course.
+
+Our main text for this week will be **Chapter 1 from CSB**,
+which will introduce you to using the Unix shell.
+
+I would recommend reading or at least skimming this before Thursday's class,
+when we will go through much of the chapter's content.
+That said, I will not assume you've read it during class,
+and you may prefer to focus your reading after the lectures.
+(We'll discuss reading expectations and recommendations on Tuesday, too.)
+
+You can access the books directly online through the links below,
+or download PDFs from the CarmenCanvas website.
+Consider buying a paper copy of one or both if you can afford it.
+
+#### Required readings
+
+- [CSB](https://library.ohio-state.edu/record=b8624007~S7)
+  Chapter 0: "Introduction Building a Computing Toolbox" --
+  Introduction & Section 0.1 only
+- [CSB](https://library.ohio-state.edu/record=b8624007~S7)
+  Chapter 1: "Unix"
+
+#### Optional readings
+
+- [Buffalo](https://library.ohio-state.edu/record=b9490023~S7)
+  Preface and Chapter 1: "How to Learn Bioinformatics"

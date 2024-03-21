@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jelmer Poelstra">
+<meta name="dcterms.date" content="2024-03-05">
+
+<title>Project organization</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">pracs-sp24</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text"><i class="fa-solid fa-home" aria-label="home"></i></span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-week-overviews" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Week overviews</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-week-overviews">    
+        <li>
+    <a class="dropdown-item" href="../week0/overview.html">
+ <span class="dropdown-text">Pre-course</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week1/w1_overview.html">
+ <span class="dropdown-text">Week 1</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week2/w2_overview.html">
+ <span class="dropdown-text">Week 2</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-lectures" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Lectures</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-lectures">    
+        <li class="dropdown-header">Week 1</li>
+        <li>
+    <a class="dropdown-item" href="../week1/w1_course-intro.html">
+ <span class="dropdown-text">Course Intro (slides)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week1/w1_osc.html">
+ <span class="dropdown-text">OSC Intro</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week1/w1_shell.html">
+ <span class="dropdown-text">Shell Basics</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Week 2</li>
+        <li>
+    <a class="dropdown-item" href="../week2/project-org.html">
+ <span class="dropdown-text">Project organization</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week2/vscode-markdown.qmd">
+ <span class="dropdown-text">VS Code &amp; Markdown</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week2/shellfiles.qmd">
+ <span class="dropdown-text">Shell Basics</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-exercises" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Exercises</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-exercises">    
+        <li>
+    <a class="dropdown-item" href="../week1/w1_exercises.html">
+ <span class="dropdown-text">Week 1</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-final-project" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Final project</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-final-project">    
+        <li class="dropdown-header">General info (TBA)</li>
+        <li class="dropdown-header">Checkpoint I: Proposal (TBA)</li>
+        <li class="dropdown-header">Checkpoint II: Progress report (TBA)</li>
+        <li class="dropdown-header">Checkpoint III: Presentation (TBA)</li>
+        <li class="dropdown-header">Checkpoint IV: Submission (TBA)</li>
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference-pages" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Reference Pages</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-reference-pages">    
+        <li>
+    <a class="dropdown-item" href="../ref/glossary.html">
+ <span class="dropdown-text">Glossary</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../ref/shell.html">
+ <span class="dropdown-text">Unix shell</span></a>
+  </li>  
+        <li class="dropdown-header">Markdown (TBA)</li>
+        <li class="dropdown-header">Shell scripting (TBA)</li>
+        <li class="dropdown-header">OSC, Slurm, and Conda (TBA)</li>
+        <li class="dropdown-header">Git (TBA)</li>
+        <li class="dropdown-header">Nextflow (TBA)</li>
+        <li class="dropdown-header">List of Further Resources (TBA)</li>
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://osu.instructure.com/courses/163340"> 
+<span class="menu-text"><i class="fa-solid fa-graduation-cap" aria-label="graduation-cap"></i></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://ondemand.osc.edu"> 
+<span class="menu-text"><i class="fa-solid fa-desktop" aria-label="desktop"></i></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://library.ohio-state.edu/record=b8624007~S7"> 
+<span class="menu-text"><i class="fa-solid fa-book" aria-label="book"></i></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://library.ohio-state.edu/record=b9490023~S7"> 
+<span class="menu-text"><i class="fa-solid fa-book-open" aria-label="book-open"></i></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label=""><i class="bi bi-github"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://github.com/jelmerp/pracs-sp24">
+            Source Code
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://github.com/jelmerp/pracs-sp24/issues/new">
+            Report an Issue
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#overview-of-this-week" id="toc-overview-of-this-week" class="nav-link active" data-scroll-target="#overview-of-this-week"><span class="header-section-number">1</span> Overview of this week</a>
+  <ul class="collapse">
+  <li><a href="#importance-of-good-project-organization" id="toc-importance-of-good-project-organization" class="nav-link" data-scroll-target="#importance-of-good-project-organization"><span class="header-section-number">1.1</span> Importance of good project organization</a></li>
+  </ul></li>
+  <li><a href="#project-organization-some-underlying-principles" id="toc-project-organization-some-underlying-principles" class="nav-link" data-scroll-target="#project-organization-some-underlying-principles"><span class="header-section-number">2</span> Project organization – some underlying principles</a>
+  <ul class="collapse">
+  <li><a href="#one-dir-hierarchy-for-one-project" id="toc-one-dir-hierarchy-for-one-project" class="nav-link" data-scroll-target="#one-dir-hierarchy-for-one-project"><span class="header-section-number">2.1</span> One dir hierarchy for one project</a></li>
+  <li><a href="#absolute-versus-relative-path-recap" id="toc-absolute-versus-relative-path-recap" class="nav-link" data-scroll-target="#absolute-versus-relative-path-recap"><span class="header-section-number">2.2</span> Absolute versus relative path recap:</a></li>
+  <li><a href="#but-how-to-define-and-separate-projects" id="toc-but-how-to-define-and-separate-projects" class="nav-link" data-scroll-target="#but-how-to-define-and-separate-projects"><span class="header-section-number">2.3</span> But how to define and separate projects?</a></li>
+  <li><a href="#projects-with-shared-data-or-code" id="toc-projects-with-shared-data-or-code" class="nav-link" data-scroll-target="#projects-with-shared-data-or-code"><span class="header-section-number">2.4</span> Projects with shared data or code</a></li>
+  </ul></li>
+  <li><a href="#example-project-dir-structures" id="toc-example-project-dir-structures" class="nav-link" data-scroll-target="#example-project-dir-structures"><span class="header-section-number">3</span> Example project dir structures</a></li>
+  <li><a href="#file-naming" id="toc-file-naming" class="nav-link" data-scroll-target="#file-naming"><span class="header-section-number">4</span> File naming</a></li>
+  <li><a href="#slow-down-and-document" id="toc-slow-down-and-document" class="nav-link" data-scroll-target="#slow-down-and-document"><span class="header-section-number">5</span> Slow down and document</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Project organization</h1>
+<p class="subtitle lead">Week 2 - Part I</p>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jelmer Poelstra </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 5, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<hr>
+<p><br></p>
+<section id="overview-of-this-week" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="overview-of-this-week"><span class="header-section-number">1</span> Overview of this week</h2>
+<ul>
+<li>This presentation:
+<ul>
+<li>Learn some best practices for project organization, documentation, and management.</li>
+</ul></li>
+<li>Also today: <a href="vscode-markdown.qmd">VS Code and Markdown</a>
+<ul>
+<li>Get to know our text editor, <em>VS Code</em>, a bit better.</li>
+<li>Learn how to use <em>Markdown</em> for documentation (and beyond).</li>
+</ul></li>
+<li>[Third slide deck (Thursday)]((https://mcic-osu.github.io/pracs-sp21/posts/week-02/slides/02-3-md.html):
+<ul>
+<li>Learn how to manage files in the Unix shell.</li>
+</ul></li>
+</ul>
+<hr style="height:1pt; visibility:hidden;">
+<section id="importance-of-good-project-organization" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="importance-of-good-project-organization"><span class="header-section-number">1.1</span> Importance of good project organization</h3>
+<p><strong>Good project organization and documentation facilitates:</strong></p>
+<ul>
+<li>Collaborating with others (and yourself in the future…)</li>
+<li>Reproducibility</li>
+<li>Automation</li>
+<li>Version control</li>
+</ul>
+<p>In short, it is a necessary foundation to use this course’s tools and to reach some of its goals.</p>
+<hr>
+</section>
+</section>
+<section id="project-organization-some-underlying-principles" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="project-organization-some-underlying-principles"><span class="header-section-number">2</span> Project organization – some underlying principles</h2>
+<section id="one-dir-hierarchy-for-one-project" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="one-dir-hierarchy-for-one-project"><span class="header-section-number">2.1</span> One dir hierarchy for one project</h3>
+<p>In other words:</p>
+<ul>
+<li>Don’t keep multiple distinct projects inside one dir.</li>
+<li>Don’t keep files for one project in multiple places.</li>
+</ul>
+<p>Within the dir hierarchy:</p>
+<ul>
+<li><strong>Separate code from data</strong></li>
+<li><strong>Separate raw data from processed data</strong></li>
+</ul>
+<p>Also: - <strong>Treat raw data as read-only</strong> (and treat generated output as disposable). - <strong>Use good dir and file naming</strong>. - <strong>Slow down and document.</strong></p>
+<p>When you have a single directory hierarchy for each project, it is:</p>
+<ul>
+<li>Easier to: find files, share your project, not throw away stuff in error, …</li>
+<li>Possible to use <em>relative paths</em> within a project’s scripts =&gt; more portable.</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/proj-dirs-1.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:65.0%"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/proj-dirs-2.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/proj-dirs-3.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+</section>
+<section id="absolute-versus-relative-path-recap" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="absolute-versus-relative-path-recap"><span class="header-section-number">2.2</span> Absolute versus relative path recap:</h3>
+<ul>
+<li><strong>Absolute paths</strong> start from the root directory, break when moving a project, and don’t generally work across computers.</li>
+<li><strong>Relative paths</strong> start from a <em>working dir</em>: when you always use the root of the <em>project</em> as the working dir, paths work when moving the project within and between computers.</li>
+</ul>
+</section>
+<section id="but-how-to-define-and-separate-projects" class="level3" data-number="2.3">
+<h3 data-number="2.3" class="anchored" data-anchor-id="but-how-to-define-and-separate-projects"><span class="header-section-number">2.3</span> But how to define and separate projects?</h3>
+<p>From <a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005510">Wilson et al 2017 - Good Enough Practices in Scientific Computing</a>:</p>
+<blockquote class="blockquote">
+<p><em>As a rule of thumb, divide work into projects based on the overlap in data and</em> <em>code files.</em></p>
+<p><em>If 2 research efforts share no data or code,</em> <em>they will probably be easiest to manage independently.</em></p>
+<p><em>If they share more than half of their data and code, they are probably best</em> <em>managed together.</em></p>
+</blockquote>
+<blockquote class="blockquote">
+<p><em>If you are building tools that are used in several projects,</em> <em>the common code should probably be in a project of its own.</em></p>
+</blockquote>
+</section>
+<section id="projects-with-shared-data-or-code" class="level3" data-number="2.4">
+<h3 data-number="2.4" class="anchored" data-anchor-id="projects-with-shared-data-or-code"><span class="header-section-number">2.4</span> Projects with shared data or code</h3>
+<p>To access files outside of the project (e.g., shared across projects),<br>
+it is easiest to create <strong>links</strong> to these files:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/proj-dirs-4.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+<p>But shared data or scripts are generally better stored in separate dirs,<br>
+and then linked to by each project using them:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/proj-dirs-5.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>These strategies do decrease the portability of your project,<br>
+and moving the shared files even within your own computer<br>
+will cause links to break.</p>
+</div>
+</div>
+<p>A more portable method is to <em>keep shared (multi-project) files online</em> –<br>
+this is especially feasible for <strong>scripts</strong> under version control:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/proj-dirs-6.svg" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+<div class="callout-info">
+<p>For <strong>data</strong>, this is also possible but often not practical due to file sizes. It’s easier after data has been deposited in a public repository.</p>
+</div>
+<p><br></p>
+</section>
+</section>
+<section id="example-project-dir-structures" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="example-project-dir-structures"><span class="header-section-number">3</span> Example project dir structures</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/proj-ex1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/proj-ex-comb.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:100.0%"></p>
+</figure>
+</div>
+<p><strong>Several things depend on preferences and project specifics:</strong></p>
+<ul>
+<li><code>data</code> as single top-level dir?<br>
+</li>
+<li><code>results</code> vs <code>analysis</code> (Buffalo)</li>
+<li><code>src</code> (source) vs <code>scripts</code> vs <code>workflow</code></li>
+<li>Where to put figures – <code>results/plots/qc</code> or <code>results/qc/plots/</code>?</li>
+</ul>
+<p><strong>Other best practices:</strong></p>
+<ul>
+<li>Use subdirectories liberally (e.g.&nbsp;within <code>analysis</code>, <code>scripts</code>).</li>
+<li>Also add <em>READMEs</em> within dirs.</li>
+</ul>
+<p><br></p>
+</section>
+<section id="file-naming" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="file-naming"><span class="header-section-number">4</span> File naming</h2>
+<p><strong>Three principles for good file names</strong> (<a href="https://speakerdeck.com/jennybc/how-to-name-files">Jenny Bryan</a>):</p>
+<ul>
+<li>Machine-readable</li>
+<li>Human-readable</li>
+<li>Playing well with default ordering</li>
+</ul>
+<section id="machine-readable" class="level4">
+<h4 class="anchored" data-anchor-id="machine-readable">Machine-readable</h4>
+<p>Consistent and informative naming helps to <em>programmatically find and process files.</em></p>
+<ul>
+<li><p>In file names, provide <strong>metadata</strong> like Sample ID, date, and treatment:</p>
+<ul>
+<li><code>sample032_2016-05-03_low.txt</code><br>
+</li>
+<li><code>samples_soil_treatmentA_2019-01.txt</code></li>
+</ul></li>
+<li><p>Now, you can use <strong>globbing</strong> to select samples from a certain month or treatment (<em>more about this on Thursday</em>):</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="pp">*</span>2016-05<span class="pp">*</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="pp">*</span>treatmentA<span class="pp">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><em>Suffices</em>, like <code>.txt</code>, <code>.md</code>, and <code>.csv</code> are generally not necessary in Unix, but are still useful to distinguish file types easily and programmatically.</p>
+</div>
+</div>
+<ul>
+<li><p>Spaces in file names lead to inconvenience or trouble:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="st">"raw sequences"</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> sequences</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-rf</span> raw sequences</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>More generally, only use the following in file names:</p>
+<ul>
+<li>Alphanumeric characters <kbd>A-Za-z0-9</kbd></li>
+<li>Underscores <kbd>_</kbd></li>
+<li>Hyphens (dashes) <kbd>-</kbd></li>
+<li>Periods (dots) <kbd>.</kbd></li>
+</ul></li>
+</ul>
+</section>
+<section id="human-readable" class="level4">
+<h4 class="anchored" data-anchor-id="human-readable">Human-readable</h4>
+<blockquote class="blockquote">
+<p><em>“Name all files to reflect their content or function.</em> <em>For example, use names such as bird_count_table.csv, manuscript.md,</em> <em>or sightings_analysis.py.</em>”<br>
+<a href="https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1005510">Wilson et al.&nbsp;2017</a></p>
+</blockquote>
+</section>
+<section id="combining-machine--and-human-readable" class="level4">
+<h4 class="anchored" data-anchor-id="combining-machine--and-human-readable">Combining machine- and human-readable</h4>
+<ul>
+<li><p><em>One</em> good way (opinionated recommendations):</p>
+<ul>
+<li>Use **underscores <kbd>_</kbd> to delimit units** you may later want to separate on (extract with <code>cut</code>, etc.): sampleID, batch, treatment, date.</li>
+<li>Within such units, use <strong>dashes <kbd>-</kbd> to delimit words</strong>: <code>grass-samples</code>.</li>
+<li>Limit the use of <strong>periods <kbd>.</kbd> to indicate file extensions</strong>.</li>
+<li>(Generally <em>avoid capitals</em>.)</li>
+</ul></li>
+<li><p>For example:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">mmus001_treatmentA_filtered-mq30-only_sorted_dedupped.bam</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">mmus002_treatmentA_filtered-mq30-only_sorted_dedupped.bam</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">.</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ex">mmus086_treatmentG_filtered-mq30-only_sorted_dedupped.bam</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+</section>
+<section id="ordering" class="level4">
+<h4 class="anchored" data-anchor-id="ordering">Ordering</h4>
+<ul>
+<li><p>Use <strong>leading zeros</strong> for lexicographic sorting: <code>sample005</code>.</p></li>
+<li><p><strong>Dates</strong> should always be written as <code>YYYY-MM-DD</code>: <code>2020-10-11</code>.</p></li>
+<li><p>Can <strong>group similar files together</strong> by starting with same phrase,<br>
+and <strong>number scripts</strong> according to their execution order:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">DE-01_normalize.R</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">DE-02_test.R</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">DE-03_process-significant.R</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+<p><br></p>
+</section>
+</section>
+<section id="slow-down-and-document" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="slow-down-and-document"><span class="header-section-number">5</span> Slow down and document</h2>
+<p><strong>Use README files to document:</strong></p>
+<ul>
+<li>Your methods</li>
+<li>Where/when/how each data and metadata file originated</li>
+<li>Versions of software, databases, reference genomes</li>
+<li><em>…Everything needed to rerun whole project</em></li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>See this week’s Buffalo chapter (Ch. 2) for further details.</p>
+</div>
+</div>
+<p>For documentation, use plain text files</p>
+<p><strong>Plain text files offer several benefits over proprietary &amp; binary formats</strong> (like <code>.docx</code> and <code>.xlsx</code>)<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>:</p>
+<ul>
+<li>Can be accessed on any computer, including over remote connections</li>
+<li>Are future-proof</li>
+<li>Allow to be version-controlled</li>
+</ul>
+
+
+</section>
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>These considerations apply not just to files for documentation, but also to data files, etc!<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

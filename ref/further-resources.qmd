@@ -1,0 +1,11 @@
+---
+title: "Further Resources"
+---
+
+#### OSC
+
+-   [An extended version of this introduction](https://mcic-osu.github.io/rnaseq-intro/modules/A01_osc.html)
+-   [OSC's online asynchronous courses](https://www.osc.edu/supercomputing/training)
+-   [OSC's new User Resource Guide](https://www.osc.edu/resources/getting_started/new_user_resource_guide) ^[
+Attribution: This page uses material from an [OSC Introduction written by Mike Sovic](https://mcic-osu.github.io/cl-workshop-22/modules/02-osc.html) and from OSC's Kate Cahill [Software Carpentry introduction to OSC](https://khill42.github.io/OSC_IntroHPC%3E).
+]

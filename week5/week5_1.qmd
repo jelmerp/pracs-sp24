@@ -1,0 +1,63 @@
+---
+title: "XXX"
+subtitle: "Week 5 - part I"
+pagetitle: "PRACS24: XXX"
+author: Jelmer Poelstra
+date: 2024-03-28
+---
+
+----------------------------------------------------------------------------------------------------
+
+<br>
+
+In this session, ...
+
+<br>
+
+:::{.exercise}
+### On Your Own: Use multiple threads {-}
+
+Most bioinformatics programs, including _FastQC_,
+can make use of multiple threads/CPUs/cores
+(which we can all treat as the same thing, for our purposes: components of a node),
+and this can speed things up tremendously.
+
+To run FastQC with multiple threads, we need to take two steps &mdash;
+below, `n` is the number of threads that we would like to use.
+
+- Add the `#SBATCH --cpus-per-task=n` option to the script.
+
+- Tell _FastQC_ that it can use `n` threads.
+
+**Include both of these options in your `fastqc.sh` script so as to run _FastQC_**
+**with 8 cores.**
+
+(To find out the name of the _FastQC_ option for the number of threads,
+run `fastqc --help` and search for the relevant option.)
+
+<details><summary>Hint (click here)</summary>
+
+The _FastQC_ option in question is `-t` (short form) or `--threads` (long form).
+For clarity, I would suggest to use the long form option in your script.
+
+</details>
+
+<details><summary>Solution (click here)</summary>
+
+- You should add the following `#SBATCH` line at the top of the script:
+
+```bash
+#SBATCH --cpus-per-task=8
+```
+
+- Your _FastQC_ command in the script should now be as follows
+  (though the order of the `--threads` and `--outdir` options does not matter,
+  as long as the input file positional argument comes last):
+
+```bash
+fastqc --threads 8 --outdir "$outdir" "$fastq_file"
+```
+
+</details>
+
+:::

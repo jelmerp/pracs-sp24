@@ -1,0 +1,105 @@
+---
+title: "General information about your final project"
+pagetitle: "Final project info"
+author: Jelmer Poelstra
+date: 2024-03-07
+number-sections: false
+editor_options: 
+  chunk_output_type: console
+---
+
+-----
+
+<br>
+
+### Devising a project
+
+The goal for your final project is to apply some of the things you have learned
+during this course, and allow you to get you more practice.
+While some aspects are required in order to get a good grade
+(see [Graded aspects below](#graded-aspects)), you have a fair amount of freedom.
+I recommend that you take advantage of that to make your final project as useful
+as possible for your own research and/or personal development.
+
+Graded aspects for the project focus on documentation, reproducibility, and automation.
+Accordingly, there are no real requirements for the level of complexity
+or sophistication, the number of scripts, the real-world usefulness, and so on.
+I would actually recommend that you take care not to be too ambitious in this regard:
+start small and then expand if you are able to.
+
+Some examples of possible types of projects:
+
+- Work with your own data or a publicly available dataset that is similar to what
+  you are expecting to work with^[
+  Note that "subsetting" the data may be useful or necessary if you have a large genomic dataset,
+  and I can help you with that].
+
+- You may decide it would be most useful for you to focus on coding and creating a
+  reproducible workflow,
+  and that this is easier with a trivial and maybe not-so-relevant dataset,
+  so you don't get bogged down in other details.
+
+- Automate something "boring" and/or repetitive that you did manually until now.
+
+If you need help with selecting a dataset or a project topic, don't hesitate to contact me.
+I could most easily provide you with a variety of genomic/transcriptomic data sets,
+like RNA-Seq, microbial metabarcoding, or microbial isolate whole-genome sequencing,
+but could also help you find or create other kinds of data sets.
+
+<hr style="height:1pt; visibility:hidden;" />
+
+### Graded aspects
+
+Graded aspects of your project focus on
+_appropriate usage of many of the tools and principles we covered during the course_.
+To receive a high grade, your project should:
+
+- Be **well-organized**: contained in a single parent directory with a clear and
+  sensible structure of subdirectories, descriptive file and directory names,
+  no files floating around with unclear purpose or source, and so on.
+
+- Be **well-documented**, with *at least* one README in Markdown format in the root
+  directory of your project, and preferably with additional READMEs elsewhere as appropriate.
+
+- Be **version-controlled** with Git *throughout* with regular, meaningful commits.
+  You will also need to push to GitHub for the proposal, draft, and final submission checkpoints.
+
+- Contain **shell scripts for data processing and/or analysis** (see also the last point).
+  Try not to do *any* manual work such as editing a data file in a text editor
+  or using Excel to fix column names, since this hinders reproducibility.
+  
+  - Having some components in *other languages* is fine,
+    in case you know how to do things there that we didn't learn in the course
+    (for example, doing some plotting in R, or using Python for data processing).
+    
+  - Similarly, it is fine for some or all of your scripts to call *external, command-line programs*
+    (e.g. some of the bioinformatics programs we have run, or any program
+    that may be useful for your research).
+    
+- Run one or more scripts as **SLURM jobs at OSC**^[
+  A locally run project could be okay if your research does not and will not
+  require the use of supercomputers like those at OSC -- check in with me if this
+  is the case and you would therefore prefer not to use OSC.].
+
+- Be easily **re-runnable** using a Nextflow workflow or a "master" / "controller" script
+  that glues the entire project together^[
+  This is a challenging aspect, and your grade won't plummet if you don't
+  succeed, but it is important to try!].
+
+<hr style="height:1pt; visibility:hidden;" />
+
+### Checkpoints
+
+Information about expectations for each of the checkpoints (submissions & oral presentation)
+for the project will be provided in the content for individual weeks.
+Below is an overview which will be updated with links to pages with information about each:
+
+| What      | Due   | Nr. points |
+|--------|--------|------------|
+**Proposal**  | Monday, April 1   | 10 |
+**Draft**     | Monday, April 8   | 10 |
+**In-class oral presentations** |Thursday, April 18   | 10 |
+**Final submission** | Monday, April 29        | 20 |
+
+<br><br>
+

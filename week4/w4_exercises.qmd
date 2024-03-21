@@ -1,0 +1,227 @@
+---
+title: "Week 4 exercises"
+pagetitle: "PRACS24: Week 4 exercises"
+author: Jelmer Poelstra
+date: 2024-03-25
+number-sections: false
+editor_options: 
+  chunk_output_type: console
+---
+
+::: callout-important
+#### This page is still under construction.
+:::
+
+---------
+
+<hr style="height:1pt; visibility:hidden;" />
+
+#### Setting up
+
+Start a VS Code session at OSC in the folder `/fs/ess/PAS2700/users/$USER`.
+In the terminal, create and move into a dir for these exercises:
+
+```bash
+# (Assuming you are in /fs/ess/PAS2700/users/$USER)
+mkdir -p week04/exercises
+cd week04/exercises
+```
+
+For your scripts, create files with the extension `.sh`,
+and open and edit them in the VS Code editor pane.
+
+<hr style="height:1pt; visibility:hidden;" />
+
+## Exercise 1: A script to print a specific line
+
+Write a shell script that accepts a file name and a line number as arguments,
+and prints the requested line to screen.
+
+Additional notes:
+
+- As a simple utility script, I would suggest to make it not print anything else
+  (no `echo` statements).
+- Don't forget the best-practice shell script header lines we discussed.
+- Let the script check whether the correct number of arguments were passed to it, and if not, exit the script.
+- Test your script by printing a couple of different lines from
+  `../garrigos_data/meta/metadata.tsv`.
+  Also test that your argument-number check works.
+
+<details><summary> Hint 1: an overview of the steps to take _(Click to expand)_</summary>
+- Open a new text file and save it as e.g. `scripts/printline.sh`.
+- Start with the _shebang_ and `set` lines.
+- Your script takes two arguments: a file name (`$1`) and a line number (`$2`) .
+- Check the number of arguments in an `if` statement like we did in class.
+- Copy the `$1` and `$2` variables to descriptively named variables.
+- To print a specific line,
+  think how you might combine `head` and `tail` to do this.
+  If you're at a loss, feel free to check out the top solution box.
+</details>
+
+<details><summary> Hint 2: how to print a specific line number _(Click to expand)_</summary>
+For example, to print line 4 of `metadata/meta.tsv` directly:
+
+```bash
+head -n 4 metadata/meta.tsv | tail -n 1
+```
+
+How this command works:
+
+- `head -n 4 metadata/meta.tsv` will print the first 4 lines of `metadata/meta.tsv`
+- We pipe those 4 lines into the `tail` command
+- We ask `tail` to just print the last line of its input,
+  which will in this case be line 4 of the original input file.
+</details>
+
+<br>
+
+## Exercise 2: A script to run TrimGalore
+
+### Introduction to TrimGalore
+
+TrimGalore is a tool that can trim and filter FASTQ files, removing:
+
+- Any adapter sequences that are present in the reads
+- Poor-quality bases at the start and end of the reads
+- Reads that have become very short after the prior two steps
+
+Both the input and output of TrimGalore are FASTQ files.
+When you have paired-end reads
+(as you do with the Garrigos dataset you'll continue to use),
+a single TrimGalore run should be done with both the R1 and R2 files.
+
+::: {.callout-note collapse="true"}
+#### More about TrimGalore _(Click to expand)_
+Several largely equivalent tools exist for this kind of FASTQ preprocessing ---
+_Trimmomatic_ and _fastp_ are two other commonly used ones.
+_TrimGalore_ itself is "just" a wrapper around another tool called _CutAdapt_,
+but it is simpler to use.
+Two advantages of of _TrimGalore_ are that it will auto-detect the adapters that
+are present in your reads,
+and that it can automatically run _FastQC_ on the processed sequences.
+:::
+
+TrimGalore isn't installed at OSC, but you can use a so-called "_Conda_ environment"
+that I have created for it^[More about Conda environments next week]:
+
+```bash
+# First load OSC's (mini)Conda module
+module load miniconda3
+# Then load ('activate') the Conda environment with TrimGalore
+source activate /fs/ess/PAS0471/jelmer/conda/trimgalore
+```
+
+Check that you can run it as follows:
+
+```bash
+trim_galore --version
+```
+```{.bash-out}
+            Quality-/Adapter-/RRBS-/Speciality-Trimming
+                    [powered by Cutadapt]
+                        version 0.6.10
+
+                    Last update: 02 02 2023
+```
+
+<hr style="height:1pt; visibility:hidden;" />
+
+### Part I: Write your TrimGalore script
+
+Write a script that runs TrimGalore as follows
+(Check the help with `trim_galore --help` to figure out how!):
+
+- For **one sample at a time**,
+  passing both an R1 and its corresponding R2 file as arguments to `trim_galore`.
+
+- Your **script should accept and process arguments** to set the FASTQ files and
+  the output dir.
+  For the FASTQ files, I suggest you follow the strategy
+  [used in class](w4_2_cli-tools.html#looping-over-samples-rather-than-files)
+  where the script takes only an R1 file name as an argument^[
+  Alternatively, it could take both R1 and R2 files as arguments.],
+  and you infer the name of the corresponding R2 file name in the script.
+
+- Figure out which TrimGalore option tells the program that the reads are **paired-end**,
+  and use that option.
+
+- Figure out how you can set the **output dir** and use that option.
+
+<hr style="height:1pt; visibility:hidden;" />
+
+### Part II: Improve your TrimGalore script (optional)
+
+_(Even if you skip this part, do move on to Part III!)_
+
+- Get TrimGalore to automatically run FastQC on the trimmed FASTQ files.
+
+- Take a look at what the default values are for the Phred quality score and read
+  length thresholds. Do you understand what these do?
+  You don't have to change them here, the defaults will work fine for us.
+
+- Annoyingly, the TrimGalore output FASTQ files are oddly named:
+  `"$file_id"_R1_val_1.fq.gz` and `"$file_id"_R1_val_1.fq.gz`.
+  In the script, after you run TrimGalore, rename the output files.
+  I would suggest to use the exact same file names as the input files;
+  alternatively, add a `_trimmed` marker.
+  
+- If you rename the output files to have the exact same file names as the input files,
+  then it is critically important that output dir is not the same as the input dir.
+  Otherwise, your renaming would overwrite the original input files!
+  To prevent this from ever happening, include an `if` statement in your script
+  that tests whether the input dir is the same as the output dir, and exits if it is.
+
+::: {.callout-warning collapse="true"}
+#### Cores: don't use TrimGalore's `--cores` option here _(Click to expand)_
+Since you're running the program interactively on our single-core VS Code compute job,
+we only have 1 core at our disposal and that's TrimGalore's default.
+Next week we'll be submitting our scripts as batch jobs:
+that will give us the opportunity to use multiple cores with programs like this.
+:::
+
+<hr style="height:1pt; visibility:hidden;" />
+
+### Part III: Run the TrimGalore script for all samples
+
+Create a "runner" script and in it,
+write a `for` loop to run your TrimGalore script on all samples.
+
+<br>
+
+## Solutions
+
+### Exercise 1
+
+<details><summary> Solution _(Click to expand)_</summary>
+
+```bash
+#!/bin/bash
+set -euo pipefail
+
+# Check the number of command-line arguments
+if [[ ! "$#" -eq 2 ]]; then
+    echo "Error: wrong number of arguments"
+    echo "You provided $# arguments, while 2 are required."
+    echo "Usage: printline.sh <first-name> <last-name>"
+    exit 1
+fi
+
+# Copy the command-line arguments
+input_file=$1
+line_nr=$2
+
+# Only print the requested line
+head -n "$line_nr" "$input_file" | tail -n 1
+```
+
+To run the script and make it print the 4th line of `meta.tsv`:
+
+```bash
+bash sandbox/printline.sh metadata/meta.tsv 4
+```
+```{.bash-out}
+ASPC1_G31V      ASPC1   G31V
+```
+</details>
+
+### Exercise 2

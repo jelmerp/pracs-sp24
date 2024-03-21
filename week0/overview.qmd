@@ -1,0 +1,50 @@
+---
+title: "Before the course starts"
+date: 2024-02-19
+author: Jelmer Poelstra
+---
+
+------------------------------------------------------------------------
+
+<br>
+
+## Assignments
+
+Please complete these assignments in the week of Feb 19^th^:
+
+1.   [Fill out the pre-course **survey**](https://forms.gle/vx2va7qfnNjRhg2M7)
+2.   [Create or check your **OSC account**](/week0/osc-setup.qmd)
+
+<br>
+
+## Readings
+
+### Syllabus {-}
+
+Please read the updated **syllabus**, which you can find [here](/assets/PLNTPTH6193_OmicsData_SP2024.pdf) and on the
+[CarmenCanvas site for the course](https://osu.instructure.com/courses/163340).
+
+### Additional information {-}
+
+#### Course websites
+
+The main place to access information about this course is this github.io website.
+I will only use the [CarmenCanvas site for this course](https://osu.instructure.com/courses/163340)
+for announcements and as a place to share some files with you.
+
+#### No R in the course
+
+I've had to remove the modules on R while transitioning this course from 3-credit full-semester
+to 2-credit half-semester.
+If this is disappointing to you and you want to learn R at OSU,
+I can recommend the weekly [Code Club](https://osu-codeclub.github.io/) meeting that I co-organize.
+And if you're also interested in microbial metabarcoding data,
+or would like to learn how you can use R in a bioinformatics/omics data context,
+contact Plant Pathology professor [Soledad Benitez-Ponce](mailto:benitezponce.1@osu.edu) to sign up for
+a metabarcoding workshop during Spring break from March 13^th^-15^th^.
+
+#### Glossary
+
+If some of the terms in the description of the course material are unfamiliar to
+you, take a look at the [glossary page](/ref/glossary.qmd) of this website.
+Of course, you will learn a lot more about these terms and concepts during the course!

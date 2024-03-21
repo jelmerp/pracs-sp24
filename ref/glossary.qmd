@@ -1,0 +1,26 @@
+---
+title: "Glossary of common terms in this course"
+date: 2022-02-19
+author: Jelmer Poelstra
+---
+
+<br>
+
+| Term         | Meaning                                                                                                                                                                                                  |
+|-----------------|-------------------------------------------------------|
+| **Buffalo**  | [Course book: Bioinformatics Data Skills (Buffalo 2015)](https://library.ohio-state.edu/record=b9490023~S7).                                                                                             |
+| **CLI**      | Command-line Interface --- a software interface in which one types commands (cf. "GUI").                                                                                                                 |
+| **CSB**      | [Course book: Computing Skills for Biologists (Allesina & Wilmes 2019)](https://library.ohio-state.edu/record=b8624007~S7).                                                                              |
+| **cluster**  | Another word for *supercomputer*, a set of interconnected computers for high-performance computing                                                                                                       |
+| **dir**      | Short for "directory", which how a *folder* is often referred to in the Unix shell and Linux.                                                                                                            |
+| **Git**      | Software for "version control", a system to track changes in code and other text files, and collaborate on those.                                                                                        |
+| **GitHub**   | A website that hosts Git projects, which are known as ***repositories***.                                                                                                                                |
+| **GUI**      | Graphical User Interface -- a visual software interface with which one interacts by clicking (cf. "CLI").                                                                                                |
+| **HPC**      | High-Performance Computing, for instance as can be done using a supercomputer.                                                                                                                           |
+| **Linux**    | The operating system that OSC runs on. Free Linux distributions include Ubuntu.                                                                                                                          |
+| **Markdown** | A simple text markup language (think LaTeX or HTML but much simpler).                                                                                                                                    |
+| **OSC**      | The [Ohio Supercomputer Center](https://www.osc.edu).                                                                                                                                                    |
+| **shell**    | The Unix shell is a command-line interface to the operating system that runs within a ***terminal***. There are several shell flavors, and in this course, we will be working with the ***bash*** shell. |
+| **Nextflow** | Software for automated analysis workflow (pipeline) management.                                                                                                                                          |
+| **Slurm**    | Software that schedules "compute jobs" (access to the main parts of the system) at OSC.                                                                                                                  |
+| **Unix**     | A family of operating systems that includes Mac and Linux, but not Windows.                                                                                                                              |

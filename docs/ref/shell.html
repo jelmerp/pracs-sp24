@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.549">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Jelmer Poelstra">
+<meta name="dcterms.date" content="2024-02-26">
+
+<title>pracs-sp24 - Topic overview: Unix shell</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">pracs-sp24</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-week-overviews" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Week overviews</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-week-overviews">    
+        <li>
+    <a class="dropdown-item" href="../week0/overview.html">
+ <span class="dropdown-text">Pre-course</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week1/w1_overview.html">
+ <span class="dropdown-text">Week 1: Course intro, OSC and shell basics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week2/w2_overview.html">
+ <span class="dropdown-text">Week 2: Project organization, Markdown &amp; files in the shell</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week4/w4_overview.html">
+ <span class="dropdown-text">Week 3: Git and GitHub</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week4/w4_overview.html">
+ <span class="dropdown-text">Week 4: Shell script and CLI tools</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-lectures" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Lectures</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-lectures">    
+        <li class="dropdown-header">Week 1: Unix shell</li>
+        <li>
+    <a class="dropdown-item" href="../week1/w1_course-intro.html">
+ <span class="dropdown-text">I: Course Intro (slides)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week1/w1_osc.html">
+ <span class="dropdown-text">II: OSC Intro</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week1/w1_shell.html">
+ <span class="dropdown-text">III: Shell basics</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Week 2: Project organization</li>
+        <li>
+    <a class="dropdown-item" href="../week2/w2_project-org.html">
+ <span class="dropdown-text">I: Project organization</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week2/w2_vscode-markdown.html">
+ <span class="dropdown-text">II: VS Code &amp; Markdown</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week2/w2_shellfiles.html">
+ <span class="dropdown-text">III: Managing files in the shell</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Week 3: Git</li>
+        <li>
+    <a class="dropdown-item" href="../week3/w3_git1.html">
+ <span class="dropdown-text">I: Getting started with Git</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week3/w3_git2.html">
+ <span class="dropdown-text">II: Git remotes on GitHub</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week3/w3_git3.html">
+ <span class="dropdown-text">(Git bonus material)</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Week 4: Shell scripts</li>
+        <li>
+    <a class="dropdown-item" href="../week4/w4_1_scripts.html">
+ <span class="dropdown-text">I: Shell scripts</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week4/w4_2_cli-tools.html">
+ <span class="dropdown-text">II: Running CLI tools with shell scripts</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week4/w4_3_bonus.html">
+ <span class="dropdown-text">(Scripts bonus material)</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-homework" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Homework</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-homework">    
+        <li class="dropdown-header">Exercises</li>
+        <li>
+    <a class="dropdown-item" href="../week1/w1_exercises.html">
+ <span class="dropdown-text">Week 1: Shell basics</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week2/w2_exercises.html">
+ <span class="dropdown-text">Week 2: Markdown and files in the shell</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week3/w3_exercises.html">
+ <span class="dropdown-text">Week 3: Git and GitHub</span></a>
+  </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Assignments</li>
+        <li>
+    <a class="dropdown-item" href="../week0/osc-setup.html">
+ <span class="dropdown-text">Pre-course: OSC account setup</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week2/w2_github-account.html">
+ <span class="dropdown-text">Week 2: GitHub account</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-final-project" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Final project</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-final-project">    
+        <li>
+    <a class="dropdown-item" href="../finalproj/info.html">
+ <span class="dropdown-text">General info</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../finalproj/proposal.html">
+ <span class="dropdown-text">I: Proposal (Due Apr 1)</span></a>
+  </li>  
+        <li class="dropdown-header">II: Progress report (TBA) (Due Apr 8)</li>
+        <li class="dropdown-header">III: Oral presentation (TBA) (Apr 18)</li>
+        <li class="dropdown-header">IV: Final submission (TBA) (Due Apr 29)</li>
+    </ul>
+  </li>
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-reference-pages" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Reference pages</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-reference-pages">    
+        <li>
+    <a class="dropdown-item" href="../ref/glossary.html">
+ <span class="dropdown-text">Glossary</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../ref/shell.html">
+ <span class="dropdown-text">Unix shell</span></a>
+  </li>  
+        <li class="dropdown-header">Markdown (TBA)</li>
+        <li class="dropdown-header">Git (TBA)</li>
+        <li class="dropdown-header">Shell scripting (TBA)</li>
+        <li class="dropdown-header">OSC, Slurm, and Conda (TBA)</li>
+        <li class="dropdown-header">Nextflow (TBA)</li>
+        <li class="dropdown-header">List of Further Resources (TBA)</li>
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html"> 
+<span class="menu-text">About</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://osu.instructure.com/courses/163340"> 
+<span class="menu-text"><i class="fa-solid fa-graduation-cap" aria-label="graduation-cap"></i></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://ondemand.osc.edu"> 
+<span class="menu-text"><i class="fa-solid fa-desktop" aria-label="desktop"></i></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://library.ohio-state.edu/record=b8624007~S7"> 
+<span class="menu-text"><i class="fa-solid fa-book" aria-label="book"></i></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://library.ohio-state.edu/record=b9490023~S7"> 
+<span class="menu-text"><i class="fa-solid fa-book-open" aria-label="book-open"></i></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+    <div class="dropdown">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label=""><i class="bi bi-github"></i></a>
+      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://github.com/jelmerp/pracs-sp24">
+            Source Code
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item quarto-navbar-tools-item" href="https://github.com/jelmerp/pracs-sp24/issues/new">
+            Report an Issue
+            </a>
+          </li>
+      </ul>
+    </div>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#basic-commands" id="toc-basic-commands" class="nav-link active" data-scroll-target="#basic-commands"><span class="header-section-number">1</span> Basic commands</a></li>
+  <li><a href="#data-tools" id="toc-data-tools" class="nav-link" data-scroll-target="#data-tools"><span class="header-section-number">2</span> Data tools</a></li>
+  <li><a href="#miscellaneous" id="toc-miscellaneous" class="nav-link" data-scroll-target="#miscellaneous"><span class="header-section-number">3</span> Miscellaneous</a></li>
+  <li><a href="#shell-wildcards" id="toc-shell-wildcards" class="nav-link" data-scroll-target="#shell-wildcards"><span class="header-section-number">4</span> Shell wildcards</a></li>
+  <li><a href="#regular-expressions" id="toc-regular-expressions" class="nav-link" data-scroll-target="#regular-expressions"><span class="header-section-number">5</span> Regular expressions</a></li>
+  <li><a href="#more-details-for-a-few-commands" id="toc-more-details-for-a-few-commands" class="nav-link" data-scroll-target="#more-details-for-a-few-commands"><span class="header-section-number">6</span> More details for a few commands</a>
+  <ul class="collapse">
+  <li><a href="#less" id="toc-less" class="nav-link" data-scroll-target="#less"><span class="header-section-number">6.1</span> <code>less</code></a></li>
+  <li><a href="#sed" id="toc-sed" class="nav-link" data-scroll-target="#sed"><span class="header-section-number">6.2</span> <code>sed</code></a></li>
+  <li><a href="#awk" id="toc-awk" class="nav-link" data-scroll-target="#awk"><span class="header-section-number">6.3</span> <code>awk</code></a></li>
+  </ul></li>
+  <li><a href="#keyboard-shortcuts" id="toc-keyboard-shortcuts" class="nav-link" data-scroll-target="#keyboard-shortcuts"><span class="header-section-number">7</span> Keyboard shortcuts</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Topic overview: Unix shell</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Jelmer Poelstra </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">February 26, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<hr>
+<p><br></p>
+<section id="basic-commands" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="basic-commands"><span class="header-section-number">1</span> Basic commands</h2>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Command</th>
+<th>Description</th>
+<th>Examples / options</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong><code>pwd</code></strong></td>
+<td><strong>Print current working directory (dir).</strong></td>
+<td><code>pwd</code></td>
+</tr>
+<tr class="even">
+<td><strong><code>ls</code></strong></td>
+<td><strong>List files</strong> in working dir (default) or elsewhere.</td>
+<td><code>ls data/</code> <br> &nbsp; &nbsp; <code>-l</code> <em>long format</em> <br> &nbsp; &nbsp; <code>-h</code> <em>human-readable file sizes</em> <br> &nbsp; &nbsp; <code>-a</code> <em>show hidden files</em></td>
+</tr>
+<tr class="odd">
+<td><strong><code>cd</code></strong></td>
+<td><strong>Change working dir.</strong> As with all commands, you can use an <em>absolute</em> path (starting from the root dir <code>/</code>) or a <em>relative</em> path (starting from the current working dir).</td>
+<td><code>cd /fs/ess/PAS1855</code> <em>(With absolute path)</em> <br> <code>cd ../..</code> (<em>Two levels up)</em> <br> <em><code>cd -</code></em> <em>(To previous dir)</em></td>
+</tr>
+<tr class="even">
+<td><strong><code>cp</code></strong></td>
+<td><strong>Copy files</strong> or, with <code>-r</code>, dirs and their contents (i.e., <em>recursively</em>). <br> If target is a dir, file will keep same name; otherwise, a new name can be provided.</td>
+<td><code>cp *.fq data/</code> <em>(All .fq files into dir data)</em> <br> <code>cp my.fq data/new.fq</code> <em>(With new name)</em> <br> <code>cp -r data/ ~</code> <em>(Copy dir and contents to home dir)</em> <br></td>
+</tr>
+<tr class="odd">
+<td><strong><code>mv</code></strong></td>
+<td><strong>Move/rename files</strong> or dirs (<code>-r</code> not needed). <br> If target is a dir, file will keep same name; otherwise a new name can be provided.</td>
+<td><code>mv my.fq data/</code> <em>(Keep same name)</em> <br> <code>mv my.fq my.fastq</code> <em>(Simple rename)</em> <br> <code>mv file1 file2 mydir/</code> <em>(Last arg is destination)</em></td>
+</tr>
+<tr class="even">
+<td><strong><em><code>rm</code></em></strong></td>
+<td><strong>Remove files</strong> or dirs/recursively (with <code>-r</code>). <br> With <code>-f</code> (force), any write-protections that <em>you</em> have set will be overridden.</td>
+<td><code>rm *fq</code> <em>(Remove all matching files)</em> <br> <code>rm -r mydir/</code> <em>(Remove dir &amp; contents)</em> <br> &nbsp; &nbsp; <code>-i</code> <em>Prompt for confirmation</em> <br> &nbsp; &nbsp; <code>-f</code> <em>Force remove</em></td>
+</tr>
+<tr class="odd">
+<td><strong><code>mkdir</code></strong></td>
+<td><strong>Create a new dir.</strong> <br> Use <code>-p</code> to create multiple levels at once <em>and</em> to avoid an error if the dir exists.</td>
+<td><code>mkdir my_new_dir</code> <br> <code>mkdir -p new1/new2/new3</code></td>
+</tr>
+<tr class="even">
+<td><strong><code>touch</code></strong></td>
+<td>If file does not exist: <strong>create empty file</strong>. <br> If file exists: change last-modified date.</td>
+<td><code>touch newfile.txt</code></td>
+</tr>
+<tr class="odd">
+<td><strong><code>cat</code></strong></td>
+<td><strong>Print file contents</strong> to standard out (screen).</td>
+<td><code>cat my.txt</code> <br> <code>cat *.fa &gt; concat.fq</code> <em>(Concatenate files)</em></td>
+</tr>
+<tr class="even">
+<td><strong><code>head</code></strong></td>
+<td><strong>Print the <em>first</em> 10 lines of a file</strong> or specify number with <code>-n &lt;n&gt;</code> or shorthand <code>-&lt;n&gt;</code>.</td>
+<td><code>head -n 40 my.fq</code> <em>(print 40 lines)</em> <br> <code>head -40 my.fq</code> <em>(equivalent)</em></td>
+</tr>
+<tr class="odd">
+<td><strong><code>tail</code></strong></td>
+<td>Like <code>head</code> but <strong>print the <em>last</em> lines</strong>.</td>
+<td><code>tail -n +2 my.csv</code> <em>(“trick” to skip first line)</em> <br> <code>tail -f slurm.out</code> <em>(“follow” file)</em></td>
+</tr>
+<tr class="even">
+<td><strong><code>less</code></strong></td>
+<td><strong>View a file in a file pager</strong>; type <code>q</code> to exit. See <a href="#less">below</a> for more details.</td>
+<td><code>less myfile</code> <br> &nbsp; &nbsp; <code>-S</code> <em>disable line-wrapping</em></td>
+</tr>
+<tr class="odd">
+<td><strong><code>column -t</code></strong></td>
+<td><strong>View a tabular file with columns nicely lined up</strong> in the shell.</td>
+<td><em>Nice viewing of a CSV file:</em> <br> <code>column -s "," -t my.csv</code></td>
+</tr>
+<tr class="even">
+<td><strong><code>history</code></strong></td>
+<td><strong>Print previously issued commands.</strong></td>
+<td><code>history | grep "cut"</code> <em>(Find previous</em> <code>cut</code> <em>usage)</em></td>
+</tr>
+<tr class="odd">
+<td><strong><code>chmod</code></strong></td>
+<td><strong>Change file permissions</strong> for file owner (user, <code>u</code>), “group” (<code>g</code>), others (<code>o</code>) or everyone (all; <code>a</code>). Permissions can be set for reading (<code>r</code>), writing (<code>w</code>), and executing (<code>x</code>). <br> <span style="color:white">ddddddddddddddddddddddddddddddddddddd</span></td>
+<td><code>chmod u+x script.sh</code> <em>(Make script executable)</em> <br> <code>chmod a=r data/raw/*</code> <em>(Make data read-only)</em> <br> &nbsp; &nbsp; <code>-R</code> <em>recursive</em> <br> <span style="color:white">ddddddddddddddddddddddddddddddddddddddddddddd</span></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="data-tools" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="data-tools"><span class="header-section-number">2</span> Data tools</h2>
+<table class="table">
+<colgroup>
+<col style="width: 3%">
+<col style="width: 37%">
+<col style="width: 58%">
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Command</strong></th>
+<th>Description</th>
+<th>Examples and options</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong><code>wc -l</code></strong></td>
+<td><strong>Count the number of lines</strong> in a file.</td>
+<td><code>wc -l my.fq</code></td>
+</tr>
+<tr class="even">
+<td><strong><code>cut</code></strong></td>
+<td><strong>Select one or more columns</strong> from a file.</td>
+<td><em>Select columns 1-4:</em> <br> <code>cut -f 1-4 my.csv</code> <br> &nbsp; &nbsp; <code>-d ","</code> <em>comma as delimiter</em></td>
+</tr>
+<tr class="odd">
+<td><strong><code>sort</code></strong></td>
+<td><p><strong>Sort lines.</strong></p>
+<p>The <code>-V</code> option will successfully sort <code>chr10</code> <em>after</em> <code>chr2</code>. etc.</p></td>
+<td><em>Sort column 1 alphabetically,</em> <br> <em>column 2 reverse numerically:</em> <br> <code>sort -k1,1 -k2,2nr my.bed</code> <br><br> &nbsp; &nbsp; <code>-k 1,1</code> <em>by column 1 only</em> <br> &nbsp; &nbsp; <code>-n</code> <em>numerical sorting</em> <br> &nbsp; &nbsp; <code>-r</code> <em>reverse order</em> <br> &nbsp; &nbsp; <code>-V</code> <em>recognize number with string</em></td>
+</tr>
+<tr class="even">
+<td><strong><code>uniq</code></strong></td>
+<td><strong>Remove <em>consecutive</em> duplicate lines</strong> (often from single-column selection): i.e., removes all duplicates if input is sorted.</td>
+<td><em>Unique values for column 2:</em> <br> <code>cut -f2 my.tsv | sort | uniq</code></td>
+</tr>
+<tr class="odd">
+<td><strong><code>uniq -c</code></strong></td>
+<td>If input is sorted, <strong>create a count table</strong> for occurrences of each line (often from single-column selection).</td>
+<td><em>Count table for column 3:</em> <br> <code>cut -f3 my.tsv | sort | uniq -c</code></td>
+</tr>
+<tr class="even">
+<td><strong><code>tr</code></strong></td>
+<td><p><strong>Substitute (<em>tr</em>anslate) characters</strong> or <em>character classes</em> (like <code>A-Z</code> for uppercase letters). Does not take files as argument; piping or redirection needed.</p>
+<p>To “squeeze” (<code>-s</code>) is to remove consecutive duplicates (akin to <code>uniq</code>).</p></td>
+<td><em>TSV to CSV:</em> <br> <code>cat my.csv | tr "\t" ","</code> <br> <em>Uppercase to lowercase:</em> <code>tr A-Z a-z &lt; in.txt &gt; out.txt</code> <br><br> &nbsp; &nbsp; <code>-d</code> <em>delete</em> <br> &nbsp; &nbsp; <code>-s</code> <em>squeeze</em></td>
+</tr>
+<tr class="odd">
+<td><strong><code>grep</code></strong></td>
+<td><p><strong>Search files for a pattern</strong> and print matching lines (or only the matching string with <code>-o</code>).</p>
+<p>Default regex is basic (GNU BRE): use <code>-E</code> for extended regex (GNU ERE) and <code>-P</code> for Perl-like regex.</p>
+<p>To print lines surrounding a match, use <code>-A n</code> (<code>n</code> lines <em>after</em> match) or <code>-B n</code> (<code>n</code> lines <em>before</em> match) or <code>-C n</code> (<code>n</code> lines before and after match).</p>
+<p><span style="color:white">ddddddddddddddddddddddddddddddddddddddd</span></p></td>
+<td><em>Match AAC or AGC:</em> <br> <code>grep "A[AG]C" my.fa</code> <br> <em>Omit comment lines:</em> <br> <code>grep -v "^# my.gff</code> <br><br> &nbsp; &nbsp; <code>-c</code> <em>count</em> <br> &nbsp; &nbsp; <code>-i</code> <em>ignore case</em> <br> &nbsp; &nbsp; <code>-r</code> <em>recursive</em> <br> &nbsp; &nbsp; <code>-v</code> <em>invert</em> <br> &nbsp; &nbsp; <code>-o</code> <em>print match only</em></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="miscellaneous" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="miscellaneous"><span class="header-section-number">3</span> Miscellaneous</h2>
+<table class="table">
+<colgroup>
+<col style="width: 5%">
+<col style="width: 47%">
+<col style="width: 46%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>Meaning</th>
+<th>example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong><code>/</code></strong></td>
+<td><strong>Root directory</strong>.</td>
+<td><code>cd /</code></td>
+</tr>
+<tr class="even">
+<td><strong><code>.</code></strong></td>
+<td><strong>Current working directory</strong>.</td>
+<td><code>cp data/file.txt .</code> <em>(Copy to working dir)</em> <br> <em>Use <code>./</code> to execute script if not in <code>$PATH</code>:</em> <br> <code>./myscript.sh</code></td>
+</tr>
+<tr class="odd">
+<td><strong><code>..</code></strong></td>
+<td><strong>One directory level up</strong>.</td>
+<td>cd <code>../..</code> <em>(Move 2 levels up)</em></td>
+</tr>
+<tr class="even">
+<td><strong><code>~</code></strong> or <strong><code>$HOME</code></strong></td>
+<td><strong>Home directory</strong>.</td>
+<td><code>cp myfile.txt ~</code> <em>(Copy to home)</em></td>
+</tr>
+<tr class="odd">
+<td><strong><code>$USER</code></strong></td>
+<td><strong>User name.</strong></td>
+<td><code>mkdir $USER</code></td>
+</tr>
+<tr class="even">
+<td><strong><code>&gt;</code></strong></td>
+<td><strong>Redirect</strong> <strong>standard out</strong> to a file.</td>
+<td><code>echo "My 1st line" &gt; myfile.txt</code></td>
+</tr>
+<tr class="odd">
+<td><strong><code>&gt;&gt;</code></strong></td>
+<td><strong>Append standard out</strong> to a file.</td>
+<td><code>echo "My 2nd line" &gt;&gt; myfile.txt</code></td>
+</tr>
+<tr class="even">
+<td><strong><code>2&gt;</code></strong></td>
+<td><strong>Redirect standard error</strong> to a file.</td>
+<td><em>Send standard out and standard error for a script to separate files:</em> <br> <code>myscript.sh &gt;log.txt 2&gt; err.txt</code></td>
+</tr>
+<tr class="odd">
+<td><strong><code>&amp;&gt;</code></strong></td>
+<td><strong>Redirect standard out <em>and</em> standard error</strong> to a file.</td>
+<td><code>myscript.sh &amp;&gt; log.txt</code></td>
+</tr>
+<tr class="even">
+<td><strong><code>|</code></strong></td>
+<td><strong>Pipe</strong> standard out (output) of one command into standard in (input) of a second command</td>
+<td><em>The output of the <code>sort</code> command will be piped into head to show the first lines:</em> <br> <code>sort myfile.txt | head</code></td>
+</tr>
+<tr class="odd">
+<td><strong><code>{}</code></strong></td>
+<td><strong>Brace expansion</strong>. Use <code>..</code> to indicate numeric or character ranges (<code>1..4</code> =&gt; <code>1</code>, <code>2</code>, <code>3</code>, <code>4</code>) and <code>,</code> to separate items.</td>
+<td><code>mkdir Jan{01..31}</code> <em>(Jan01, Jan02, …, Jan31)</em> <br> <code>touch fig1{A..F}</code> <em>(fig1A, fig1B, …, fig1F)</em> <br> <code>mkdir fig1{A,D,H}</code> <em>(fig1A, fig1D, fig1D)</em></td>
+</tr>
+<tr class="even">
+<td><strong><code>$()</code></strong></td>
+<td><strong>Command substitution</strong>. Allows for flexible usage of the output of any command: e.g., use command output in an <code>echo</code> statement or assign it to a variable.</td>
+<td><em>Report number of FASTQ files:</em> <br> <code>echo "I see $(ls *fastq | wc -l) files"</code> <br> <em>Substitute with date in YYYY-MM-DD format:</em> <br> <code>mkdir results_$(date +%F)</code> <br> <code>nlines=$(wc -l &lt; $infile)</code></td>
+</tr>
+<tr class="odd">
+<td><strong><code>$PATH</code></strong></td>
+<td>Contains colon-separated <strong>list of directories with executables</strong>: these will be searched when trying to execute a program by name. <br> <span style="color:white">ddddddddddddddddddddddddddddddddddddd</span></td>
+<td><em>Add dir to path:</em> <br> <code>PATH=$PATH:/new/dir</code> <br> <em>(But for lasting changes, edit the Bash configuration file <code>~./bashrc</code>.)</em> <span style="color:white">dddddddddddddddddddddddddddddddd</span></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="shell-wildcards" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="shell-wildcards"><span class="header-section-number">4</span> Shell wildcards</h2>
+<table class="table">
+<colgroup>
+<col style="width: 4%">
+<col style="width: 32%">
+<col style="width: 62%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Wildcard</th>
+<th>Matches</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>*</td>
+<td>Any number of any character, including nothing.</td>
+<td><code>ls data/*fastq.gz</code> <em>(Matches any file ending in “fastq.gz”)</em> <br> <code>ls *R1*</code> <em>(Matches any file containing “R1” somewhere in the name.)</em></td>
+</tr>
+<tr class="even">
+<td>?</td>
+<td>Any single character.</td>
+<td><code>ls sample1_?.fastq.gz</code> <em>(Matches <code>sample1_A.fastq.gz</code> but not <code>sample1_AA.fastq.gz</code>)</em></td>
+</tr>
+<tr class="odd">
+<td>[] and [^]</td>
+<td>One or none (<code>^</code>) of the “character set” within the brackets. <br> <span style="color:white">ddddddddddddddddddddddddddddddddddddd</span></td>
+<td><code>ls fig1[A-C]</code> <em>(Matches <code>fig1A</code>, <code>fig1B</code>, <code>fig1C</code>)</em> <br> <code>ls fig[0-3]</code> <em>(Matches <code>fig0</code>, <code>fig1</code>, <code>fig2</code>, <code>fig3</code>)</em> <br> <code>ls fig[^4]*</code> <em>(Does not match files with a “4” after “fig”)</em> <br> <span style="color:white">ddddddddddddddddddddddddddddddddddddddd</span></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="regular-expressions" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="regular-expressions"><span class="header-section-number">5</span> Regular expressions</h2>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+“ERE” = GNU Extended regular expressions
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Where it says “yes” in the ERE column, the symbol in questions needs to have ERE turned on in order to work<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>: use a <code>-E</code> flag for <code>grep</code> and <code>sed</code> (note that <code>awk</code> uses ERE by default) to turn on ERE.</p>
+</div>
+</div>
+<table class="table">
+<colgroup>
+<col style="width: 10%">
+<col style="width: 3%">
+<col style="width: 45%">
+<col style="width: 40%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Symbol</th>
+<th>ERE<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></th>
+<th>Matches</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong><code>.</code></strong></td>
+<td></td>
+<td>Any single character</td>
+<td><em>Match <code>Olfr</code> with none or any characters after it:</em> <br> <code>grep -o "Olfr.*"</code></td>
+</tr>
+<tr class="even">
+<td><strong><code>*</code></strong></td>
+<td></td>
+<td>Quantifier: matches preceding character <strong>any number of times</strong></td>
+<td><em>See previous example.</em></td>
+</tr>
+<tr class="odd">
+<td><strong><code>+</code></strong></td>
+<td>yes</td>
+<td>Quantifier: matches preceding character <strong>at least once</strong></td>
+<td><em>At least two consecutive digits:</em> <br> <code>grep -E [0-9]+</code></td>
+</tr>
+<tr class="even">
+<td><strong><code>?</code></strong></td>
+<td>yes</td>
+<td>Quantifier: matches preceding character <strong>at most once</strong></td>
+<td><em>Only a single digit:</em> <br> <code>grep -E [0-9]?</code></td>
+</tr>
+<tr class="odd">
+<td><strong><code>{m}</code></strong> / <strong><code>{m,}</code></strong> / <strong><code>{m,n}</code></strong></td>
+<td>yes</td>
+<td>Quantifier: match preceding character <strong><code>m</code></strong> <strong>times</strong> / <strong>at least <code>m</code> times</strong> / <strong><em><code>m</code></em></strong> <strong>to <em><code>n</code></em> times</strong></td>
+<td><em>Between 50 and 100 consecutive Gs:</em> <br> <code>grep -E "G{50,100}"</code></td>
+</tr>
+<tr class="even">
+<td><strong><code>^</code></strong> / <strong><code>$</code></strong></td>
+<td></td>
+<td>Anchors: match <strong>beginning / end of line</strong></td>
+<td><em>Exclude empty lines:</em> <br> <code>grep -v "^$"</code> <br> <em>Exclude lines beginning with a “#”:</em> <br> <code>grep -v "^#"</code></td>
+</tr>
+<tr class="odd">
+<td><strong><code>\t</code></strong></td>
+<td></td>
+<td><strong>Tab</strong> (To match in <code>grep</code>, needs <code>-P</code> flag for Perl-like regex)</td>
+<td><code>echo -e "column1 \t column2"</code></td>
+</tr>
+<tr class="even">
+<td><strong><code>\n</code></strong></td>
+<td></td>
+<td><strong>Newline</strong> (Not straightforward to <em>match</em> since Unix tools are line-based.)</td>
+<td><code>echo -e "Line1 \n Line2"</code></td>
+</tr>
+<tr class="odd">
+<td><strong><code>\w</code></strong></td>
+<td>(yes)</td>
+<td><strong>“Word” character</strong>: any alphanumeric character or “_”. Needs <code>-E</code> (ERE) in <code>grep</code> but not in <code>sed</code>.</td>
+<td>Match <code>gene_id</code> followed by a space and a “word”: <br> <code>grep -E -o 'gene_id "\w+"'</code> <br> C<em>hange any word character to X:</em> <br> <code>sed s/\w/X/</code></td>
+</tr>
+<tr class="even">
+<td><strong><code>|</code></strong></td>
+<td>yes</td>
+<td><strong>Alternation / logical or</strong>: match either the string before or after the <code>|</code></td>
+<td><em>Find lines with either <code>intron</code> or <code>exon</code>:</em> <br> <code>grep -E "intron|exon"</code></td>
+</tr>
+<tr class="odd">
+<td><code>()</code></td>
+<td>yes</td>
+<td>Grouping</td>
+<td><em>Find “AAG” repeated 10 times:</em> <br> <code>grep (AAG){10}</code></td>
+</tr>
+<tr class="even">
+<td><code>\1</code>, <code>\2</code>, etc.</td>
+<td>yes</td>
+<td>Backreferences to groups captured with <code>()</code>: first group is <code>\1</code>, second group is <code>\2</code>, etc. <br> <span style="color:white">ddddddddddddddddddddddddddddddddddddd</span></td>
+<td><em>Invert order of two words:</em> <br> <code>sed -E 's/(\w+) (\w+)/\2 \1/'</code> <br> <span style="color:white">ddddddddddddddddddddddddddddddddddddd</span></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+<section id="more-details-for-a-few-commands" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="more-details-for-a-few-commands"><span class="header-section-number">6</span> More details for a few commands</h2>
+<section id="less" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="less"><span class="header-section-number">6.1</span> <code>less</code></h3>
+<table class="table">
+<colgroup>
+<col style="width: 39%">
+<col style="width: 60%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Key</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><kbd>q</kbd></td>
+<td>Exit <code>less</code></td>
+</tr>
+<tr class="even">
+<td><kbd>space</kbd> / <kbd>b</kbd></td>
+<td>Go down / up a page. (<em><code>pgup</code> / <code>pgdn</code> usually also work.</em>)</td>
+</tr>
+<tr class="odd">
+<td><kbd>d</kbd> / <kbd>u</kbd></td>
+<td>Go down / up <em>half</em> a page.</td>
+</tr>
+<tr class="even">
+<td><kbd>g</kbd> / <kbd>G</kbd></td>
+<td>Go to the first / last line (<code>home</code> / <code>end</code> also work).</td>
+</tr>
+<tr class="odd">
+<td><kbd>/</kbd><code>&lt;pattern&gt;</code> or <kbd>?</kbd><code>&lt;pattern&gt;</code></td>
+<td>Search for <code>&lt;pattern&gt;</code> forwards / backwards: type your search after <code>/</code> or <code>?</code>.</td>
+</tr>
+<tr class="even">
+<td><kbd>n</kbd> / <kbd>N</kbd></td>
+<td>When searching, go to next / previous search match.<br>
+<span style="color:white">dddddddddddddddddddddddddddddddddddddddddddddddddddd</span></td>
+</tr>
+</tbody>
+</table>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+<section id="sed" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="sed"><span class="header-section-number">6.2</span> <code>sed</code></h3>
+<section id="sed-flags" class="level4">
+<h4 class="anchored" data-anchor-id="sed-flags"><code>sed</code> flags:</h4>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Flag</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>-E</code></td>
+<td>Use extended regular expressions</td>
+</tr>
+<tr class="even">
+<td><code>-e</code></td>
+<td>When using multiple expressions, precede each with <code>-e</code></td>
+</tr>
+<tr class="odd">
+<td><code>-i</code></td>
+<td>Edit a file <strong>in place</strong></td>
+</tr>
+<tr class="even">
+<td><code>-n</code></td>
+<td>Don’t print lines unless specified with <code>p</code> modifier</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="sed-examples" class="level4">
+<h4 class="anchored" data-anchor-id="sed-examples"><code>sed</code> examples</h4>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Replace "chrom" by "chr" in every line,</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># with "i": case insensitive, and "g": global (&gt;1 replacements per line)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="st">'s/chrom/chr/ig'</span> chroms.txt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Only print lines matching "abc":</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-n</span> <span class="st">'/abc/p'</span> my.txt</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Print lines 20-50:</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">sed</span> <span class="at">-n</span> <span class="st">'20,50p'</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Change the genomic coordinates format chr1:431-874 ("chrom:start-end")</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co"># ...to one that has a tab ("\t") between each field:</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"chr1:431-874"</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="at">-e</span> <span class="st">'s/:/\t/'</span> <span class="at">-e</span> <span class="st">'s/-/\t/'</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; chr1    431     874</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Invert the order of two words:</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"inverted words"</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="at">-E</span> <span class="st">'s/(\w+) (\w+)/\2 \1/'</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; words inverted</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Capture transcript IDs from a GTF file (format 'transcript_id "ID_I_WANT"'):</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="co"># (Needs "-n" and "p" so lines with no transcript_id are not printed.) </span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="fu">grep</span> <span class="at">-v</span> <span class="st">"^#"</span> my.gtf <span class="kw">|</span> <span class="fu">sed</span> <span class="at">-E</span> <span class="at">-n</span> <span class="st">'s/.*transcript_id "([^"]+)".*/\1/p'</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="co"># When a pattern contains a `/`, use a different expression delimiter:</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"data/fastq/sampleA.fastq"</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s#data/fastq/##'</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; sampleA.fastq</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+</section>
+<section id="awk" class="level3" data-number="6.3">
+<h3 data-number="6.3" class="anchored" data-anchor-id="awk"><span class="header-section-number">6.3</span> <code>awk</code></h3>
+<ul>
+<li><p><strong>Records and fields</strong>: by default, each line is a record (assigned to <code>$0</code>). Each column is a field (assigned to <code>$1</code>, <code>$2</code>, etc).</p></li>
+<li><p><strong>Patterns and actions</strong>: A pattern is a condition to be tested, and an action is something to do when the pattern evaluates to true.</p>
+<ul>
+<li><p>Omit the pattern: action applies to every record.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'{ print $0 }'</span> my.txt     <span class="co"># Print entire file</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'{ print $3,$2 }'</span> my.txt  <span class="co"># Print columns 3 and 2 for each line</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Omit the action: print full records that match the pattern.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Print all lines for which:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'$3 &lt; 10'</span> my.bed          <span class="co"># Column 3 is less than 10</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'$1 == "chr1"'</span> my.bed     <span class="co"># Column 1 is "chr1"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'/chr1/'</span> my.bed           <span class="co"># Regex pattern "chr1" matches</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'$1 ~ /chr1/'</span> my.bed      <span class="co"># Column 1 _matches_ "chr1"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul></li>
+</ul>
+<section id="awk-examples" class="level4">
+<h4 class="anchored" data-anchor-id="awk-examples"><code>awk</code> examples</h4>
+<div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Count columns in a GTF file after excluding the header</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (lines starting with "#"):</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="at">-F</span> <span class="st">"\t"</span> <span class="st">'!/^#/ {print NF; exit}'</span> my.gtf</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Print all lines for which column 1 matches "chr1" and the difference</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># ...between columns 3 and 2 (feature length) is less than 10:</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'$1 ~ /chr1/ &amp;&amp; $3 - $2 &gt; 10'</span> my.bed</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Select lines with "chr2" or "chr3", print all columns and add a column </span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co"># ...with the difference between column 3 and 2 (feature length):</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'$1 ~ /chr2|chr3/ { print $0 "\t" $3 - $2 }'</span> my.bed</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Caclulate the mean value for a column:</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">awk</span> <span class="st">'BEGIN{ sum = 0 };            </span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="st">     { sum += ($3 - $2) };             </span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="st">     END{ print "mean: " sum/NR };'</span> my.bed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="awk-comparison-and-logical-operators" class="level4">
+<h4 class="anchored" data-anchor-id="awk-comparison-and-logical-operators"><code>awk</code> comparison and logical operators</h4>
+<table class="table">
+<colgroup>
+<col style="width: 42%">
+<col style="width: 57%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Comparison</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>a == b</code></td>
+<td><code>a</code> is equal to <code>b</code></td>
+</tr>
+<tr class="even">
+<td><code>a != b</code></td>
+<td><code>a</code> is not equal to <code>b</code></td>
+</tr>
+<tr class="odd">
+<td><code>a &lt; b</code></td>
+<td><code>a</code> is less than <code>b</code></td>
+</tr>
+<tr class="even">
+<td><code>a &gt; b</code></td>
+<td><code>a</code> is greater than <code>b</code></td>
+</tr>
+<tr class="odd">
+<td><code>a &lt;= b</code></td>
+<td><code>a</code> is less than or equal to <code>b</code></td>
+</tr>
+<tr class="even">
+<td><code>a &gt;= b</code></td>
+<td><code>a</code> is greater than or equal to <code>b</code></td>
+</tr>
+<tr class="odd">
+<td><code>a ~ /b/</code></td>
+<td><code>a</code> matches regular expression pattern <code>b</code></td>
+</tr>
+<tr class="even">
+<td><code>a !~ /b/</code></td>
+<td><code>a</code> does not match regular expression pattern <code>b</code></td>
+</tr>
+<tr class="odd">
+<td><code>a &amp;&amp; b</code></td>
+<td>logical and: <code>a</code> <strong>and</strong> <code>b</code></td>
+</tr>
+<tr class="even">
+<td><code>a</code> <code>|</code><code>|</code> <code>b</code></td>
+<td>logical or: <code>a</code> <strong>or</strong> <code>b</code> <em>[note typo in Buffalo]</em></td>
+</tr>
+<tr class="odd">
+<td><code>!a</code></td>
+<td>not a (logical negation)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="awk-special-variables-and-keywords" class="level4">
+<h4 class="anchored" data-anchor-id="awk-special-variables-and-keywords"><code>awk</code> special variables and keywords</h4>
+<table class="table">
+<colgroup>
+<col style="width: 25%">
+<col style="width: 74%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>keyword/<br>variable</th>
+<th>meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>BEGIN</code></td>
+<td>Used as a pattern that matches the start of the file</td>
+</tr>
+<tr class="even">
+<td><code>END</code></td>
+<td>Used as a pattern that matches the end of the file</td>
+</tr>
+<tr class="odd">
+<td><code>NR</code></td>
+<td>Number of Records (running count; in <code>END</code>: total nr. of lines)</td>
+</tr>
+<tr class="even">
+<td><code>NF</code></td>
+<td>Number of Fields (for each record)</td>
+</tr>
+<tr class="odd">
+<td><code>$0</code></td>
+<td>Contains entire record (usually a line)</td>
+</tr>
+<tr class="even">
+<td><code>$1</code> - <code>$n</code></td>
+<td>Contains one column each</td>
+</tr>
+<tr class="odd">
+<td><code>FS</code></td>
+<td>Input Field Separator (default: any whitespace)</td>
+</tr>
+<tr class="even">
+<td><code>OFS</code></td>
+<td>Output Field Separator (default: single space)</td>
+</tr>
+<tr class="odd">
+<td><code>RS</code></td>
+<td>Input Record Separator (default: newline)</td>
+</tr>
+<tr class="even">
+<td><code>ORS</code></td>
+<td>Output Record Separator (default: newline)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="some-awk-functions" class="level4">
+<h4 class="anchored" data-anchor-id="some-awk-functions">Some <code>awk</code> functions</h4>
+<table class="table">
+<colgroup>
+<col style="width: 35%">
+<col style="width: 64%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Function</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>length(&lt;string&gt;)</code></td>
+<td>Return number of characters</td>
+</tr>
+<tr class="even">
+<td><code>tolower(&lt;string&gt;)</code></td>
+<td>Convert to lowercase</td>
+</tr>
+<tr class="odd">
+<td><code>toupper(&lt;string&gt;)</code></td>
+<td>Convert to uppercase</td>
+</tr>
+<tr class="even">
+<td><code>substr(&lt;string&gt;, &lt;start&gt;, &lt;end&gt;)</code></td>
+<td>Return substring</td>
+</tr>
+<tr class="odd">
+<td><code>sub(&lt;from&gt;, &lt;to&gt;, &lt;string&gt;)</code></td>
+<td>Substitute (replace) regex</td>
+</tr>
+<tr class="even">
+<td><code>gsub(&lt;from&gt;, &lt;to&gt; &lt;string&gt;)</code></td>
+<td>&gt;1 substitution per line</td>
+</tr>
+<tr class="odd">
+<td><code>print</code></td>
+<td>Print, e.g.&nbsp;column: <code>print $1</code></td>
+</tr>
+<tr class="even">
+<td><code>exit</code></td>
+<td>Break out of record-processing loop; <br> e.g.&nbsp;to stop when match is found</td>
+</tr>
+<tr class="odd">
+<td><code>next</code></td>
+<td>Don’t process later fields: to next iteration</td>
+</tr>
+<tr class="even">
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+</section>
+</section>
+</section>
+<section id="keyboard-shortcuts" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="keyboard-shortcuts"><span class="header-section-number">7</span> Keyboard shortcuts</h2>
+<table class="table">
+<colgroup>
+<col style="width: 32%">
+<col style="width: 67%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Shortcut</th>
+<th>Function</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><kbd>Tab</kbd></td>
+<td>Tab completion</td>
+</tr>
+<tr class="even">
+<td><kbd>⇧</kbd> / <kbd>⇩</kbd></td>
+<td>Cycle through previously issued commands</td>
+</tr>
+<tr class="odd">
+<td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd></td>
+<td>Copy selected text</td>
+</tr>
+<tr class="even">
+<td><kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd></td>
+<td>Paste text from clipboard</td>
+</tr>
+<tr class="odd">
+<td><kbd>Ctrl</kbd>+<kbd>A</kbd> / <kbd>Ctrl</kbd>+<kbd>E</kbd></td>
+<td>Go to beginning/end of line</td>
+</tr>
+<tr class="even">
+<td><kbd>Ctrl</kbd>+<kbd>U</kbd> / <kbd>Ctrl</kbd>+<kbd>K</kbd></td>
+<td>Cut from cursor to beginning / end of line<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></td>
+</tr>
+<tr class="odd">
+<td><kbd>Ctrl</kbd>+<kbd>W</kbd></td>
+<td>Cut word before before cursor<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></td>
+</tr>
+<tr class="even">
+<td><kbd>Ctrl</kbd>+<kbd>Y</kbd></td>
+<td>Paste (“yank”)</td>
+</tr>
+<tr class="odd">
+<td><kbd>Alt</kbd>+<kbd>.</kbd></td>
+<td>Last argument of previous command (very useful!)</td>
+</tr>
+<tr class="even">
+<td><kbd>Ctrl</kbd>+<kbd>R</kbd></td>
+<td>Search history: press <kbd>Ctrl</kbd>+<kbd>R</kbd> again to cycle through matches, <kbd>Enter</kbd> to put command in prompt.</td>
+</tr>
+<tr class="odd">
+<td><kbd>Ctrl</kbd>+<kbd>C</kbd></td>
+<td>Kill (stop) currently active command</td>
+</tr>
+<tr class="even">
+<td><kbd>Ctrl</kbd>+<kbd>D</kbd></td>
+<td>Exit (a program or the shell depending on the context)</td>
+</tr>
+<tr class="odd">
+<td><kbd>Ctrl</kbd>+<kbd>Z</kbd></td>
+<td>Suspend (pause) a process: then use <code>bg</code> to move to background.</td>
+</tr>
+</tbody>
+</table>
+
+
+</section>
+
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>When using the default regular expressions in <code>grep</code> and <code>sed</code>, Basic Regular Expressions (BRE), the symbol would need to be preceded by a backslash to work.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>GNU Extended Regular Expressions<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><kbd>Ctrl</kbd>+<kbd>K</kbd> doesn’t work by default in VS Code, but can be set there.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Doesn’t work by default in VS Code, but can be set there.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>2024, Jelmer Poelstra</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/jelmerp/pracs-sp24">
+      <i class="bi bi-github" role="img">
+</i> 
+    </a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

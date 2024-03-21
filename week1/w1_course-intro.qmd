@@ -1,0 +1,367 @@
+---
+title: "Course Intro"
+subtitle: "Practical Computing Skills for Omics Data (PLNTPTH 6193)" 
+author: Jelmer Poelstra
+date: 2024-02-27
+institute: "MCIC Wooster, Ohio State University"
+editor: visual
+title-slide-attributes:
+  data-background-color: "dimgray"
+format:
+  revealjs:
+    theme: [simple, ../theme_mod.scss]
+    smaller: true
+    scrollable: false
+    progress: true
+    incremental: false
+    css: ../slides.css
+    slide-number: true
+    slide-level: 2
+    highlight-style: pygments
+    embed-resources: true
+    toc: true
+    toc-depth: 1
+    toc-title: Overview
+editor_options: 
+  chunk_output_type: console
+---
+
+# Personal introductions {background-color="dimgray"}
+
+## Introductions: Jelmer
+
+- Bioinformatician at MCIC in Wooster since June 2020
+  - The majority of my time is spent providing research assistance,\
+    working with grad students and postdocs on mostly genomic & transcriptomic data
+  - I also teach: some courses, workshops, Code Club (<https://osu-codeclub.github.io>)
+
+. . .
+
+<hr style="height:1pt; visibility:hidden;" />
+
+-   Background in animal evolutionary genomics & speciation
+
+<hr style="height:1pt; visibility:hidden;" />
+
+-   In my free time, I enjoy bird watching -- locally & all across the world
+
+## Introductions: You
+
+-   Name
+
+-   Lab and Department
+
+-   Research interests and/or current research topics
+
+-   Something about you that is _not_ work-related
+
+# Course overview {background-color="dimgray"}
+
+## The core goals of this course
+
+Learning skills to:
+
+-   Do your research more reproducibly and efficiently
+
+-   Prepare yourself for working with large "omics" datasets
+
+## Course background: Reproducibility
+
+-   Two related ideas:
+
+    1.  Getting same results with an independent experiment (*replicable*)
+
+    2.  Getting same results given the same data (*reproducible*)
+
+    Our focus is on #2.
+
+----------------------------------------------------------------------------------------------------
+
+## Course background: Reproducibility (cont.)
+
+> *"The most basic principle for reproducible research is: Do everything via code."*\
+> —Karl Broman
+
+<br>
+
+-   Also important:
+
+    -   Project organization and documentation (*week 2*)
+
+    -   Sharing data and code (*for code: Git & GitHub, week 3*)
+
+    -   How you code (*e.g. week 4 - shell scripts, and 6 - Nextflow*)
+
+<br>
+
+::: callout-tip
+##### Another motivator: working reproducibly will benefit future you!
+:::
+
+## Course background: Efficiency and automation
+
+-   Using code enables you to work more efficiently and automatically —\
+    particularly useful when having to:
+
+    -   Do repetitive tasks
+
+    -   Recreate a figure or redo an analysis after adding a sample
+
+    -   Redo a project after uncovering a mistake in the first data processing step.
+
+## Course background: Omics data
+
+- Omics data is increasingly important in biology, and most notably includes:
+  - Genomics + Microbiomics + Metagenomics
+  - Transcriptomics
+  - Proteomics
+  - Metabolomics
+
+. . .
+
+<hr style="height:1pt; visibility:hidden;" />
+
+- While we'll be using some example omics datasets,
+  this course will _not_ teach you how to analyze omics data in full ---
+  our focus is on fundamental computational skills.
+
+::: {.callout-warning appearance="simple"}
+I should say that this course is less relevant for proteomics and metabolomics,
+especially in its slimmed-down half-semester form with no R.
+:::
+
+# Course topics {background-color="dimgray"}
+
+## The Unix shell & shell scripts (Wk 1 & 4)
+
+Being able to work in the Unix shell is a fundamental skill in computational biology.
+
+<hr style="height:1pt; visibility:hidden;" />
+
+- You'll spend a lot of time with the Unix shell, starting this week
+- We'll also write shell _scripts_, and will use VS Code for this and other purposes.
+
+<br>
+
+::: columns
+
+::: column
+
+![](img/bash.png){fig-align="center" width="50%"}
+
+::: legend2
+Bash (shell language)
+:::
+
+:::
+
+::: column
+![](img/vscode.png){fig-align="center" width="50%"}
+
+::: legend2
+VS Code
+:::
+
+:::
+:::
+
+## Project organization and Markdown (Wk 2) {.nostretch}
+
+Good project organization & documentation is a necessary starting point for reproducible research.
+
+<hr style="height:1pt; visibility:hidden;" />
+
+- You'll learn best practices for project organization, file naming, etc.
+
+- To document and report what you are doing, you'll use *Markdown* files.
+
+<br>
+
+![](img/markdown.png){fig-align="center" width="35%"}
+
+::: legend2
+Markdown
+:::
+
+## Version control with Git and GitHub (Wk 3)
+
+Using version control, you can more effectively keep track of project progress,
+collaborate, share code, revisit earlier versions, and undo.
+
+<hr style="height:1pt; visibility:hidden;" />
+
+- *Git* is the version control software we will use,\
+  and *GitHub* is the website that hosts Git projects (repositories).
+
+- You'll also use Git+GitHub to hand in your final project assignments.
+
+<br>
+
+::: columns
+::: {.column width="50%"}
+![](img/git.png){fig-align="center" width="65%"}
+:::
+::: {.column width="50%"}
+![](img/github.jpg){fig-align="center"}
+:::
+:::
+
+## High-performance computing with OSC (Wk 5)
+
+Thanks to supercomputer resources, you can work with **very large datasets at speed** ---
+running up to 100s of analyses in parallel, and using much larger amounts of
+memory and storage space than a personal computer has.
+
+<hr style="height:1pt; visibility:hidden;" />
+
+. . .
+
+- We will use OSC throughout the course, and you'll get a brief intro to it today.
+- In week 5, we'll learn to submit shell scripts as OSC "batch jobs" with Slurm,
+  and use Conda to manage software.
+
+<br>
+
+::: columns
+
+::: {.column width="40%"}
+![](img/osc.png){fig-align="center" width="100%"}
+:::
+
+::: {.column width="28%"}
+![](img/slurm.png){fig-align="center" width="75%"}
+:::
+
+::: {.column width="31%"}
+![](img/conda.png){fig-align="center" width="95%"}
+:::
+
+:::
+
+## Automated workflow management (Wk 6) {.nostretch}
+
+Using a workflow written with a workflow manager,
+you can run and rerun entire analysis pipeline with a single command,
+and easily change and rerun parts of it, too.
+
+<hr style="height:1pt; visibility:hidden;" />
+
+- We'll use the workflow language *Nextflow*.
+
+<br>
+
+![](img/nextflow.png){fig-align="center" width="50%"}
+
+# Course practicalities {background-color="dimgray"}
+
+## Zoom
+
+-   Be muted by default, but feel free to unmute yourself to ask questions any time.
+
+-   Questions can also be asked in the chat.
+
+-   Having your camera turned on as much as possible is appreciated!
+
+. . .
+
+-   "Screen real estate" — large/multiple monitors or multiple devices best.
+
+-   Be ready to share your screen.
+
+## Websites & Books
+
+- I will only use the CarmenCanvas website for **Announcements**.
+
+<hr style="height:1pt; visibility:hidden;" />
+
+- The GitHub website is the main website for the course, containing all course material:
+  -   Overviews of each week & readings
+  -   Slide decks and lecture pages
+  -   Exercises
+  -   Final project assignment information
+
+<hr style="height:1pt; visibility:hidden;" />
+
+. . .
+
+- Books:
+
+  - Computing Skills for Biologists ("CSB"; Allesina & Wilmes 2019)
+  - Bioinformatics Data Skills ("Buffalo"; Buffalo 2015)
+
+# Homework {background-color="dimgray"}
+
+## Final project (graded)
+
+Plan and implement a small computational project, with the following checkpoints:
+
+-   I: **Proposal** (due week 4 -- 10 points)
+
+-   II: **Draft** (due week 6 -- 10 points)
+
+-   III: **Oral presentations** on Zoom (week 7 -- 10 points)
+
+-   IV: **Final submission** (due April 29 -- 20 points)
+
+<hr style="height:1pt; visibility:hidden;" />
+
+. . .
+
+::: callout-tip
+#### Data sets for the final project
+
+If you have your own data set & analysis ideas, that is ideal. If not, I can provide you with this.
+
+More information about the final project will follow in week 2 or 3.
+:::
+
+## Ungraded homework
+
+-   Weekly readings — somewhat up to you when to do these
+
+-   Weekly exercises — I recommend doing these on Fridays
+
+-   Miscellaneous small assignments such as surveys and account setup.
+
+<br>
+
+::: callout-note
+### Weekly materials & homework
+
+I will try add the materials for each week on the preceding Friday ---
+at the least the week's overview and readings.
+
+None of this homework had to be handed in.
+:::
+
+## Weekly recitation on Monday
+
+If there is interest, we can have a weekly Monday meeting in which we go through the exercises for
+the preceding week.
+
+<br>
+
+If you're interested, indicate your availability here:\
+<https://www.when2meet.com/?23841132-KV8fY>
+
+## Rest of this week
+
+-   Brief introduction to the Ohio Supercomputer Center (OSC)
+
+<hr style="height:1pt; visibility:hidden;" />
+
+-   Unix shell basics
+
+<hr style="height:1pt; visibility:hidden;" />
+
+-   **Homework**:
+
+    -   Readings: mostly CSB Chapter 1
+    -   [Exercises](w1_exercises.qmd)
+
+# Questions? {background-color="dimgray"}
+
+<br><br><br><br>
+
+[(Back to the site)](/index.qmd)
+

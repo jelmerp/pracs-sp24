@@ -1,0 +1,15 @@
+{
+  "hash": "081a2944acbd8a22626f3cee9207b299",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Final project: presentations\"\noutput:\n  distill::distill_article:\n    self_contained: false\n---\n\n\n**Every student is expected to give a 10-minute presentation about their final**\n**project during the Zoom sessions on April 20th and 22nd.**\n**<span style=\"color:coral\"><i>[10 points]</i></span>**\n\n<br>\n\n**A few pointers:**\n\n- Aim for the presentation itself to take about 10 minutes --\n  the acceptable range is roughly 8-11 minutes.\n\n- Afterwards, be prepared to answer a few questions both from your peers and the\n  TA or instructor.\n  You're also expected to ask one or more questions (in total) to other students\n  after their presentations.\n  \n- Prepare at least several slides.\n  Your entire presentation can be given using slides. But if you want,\n  you can also switch to showing your actual repository / scripts during part\n  of the presentation (just be mindful of font sizes if you do the latter).\n\n- Start with some general background about the data / research project,\n  and an overview of the goals of the project. \n\n- You can see for yourself if you would like to run through some code\n  line-by-line, or give a more high-level overview of the code you've written.\n\n- At the end, briefly mention what you still have to do --\n  and if this is work that you will continue after this course,\n  you can also discuss this in a broader sense.\n  You can even explicitly ask for some advice, if you want.\n\n**What you will be graded on:**\n\n- Technical content  <span style=\"color:coral\"><i>[3 points]</i></span>\n- Contextualization <span style=\"color:coral\"><i>[2 points]</i></span>\n- Delivery <span style=\"color:coral\"><i>[2 points]</i></span>\n- Clarity <span style=\"color:coral\"><i>[2 points]</i></span>\n- Questions for other students <span style=\"color:coral\"><i>[1 point]</i></span>\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

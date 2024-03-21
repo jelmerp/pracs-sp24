@@ -1,8 +1,30 @@
 ---
-title: "Practical Computing Skills for Omics data"
-subtitle: "PLNTPTH 6193 – Spring 2024 S2"
 number-sections: false
 toc: false
+format:
+  html:
+    grid:
+      body-width: 1300px
 ---
 
-<hr style="height:1pt; visibility:hidden;" />
+<h3 align="center" style="font-size:30px">
+
+Practical Computing Skills for Omics Data <br> [Ohio State PLNTPTH 6193<br>]{style="color:#969696"}
+[Spring 2024, second session]{style="color:#bb0000; font-size:20px"}
+
+</h3>
+
+| Week  | Tue                                                                                               | Thu                                                          | Homework                                                                                   |
+|------------------------|----------------------------|------------------------|-------------------------|
+|       | *(Pre-course work)*                                                                               |                                                              | [{{< fa book >}}](/week0/overview.qmd)                                                     |
+| **1** | 2/27: [Course Intro](week1/w1_course-intro.qmd) & [OSC Intro](week1/w1_osc.qmd)                   | 2/29: [Shell basics](week1/w1_shell.qmd)                     | [{{< fa book >}}](/week1/w1_overview.qmd)   [{{< fa user-edit >}}](week1/w1_exercises.qmd) |
+| **2** | 3/05: [Project organization](week2/w2_project-org.qmd) & [Markdown](week2/w2_vscode-markdown.qmd) | 3/07: [Managing files in the shell](week2/w2_shellfiles.qmd) | [{{< fa book >}}](week2/w2_overview.qmd)   [{{< fa user-edit >}}](week2/w2_exercises.qmd)  |
+| **3** | 3/19: [Getting started with Git](week3/w3_git1.qmd)                                                           | 3/21: [Git remotes on  GitHub](week3/w3_git2.qmd) | [{{< fa book >}}](week3/w3_overview.qmd)   [{{< fa user-edit >}}](week3/w3_exercises.qmd)  |
+| **4** | 3/26: [Shell scripting](week4/w4_1_scripts.qmd)                                                                            | 3/28: [Running CLI tools with shell scripts](week4/w4_2_cli-tools.qmd)                         | [{{< fa book >}}](week4/w4_overview.qmd)   [{{< fa user-edit >}}](week4/w4_exercises.qmd)                                                     |
+| **5** | 4/02: Data & software management                                                                  | 4/04: OSC Slurm batch jobs                                   | {{< fa book >}}   {{< fa user-edit >}}   [{{< fa laptop-code >}}](finalproj/proposal.qmd)                                                     |
+| **6** | 4/09: Nextflow I                                                                                  | 4/11: Nextflow II                                            | {{< fa book >}}   {{< fa user-edit >}}   {{< fa laptop-code >}}                                                    |
+| **7** | 4/16: Recap                                                                                       | 4/18: Student presentations                                  | {{< fa book >}}   {{< fa laptop-code >}}   {{< fa laptop-code >}}                                                                           |
+
+::: legend2
+Homework column: {{< fa book >}} = Week overview; {{< fa user-edit >}} = Exercises; {{< fa laptop-code >}} = Final project checkpoint.
+:::

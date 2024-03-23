@@ -233,6 +233,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../week3/w3_exercises.html">
  <span class="dropdown-text">Week 3: Git and GitHub</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../week4/w4_exercises.html">
+ <span class="dropdown-text">Week 4: Shell scripts and CLI tools</span></a>
+  </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Assignments</li>
         <li>
@@ -409,7 +413,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 class="unnumbered anchored" data-anchor-id="overview-and-setting-up">Overview and setting up</h2>
 <section id="this-week" class="level4">
 <h4 class="anchored" data-anchor-id="this-week">This week</h4>
-<p>This week, you will learn how to write shell scripts and then how to use shell scripts to run programs, like various bioinformatics tools, with command-line interfaces (CLIs). Next week’s material will then cover the next step to get you ready to analyze large-scale omics datasets at OSC: submitting your shell scripts as batch compute jobs, and using software at OSC.</p>
+<p>This week, you will learn how to write shell scripts and then how to use shell scripts to run programs, like various bioinformatics tools, with command-line interfaces (CLIs). Next week’s material will then cover the final main set of skills needed to analyze large-scale omics datasets at OSC: submitting your shell scripts as batch compute jobs, and using software at OSC.</p>
 </section>
 <section id="this-session" class="level4">
 <h4 class="anchored" data-anchor-id="this-session">This session</h4>
@@ -436,7 +440,7 @@ VS Code improvements
 <p><strong>First, we’ll add a keyboard shortcut to send code from your editor to the terminal.</strong> This is the same type of behavior that you may be familiar with from RStudio, and will mean that won’t have to copy-and-paste code into the terminal:</p>
 <ul>
 <li>Click the <i class="fa fa-cog"></i> (bottom-left) =&gt; <code>Keyboard Shortcuts</code>.</li>
-<li>Find <code>Terminal: Run Selected Text in Active Terminal</code>, click on it, then add a shortcut, e.g.&nbsp;<kbd>Ctrl</kbd>+<kbd>Enter</kbd>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</li>
+<li>Find <code>Terminal: Run Selected Text in Active Terminal</code>, click on it, then add a shortcut, e.g.&nbsp;<kbd>Ctrl</kbd>+<kbd>Enter</kbd><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</li>
 </ul>
 <p>In VS Code’s editor pane, the <em>entire line that your cursor is on is selected by default</em>. As such, your keyboard shortcut will send the line that your cursor is in to the terminal; you can also send multiple lines to the terminal after selecting them.</p>
 <hr>
@@ -468,7 +472,7 @@ Bash vs.&nbsp;shell
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>So far, we’ve mostly used talked about the Unix <em>shell</em> and <em>shell</em> scripts. The quote above uses the word “Bash”, and we’ll see that come by some more this week. There are multiple different Unix shells and the specific one we have been using, which is by far the most common, is the Bash shell.</p>
+<p>So far, we’ve mostly used talked about the Unix <em>shell</em> and <em>shell</em> scripts. The quote above uses the word “Bash”, and we’ll see that term more often this week. The difference is this: there are multiple Unix shell (language) variants and the specific one we have been using, which is also by far the most common, is the Bash shell. Our shell scripts are therefore in the Bash language and can be specifically called Bash scripts.</p>
 </div>
 </div>
 <hr style="height:1pt; visibility:hidden;">
@@ -492,16 +496,15 @@ Bash vs.&nbsp;shell
 <ul>
 <li>It is a good way to save and organize your code.</li>
 <li>You can easily rerun scripts and re-use them in similar contexts.</li>
-<li>Related to the point above, they provide a first step towards automating your workflow.</li>
-<li>You can turn having to run many consecutive commands into running a single one, namely calling the script.</li>
+<li>Related to the point above, they provide a first step towards automating the set of analyses in your project.</li>
+<li>When your code is tucked away in a shell script, you only have to call the script to run all those commands.</li>
 </ul>
 <p>And very importantly for our purposes at OSC, we can submit scripts as “batch jobs” to the compute job scheduling program (which is called Slurm), and this allows us to:</p>
 <ul>
-<li>Run scripts remotely without needing to stay connected to the runnig process, or even to be connected at all to it: we can submit a script, log out from OSC and shut down our computer, and it will still run.</li>
+<li>Run scripts remotely without needing to stay connected to the running process, or even to be connected at all to it: we can submit a script, log out from OSC and shut down our computer, and it will still run.</li>
 <li>Easily run analyses that take many hours or even multiple days.</li>
 <li>Run a script many times <em>simultaneously</em>, such as for different files/samples.</li>
 </ul>
-<p>Scripts form the basis for <em>analysis pipelines/workflows</em> and if we code things cleverly, it should be relatively straightforward to rerun much of our project workflow: after removing or adding some samples, with different parameter settings, and possibly even for an entirely different dataset.</p>
 <hr style="height:1pt; visibility:hidden;">
 </section>
 <section id="summary-of-what-we-need-to-learn-about" class="level4">
@@ -556,7 +559,7 @@ Auto Save in VS Code <em>(Click to expand)</em>
 <h3 data-number="2.2" class="anchored" data-anchor-id="shebang-line"><span class="header-section-number">2.2</span> Shebang line</h3>
 <p>We use a so-called “<em>shebang</em>” line as the first line of a script to <strong>indicate which computer language our script uses</strong>. More specifically, this line tell the computer where to find the binary (executable) that will run our script.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Such a line starts with <strong><code>#!</code></strong>, basically marking it as a special type of comment. After those two characters comes the file path of the relevant program: in our case Bash, which itself is just a program with an executable file that is located at <code>/bin/bash</code> on Linux and Mac computers.</p>
+<p>Such a line starts with <strong><code>#!</code></strong> (hash-bang), basically marking it as a special type of comment. After those two characters comes the file path of the relevant program: in our case Bash, which itself is just a program with an executable file that is located at <code>/bin/bash</code> on Linux and Mac computers.</p>
 <p>While not always strictly necessary, adding a <em>shebang</em> line to every shell script is good practice, especially when you submit your script to OSC’s Slurm queue, as we’ll do next week.</p>
 <hr style="height:1pt; visibility:hidden;">
 </section>
@@ -614,7 +617,7 @@ Above, the text specified the <em>intent</em> of the commands. What would have a
 </section>
 <section id="safer-settings" class="level4">
 <h4 class="anchored" data-anchor-id="safer-settings">Safer settings</h4>
-<p>The following three settings will make your shell scripts more robust and safer. With these settings, <strong>the script terminates</strong> with an appriate error message if:</p>
+<p>The following three settings will make your shell scripts more robust and safer. With these settings, <strong>the script terminates</strong> with an appropriate error message if:</p>
 <ul>
 <li><code>set -u</code> — an “unset” (non-existent) variable is referenced.</li>
 <li><code>set -e</code> — almost any error occurs.</li>
@@ -650,7 +653,7 @@ Can I run scripts without the <code>bash</code> command? <em>(Click to expand)</
 </div>
 <div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Because our script has a <em>shebang</em> line, we have taken one step towards being able to execute the script without the <code>bash</code> command, or in other words, to run the script “as a command”. With that method, we could run a script using just its path:</p>
+<p>Because our script has a <em>shebang</em> line, we have taken one step towards being able to execute the script without the <code>bash</code> command, or in other words, to run the script basically “as a command”. With that method, we could run a script using just its path:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sandbox/printname.sh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>(Or if the script was in our current working dir, using <code>./printname.sh</code>. In that case the <code>./</code> is necessary to make it explicit that we are referring to a file name: otherwise, when running just <code>printname.sh</code>, the shell would look for a command or program of that name, and wouldn’t be able to find it.)</p>
 <p>However, this would also require us to “make the script executable”, which we won’t talk about. But I’m mentioning it here because you might see this way of running scripts being used elsewhere.</p>
@@ -684,7 +687,7 @@ Can I run scripts without the <code>bash</code> command? <em>(Click to expand)</
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Run scripts with 1 or 2 arguments:</span></span>
 <span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/fastqc.sh data/sampleA.fastq.gz  <span class="co"># 1 argument: a filename</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/printname.sh John Doe                    <span class="co"># 2 arguments: strings representing names</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/printname.sh John Doe            <span class="co"># 2 arguments: strings representing names</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>In the next section, we’ll see what happens with the arguments we pass to a script inside that script.</p>
 <hr style="height:1pt; visibility:hidden;">
 </section>
@@ -717,7 +720,7 @@ Can I run scripts without the <code>bash</code> command? <em>(Click to expand)</
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"First name: </span><span class="va">$1</span><span class="st">"</span></span>
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Last name: </span><span class="va">$2</span><span class="st">"</span></span>
 <span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co"># (Note: this is a script. Don't enter this directly in your terminal.)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co"># [Paste this into you script - don't enter this directly in your terminal.]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Next, we’ll <em>run</em> the script, passing the arguments <code>John</code> and <code>Doe</code>:</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/printname.sh John Doe</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>This script will print a first and a last name
@@ -1118,7 +1121,6 @@ Another integer comparison example <em>(Click to expand)</em>
 <span id="cb63-9"><a href="#cb63-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Commands to run if nr of samples is &lt;=9:</span></span>
 <span id="cb63-10"><a href="#cb63-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Processing files with algorithm B..."</span></span>
 <span id="cb63-11"><a href="#cb63-11" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="bash-out"><code>TODO add output</code></pre>
 </div>
 </div>
 </div>
@@ -1137,52 +1139,34 @@ Combining multiple expressions with <code>&amp;&amp;</code> and <code>||</code> 
 <p>To test for multiple conditions at once, use the <code>&amp;&amp;</code> (“and”) and <code>||</code> (“or”) shell operators — for example:</p>
 <ul>
 <li><p>If the number of samples is less than 100 <strong>and</strong> at least 50 (i.e.&nbsp;50-99):</p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="st">"</span><span class="va">$n_samples</span><span class="st">"</span> <span class="ot">-lt</span> 100 <span class="kw">&amp;&amp;</span> <span class="st">"</span><span class="va">$n_samples</span><span class="st">"</span> <span class="ot">-ge</span> 50 <span class="kw">]];</span> <span class="cf">then</span></span>
-<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Commands to run if the number of samples is 50-99</span></span>
-<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb64"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="st">"</span><span class="va">$n_samples</span><span class="st">"</span> <span class="ot">-lt</span> 100 <span class="kw">&amp;&amp;</span> <span class="st">"</span><span class="va">$n_samples</span><span class="st">"</span> <span class="ot">-ge</span> 50 <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb64-2"><a href="#cb64-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Commands to run if the number of samples is 50-99</span></span>
+<span id="cb64-3"><a href="#cb64-3" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>If either one of two FASTQ files don’t exist:</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="ot">!</span> <span class="ot">-f</span> <span class="st">"</span><span class="va">$fastq_R1</span><span class="st">"</span> <span class="kw">||</span> <span class="ot">!</span> <span class="ot">-f</span> <span class="st">"</span><span class="va">$fastq_R2</span><span class="st">"</span> <span class="kw">]];</span> <span class="cf">then</span></span>
-<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Commands to run if either file doesn't exist - probably report error &amp; exit</span></span>
-<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb65"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="ot">!</span> <span class="ot">-f</span> <span class="st">"</span><span class="va">$fastq_R1</span><span class="st">"</span> <span class="kw">||</span> <span class="ot">!</span> <span class="ot">-f</span> <span class="st">"</span><span class="va">$fastq_R2</span><span class="st">"</span> <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Commands to run if either file doesn't exist - probably report error &amp; exit</span></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 </div>
 </div>
 </div>
 <hr style="height:1pt; visibility:hidden;">
-<section id="exercise-conditionals-i" class="level4 exercise">
-<h4 class="anchored" data-anchor-id="exercise-conditionals-i"><i class="fa-solid fa-user-edit" aria-label="user-edit"></i> Exercise: Conditionals I</h4>
-<ol type="1">
-<li>Set up an <code>if</code> statement that tests whether the script <code>template.sh</code> exists and is a regular file.</li>
-<li>If it is (<code>then</code> block), report the outcome with <code>echo</code> (e.g.&nbsp;“The file is found”).</li>
-<li>If it is not (<code>else</code> block), also report that outcome with <code>echo</code> (e.g.&nbsp;“The file is not found”).</li>
-</ol>
-<details>
-<summary>
-Click for the solution
-</summary>
-<div class="sourceCode" id="cb67"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="ot">-f</span> template.sh <span class="kw">]];</span> <span class="cf">then</span></span>
-<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Phew! The file is found."</span></span>
-<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
-<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Oh no! The file is not found!"</span></span>
-<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-</section>
 <section id="exercise-no-middle-names-allowed" class="level4 exercise">
 <h4 class="anchored" data-anchor-id="exercise-no-middle-names-allowed"><i class="fa-solid fa-user-edit" aria-label="user-edit"></i> Exercise: No middle names allowed!</h4>
-<p>Add the <code>if</code> statement from above that tests whether the correct number of arguments were passed to the script, to our <code>printname.sh</code> script. Then, try running the script consecutively with 1, 2, or 3 arguments.</p>
+<p>In your <code>printname.sh</code> script, add the <code>if</code> statement from above that tests whether the correct number of arguments were passed to the script. Then, try running the script consecutively with 1, 2, or 3 arguments.</p>
 <details>
 <summary>
 Start with this <code>printname.sh</code> script we wrote above.
 </summary>
-<div class="sourceCode" id="cb68"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
-<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a><span class="va">first_name</span><span class="op">=</span><span class="va">$1</span></span>
-<span id="cb68-5"><a href="#cb68-5" aria-hidden="true" tabindex="-1"></a><span class="va">last_name</span><span class="op">=</span><span class="va">$2</span></span>
-<span id="cb68-6"><a href="#cb68-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb68-7"><a href="#cb68-7" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"This script will print a first and a last name"</span></span>
-<span id="cb68-8"><a href="#cb68-8" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"First name: </span><span class="va">$first_name</span><span class="st">"</span></span>
-<span id="cb68-9"><a href="#cb68-9" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Last name: </span><span class="va">$last_name</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="va">first_name</span><span class="op">=</span><span class="va">$1</span></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a><span class="va">last_name</span><span class="op">=</span><span class="va">$2</span></span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"This script will print a first and a last name"</span></span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"First name: </span><span class="va">$first_name</span><span class="st">"</span></span>
+<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Last name: </span><span class="va">$last_name</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <details>
 <summary>
@@ -1190,34 +1174,65 @@ Click for the solution
 </summary>
 <p>Note that the <code>if</code> statement should come before you copy the variables to <code>first_name</code> and <code>last_name</code>, otherwise you get the “unbound variable error” before your descriptive custom error, when you pass 0 or 1 arguments to the script.</p>
 <p>The final script:</p>
-<div class="sourceCode" id="cb69"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb69-2"><a href="#cb69-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
-<span id="cb69-3"><a href="#cb69-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-4"><a href="#cb69-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="ot">!</span> <span class="st">"</span><span class="va">$#</span><span class="st">"</span> <span class="ot">-eq</span> 2 <span class="kw">]];</span> <span class="cf">then</span></span>
-<span id="cb69-5"><a href="#cb69-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Error: wrong number of arguments"</span></span>
-<span id="cb69-6"><a href="#cb69-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"You provided </span><span class="va">$#</span><span class="st"> arguments, while 2 are required."</span></span>
-<span id="cb69-7"><a href="#cb69-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Usage: printname.sh &lt;first-name&gt; &lt;last-name&gt;"</span></span>
-<span id="cb69-8"><a href="#cb69-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">exit</span> 1</span>
-<span id="cb69-9"><a href="#cb69-9" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
-<span id="cb69-10"><a href="#cb69-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-11"><a href="#cb69-11" aria-hidden="true" tabindex="-1"></a><span class="va">first_name</span><span class="op">=</span><span class="va">$1</span></span>
-<span id="cb69-12"><a href="#cb69-12" aria-hidden="true" tabindex="-1"></a><span class="va">last_name</span><span class="op">=</span><span class="va">$2</span></span>
-<span id="cb69-13"><a href="#cb69-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb69-14"><a href="#cb69-14" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"This script will print a first and a last name"</span></span>
-<span id="cb69-15"><a href="#cb69-15" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"First name: </span><span class="va">$first_name</span><span class="st">"</span></span>
-<span id="cb69-16"><a href="#cb69-16" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Last name: </span><span class="va">$last_name</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="ot">!</span> <span class="st">"</span><span class="va">$#</span><span class="st">"</span> <span class="ot">-eq</span> 2 <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Error: wrong number of arguments"</span></span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"You provided </span><span class="va">$#</span><span class="st"> arguments, while 2 are required."</span></span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Usage: printname.sh &lt;first-name&gt; &lt;last-name&gt;"</span></span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">exit</span> 1</span>
+<span id="cb67-9"><a href="#cb67-9" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
+<span id="cb67-10"><a href="#cb67-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-11"><a href="#cb67-11" aria-hidden="true" tabindex="-1"></a><span class="va">first_name</span><span class="op">=</span><span class="va">$1</span></span>
+<span id="cb67-12"><a href="#cb67-12" aria-hidden="true" tabindex="-1"></a><span class="va">last_name</span><span class="op">=</span><span class="va">$2</span></span>
+<span id="cb67-13"><a href="#cb67-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-14"><a href="#cb67-14" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"This script will print a first and a last name"</span></span>
+<span id="cb67-15"><a href="#cb67-15" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"First name: </span><span class="va">$first_name</span><span class="st">"</span></span>
+<span id="cb67-16"><a href="#cb67-16" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Last name: </span><span class="va">$last_name</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Run it with different numbers of arguments:</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/printname.sh Jelmer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/printname.sh Jelmer</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>Error: wrong number of arguments
 You provided 1 arguments, while 2 are required.
 Usage: printname.sh &lt;first-name&gt; &lt;last-name&gt;</code></pre>
-<div class="sourceCode" id="cb72"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/printname.sh Jelmer Poelstra</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/printname.sh Jelmer Poelstra</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>First name: Jelmer
 Last name: Poelstra</code></pre>
-<div class="sourceCode" id="cb74"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/printname.sh Jelmer Wijtze Poelstra</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb72-1"><a href="#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/printname.sh Jelmer Wijtze Poelstra</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>Error: wrong number of arguments
 You provided 3 arguments, while 2 are required.
 Usage: printname.sh &lt;first-name&gt; &lt;last-name&gt;</code></pre>
+</details>
+</section>
+<section id="exercise-conditionals-ii" class="level4 exercise">
+<h4 class="anchored" data-anchor-id="exercise-conditionals-ii"><i class="fa-solid fa-user-edit" aria-label="user-edit"></i> Exercise: Conditionals II</h4>
+<p>Write an <code>if</code> statement that tests whether the script <code>scripts/printname.sh</code> exists and is a regular file, and:</p>
+<ul>
+<li>If it is (<code>then</code> block), report the outcome with <code>echo</code> (e.g.&nbsp;“The file is found”).</li>
+<li>If it is not (<code>else</code> block), also report that outcome with <code>echo</code> (e.g.&nbsp;“The file is not found”).</li>
+</ul>
+<p>Then:</p>
+<ol type="1">
+<li>Run your <code>if</code> statement — the file should be found.</li>
+<li>Introduce a typo in the file name in the <code>if</code> statement to check that the file is not indeed not found.</li>
+</ol>
+<details>
+<summary>
+Click for the solution
+</summary>
+<div class="sourceCode" id="cb74"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb74-1"><a href="#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="ot">-f</span> scripts/printname.sh <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb74-2"><a href="#cb74-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Phew! The file is found."</span></span>
+<span id="cb74-3"><a href="#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb74-4"><a href="#cb74-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Oh no! The file is not found!"</span></span>
+<span id="cb74-5"><a href="#cb74-5" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>Phew! The file is found.</code></pre>
+<p>After introducing a typo:</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb76-1"><a href="#cb76-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="ot">-f</span> scripts/printnames.sh <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb76-2"><a href="#cb76-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Phew! The file is found."</span></span>
+<span id="cb76-3"><a href="#cb76-3" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span></span>
+<span id="cb76-4"><a href="#cb76-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Oh no! The file is not found!"</span></span>
+<span id="cb76-5"><a href="#cb76-5" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>Oh no! The file is not found!</code></pre>
 </details>
 </section>
 <p><br></p>

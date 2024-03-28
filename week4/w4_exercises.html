@@ -341,19 +341,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#exercise-1-a-shell-script-that-prints-a-specific-line" id="toc-exercise-1-a-shell-script-that-prints-a-specific-line" class="nav-link active" data-scroll-target="#exercise-1-a-shell-script-that-prints-a-specific-line">Exercise 1: A shell script that prints a specific line</a></li>
-  <li><a href="#exercise-2-a-script-to-run-trimgalore" id="toc-exercise-2-a-script-to-run-trimgalore" class="nav-link" data-scroll-target="#exercise-2-a-script-to-run-trimgalore">Exercise 2: A script to run TrimGalore</a>
-  <ul class="collapse">
-  <li><a href="#introduction-to-trimgalore" id="toc-introduction-to-trimgalore" class="nav-link" data-scroll-target="#introduction-to-trimgalore">Introduction to TrimGalore</a></li>
-  <li><a href="#your-trimgalore-shell-script" id="toc-your-trimgalore-shell-script" class="nav-link" data-scroll-target="#your-trimgalore-shell-script">Your TrimGalore shell script</a></li>
-  </ul></li>
-  <li><a href="#exercise-3-run-your-trimgalore-script" id="toc-exercise-3-run-your-trimgalore-script" class="nav-link" data-scroll-target="#exercise-3-run-your-trimgalore-script">Exercise 3: Run your TrimGalore script</a></li>
-  <li><a href="#bonus-exercise-improve-your-trimgalore-script-advanced" id="toc-bonus-exercise-improve-your-trimgalore-script-advanced" class="nav-link" data-scroll-target="#bonus-exercise-improve-your-trimgalore-script-advanced">Bonus exercise: Improve your TrimGalore script (advanced)</a></li>
+  <li><a href="#exercise-2-a-script-to-run-trimgalore" id="toc-exercise-2-a-script-to-run-trimgalore" class="nav-link" data-scroll-target="#exercise-2-a-script-to-run-trimgalore">Exercise 2: A script to run TrimGalore</a></li>
+  <li><a href="#exercise-3-run-your-trimgalore-script-once" id="toc-exercise-3-run-your-trimgalore-script-once" class="nav-link" data-scroll-target="#exercise-3-run-your-trimgalore-script-once">Exercise 3: Run your TrimGalore script once</a></li>
+  <li><a href="#exercise-4-run-your-trimgalore-script-for-all-samples" id="toc-exercise-4-run-your-trimgalore-script-for-all-samples" class="nav-link" data-scroll-target="#exercise-4-run-your-trimgalore-script-for-all-samples">Exercise 4: Run your TrimGalore script for all samples</a></li>
   <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions">Solutions</a>
   <ul class="collapse">
   <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
   <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
   <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3">Exercise 3</a></li>
-  <li><a href="#bonus-exercise" id="toc-bonus-exercise" class="nav-link" data-scroll-target="#bonus-exercise">Bonus exercise</a></li>
+  <li><a href="#exercise-4" id="toc-exercise-4" class="nav-link" data-scroll-target="#exercise-4">Exercise 4</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -396,28 +392,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr style="height:1pt; visibility:hidden;">
 <section id="setting-up" class="level4">
 <h4 class="anchored" data-anchor-id="setting-up">Setting up</h4>
-<p>Start a VS Code session at OSC in the folder <code>/fs/ess/PAS2700/users/$USER</code>. In the terminal, create and move into a dir for these exercises:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (Assuming you are in /fs/ess/PAS2700/users/$USER)</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> week04/exercises</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> week04/exercises</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Start a VS Code session at OSC in the folder <code>/fs/ess/PAS2700/users/$USER</code>. In the terminal, move into your dir for this week:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> week04</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>For your scripts, create files with the extension <code>.sh</code>, and open and edit them in the VS Code editor pane.</p>
 <hr style="height:1pt; visibility:hidden;">
 </section>
 <section id="exercise-1-a-shell-script-that-prints-a-specific-line" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-1-a-shell-script-that-prints-a-specific-line">Exercise 1: A shell script that prints a specific line</h2>
-<p>Write a shell script that accepts two arguments, a file name and a line number, and prints the requested line from the file to screen. Additional notes:</p>
+<p>Write a shell script <code>scripts/printline.sh</code> that accepts two arguments, a file name and a line number, and prints the requested line from the file to screen. Additional notes:</p>
 <ul>
-<li>As a simple utility script, I would suggest to make it not print anything else (i.e., no <code>echo</code> statements).</li>
+<li>Since this is a simple utility script, I suggest to make the script not print anything other than the requested line from the file (i.e., no <code>echo</code> statements).</li>
 <li>Don’t forget the best-practice shell script header lines we discussed.</li>
 <li>With an <code>if</code> statement, let the script check whether the correct number of arguments were passed to it, and if not, exit the script.</li>
-<li>Test your script by printing a couple of different lines from <code>../garrigos_data/meta/metadata.tsv</code>. Also test that your argument-number-check works.</li>
+<li>Test your script by printing a couple of different lines from <code>garrigos_data/meta/metadata.tsv</code>. Also test that your argument-number-check works.</li>
 </ul>
 <details>
 <summary>
 Hint 1: an overview of the steps to take <em>(Click to expand)</em>
 </summary>
 <ul>
-<li>Open a new text file and save it as e.g.&nbsp;<code>scripts/printline.sh</code>.</li>
+<li>Open a new text file and save it as <code>scripts/printline.sh</code>.</li>
 <li>In the script, start with the <em>shebang</em> and <code>set</code> lines.</li>
 <li>Your script takes two arguments: a file name (<code>$1</code>) and a line number (<code>$2</code>) .</li>
 <li>Check the number of arguments in an <code>if</code> statement like we did in class.</li>
@@ -430,27 +424,24 @@ Hint 1: an overview of the steps to take <em>(Click to expand)</em>
 Hint 2: how to print a specific line number <em>(Click to expand)</em>
 </summary>
 <p>For example, to print line 4 of the Garrigos et al.&nbsp;metadata file:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (Full path to the file should be:</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># /fs/ess/PAS2700/users/$USER/week04/garrigos_data/meta/metadata.tsv)</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-n</span> 4 ../garrigos_data/meta/metadata.tsv <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-n</span> 4 garrigos_data/meta/metadata.tsv <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>ERR10802879     10dpi   cathemerium</code></pre>
 <p>How this command works:</p>
 <ul>
-<li><code>head -n 4 metadata/meta.tsv</code> prints the first 4 lines of <code>metadata/meta.tsv</code>.</li>
+<li><code>head -n 4 garrigos_data/meta/metadata.tsv</code> prints the first 4 lines of that file.</li>
 <li>Those 4 lines are then piped into the <code>tail</code> command.</li>
 <li>With <code>-n 1</code>, <code>tail</code> will only print the last line of its input: this will be line 4 of the original input file.</li>
 </ul>
 </details>
-<p><br></p>
+<hr style="height:1pt; visibility:hidden;">
 </section>
 <section id="exercise-2-a-script-to-run-trimgalore" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-2-a-script-to-run-trimgalore">Exercise 2: A script to run TrimGalore</h2>
-<section id="introduction-to-trimgalore" class="level3">
-<h3 class="anchored" data-anchor-id="introduction-to-trimgalore">Introduction to TrimGalore</h3>
+<section id="introduction-to-trimgalore" class="level4">
+<h4 class="anchored" data-anchor-id="introduction-to-trimgalore">Introduction to TrimGalore</h4>
 <p>TrimGalore is a tool that can trim and filter FASTQ files, removing:</p>
 <ul>
-<li>Any adapter sequences that are present in the reads.</li>
+<li>Any adapter sequences that are present in the reads<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</li>
 <li>Poor-quality bases at the start and end of the reads.</li>
 <li>Reads that have become very short after the prior two steps.</li>
 </ul>
@@ -467,7 +458,7 @@ More about TrimGalore <em>(Click to expand)</em>
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Several largely equivalent tools exist for this kind of FASTQ preprocessing — Trimmomatic and fastp are two other commonly used ones. TrimGalore itself is “just” a wrapper around another tool called Cutadapt, but it is simpler to use. Two advantages of TrimGalore are:</p>
+<p>Several largely equivalent tools exist for this kind of FASTQ preprocessing — Trimmomatic and fastp are two other commonly used ones. TrimGalore itself is “just” a wrapper around yet another tool called Cutadapt, but it is simpler to use. Two advantages of TrimGalore are:</p>
 <ul>
 <li>It will auto-detect the adapters that are present in your reads.</li>
 <li>It can automatically run FastQC on the trimmed sequences.</li>
@@ -475,35 +466,36 @@ More about TrimGalore <em>(Click to expand)</em>
 </div>
 </div>
 </div>
-<p>TrimGalore isn’t installed at OSC, but you can use a so-called “<em>Conda</em> environment” that I have created for it<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>:</p>
+<p>TrimGalore isn’t installed at OSC, but you can use a so-called “<em>Conda</em> environment”<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> that I have created for it:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># First load OSC's (mini)Conda module</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load miniconda3</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Then load ('activate') the Conda environment with TrimGalore</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> activate /fs/ess/PAS0471/jelmer/conda/trimgalore</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>After running those two lines, check that you can run TrimGalore, and which version you’re working with, as follows:</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">trim_galore</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>After running those two lines, check that you can run TrimGalore and which version you’re working with, as follows:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: the command is 'trim_galore' with an underscore</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">trim_galore</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>            Quality-/Adapter-/RRBS-/Speciality-Trimming
                     [powered by Cutadapt]
                         version 0.6.10</code></pre>
-<p>Then get the help info — you’ll be using this below!</p>
+<p>Then print the help info — you’ll be using this below!</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">trim_galore</span> <span class="at">--help</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>[output not shown]</code></pre>
 <hr style="height:1pt; visibility:hidden;">
 </section>
-<section id="your-trimgalore-shell-script" class="level3">
-<h3 class="anchored" data-anchor-id="your-trimgalore-shell-script">Your TrimGalore shell script</h3>
+<section id="your-trimgalore-shell-script" class="level4">
+<h4 class="anchored" data-anchor-id="your-trimgalore-shell-script">Your TrimGalore shell script</h4>
 <p>Write a shell script <code>scripts/trimgalore.sh</code> that runs TrimGalore on paired end-FASTQ files as follows:</p>
 <ul>
 <li><p>The script should only <strong>run TrimGalore once</strong>, i.e.&nbsp;for one sample (two FASTQ files).</p></li>
-<li><p>Your <strong>script should accept and process arguments</strong> to specify the input FASTQ files and the output dir. For the FASTQ files, I suggest you follow the strategy <a href="w4_2_cli-tools.html#looping-over-samples-rather-than-files">used in class</a> where the script takes only the R1 file name as an argument<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, and the script infers the name of the corresponding R2 file name.</p></li>
-<li><p>For each of the items below, figure out the relevant TrimGalore option and use it:</p>
+<li><p>Your <strong>script should accept and process arguments</strong> that specify the input FASTQ files and the output dir. (For the FASTQ files, I suggest you follow the strategy <a href="w4_2_cli-tools.html#looping-over-samples-rather-than-files">used in class</a> where the script takes only the R1 file name as an argument<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> and infers the name of the corresponding R2 file.)</p></li>
+<li><p>For each of the items below, figure out the relevant TrimGalore option, and use that option:</p>
 <ul>
-<li>Tell the program that the reads are <strong>paired-end</strong>.</li>
+<li>Tell the program that the reads are <strong>paired-end</strong><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</li>
 <li>Set the <strong>output dir</strong>.</li>
 <li>Make the program <strong>run FastQC</strong> on the trimmed FASTQ files.</li>
 </ul></li>
+<li><p>Check what the default values are for the Phred quality score and read length thresholds. Do you understand what these do? You don’t have to change them here, the defaults will work fine for us.</p></li>
 </ul>
-<p><em>Optional</em>: Check what the default values are for the Phred quality score and read length thresholds. Do you understand what these do? You don’t have to change them here, the defaults will work fine for us.</p>
 <details>
 <summary>
 Hint: See the relevant parts of the TrimGalore help pages <em>(Click to expand)</em>
@@ -529,7 +521,8 @@ trim_galore [options] &lt;filename(s)&gt;
                         try to auto-detect whether the Illumina universal, Nextera transposase or Illumina
                         small RNA adapter sequence was used.
 
--q/--quality &lt;INT&gt;      Trim low-quality ends from reads in addition to adapter removal.
+-q/--quality &lt;INT&gt;      Trim low-quality ends from reads in addition to adapter removal. [...]
+                        Default Phred score: 20.
 
 --length &lt;INT&gt;          Discard reads that became shorter than length INT because of either
                         quality or adapter trimming. A value of '0' effectively disables
@@ -541,56 +534,49 @@ trim_galore [options] &lt;filename(s)&gt;
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Warning: Don’t use TrimGalore’s <code>--cores</code> option here <em>(Click to expand)</em>
+Warning: Don’t use/adjust TrimGalore’s <code>--cores</code> option here <em>(Click to expand)</em>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Since you’re running the program interactively on our single-core VS Code compute job, we only have 1 core at our disposal and that’s TrimGalore’s default. Next week we’ll be submitting our scripts as batch jobs: that will give us the opportunity to use multiple cores with programs like this.</p>
+<p>Since you’re running the program interactively on our single-core VS Code compute job, you only have 1 core at your disposal — and that’s TrimGalore’s default. Next week we’ll be submitting our scripts as batch jobs: that will give us the opportunity to use multiple cores with programs like this.</p>
 </div>
 </div>
 </div>
-<p><br></p>
+<hr style="height:1pt; visibility:hidden;">
 </section>
 </section>
-<section id="exercise-3-run-your-trimgalore-script" class="level2">
-<h2 class="anchored" data-anchor-id="exercise-3-run-your-trimgalore-script">Exercise 3: Run your TrimGalore script</h2>
-<p>Create a “runner” script and in it, write a <code>for</code> loop to run your TrimGalore script on all samples in <code>../garrigos_data/fastq</code>. Hints:</p>
+<section id="exercise-3-run-your-trimgalore-script-once" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-3-run-your-trimgalore-script-once">Exercise 3: Run your TrimGalore script once</h2>
 <ul>
-<li>Before you actually run the loop, test your script by running it on a single sample only.</li>
-<li>Don’t forget to take into account that you should loop over samples or R1 FASTQ files, not over all FASTQ files.</li>
+<li><p>Create a separate (“runner”) script and in it, write code to run your TrimGalore script for just the <code>ERR10802863</code> sample in <code>garrigos_data/fastq</code> — and run that code.</p></li>
+<li><p>Check if everything went well; also take a look at TrimGalore’s output files, which should include new (filtered) FASTQ files as well as FastQC outputs and a text file for each sample. If something went wrong, go back to your <code>trimgalore.sh</code> script and try to fix it.</p></li>
+<li><p>Take a closer look at the output that TrimGalore printed to screen (note that most of that is also saved in the <code>*_trimming_report.txt</code> file in the output dir):</p>
+<ul>
+<li>In each file (R1 and R2), in what percentage of reads were adapters detected?</li>
+<li>In each file (R1 and R2), what percentage of bases were quality trimmed?</li>
+<li>What percentage of reads were removed because they were too short?<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></li>
+</ul></li>
 </ul>
-<p><br></p>
+<hr style="height:1pt; visibility:hidden;">
 </section>
-<section id="bonus-exercise-improve-your-trimgalore-script-advanced" class="level2">
-<h2 class="anchored" data-anchor-id="bonus-exercise-improve-your-trimgalore-script-advanced">Bonus exercise: Improve your TrimGalore script (advanced)</h2>
-<ul>
-<li><p>Annoyingly, the TrimGalore output FASTQ files are oddly named, ending in <code>_R1_val_1.fq.gz</code> and <code>_R2_val_2.fq.gz</code> — check the output files from your initial run to check this. In the script, after you run TrimGalore, <strong>rename the output files</strong>.</p>
-<p>I would suggest to rename them to have the exact same file names as the input files (recall: they will be in a different dir so this is OK – but see also below); alternatively, add a <code>_trimmed</code> suffix before the file extension.</p></li>
-</ul>
-<details>
-<summary>
-Hint <em>(Click to expand)</em>
-</summary>
-<p>To do this, you should first extract and store what is basically a sample ID: the part of the file name that is shared by the R1 and R2 file.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="va">sample_id</span><span class="op">=</span><span class="va">$(</span><span class="fu">basename</span> <span class="st">"</span><span class="va">$R1_in</span><span class="st">"</span> _R1.fastq.gz<span class="va">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Based on that ID, you can build up the names of the TrimGalore output files as well as the desired final output files. For example:</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># The name of the initial ('init') TrimGalore R1 output file will be:</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="va">R1_out_init</span><span class="op">=</span><span class="st">"</span><span class="va">$outdir</span><span class="st">"</span>/<span class="st">"</span><span class="va">$sample_id</span><span class="st">"</span>_R1_val_1.fq.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<ul>
-<li>If you rename the output files to have the exact same file names as the input files, then it is critically important that the output dir is not the same as the input dir. Otherwise, your renaming would overwrite the original input files! To prevent this from ever happening, <strong>include an <code>if</code> statement</strong> in your script that tests whether the input dir is the same as the output dir, and exits if it is.</li>
-</ul>
-<details>
-<summary>
-Hint <em>(Click to expand)</em>
-</summary>
-To test this, you’ll need to derive the input dir from the FASTQ path. The <code>dirname</code> command will do exactly this. Use command substitution (<code>$(...)</code> to store the input dir in a variable first.
-</details>
-<ul>
-<li>Finally, re-run the loop to run your script for each sample.</li>
-</ul>
+<section id="exercise-4-run-your-trimgalore-script-for-all-samples" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-4-run-your-trimgalore-script-for-all-samples">Exercise 4: Run your TrimGalore script for all samples</h2>
+<p>Once your single-sample run works, write a <code>for</code> loop in your runner script to run your TrimGalore script on all samples in the <code>garrigos_data/fastq</code> dir, and run that. <em>(Don’t forget to take into account that you should loop over samples or R1 FASTQ files,</em> <em>not over all FASTQ files.)</em></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+This will take some time (~20 minutes) to run!
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>And note that these FASTQ files are <em>much</em> smaller than regular ones. You’ll hopefully agree that we need to start using more computing power, and have the script run simultaneously rather than consecutively for each samples — we can do all of that by submitting the script as batch jobs, as we’ll see next week.</p>
+</div>
+</div>
 <p><br></p>
 </section>
 <section id="solutions" class="level2">
@@ -602,30 +588,31 @@ To test this, you’ll need to derive the input dir from the FASTQ path. The <co
 Solution <em>(Click to expand)</em>
 </summary>
 <ul>
-<li>The option to indicate that the FASTQ files are paired-end is <code>--paired</code>.</li>
-<li>The option to specify the output dir is <code>--output_dir</code>.</li>
-<li>The option to run FastQC is <code>--fastqc</code>.</li>
+<li><p>Here is the full script:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the number of command-line arguments</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="ot">!</span> <span class="st">"</span><span class="va">$#</span><span class="st">"</span> <span class="ot">-eq</span> 2 <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Error: wrong number of arguments"</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"You provided </span><span class="va">$#</span><span class="st"> arguments, while 2 are required."</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Usage: printline.sh &lt;file&gt; &lt;line-number&gt;"</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">exit</span> 1</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy the command-line arguments</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="va">input_file</span><span class="op">=</span><span class="va">$1</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a><span class="va">line_nr</span><span class="op">=</span><span class="va">$2</span></span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Only print the requested line</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-n</span> <span class="st">"</span><span class="va">$line_nr</span><span class="st">"</span> <span class="st">"</span><span class="va">$input_file</span><span class="st">"</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>To run the script and make it print the 4<sup>th</sup> line of the Garrigos et al.&nbsp;metadata file:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/printline.sh garrigos_data/meta/metadata.tsv 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>ERR10802879     10dpi   cathemerium</code></pre></li>
+<li><p>Or the 7<sup>th</sup> line:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/printline.sh garrigos_data/meta/metadata.tsv 7</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>ERR10802884     10dpi   control</code></pre></li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the number of command-line arguments</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="ot">!</span> <span class="st">"</span><span class="va">$#</span><span class="st">"</span> <span class="ot">-eq</span> 2 <span class="kw">]];</span> <span class="cf">then</span></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Error: wrong number of arguments"</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"You provided </span><span class="va">$#</span><span class="st"> arguments, while 2 are required."</span></span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Usage: printline.sh &lt;file&gt; &lt;line-number&gt;"</span></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">exit</span> 1</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy the command-line arguments</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="va">input_file</span><span class="op">=</span><span class="va">$1</span></span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="va">line_nr</span><span class="op">=</span><span class="va">$2</span></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Only print the requested line</span></span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span> <span class="at">-n</span> <span class="st">"</span><span class="va">$line_nr</span><span class="st">"</span> <span class="st">"</span><span class="va">$input_file</span><span class="st">"</span> <span class="kw">|</span> <span class="fu">tail</span> <span class="at">-n</span> 1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>To run the script and make it print the 4th line of the Garrigos et al.&nbsp;metadata file:</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> sandbox/printline.sh ../garrigos_data/meta/metadata.tsv 4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="bash-out"><code>ERR10802879     10dpi   cathemerium</code></pre>
 </details>
 <hr style="height:1pt; visibility:hidden;">
 </section>
@@ -633,8 +620,15 @@ Solution <em>(Click to expand)</em>
 <h3 class="anchored" data-anchor-id="exercise-2">Exercise 2</h3>
 <details>
 <summary>
-Solution <em>(Click to expand)</em>
+Code solution <em>(Click to expand)</em>
 </summary>
+<p>These are the TrimGalore options you were looking for:</p>
+<ul>
+<li><code>--paired</code> to indicate that the FASTQ files are paired-end.</li>
+<li><code>--output_dir</code> (or equivalently, <code>-o</code>) to specify the output directory.</li>
+<li><code>--fastqc</code> to run FastQC on the trimmed FASTQ files.</li>
+</ul>
+<p>Here is the full script:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -675,9 +669,14 @@ Solution <em>(Click to expand)</em>
 </details>
 <details>
 <summary>
-Quality and length thresholds <em>(Click to expand)</em>
+Quality and length threshold options &amp; interpretation <em>(Click to expand)</em>
 </summary>
-TODO
+<ul>
+<li><p>The option <code>-q</code> (short notation) or <code>--quality</code> (long notation) can be used to adjust the base quality score threshold, which has the “Phred” unit. The default threshold is 20, which corresponds to an estimated 0.01 error rate.</p>
+<p>TrimGalore will trim bases with a lower quality score than the threshold from the <strong>ends</strong> of the reads. It will <strong>not</strong> remove or mask bases with lower quality scores elsewhere in the read.</p></li>
+<li><p>The option <code>-l</code> (short notation) or <code>--length</code> (long notation) can be used to adjust the read length threshold: any reads that are shorter than this after adapter and quality trimming will be removed. The default threshold is 20 bp.</p>
+<p>(When the input is paired-end, the corresponding second read will also be removed, regardless of its length: paired-end FASTQ files always need to contain both the R1 and R2 for each pair; orphan reads would need to be stored in a separate file.)</p></li>
+</ul>
 </details>
 <hr style="height:1pt; visibility:hidden;">
 </section>
@@ -685,82 +684,110 @@ TODO
 <h3 class="anchored" data-anchor-id="exercise-3">Exercise 3</h3>
 <details>
 <summary>
-Solution <em>(Click to expand)</em>
+Code solution <em>(Click to expand)</em>
 </summary>
 <ul>
-<li><p>Test-run the script for one sample:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="va">R1</span><span class="op">=</span>../garrigos_data/ERR10802863_R1.fastq.gz</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/trimgalore.sh <span class="st">"</span><span class="va">$R1</span><span class="st">"</span> results/trimgalore</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Run the loop:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> R1 <span class="kw">in</span> ../garrigos_data/<span class="pp">*</span>_R1.fastq.gz<span class="kw">;</span> <span class="cf">do</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bash</span> scripts/trimgalore.sh <span class="st">"</span><span class="va">$R1</span><span class="st">"</span> results/trimgalore</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Create a runner script for the code below:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> run/run_exercises.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Run the script for one sample:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="va">R1</span><span class="op">=</span>garrigos_data/fastq/ERR10802863_R1.fastq.gz</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/trimgalore.sh <span class="st">"</span><span class="va">$R1</span><span class="st">"</span> results/trimgalore</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code># Starting script trimgalore.sh
+Thu Mar 28 10:34:24 EDT 2024
+# Input R1 FASTQ file:      garrigos_data/fastq/ERR10802863_R1.fastq.gz
+# Input R2 FASTQ file:      garrigos_data/fastq/ERR10802863_R2.fastq.gz
+# Output dir:               results/trimgalore
+
+Multicore support not enabled. Proceeding with single-core trimming.
+Path to Cutadapt set as: 'cutadapt' (default)
+Cutadapt seems to be working fine (tested command 'cutadapt --version')
+Cutadapt version: 4.4
+
+# [...output truncated...]</code></pre></li>
+<li><p>Check the output files:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span> results/trimgalore</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>total 42M
+-rw-rw----+ 1 jelmer PAS0471 2.4K Mar 28 10:49 ERR10802863_R1.fastq.gz_trimming_report.txt
+-rw-rw----+ 1 jelmer PAS0471 674K Mar 28 10:49 ERR10802863_R1_val_1_fastqc.html
+-rw-rw----+ 1 jelmer PAS0471 349K Mar 28 10:49 ERR10802863_R1_val_1_fastqc.zip
+-rw-rw----+ 1 jelmer PAS0471  20M Mar 28 10:49 ERR10802863_R1_val_1.fq.gz
+-rw-rw----+ 1 jelmer PAS0471 2.3K Mar 28 10:49 ERR10802863_R2.fastq.gz_trimming_report.txt
+-rw-rw----+ 1 jelmer PAS0471 676K Mar 28 10:50 ERR10802863_R2_val_2_fastqc.html
+-rw-rw----+ 1 jelmer PAS0471 341K Mar 28 10:50 ERR10802863_R2_val_2_fastqc.zip
+-rw-rw----+ 1 jelmer PAS0471  21M Mar 28 10:49 ERR10802863_R2_val_2.fq.gz</code></pre></li>
+</ul>
+</details>
+<details>
+<summary>
+Trimming results <em>(Click to expand)</em>
+</summary>
+<ul>
+<li><p>Note that the adapter- and quality trimming results summary for the R1 and R2 files are separated widely among all the output that TrimGalore prints — they are printed below (first for the R1, then for the R2 file), and the answers are:</p>
+<ul>
+<li>13.0% (R1) and 10.1% (R2) of reads had adapters</li>
+<li>3.6% (R1) and 3.5% (R2) of bases were quality-trimmed</li>
+</ul>
+<pre class="bash-out-solo"><code>=== Summary ===
+
+Total reads processed:                 500,000
+Reads with adapters:                    65,070 (13.0%)
+Reads written (passing filters):       500,000 (100.0%)
+
+Total basepairs processed:    35,498,138 bp
+Quality-trimmed:               1,274,150 bp (3.6%)
+Total written (filtered):     34,138,461 bp (96.2%)</code></pre>
+<pre class="bash-out-solo"><code>=== Summary ===
+
+Total reads processed:                 500,000
+Reads with adapters:                    50,357 (10.1%)
+Reads written (passing filters):       500,000 (100.0%)
+
+Total basepairs processed:    36,784,563 bp
+Quality-trimmed:               1,283,793 bp (3.5%)
+Total written (filtered):     35,440,230 bp (96.3%)</code></pre></li>
+<li><p>Just before the FastQC logs is a line that reports how many reads were removed due to the length filter — the answer is 6.79%.</p>
+<pre class="bash-out-solo"><code>Number of sequence pairs removed because at least one read was shorter than the length cutoff (20 bp): 33955 (6.79%)</code></pre></li>
 </ul>
 </details>
 <hr style="height:1pt; visibility:hidden;">
 </section>
-<section id="bonus-exercise" class="level3">
-<h3 class="anchored" data-anchor-id="bonus-exercise">Bonus exercise</h3>
+<section id="exercise-4" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-4">Exercise 4</h3>
 <details>
 <summary>
 Solution <em>(Click to expand)</em>
 </summary>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load TrimGalore</span></span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load miniconda3</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> activate /fs/ess/PAS0471/jelmer/conda/trimgalore</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy the placeholder variables</span></span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="va">R1_in</span><span class="op">=</span><span class="va">$1</span></span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="va">outdir</span><span class="op">=</span><span class="va">$2</span></span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Check that the output dir isn't the same as the input dir</span></span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co"># This is because we will let the output files have the same name as the input files</span></span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="va">indir</span><span class="op">=</span><span class="va">$(</span><span class="fu">dirname</span> <span class="st">"</span><span class="va">$R1_in</span><span class="st">"</span><span class="va">)</span></span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="st">"</span><span class="va">$indir</span><span class="st">"</span> <span class="ot">==</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span> <span class="kw">]];</span> <span class="cf">then</span></span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"ERROR: Input dir is the same as the output dir (</span><span class="va">$outdir</span><span class="st">)"</span> </span>
-<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>    <span class="bu">exit</span> 1</span>
-<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
-<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Infer the R2 FASTQ file name</span></span>
-<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a><span class="va">R2_in</span><span class="op">=</span><span class="va">${R1_in</span><span class="op">/</span><span class="ss">_R1</span><span class="op">/</span>_R2<span class="va">}</span></span>
-<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Report</span></span>
-<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Starting script trimgalore.sh"</span></span>
-<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span></span>
-<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Input R1 FASTQ file:      </span><span class="va">$R1_in</span><span class="st">"</span></span>
-<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Input R2 FASTQ file:      </span><span class="va">$R2_in</span><span class="st">"</span></span>
-<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Output dir:               </span><span class="va">$outdir</span><span class="st">"</span></span>
-<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span></span>
-<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the output dir</span></span>
-<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span></span>
-<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Run TrimGalore</span></span>
-<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a><span class="ex">trim_galore</span> <span class="dt">\</span></span>
-<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">--paired</span> <span class="dt">\</span></span>
-<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">--output_dir</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span> <span class="dt">\</span></span>
-<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">--fastqc</span> <span class="dt">\</span></span>
-<span id="cb19-39"><a href="#cb19-39" aria-hidden="true" tabindex="-1"></a>    <span class="st">"</span><span class="va">$R1_in</span><span class="st">"</span> <span class="dt">\</span></span>
-<span id="cb19-40"><a href="#cb19-40" aria-hidden="true" tabindex="-1"></a>    <span class="st">"</span><span class="va">$R2_in</span><span class="st">"</span></span>
-<span id="cb19-41"><a href="#cb19-41" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-42"><a href="#cb19-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename output files</span></span>
-<span id="cb19-43"><a href="#cb19-43" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span></span>
-<span id="cb19-44"><a href="#cb19-44" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Renaming the output files:"</span></span>
-<span id="cb19-45"><a href="#cb19-45" aria-hidden="true" tabindex="-1"></a><span class="va">sample_id</span><span class="op">=</span><span class="va">$(</span><span class="fu">basename</span> <span class="st">"</span><span class="va">$R1_in</span><span class="st">"</span> _R1.fastq.gz<span class="va">)</span></span>
-<span id="cb19-46"><a href="#cb19-46" aria-hidden="true" tabindex="-1"></a><span class="va">R1_out_init</span><span class="op">=</span><span class="st">"</span><span class="va">$outdir</span><span class="st">"</span>/<span class="st">"</span><span class="va">$sample_id</span><span class="st">"</span>_R1_val_1.fq.gz</span>
-<span id="cb19-47"><a href="#cb19-47" aria-hidden="true" tabindex="-1"></a><span class="va">R2_out_init</span><span class="op">=</span><span class="st">"</span><span class="va">$outdir</span><span class="st">"</span>/<span class="st">"</span><span class="va">$sample_id</span><span class="st">"</span>_R2_val_2.fq.gz</span>
-<span id="cb19-48"><a href="#cb19-48" aria-hidden="true" tabindex="-1"></a><span class="va">R1_out_final</span><span class="op">=</span><span class="st">"</span><span class="va">$outdir</span><span class="st">"</span>/<span class="st">"</span><span class="va">$sample_id</span><span class="st">"</span>_R1.fastq.gz</span>
-<span id="cb19-49"><a href="#cb19-49" aria-hidden="true" tabindex="-1"></a><span class="va">R2_out_final</span><span class="op">=</span><span class="st">"</span><span class="va">$outdir</span><span class="st">"</span>/<span class="st">"</span><span class="va">$sample_id</span><span class="st">"</span>_R2.fastq.gz</span>
-<span id="cb19-50"><a href="#cb19-50" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> <span class="at">-v</span> <span class="st">"</span><span class="va">$R1_out_init</span><span class="st">"</span> <span class="st">"</span><span class="va">$R1_out_final</span><span class="st">"</span></span>
-<span id="cb19-51"><a href="#cb19-51" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> <span class="at">-v</span> <span class="st">"</span><span class="va">$R2_out_init</span><span class="st">"</span> <span class="st">"</span><span class="va">$R2_out_final</span><span class="st">"</span></span>
-<span id="cb19-52"><a href="#cb19-52" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-53"><a href="#cb19-53" aria-hidden="true" tabindex="-1"></a><span class="co"># Report</span></span>
-<span id="cb19-54"><a href="#cb19-54" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span></span>
-<span id="cb19-55"><a href="#cb19-55" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Done with script trimgalore.sh"</span></span>
-<span id="cb19-56"><a href="#cb19-56" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li><p>Add this loop code to your runner script and then run it:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> R1 <span class="kw">in</span> garrigos_data/fastq/<span class="pp">*</span>_R1.fastq.gz<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bash</span> scripts/trimgalore.sh <span class="st">"</span><span class="va">$R1</span><span class="st">"</span> results/trimgalore</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code># (Output not shown, same as earlier but should repeat for each sample)</code></pre></li>
+<li><p>Check the output files:</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span> results/trimgalore</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>total 949M
+-rw-rw----+ 1 jelmer PAS0471  20M Mar 28 11:18 ERR10802863_R1.fastq.gz
+-rw-rw----+ 1 jelmer PAS0471 2.4K Mar 28 11:17 ERR10802863_R1.fastq.gz_trimming_report.txt
+-rw-rw----+ 1 jelmer PAS0471 674K Mar 28 11:18 ERR10802863_R1_val_1_fastqc.html
+-rw-rw----+ 1 jelmer PAS0471 349K Mar 28 11:18 ERR10802863_R1_val_1_fastqc.zip
+-rw-rw----+ 1 jelmer PAS0471  21M Mar 28 11:18 ERR10802863_R2.fastq.gz
+-rw-rw----+ 1 jelmer PAS0471 2.3K Mar 28 11:18 ERR10802863_R2.fastq.gz_trimming_report.txt
+-rw-rw----+ 1 jelmer PAS0471 676K Mar 28 11:18 ERR10802863_R2_val_2_fastqc.html
+-rw-rw----+ 1 jelmer PAS0471 341K Mar 28 11:18 ERR10802863_R2_val_2_fastqc.zip
+-rw-rw----+ 1 jelmer PAS0471  21M Mar 28 11:19 ERR10802864_R1.fastq.gz
+-rw-rw----+ 1 jelmer PAS0471 2.7K Mar 28 11:18 ERR10802864_R1.fastq.gz_trimming_report.txt
+-rw-rw----+ 1 jelmer PAS0471 675K Mar 28 11:19 ERR10802864_R1_val_1_fastqc.html
+-rw-rw----+ 1 jelmer PAS0471 349K Mar 28 11:19 ERR10802864_R1_val_1_fastqc.zip
+-rw-rw----+ 1 jelmer PAS0471  22M Mar 28 11:19 ERR10802864_R2.fastq.gz
+-rw-rw----+ 1 jelmer PAS0471 2.6K Mar 28 11:19 ERR10802864_R2.fastq.gz_trimming_report.txt
+-rw-rw----+ 1 jelmer PAS0471 671K Mar 28 11:19 ERR10802864_R2_val_2_fastqc.html
+-rw-rw----+ 1 jelmer PAS0471 336K Mar 28 11:19 ERR10802864_R2_val_2_fastqc.zip
+-rw-rw----+ 1 jelmer PAS0471  21M Mar 28 11:20 ERR10802865_R1.fastq.gz
+-rw-rw----+ 1 jelmer PAS0471 2.6K Mar 28 11:19 ERR10802865_R1.fastq.gz_trimming_report.txt
+-rw-rw----+ 1 jelmer PAS0471 682K Mar 28 11:20 ERR10802865_R1_val_1_fastqc.html
+-rw-rw----+ 1 jelmer PAS0471 361K Mar 28 11:20 ERR10802865_R1_val_1_fastqc.zip
+[...output truncated...]</code></pre></li>
+</ul>
 </details>
 <p><br></p>
 
@@ -772,8 +799,11 @@ Solution <em>(Click to expand)</em>
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>We’ll talk more about Conda environments next week.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p> Alternatively, it could take both R1 and R2 files as arguments.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p> Adapters are always added to DNA/cDNA fragments of interest prior to Illumina sequencing, and the last bases of a read can “read-through” into the adapter if the fragment is shorter than the read length.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p> We’ll talk more about Conda environments next week.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p> Alternatively, it could take both R1 and R2 files as arguments.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p> If you don’t do this, TrimGalore will process the two FASTQ files independently.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p> Hint: this info is printed at the very end, and for both files at once.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

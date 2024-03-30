@@ -151,6 +151,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../week4/w4_overview.html">
  <span class="dropdown-text">Week 4: Shell script and CLI tools</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../week5/w5_overview.html">
+ <span class="dropdown-text">Week 5: Software and batch jobs at OSC</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -213,6 +217,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../week4/w4_3_bonus.html">
  <span class="dropdown-text">(Scripts bonus material)</span></a>
   </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Week 5: Software and batch jobs at OSC</li>
+        <li>
+    <a class="dropdown-item" href="../week5/w5_1_osc.html">
+ <span class="dropdown-text">I: A closer look at OSC</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week5/w5_2_software.html">
+ <span class="dropdown-text">II: Using software at OSC</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week5/w5_3_slurm.html">
+ <span class="dropdown-text">III: Slurm batch jobs at OSC</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -236,6 +254,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li>
     <a class="dropdown-item" href="../week4/w4_exercises.html">
  <span class="dropdown-text">Week 4: Shell scripts and CLI tools</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week5/w5_exercises.html">
+ <span class="dropdown-text">Week 5: Software and batch jobs at OSC</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Assignments</li>
@@ -887,7 +909,7 @@ Refresher: the <code>-p</code> option to <code>mkdir</code> <em>(Click to expand
 <span id="cb41-14"><a href="#cb41-14" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span></span>
 <span id="cb41-15"><a href="#cb41-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb41-16"><a href="#cb41-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Run FastQC</span></span>
-<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> <span class="at">--outdir</span><span class="op">=</span><span class="st">"</span><span class="va">$outdir</span><span class="st">"</span> <span class="st">"</span><span class="va">$fastq_file</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb41-17"><a href="#cb41-17" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> <span class="at">--outdir</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span> <span class="st">"</span><span class="va">$fastq_file</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Notice that this script to run a CLI tool is very similar to our “toy scripts” from the previous sessions: mostly standard (“boilerplate”) code with <strong>just a single command to run our program of interest.</strong> Therefore, you can adopt this script as a template for scripts that run other command-line programs, and will generally only need minor modifications!</p>
 <hr style="height:1pt; visibility:hidden;">
 </section>
@@ -912,7 +934,7 @@ Refresher: the <code>-p</code> option to <code>mkdir</code> <em>(Click to expand
 <span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="va">outdir</span><span class="op">=</span><span class="va">$2</span></span>
 <span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb42-11"><a href="#cb42-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Initial reporting</span></span>
-<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Starting script fastqc.ch"</span></span>
+<span id="cb42-12"><a href="#cb42-12" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Starting script fastqc.sh"</span></span>
 <span id="cb42-13"><a href="#cb42-13" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span></span>
 <span id="cb42-14"><a href="#cb42-14" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Input FASTQ file:   </span><span class="va">$fastq_file</span><span class="st">"</span></span>
 <span id="cb42-15"><a href="#cb42-15" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Output dir:         </span><span class="va">$outdir</span><span class="st">"</span></span>
@@ -922,13 +944,12 @@ Refresher: the <code>-p</code> option to <code>mkdir</code> <em>(Click to expand
 <span id="cb42-19"><a href="#cb42-19" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span></span>
 <span id="cb42-20"><a href="#cb42-20" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb42-21"><a href="#cb42-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Run FastQC</span></span>
-<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> <span class="at">--outdir</span><span class="op">=</span><span class="st">"</span><span class="va">$outdir</span><span class="st">"</span> <span class="st">"</span><span class="va">$fastq_file</span><span class="st">"</span></span>
+<span id="cb42-22"><a href="#cb42-22" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> <span class="at">--outdir</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span> <span class="st">"</span><span class="va">$fastq_file</span><span class="st">"</span></span>
 <span id="cb42-23"><a href="#cb42-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb42-24"><a href="#cb42-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Final reporting</span></span>
 <span id="cb42-25"><a href="#cb42-25" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span></span>
 <span id="cb42-26"><a href="#cb42-26" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Done with script fastqc.sh"</span></span>
-<span id="cb42-27"><a href="#cb42-27" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span></span>
-<span id="cb42-28"><a href="#cb42-28" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb42-27"><a href="#cb42-27" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>A couple of notes about the lines that were added to the script above:</p>
 <ul>
 <li>We printed a “marker line” <code>Done with script</code> that indicates the end of the script was reached. This is handy due to our <code>set</code> settings: <strong>seeing this line printed means that no errors were encountered</strong>.</li>
@@ -948,7 +969,7 @@ Refresher: the <code>-p</code> option to <code>mkdir</code> <em>(Click to expand
 <h3 data-number="4.1" class="anchored" data-anchor-id="running-our-fastqc-script-for-1-file"><span class="header-section-number">4.1</span> Running our FastQC script for 1 file</h3>
 <p>Let’s run our FastQC script for one FASTQ file:</p>
 <div class="sourceCode" id="cb44"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/fastqc.sh garrigos_data/fastq/ERR10802863_R1.fastq.gz results/fastqc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="bash-out"><code># Starting script fastqc.ch
+<pre class="bash-out"><code># Starting script fastqc.sh
 Wed Mar 27 21:53:13 EDT 2024
 # Input FASTQ file:   garrigos_data/fastq/ERR10802863_R1.fastq.gz
 # Output dir:         results/fastqc
@@ -1054,7 +1075,7 @@ Why the runner script generally can’t itself be run at once in its entirety <e
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> fastq_file <span class="kw">in</span> garrigos_data/fastq/<span class="pp">*</span>fastq.gz<span class="kw">;</span> <span class="cf">do</span></span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bash</span> scripts/fastqc.sh <span class="st">"</span><span class="va">$fastq_file</span><span class="st">"</span> results/fastqc</span>
 <span id="cb48-4"><a href="#cb48-4" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="bash-out"><code># Starting script fastqc.ch
+<pre class="bash-out"><code># Starting script fastqc.sh
 Thu Mar 21 10:06:46 EDT 2024
 # Input FASTQ file:   garrigos_data/fastq/ERR10802863_R1.fastq.gz
 # Output dir:         results/fastqc
@@ -1085,7 +1106,7 @@ Analysis complete for ERR10802863_R1.fastq.gz
 # Done with script fastqc.sh
 Thu Mar 21 10:06:51 EDT 2024
 
-# Starting script fastqc.ch
+# Starting script fastqc.sh
 Thu Mar 21 10:06:51 EDT 2024
 # Input FASTQ file:   garrigos_data/fastq/ERR10802863_R2.fastq.gz
 # Output dir:         results/fastqc

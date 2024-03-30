@@ -151,6 +151,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../week4/w4_overview.html">
  <span class="dropdown-text">Week 4: Shell script and CLI tools</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../week5/w5_overview.html">
+ <span class="dropdown-text">Week 5: Software and batch jobs at OSC</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -213,6 +217,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../week4/w4_3_bonus.html">
  <span class="dropdown-text">(Scripts bonus material)</span></a>
   </li>  
+        <li><hr class="dropdown-divider"></li>
+        <li class="dropdown-header">Week 5: Software and batch jobs at OSC</li>
+        <li>
+    <a class="dropdown-item" href="../week5/w5_1_osc.html">
+ <span class="dropdown-text">I: A closer look at OSC</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week5/w5_2_software.html">
+ <span class="dropdown-text">II: Using software at OSC</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week5/w5_3_slurm.html">
+ <span class="dropdown-text">III: Slurm batch jobs at OSC</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -236,6 +254,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li>
     <a class="dropdown-item" href="../week4/w4_exercises.html">
  <span class="dropdown-text">Week 4: Shell scripts and CLI tools</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week5/w5_exercises.html">
+ <span class="dropdown-text">Week 5: Software and batch jobs at OSC</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Assignments</li>
@@ -574,7 +596,7 @@ This will take some time (~20 minutes) to run!
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>And note that these FASTQ files are <em>much</em> smaller than regular ones. You’ll hopefully agree that we need to start using more computing power, and have the script run simultaneously rather than consecutively for each samples — we can do all of that by submitting the script as batch jobs, as we’ll see next week.</p>
+<p>And note that these FASTQ files are <em>much</em> smaller than regular ones. You’ll hopefully agree that we need to start using more computing power, and have the script run simultaneously rather than consecutively for each sample — we can do all of that by submitting the script as batch jobs, as we’ll see next week.</p>
 </div>
 </div>
 <p><br></p>
@@ -588,7 +610,7 @@ This will take some time (~20 minutes) to run!
 Solution <em>(Click to expand)</em>
 </summary>
 <ul>
-<li><p>Here is the full script:</p>
+<li><p>Here is the full script <code>scripts/printline.sh</code>:</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -628,7 +650,7 @@ Code solution <em>(Click to expand)</em>
 <li><code>--output_dir</code> (or equivalently, <code>-o</code>) to specify the output directory.</li>
 <li><code>--fastqc</code> to run FastQC on the trimmed FASTQ files.</li>
 </ul>
-<p>Here is the full script:</p>
+<p>Here is the full script <code>scripts/trimgalore.sh</code>:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -672,10 +694,8 @@ Code solution <em>(Click to expand)</em>
 Quality and length threshold options &amp; interpretation <em>(Click to expand)</em>
 </summary>
 <ul>
-<li><p>The option <code>-q</code> (short notation) or <code>--quality</code> (long notation) can be used to adjust the base quality score threshold, which has the “Phred” unit. The default threshold is 20, which corresponds to an estimated 0.01 error rate.</p>
-<p>TrimGalore will trim bases with a lower quality score than the threshold from the <strong>ends</strong> of the reads. It will <strong>not</strong> remove or mask bases with lower quality scores elsewhere in the read.</p></li>
-<li><p>The option <code>-l</code> (short notation) or <code>--length</code> (long notation) can be used to adjust the read length threshold: any reads that are shorter than this after adapter and quality trimming will be removed. The default threshold is 20 bp.</p>
-<p>(When the input is paired-end, the corresponding second read will also be removed, regardless of its length: paired-end FASTQ files always need to contain both the R1 and R2 for each pair; orphan reads would need to be stored in a separate file.)</p></li>
+<li><p>The option <code>-q</code> (short notation) or <code>--quality</code> (long notation) can be used to adjust the base quality score threshold, which has the “Phred” unit. The default threshold is 20, which corresponds to an estimated 0.01 error rate. TrimGalore will trim bases with a lower quality score than this threshold from the <strong>ends</strong> of the reads. It will <strong>not</strong> remove or mask bases with lower quality scores elsewhere in the read.</p></li>
+<li><p>The option <code>-l</code> (short notation) or <code>--length</code> (long notation) can be used to adjust the read length threshold: any reads that are shorter than this after adapter and quality trimming will be removed. The default threshold is 20 bp. (When the input is paired-end, the corresponding second read will also be removed, regardless of its length: paired-end FASTQ files always need to contain both the R1 and R2 for each pair; orphan reads would need to be stored in a separate file.)</p></li>
 </ul>
 </details>
 <hr style="height:1pt; visibility:hidden;">
@@ -758,7 +778,7 @@ Total written (filtered):     35,440,230 bp (96.3%)</code></pre></li>
 Solution <em>(Click to expand)</em>
 </summary>
 <ul>
-<li><p>Add this loop code to your runner script and then run it:</p>
+<li><p>Add this loop code to your runner script (<code>run/run_exercises.sh</code>) and then run the loop:</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> R1 <span class="kw">in</span> garrigos_data/fastq/<span class="pp">*</span>_R1.fastq.gz<span class="kw">;</span> <span class="cf">do</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bash</span> scripts/trimgalore.sh <span class="st">"</span><span class="va">$R1</span><span class="st">"</span> results/trimgalore</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

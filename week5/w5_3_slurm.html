@@ -385,10 +385,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#mail-type-receive-emails" id="toc-mail-type-receive-emails" class="nav-link" data-scroll-target="#mail-type-receive-emails"><span class="header-section-number">3.6</span> <code>--mail-type</code>: Receive emails</a></li>
   </ul></li>
   <li><a href="#in-closing-making-sure-your-jobs-ran-successfully" id="toc-in-closing-making-sure-your-jobs-ran-successfully" class="nav-link" data-scroll-target="#in-closing-making-sure-your-jobs-ran-successfully"><span class="header-section-number">4</span> In closing: making sure your jobs ran successfully</a></li>
-  <li><a href="#self-study-material-sbatch-overview-interactive-jobs" id="toc-self-study-material-sbatch-overview-interactive-jobs" class="nav-link" data-scroll-target="#self-study-material-sbatch-overview-interactive-jobs"><span class="header-section-number">5</span> Self-study material: <code>sbatch</code> overview &amp; interactive jobs</a>
+  <li><a href="#self-study-material" id="toc-self-study-material" class="nav-link" data-scroll-target="#self-study-material"><span class="header-section-number">5</span> Self-study material</a>
   <ul class="collapse">
-  <li><a href="#table-with-sbatch-options" id="toc-table-with-sbatch-options" class="nav-link" data-scroll-target="#table-with-sbatch-options"><span class="header-section-number">5.1</span> Table with <code>sbatch</code> options</a></li>
-  <li><a href="#interactive-shell-jobs" id="toc-interactive-shell-jobs" class="nav-link" data-scroll-target="#interactive-shell-jobs"><span class="header-section-number">5.2</span> Interactive shell jobs</a></li>
+  <li><a href="#interactive-shell-jobs" id="toc-interactive-shell-jobs" class="nav-link" data-scroll-target="#interactive-shell-jobs"><span class="header-section-number">5.1</span> Interactive shell jobs</a></li>
+  <li><a href="#table-with-sbatch-options" id="toc-table-with-sbatch-options" class="nav-link" data-scroll-target="#table-with-sbatch-options"><span class="header-section-number">5.2</span> Table with <code>sbatch</code> options</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -440,15 +440,25 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><strong>Batch (non-interactive) jobs</strong> — Run a script on a compute node without ever going to that node yourself.</li>
 </ol>
 <p>We’ve already worked a lot with the VS Code Interactive App, and the self-study material at the bottom of this page will cover interactive shell jobs. But what we’ll focus on in this session is running <strong>batch jobs</strong>.</p>
-<p>Let’s get set up by creating a dir for this week in the terminal in VS Code, and copying two scripts from last week:</p>
+<section id="setting-up" class="level4">
+<h4 class="anchored" data-anchor-id="setting-up">Setting up</h4>
+<p>Let’s get set up by:</p>
+<ul>
+<li><p>Moving the <code>garrigos_data</code> dir one level up, out of <code>week04</code>, (since you’ll keep using this data):</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You should be in /fs/ess/PAS2700/users/$USER</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> week05/scripts</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mv</span> week04/garrigos_data .</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> week05</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../week04/scripts/printname.sh scripts/</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> ../week04/scripts/fastqc.sh scripts/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>CSB  garrigos_data  week02  week03  week04</code></pre></li>
+<li><p>Creating a dir for this week:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> week05/class_slurm/scripts</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> week05/class_slurm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Copying two scripts from last week which you’ll use again:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> /fs/ess/PAS2700/users/<span class="va">$USER</span>/week04/scripts/printname.sh scripts/</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> /fs/ess/PAS2700/users/<span class="va">$USER</span>/week04/scripts/fastqc.sh scripts/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
 <p><br></p>
+</section>
 </section>
 <section id="basics-of-slurm-batch-jobs" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="basics-of-slurm-batch-jobs"><span class="header-section-number">1</span> Basics of Slurm batch jobs</h2>
@@ -463,15 +473,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="the-sbatch-command" class="level3" data-number="1.1">
 <h3 data-number="1.1" class="anchored" data-anchor-id="the-sbatch-command"><span class="header-section-number">1.1</span> The <code>sbatch</code> command</h3>
 <p>You can use Slurm’s <code>sbatch</code> command to submit a batch job. But first, recall from last week that you can run a Bash script as follows:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> sandbox/printname.sh Jane Doe</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> sandbox/printname.sh Jane Doe</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>First name: Jane
 Last name: Doe</code></pre>
 <p>The above command ran the script on our current node. To instead submit the script to the Slurm queue, simply <strong>replace <code>bash</code> by <code>sbatch</code></strong>:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> sandbox/printname.sh Jane Doe</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> sandbox/printname.sh Jane Doe</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>srun: error: ERROR: Job invalid: Must specify account for job  
 srun: error: Unable to allocate resources: Unspecified error</code></pre>
 <p>However, as the above error message “<em>Must specify account for job</em>” tells us, we need to indicate which OSC Project (or as Slurm puts it, “account”) we want to use for this compute job. Use the <code>--account=</code> option to <code>sbatch</code> to do this:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> <span class="at">--account</span><span class="op">=</span>PAS0471 sandbox/printname.sh Jane Doe</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> <span class="at">--account</span><span class="op">=</span>PAS0471 sandbox/printname.sh Jane Doe</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>Submitted batch job 12431935</code></pre>
 <p>This output means that our job was successfully submitted (no further output will be printed to your screen — we’ll talk more about that below). The job has a <strong>unique identifier</strong> among all compute jobs by all users at OSC, and we can use this number to monitor and manage it. All of us will therefore see a different job number pop up.</p>
 <hr style="height:1pt; visibility:hidden;">
@@ -486,12 +496,12 @@ srun: error: Unable to allocate resources: Unspecified error</code></pre>
 </div>
 <div class="callout-body-container callout-body">
 <p>As you perhaps noticed in the command above, we can use <code>sbatch</code> options <em>and</em> script arguments in one command, in the following order:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> <span class="pp">[</span><span class="ss">sbatch</span><span class="pp">-</span><span class="ss">options</span><span class="pp">]</span> myscript.sh <span class="pp">[</span><span class="ss">script</span><span class="pp">-</span><span class="ss">arguments</span><span class="pp">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> <span class="pp">[</span><span class="ss">sbatch</span><span class="pp">-</span><span class="ss">options</span><span class="pp">]</span> myscript.sh <span class="pp">[</span><span class="ss">script</span><span class="pp">-</span><span class="ss">arguments</span><span class="pp">]</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>But, depending on the details of the script itself, all combinations of using <code>sbatch</code> options and script arguments are possible:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> printname.sh                             <span class="co"># No options/arguments for either</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> printname.sh Jane Doe                    <span class="co"># Script arguments but no sbatch option</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> <span class="at">--account</span><span class="op">=</span>PAS0471 printname.sh           <span class="co"># sbatch option but no script arguments</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> <span class="at">--account</span><span class="op">=</span>PAS0471 printname.sh Jane Doe  <span class="co"># Both sbatch option and script arguments</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> printname.sh                             <span class="co"># No options/arguments for either</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> printname.sh Jane Doe                    <span class="co"># Script arguments but no sbatch option</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> <span class="at">--account</span><span class="op">=</span>PAS0471 printname.sh           <span class="co"># sbatch option but no script arguments</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> <span class="at">--account</span><span class="op">=</span>PAS0471 printname.sh Jane Doe  <span class="co"># Both sbatch option and script arguments</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>(Omitting the <code>--account</code> option is possible when we specify this option <em>inside the script</em>, as we’ll see below.)</p>
 </div>
 </div>
@@ -502,14 +512,15 @@ srun: error: Unable to allocate resources: Unspecified error</code></pre>
 <p>The <code>--account=</code> option is just one of out of <em>many</em> options we can use when reserving a compute job, but is the only one that <em>always</em> has to be specified. Defaults exist for all other options, such as the amount of time (1 hour) and the number of cores (1 core).</p>
 <p>Instead of specifying Slurm/<code>sbatch</code> options on the command-line when we submit the script, we can also <strong>add these options inside the script</strong>. This is handy because you often want to specify several options, and this can lead to very long <code>sbatch</code> commands. Additionally, it can be practical to store a script’s typical Slurm options along with the script itself, so you don’t have to remember them.</p>
 <p>We add the options in the script using another type of special comment line akin to the shebang (<code>#!/bin/bash</code>) line, marked by <code>#SBATCH</code>. Just like the shebang line, the <code>#SBATCH</code> line(s) should be at the top of the script. Let’s add one such line to the <code>printname.sh</code> script, such that the first few lines read:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --account=PAS0471</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --account=PAS0471</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>So, the equivalent of adding <code>--account=PAS0471</code> after <code>sbatch</code> on the command line is a line in your script that reads <code>#SBATCH --account=PAS0471</code>.</p>
 <p>After adding this to the script, we are now able to run the <code>sbatch</code> command without options (which failed earlier):</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> printname.sh Jane Doe</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> printname.sh Jane Doe</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>Submitted batch job 12431942</code></pre>
+<p><strong>TODO CLEAN SLURM LOG FILES</strong></p>
 <p>After we submit the batch job, we <strong>immediately get our prompt back</strong>. The job will run outside of our immediate view, and we can continuee doing other things while it does — or log off. This behavior allows us to submit many jobs at the same time — we don’t have to wait for other jobs to finish (or even to start).</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -553,8 +564,8 @@ Any idea why we may not want batch job output printed to screen, even if it was 
 The power of submitting batch jobs is that you can submit many at once — e.g.&nbsp;one per sample, running the same script. If the output from all those scripts ends up on your screen, things become a big mess, and you have no lasting record of what happened.
 </details>
 <p>Let’s take a look at the contents of the Slurm log file:</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (Replace the number in the file name with whatever you got! - check with 'ls')</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> slurm-12431942.out</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (Replace the number in the file name with whatever you got! - check with 'ls')</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> slurm-12431942.out</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>First name: Jane  
 Last name: Doe</code></pre>
 <p>This file contains the script’s output that was printed to screen when we ran it with <code>bash</code> — nothing more or less.</p>
@@ -585,14 +596,14 @@ The working directory stays the same
 <section id="a-sleepy-script-for-practice" class="level3" data-number="2.1">
 <h3 data-number="2.1" class="anchored" data-anchor-id="a-sleepy-script-for-practice"><span class="header-section-number">2.1</span> A sleepy script for practice</h3>
 <p>Let’s use the following short script to practice monitoring and managing batch jobs. Create a file for it:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> sandbox/sleep.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> sandbox/sleep.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Open the file in the VS Code editor and copy the following into it:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --account=PAS0471</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"I will sleep for 30 seconds"</span> <span class="op">&gt;</span> sleep.txt</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sleep</span> 30s</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"I'm awake! Done with script sleep.sh"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --account=PAS0471</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"I will sleep for 30 seconds"</span> <span class="op">&gt;</span> sleep.txt</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sleep</span> 30s</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"I'm awake! Done with script sleep.sh"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr style="height:1pt; visibility:hidden;">
 <section id="exercise-batch-job-output-recap" class="level4 exercise">
 <h4 class="anchored" data-anchor-id="exercise-batch-job-output-recap"><i class="fa-solid fa-user-edit" aria-label="user-edit"></i> Exercise: Batch job output recap</h4>
@@ -630,8 +641,10 @@ Click for the solutions
 <h3 data-number="2.2" class="anchored" data-anchor-id="checking-the-jobs-status"><span class="header-section-number">2.2</span> Checking the job’s status</h3>
 <p>After you submit a job, it may be initially be waiting to be allocated resources: i.e., it may be queued (“pending”). Then, the job will start running — you’ve seen all of this with the VS Code Interactive App job as well.</p>
 <p>Whereas Interactive App jobs will keep running until they’ve reached the end of the allocated time<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, batch jobs will stop as soon as the script has finished, either successfully or due to an error. And if the script is still running when the job runs out of its allocated time, it will be killed (stopped) right away.</p>
+<section id="the-squeue-command" class="level4">
+<h4 class="anchored" data-anchor-id="the-squeue-command">The <code>squeue</code> command</h4>
 <p>You can check the status of your batch job using the <code>squeue</code> Slurm command:</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ex">squeue</span> <span class="at">-u</span> <span class="va">$USER</span> <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">squeue</span> <span class="at">-u</span> <span class="va">$USER</span> <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>Thu Apr 4 15:47:51 2023
         JOBID PARTITION     NAME     USER    STATE       TIME TIME_LIMI  NODES NODELIST(REASON)
      23640814 condo-osu ondemand   jelmer  RUNNING       6:34   2:00:00      1 p0133</code></pre>
@@ -655,58 +668,57 @@ Click for the solutions
 <li><code>NODELIST(REASON)</code> — When running: the ID of the node on which it is running. When pending: why it is pending.</li>
 </ul>
 <hr style="height:1pt; visibility:hidden;">
+</section>
+<section id="squeue-example" class="level4">
+<h4 class="anchored" data-anchor-id="squeue-example"><code>squeue</code> example</h4>
 <p>Now, let’s see a batch job in the <code>squeue</code> listing. Start by submitting the <code>sleep.sh</code> script as a batch job:</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> sandbox/sleep.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> sandbox/sleep.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>Submitted batch job 12431945</code></pre>
 <p>If we’re quick enough, we may be able to catch the <code>STATE</code> as <code>PENDING</code> before the job starts:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">squeue</span> <span class="at">-u</span> <span class="va">$USER</span> <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">squeue</span> <span class="at">-u</span> <span class="va">$USER</span> <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>Thu Apr 4 15:48:26 2023
          JOBID PARTITION     NAME     USER    STATE       TIME TIME_LIMI  NODES NODELIST(REASON)
       12520046 serial-40 sleep.sh   jelmer  PENDING       0:00   1:00:00      1 (None)
       23640814 condo-osu ondemand   jelmer  RUNNING       7:12   2:00:00      1 p0133</code></pre>
 <p>But soon enough it should say <code>RUNNING</code> in the <code>STATE</code> column:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">squeue</span> <span class="at">-u</span> <span class="va">$USER</span> <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ex">squeue</span> <span class="at">-u</span> <span class="va">$USER</span> <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>Thu Apr 4 15:48:39 2023
          JOBID PARTITION     NAME     USER    STATE       TIME TIME_LIMI  NODES NODELIST(REASON)
       12520046 condo-osu sleep.sh   jelmer  RUNNING       0:12   1:00:00      1 p0133
       23640814 condo-osu ondemand   jelmer  RUNNING       8:15   2:00:00      1 p0133</code></pre>
 <p>The script should finish after 30 seconds (because your command was <code>sleep 30s</code>), after which the job will immediately disappear from the <code>squeue</code> listing — only pending and running jobs are shown:</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="ex">squeue</span> <span class="at">-u</span> <span class="va">$USER</span> <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="ex">squeue</span> <span class="at">-u</span> <span class="va">$USER</span> <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>Mon Aug 21 15:49:26 2023
          JOBID PARTITION     NAME     USER    STATE       TIME TIME_LIMI  NODES NODELIST(REASON)
       23640814 condo-osu ondemand   jelmer  RUNNING       9:02   2:00:00      1 p0133</code></pre>
 <hr style="height:1pt; visibility:hidden;">
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-…And don’t forget to check output files
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Whenever you’re running a script as a batch job, even if you’ve been monitoring it with <code>squeue</code>, you should also make sure it ran <em>successfully</em>, and you typically do so by checking the output file(s). As is usual also when submitting scripts that run bioinformatics programs, you’ll have two types of output from a batch job:</p>
+</section>
+<section id="checking-the-output-files" class="level4">
+<h4 class="anchored" data-anchor-id="checking-the-output-files">Checking the output files</h4>
+<p>Whenever you’re running a script as a batch job, even if you’ve been monitoring it with <code>squeue</code>, you should also make sure it ran <em>successfully</em>. You typically do so by checking the output file(s). As is usual also when submitting scripts that run bioinformatics programs, you’ll have two types of output from a batch job:</p>
 <ul>
 <li>File(s) directly created by the command inside the script (here, <code>sleep.sh</code>).</li>
 <li>A Slurm log file with the script’s standard output and standard error (i.e.&nbsp;output that is normally printed to screen).</li>
 </ul>
-<div class="sourceCode" id="cb27"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> sleep.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> sleep.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>I will sleep for 30 seconds</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> slurm-12520046.out</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> slurm-12520046.out</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>I'm awake! Done with script sleep.sh</code></pre>
-</div>
-</div>
+<p>Text will be added to the Slurm log file in real time as the running script (or the program ran by the script) outputs it. However, the output that commands like <code>cat</code> and <code>less</code> print are static. Therefore, if you find yourself opening/printing the contents of the Slurm log file again and again to keep track of progress, then instead <strong>use <code>tail -f</code></strong>, which will “follow” the file and <em>will</em> print new text as it’s added to the Slurm log file:</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># See the last lines of the file, with new contents added in real time</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> <span class="at">-f</span> slurm-12520046.out</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>To exit the <code>tail -f</code> livestream, press <kbd>Ctrl</kbd>+<kbd>C</kbd>.</p>
 <hr style="height:1pt; visibility:hidden;">
+</section>
 </section>
 <section id="cancelling-jobs" class="level3" data-number="2.3">
 <h3 data-number="2.3" class="anchored" data-anchor-id="cancelling-jobs"><span class="header-section-number">2.3</span> Cancelling jobs</h3>
 <p>Sometimes, you want to cancel one or more jobs, because you realize you made a mistake in the script, or because you used the wrong input files as arguments. You can do so using <code>scancel</code>:</p>
-<div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">scancel</span> 2979968        <span class="co"># Cancel job number 2979968</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="ex">scancel</span> <span class="at">-u</span> <span class="va">$USER</span>       <span class="co"># Cancel all your running and queued jobs (careful with this!)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="ex">scancel</span> 2979968        <span class="co"># Cancel job number 2979968</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="ex">scancel</span> <span class="at">-u</span> <span class="va">$USER</span>       <span class="co"># Cancel all your running and queued jobs (careful with this!)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr style="height:1pt; visibility:hidden;">
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -715,14 +727,13 @@ Additional job management commands and options <em>(Click to expand)</em>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li><p>Only show running (not pending) jobs:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">squeue</span> <span class="at">-u</span> <span class="va">$USER</span> <span class="at">-t</span> RUNNING</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>TODO ADD CANCEL BY NAME</p></li>
+<div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="ex">squeue</span> <span class="at">-u</span> <span class="va">$USER</span> <span class="at">-t</span> RUNNING</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>You can see more details about any running or finished job, including the amount of time it ran for:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">scontrol</span> show job <span class="op">&lt;</span>jobID<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="ex">scontrol</span> show job <span class="op">&lt;</span>jobID<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>UserId=jelmer(33227) GroupId=PAS0471(3773) MCS_label=N/A
 Priority=200005206 Nice=0 Account=pas0471 QOS=pitzer-default
 JobState=RUNNING Reason=None Dependency=(null)
@@ -734,12 +745,11 @@ StartTime=2020-12-14T14:32:47 EndTime=2020-12-14T15:32:47 Deadline=N/A
 SuspendTime=None SecsPreSuspend=0 LastSchedEval=2020-12-14T14:32:47
 Partition=serial-40core AllocNode:Sid=pitzer-login01:57954
 [...]</code></pre></li>
-<li><p>TODO add <code>seff</code></p></li>
 <li><p>Update directives for a job that has already been submitted (this can only be done <em>before</em> the job has started running):</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="ex">scontrol</span> update job=<span class="op">&lt;</span>jobID<span class="op">&gt;</span> timeLimit=5:00:00</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="ex">scontrol</span> update job=<span class="op">&lt;</span>jobID<span class="op">&gt;</span> timeLimit=5:00:00</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Hold and release a pending (queued) job, e.g.&nbsp;when needing to update input file before it starts running:</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="ex">scontrol</span> hold <span class="op">&lt;</span>jobID<span class="op">&gt;</span>       <span class="co"># Job won't start running until released</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="ex">scontrol</span> release <span class="op">&lt;</span>jobID<span class="op">&gt;</span>    <span class="co"># Job is free to start</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb40"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="ex">scontrol</span> hold <span class="op">&lt;</span>jobID<span class="op">&gt;</span>       <span class="co"># Job won't start running until released</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="ex">scontrol</span> release <span class="op">&lt;</span>jobID<span class="op">&gt;</span>    <span class="co"># Job is free to start</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 </div>
 </div>
@@ -769,11 +779,11 @@ Partition=serial-40core AllocNode:Sid=pitzer-login01:57954
 <li>For single-node jobs, up to 168 hours (7 days) can be requested. If that’s not enough, you can request access to the <code>longserial</code> queue for jobs of up to 336 hours (14 days).</li>
 </ul>
 <p>An example, where we ask for 2 hours in the “minute-format”:</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --time=120</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --time=120</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Or for 12 hours in the “hour-format”:</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --time=12:00:00</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --time=12:00:00</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -798,13 +808,13 @@ When in doubt, ask for more time
 Click for the solution
 </summary>
 <p>This script would do the trick, where we request 1 minute of wall-time while we let the script sleep for 80 seconds:</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --account=PAS0471</span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --time=1</span></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"I will sleep for 80 seconds"</span> <span class="op">&gt;</span> sleep.txt</span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sleep</span> 80s</span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"I'm awake! Done with script sleep.sh"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --account=PAS0471</span></span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --time=1</span></span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"I will sleep for 80 seconds"</span> <span class="op">&gt;</span> sleep.txt</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sleep</span> 80s</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"I'm awake! Done with script sleep.sh"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This would result in the following type of error:</p>
 <pre class="bash-out"><code>slurmstepd: error: *** JOB 23641567 ON p0133 CANCELLED AT 2023-08-21T16:35:24 DUE TO TIME LIMIT ***</code></pre>
 </details>
@@ -822,10 +832,10 @@ Click for the solution
 </ul>
 <p>The most appropriate way of specifying the number of threads/cores/CPUs is with <strong><code>--cpus-per-task=n</code></strong> (the short notation is <code>-c</code>). The program you’re running may have an argument like <code>--cores</code> or <code>--threads</code>, which you should then set to <code>n</code> as well.</p>
 <p>An example, where we ask for 8 CPUs/cores/threads:</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --cpus-per-task=8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --cpus-per-task=8</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -834,7 +844,7 @@ Rare cases: multiple nodes or tasks <em>(Click to expand)</em>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li>First, the defaults for the number of nodes (<code>--nodes</code>) and the number of tasks <code>--ntasks</code> are 1.</li>
@@ -898,10 +908,10 @@ Rare cases: multiple nodes or tasks <em>(Click to expand)</em>
 <li>Like with the time limit, your job gets killed when it hits the memory limit.</li>
 </ul>
 <p>For example, to request 20 GB of RAM:</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mem=20G</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mem=20G</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -910,7 +920,7 @@ It is not always clear what happened when your job ran out of memory <em>(Click 
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Whereas you get a very clear Slurm error message when you hit the time limit (as seen in the exercise above), hitting the memory limit can result in a variety of errors.</p>
 <p>But look for keywords such as “Killed”, “Out of Memory” / “OOM”, and “Core Dumped”, as well as actual “dumped cores” in your working dir (large files with names like <code>core.&lt;number&gt;</code>, these can be deleted).</p>
@@ -924,10 +934,10 @@ It is not always clear what happened when your job ran out of memory <em>(Click 
 <p>As we saw above, by default, all output from a script that would normally be printed to screen will end up in a Slurm log file when we submit the script as a batch job. This file will be created in the directory from which you submitted the script, and will be called <code>slurm-&lt;job-number&gt;.out</code>, e.g.&nbsp;<code>slurm-12431942.out</code>.</p>
 <p>But it is possible to change the name of this file. For instance, it can be useful to include the <strong>name of the bioinformatics program</strong> that the script runs, so that it’s easier to recognize this file later. We can do this with the <code>--output</code> option, e.g.&nbsp;<code>--output=slurm-fastqc.out</code> if we were running FastQC.</p>
 <p>But you’ll generally want to keep the batch job number in the file name too<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>. Since we won’t know the batch job number in advance, we need a trick here — and that is to use <strong><code>%j</code></strong>, which represents the batch job number:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --output=slurm-fastqc-%j.out</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --output=slurm-fastqc-%j.out</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -936,7 +946,7 @@ The output streams <code>stdout</code> and <code>stderr</code>, and separateing 
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-10" class="callout-10-contents callout-collapse collapse">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>By default, two output streams from commands and programs called “standard output” (<code>stdout</code>) and “standard error” (<code>stderr</code>) are printed to screen. Without discussing this in detail, we have seen this several times: any regular output by a command is <code>stdout</code> and any error messages we’ve seen were <code>stderr</code>. Both of these streams by default also end up in the same Slurm log file, but it is possible to separate them into different files.</p>
 <p>Because <code>stderr</code>, as you might have guessed, often contains error messages, it could be useful to have those in a separate file. You can make that happen with the <code>--error</code> option, e.g.&nbsp;<code>--error=slurm-fastqc-%j.err</code>.</p>
@@ -957,10 +967,10 @@ The output streams <code>stdout</code> and <code>stderr</code>, and separateing 
 This is helpful because you don’t want to have to keep checking in on jobs that run for many hours.</li>
 </ul>
 <p>I would avoid having Slurm send you emails upon regular completion for shorter jobs, because you may get inundated with emails and may quickly start ignoring the emails altogether.</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mail-type=</span><span class="re">END</span><span class="co">,FAIL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb45"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mail-type=FAIL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mail-type=</span><span class="re">END</span><span class="co">,FAIL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mail-type=FAIL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -978,7 +988,8 @@ Get warned when nearing the time limit
 <section id="exercise-submit-your-fastqc-script-as-a-batch-job" class="level4 exercise">
 <h4 class="anchored" data-anchor-id="exercise-submit-your-fastqc-script-as-a-batch-job"><i class="fa-solid fa-user-edit" aria-label="user-edit"></i> Exercise: Submit your FastQC script as a batch job</h4>
 <p>Last week, we created a shell script to run FastQC, and ran it as follows:</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/fastqc.sh garrigos_data/fastq/ERR10802863_R1.fastq.gz results/fastqc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="va">fastq_file</span><span class="op">=</span>../../garrigos_data/fastq/ERR10802863_R1.fastq.gz</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">bash</span> scripts/fastqc.sh <span class="st">"</span><span class="va">$fastq_file</span><span class="st">"</span> results/fastqc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ol type="1">
 <li>Add an <code>#SBATCH</code> lines to the script to specify the course’s OSC project <code>PAS2700</code>, and submit the modified script as a batch job with the same arguments as above.</li>
 </ol>
@@ -988,10 +999,11 @@ Solution (click here)
 </summary>
 <ul>
 <li><p>The top of your script should read as follows:</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --account=PAS2700</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb51"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --account=PAS2700</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 <li><p>Submit the script as follows:</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> scripts/fastqc.sh garrigos_data/fastq/ERR10802863_R1.fastq.gz results/fastqc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="va">fastq_file</span><span class="op">=</span>../../garrigos_data/fastq/ERR10802863_R1.fastq.gz</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> scripts/fastqc.sh <span class="st">"</span><span class="va">$fastq_file</span><span class="st">"</span> results/fastqc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>Submitted batch job 12431988</code></pre></li>
 </ul>
 </details>
@@ -1010,10 +1022,10 @@ Solution (click here)
 </summary>
 <ul>
 <li><p>The top of your script should read as follows:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
-<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --account=PAS2700</span></span>
-<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --output=slurm-fastqc-%j.out</span></span>
-<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mail-type=</span><span class="re">END</span><span class="co">,FAIL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<div class="sourceCode" id="cb54"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --account=PAS2700</span></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --output=slurm-fastqc-%j.out</span></span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="co">#SBATCH --mail-type=</span><span class="re">END</span><span class="co">,FAIL</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 </details>
 </section>
@@ -1035,10 +1047,83 @@ Solution (click here)
 </ul>
 <p><br></p>
 </section>
-<section id="self-study-material-sbatch-overview-interactive-jobs" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="self-study-material-sbatch-overview-interactive-jobs"><span class="header-section-number">5</span> Self-study material: <code>sbatch</code> overview &amp; interactive jobs</h2>
-<section id="table-with-sbatch-options" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="table-with-sbatch-options"><span class="header-section-number">5.1</span> Table with <code>sbatch</code> options</h3>
+<section id="self-study-material" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="self-study-material"><span class="header-section-number">5</span> Self-study material</h2>
+<section id="slurm-environment-variables" class="level4">
+<h4 class="anchored" data-anchor-id="slurm-environment-variables">Slurm environment variables</h4>
+<p>Inside a shell script that will be submitted as a batch job, you can use a number of Slurm environment variables that will automatically be available, such as:</p>
+<table class="table">
+<colgroup>
+<col style="width: 22%">
+<col style="width: 24%">
+<col style="width: 51%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Corresponding option</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>$SLURM_JOB_ID</code></td>
+<td><em>N/A</em></td>
+<td>Job ID assigned by Slurm</td>
+</tr>
+<tr class="even">
+<td><code>$SLURM_JOB_NAME</code></td>
+<td><code>--job-name</code></td>
+<td>Job name</td>
+</tr>
+<tr class="odd">
+<td><code>$SLURM_CPUS_PER_TASK</code></td>
+<td><code>-c</code> / <code>--cpus-per-task</code></td>
+<td>Number of CPUs (~ cores/threads) available</td>
+</tr>
+<tr class="even">
+<td><code>$SLURM_MEM_PER_NODE</code></td>
+<td><code>--mem</code></td>
+<td>Amount of memory available (per node)</td>
+</tr>
+<tr class="odd">
+<td><code>$TMPDIR</code></td>
+<td><em>N/A</em></td>
+<td>Path to the Compute storage available during the job</td>
+</tr>
+<tr class="even">
+<td><code>$SLURM_SUBMIT_DIR</code></td>
+<td><em>N/A</em></td>
+<td>Path to dir from which job was submitted.</td>
+</tr>
+</tbody>
+</table>
+<p>As an example of how these environment variables can be useful, the command below uses <code>$SLURM_CPUS_ON_NODE</code> in its call to the program STAR inside the script:</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="ex">STAR</span> <span class="at">--runThreadN</span> <span class="st">"</span><span class="va">$SLURM_CPUS_ON_NODE</span><span class="st">"</span> <span class="at">--genomeDir</span> ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>With this strategy, you will automatically use the correct (requested) number of cores, and don’t risk having a mismatch. Also, if you need to change the number of cores, you’ll only have to modify it in one place: in the resource request to Slurm.</p>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+<section id="interactive-shell-jobs" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="interactive-shell-jobs"><span class="header-section-number">5.1</span> Interactive shell jobs</h3>
+<p>Interactive shell jobs will grant you interactive shell access on a compute node. We’ve been working in a shell in VS Code Server, which means that we already have interactive shell access on a compute node!</p>
+<p>However, we only have access to 1 core and 4 GB of memory in this VS Code shell, and there is no way of changing this. If you want an interactive shell job with more resources, you’ll have to start one with Slurm commands.</p>
+<p>A couple of different commands can be used to start an interactive shell job. I prefer the general <code>srun</code> command<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>, which we can use with <code>--pty /bin/bash</code> added to get an interactive Bash shell.</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> <span class="at">--account</span><span class="op">=</span>PAS0471 <span class="at">--pty</span> /bin/bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>srun: job 12431932 queued and waiting for resources  
+srun: job 12431932 has been allocated resources
+
+[...regular login info, such as quota, not shown...]
+
+[jelmer@p0133 PAS0471]$</code></pre>
+<p>There we go! First some Slurm scheduling info was printed to screen: initially, the job was queued, and then it was “allocated resources”: that is, computing resources such as a compute node were reserved for the job. After that:</p>
+<ul>
+<li><p>The job starts and because we’ve reserved an <em>interactive</em> shell job, a new Bash shell is initiated: for that reason, we get to see our regular login info once again.</p></li>
+<li><p>We have now moved to the <strong>compute node</strong> at which our interactive job is running, so you should have a different <code>p</code> number in your prompt.</p></li>
+</ul>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+<section id="table-with-sbatch-options" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="table-with-sbatch-options"><span class="header-section-number">5.2</span> Table with <code>sbatch</code> options</h3>
 <p>This includes all the discussed options, and a couple more useful ones:</p>
 <table class="table">
 <colgroup>
@@ -1142,25 +1227,6 @@ Solution (click here)
 </tr>
 </tbody>
 </table>
-<hr style="height:1pt; visibility:hidden;">
-</section>
-<section id="interactive-shell-jobs" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="interactive-shell-jobs"><span class="header-section-number">5.2</span> Interactive shell jobs</h3>
-<p>Interactive shell jobs will grant you interactive shell access on a compute node. We’ve been working in a shell in VS Code Server, which means that we already have interactive shell access on a compute node!</p>
-<p>However, we only have access to 1 core and 4 GB of memory in this VS Code shell, and there is no way of changing this. If you want an interactive shell job with more resources, you’ll have to start one with Slurm commands.</p>
-<p>A couple of different commands can be used to start an interactive shell job. I prefer the general <code>srun</code> command<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>, which we can use with <code>--pty /bin/bash</code> added to get an interactive Bash shell.</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="ex">srun</span> <span class="at">--account</span><span class="op">=</span>PAS0471 <span class="at">--pty</span> /bin/bash</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="bash-out"><code>srun: job 12431932 queued and waiting for resources  
-srun: job 12431932 has been allocated resources
-
-[...regular login info, such as quota, not shown...]
-
-[jelmer@p0133 PAS0471]$</code></pre>
-<p>There we go! First some Slurm scheduling info was printed to screen: initially, the job was queued, and then it was “allocated resources”: that is, computing resources such as a compute node were reserved for the job. After that:</p>
-<ul>
-<li><p>The job starts and because we’ve reserved an <em>interactive</em> shell job, a new Bash shell is initiated: for that reason, we get to see our regular login info once again.</p></li>
-<li><p>We have now moved to the <strong>compute node</strong> at which our interactive job is running, so you should have a different <code>p</code> number in your prompt.</p></li>
-</ul>
 <p><br></p>
 
 

@@ -547,7 +547,7 @@ Always include the <code>module load</code> command in your shell script
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load software</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load fastqc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load fastqc/0.11.8</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <section id="exercise-load-a-blast-module" class="level4 exercise">
@@ -716,8 +716,8 @@ clinker         kofamscan            phylofisher        sabre-1.0</code></pre>
 <p>Before you can activate Conda environments, you always first need to load OSC’s Miniconda module:</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load miniconda3/23.3.1-py310</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>As mentioned above, these environments are (de)activated much like with the Lmod system. But while the term “load” is used for Lmod modules, the term <strong>“activate”</strong> is used for Conda environments — it means the same thing.</p>
-<p>Also like Lmod, there is a main command (<code>conda</code>) and several sub-commands (<code>deactivate</code>, <code>create</code>, <code>install</code>, <code>update</code>). However, there is an exception with activating environments: the most foolproof way to activate a Conda environment is to use <strong><code>source activate</code></strong> rather than the expected <code>conda activate</code> — for instance:</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> activate /fs/ess/PAS0471/jelmer/conda/multiqc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Also like Lmod, there is a main command (<code>conda</code>) and several sub-commands (<code>deactivate</code>, <code>create</code>, <code>install</code>, <code>update</code>). For example, to activate an environment:</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /fs/ess/PAS0471/jelmer/conda/multiqc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>(multiqc) [jelmer@p0085 rnaseq-intro]$</code></pre>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -744,10 +744,10 @@ Conda environment indicator!
 <hr style="height:1pt; visibility:hidden;">
 <p>Unlike Lmod / <code>module load</code>, Conda will by default only keep <strong>a single environment active</strong>. Therefore, when you have one environment activate and then activate another, you will <em>switch</em> environments:</p>
 <div class="sourceCode" id="cb36"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># After running this command, the multiqc env will be active</span></span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> activate /fs/ess/PAS0471/jelmer/conda/multiqc</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /fs/ess/PAS0471/jelmer/conda/multiqc</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co"># After running his command, the trimgalore env will be active...</span></span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> activate /fs/ess/PAS0471/jelmer/conda/trimgalore</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /fs/ess/PAS0471/jelmer/conda/trimgalore</span>
 <span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="co"># ...but the multiqc env will no longer be:</span></span>
 <span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a><span class="ex">multiqc</span> <span class="at">--help</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -772,7 +772,6 @@ The <code>--stack</code> option
 <span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a><span class="ex">trim_galore</span> <span class="at">--help</span></span>
 <span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a><span class="co"># (Output not shown, but this should print help info)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Note that the command is <code>conda activate --stack</code> and not <code>source activate --stack</code>!</p>
 </div>
 </div>
 <hr style="height:1pt; visibility:hidden;">
@@ -786,7 +785,7 @@ The <code>--stack</code> option
 <span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load software</span></span>
 <span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load miniconda3/23.3.1-py310</span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> activate /fs/ess/PAS0471/jelmer/conda/multiqc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /fs/ess/PAS0471/jelmer/conda/multiqc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr style="height:1pt; visibility:hidden;">
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -842,161 +841,22 @@ Perils of Conda environments inside scripts
 <pre class="bash-out"><code>Collecting package metadata (current_repodata.json): done  
 Solving environment: done
 # [...truncated...]</code></pre>
-<details>
-<summary>
-Click to see the full output when I ran this command
-</summary>
-<p><br></p>
-<div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code>Collecting package metadata (current_repodata.json): done
-Solving environment: done
+<p>There should be a lot of output, with many packages that are being downloaded (these are all “dependencies” of TrimGalore), but if it works, you should see this before you get your prompt back:</p>
+<pre class="bash-out-solo"><code>Downloading and Extracting Packages
 
-
-==&gt; WARNING: A newer version of conda exists. &lt;==
-  current version: 23.3.1
-  latest version: 23.7.2
-
-Please update conda by running
-
-    $ conda update -n base -c defaults conda
-
-Or to minimize the number of packages updated during conda update use
-
-     conda install conda=23.7.2
-
-
-
-## Package Plan ##
-
-  environment location: /fs/project/PAS0471/jelmer/conda/trimgalore-0.6.10
-
-  added / updated specs:
-    - trim-galore=0.6.10
-
-
-The following packages will be downloaded:
-
-    | package            | build                                            |
-    | ------------------ | ------------------------------------------------ |
-    | bz2file-0.98       | py_0           9 KB  conda-forge                 |
-    | cutadapt-1.18      | py37h14c3975_1         206 KB  bioconda          |
-    | fastqc-0.12.1      | hdfd78af_0        11.1 MB  bioconda              |
-    | pigz-2.6           | h27826a3_0          87 KB  conda-forge           |
-    | python-3.7.12      | hf930737_100_cpython        57.3 MB  conda-forge |
-    | trim-galore-0.6.10 | hdfd78af_0          45 KB  bioconda              |
-    | xopen-0.7.3        | py_0          11 KB  bioconda                    |
-    ------------------------------------------------------------
-                                           Total:        68.8 MB
-
-The following NEW packages will be INSTALLED:
-
-  _libgcc_mutex      conda-forge/linux-64::_libgcc_mutex-0.1-conda_forge 
-  _openmp_mutex      conda-forge/linux-64::_openmp_mutex-4.5-2_gnu 
-  alsa-lib           conda-forge/linux-64::alsa-lib-1.2.9-hd590300_0 
-  bz2file            conda-forge/noarch::bz2file-0.98-py_0 
-  bzip2              conda-forge/linux-64::bzip2-1.0.8-h7f98852_4 
-  ca-certificates    conda-forge/linux-64::ca-certificates-2023.7.22-hbcca054_0 
-  cairo              conda-forge/linux-64::cairo-1.16.0-hbbf8b49_1016 
-  cutadapt           bioconda/linux-64::cutadapt-1.18-py37h14c3975_1 
-  expat              conda-forge/linux-64::expat-2.5.0-hcb278e6_1 
-  fastqc             bioconda/noarch::fastqc-0.12.1-hdfd78af_0 
-  font-ttf-dejavu-s~ conda-forge/noarch::font-ttf-dejavu-sans-mono-2.37-hab24e00_0 
-  font-ttf-inconsol~ conda-forge/noarch::font-ttf-inconsolata-3.000-h77eed37_0 
-  font-ttf-source-c~ conda-forge/noarch::font-ttf-source-code-pro-2.038-h77eed37_0 
-  font-ttf-ubuntu    conda-forge/noarch::font-ttf-ubuntu-0.83-hab24e00_0 
-  fontconfig         conda-forge/linux-64::fontconfig-2.14.2-h14ed4e7_0 
-  fonts-conda-ecosy~ conda-forge/noarch::fonts-conda-ecosystem-1-0 
-  fonts-conda-forge  conda-forge/noarch::fonts-conda-forge-1-0 
-  freetype           conda-forge/linux-64::freetype-2.12.1-hca18f0e_1 
-  gettext            conda-forge/linux-64::gettext-0.21.1-h27087fc_0 
-  giflib             conda-forge/linux-64::giflib-5.2.1-h0b41bf4_3 
-  graphite2          conda-forge/linux-64::graphite2-1.3.13-h58526e2_1001 
-  harfbuzz           conda-forge/linux-64::harfbuzz-7.3.0-hdb3a94d_0 
-  icu                conda-forge/linux-64::icu-72.1-hcb278e6_0 
-  keyutils           conda-forge/linux-64::keyutils-1.6.1-h166bdaf_0 
-  krb5               conda-forge/linux-64::krb5-1.21.2-h659d440_0 
-  lcms2              conda-forge/linux-64::lcms2-2.15-haa2dc70_1 
-  ld_impl_linux-64   conda-forge/linux-64::ld_impl_linux-64-2.40-h41732ed_0 
-  lerc               conda-forge/linux-64::lerc-4.0.0-h27087fc_0 
-  libcups            conda-forge/linux-64::libcups-2.3.3-h4637d8d_4 
-  libdeflate         conda-forge/linux-64::libdeflate-1.18-h0b41bf4_0 
-  libedit            conda-forge/linux-64::libedit-3.1.20191231-he28a2e2_2 
-  libexpat           conda-forge/linux-64::libexpat-2.5.0-hcb278e6_1 
-  libffi             conda-forge/linux-64::libffi-3.4.2-h7f98852_5 
-  libgcc-ng          conda-forge/linux-64::libgcc-ng-13.1.0-he5830b7_0 
-  libglib            conda-forge/linux-64::libglib-2.76.4-hebfc3b9_0 
-  libgomp            conda-forge/linux-64::libgomp-13.1.0-he5830b7_0 
-  libiconv           conda-forge/linux-64::libiconv-1.17-h166bdaf_0 
-  libjpeg-turbo      conda-forge/linux-64::libjpeg-turbo-2.1.5.1-h0b41bf4_0 
-  libnsl             conda-forge/linux-64::libnsl-2.0.0-h7f98852_0 
-  libpng             conda-forge/linux-64::libpng-1.6.39-h753d276_0 
-  libsqlite          conda-forge/linux-64::libsqlite-3.42.0-h2797004_0 
-  libstdcxx-ng       conda-forge/linux-64::libstdcxx-ng-13.1.0-hfd8a6a1_0 
-  libtiff            conda-forge/linux-64::libtiff-4.5.1-h8b53f26_0 
-  libuuid            conda-forge/linux-64::libuuid-2.38.1-h0b41bf4_0 
-  libwebp-base       conda-forge/linux-64::libwebp-base-1.3.1-hd590300_0 
-  libxcb             conda-forge/linux-64::libxcb-1.15-h0b41bf4_0 
-  libzlib            conda-forge/linux-64::libzlib-1.2.13-hd590300_5 
-  ncurses            conda-forge/linux-64::ncurses-6.4-hcb278e6_0 
-  openjdk            conda-forge/linux-64::openjdk-20.0.0-h8e330f5_0 
-  openssl            conda-forge/linux-64::openssl-3.1.2-hd590300_0 
-  pcre2              conda-forge/linux-64::pcre2-10.40-hc3806b6_0 
-  perl               conda-forge/linux-64::perl-5.32.1-4_hd590300_perl5 
-  pigz               conda-forge/linux-64::pigz-2.6-h27826a3_0 
-  pip                conda-forge/noarch::pip-23.2.1-pyhd8ed1ab_0 
-  pixman             conda-forge/linux-64::pixman-0.40.0-h36c2ea0_0 
-  pthread-stubs      conda-forge/linux-64::pthread-stubs-0.4-h36c2ea0_1001 
-  python             conda-forge/linux-64::python-3.7.12-hf930737_100_cpython 
-  readline           conda-forge/linux-64::readline-8.2-h8228510_1 
-  setuptools         conda-forge/noarch::setuptools-68.0.0-pyhd8ed1ab_0 
-  sqlite             conda-forge/linux-64::sqlite-3.42.0-h2c6b66d_0 
-  tk                 conda-forge/linux-64::tk-8.6.12-h27826a3_0 
-  trim-galore        bioconda/noarch::trim-galore-0.6.10-hdfd78af_0 
-  wheel              conda-forge/noarch::wheel-0.41.1-pyhd8ed1ab_0 
-  xopen              bioconda/noarch::xopen-0.7.3-py_0 
-  xorg-fixesproto    conda-forge/linux-64::xorg-fixesproto-5.0-h7f98852_1002 
-  xorg-inputproto    conda-forge/linux-64::xorg-inputproto-2.3.2-h7f98852_1002 
-  xorg-kbproto       conda-forge/linux-64::xorg-kbproto-1.0.7-h7f98852_1002 
-  xorg-libice        conda-forge/linux-64::xorg-libice-1.1.1-hd590300_0 
-  xorg-libsm         conda-forge/linux-64::xorg-libsm-1.2.4-h7391055_0 
-  xorg-libx11        conda-forge/linux-64::xorg-libx11-1.8.6-h8ee46fc_0 
-  xorg-libxau        conda-forge/linux-64::xorg-libxau-1.0.11-hd590300_0 
-  xorg-libxdmcp      conda-forge/linux-64::xorg-libxdmcp-1.1.3-h7f98852_0 
-  xorg-libxext       conda-forge/linux-64::xorg-libxext-1.3.4-h0b41bf4_2 
-  xorg-libxfixes     conda-forge/linux-64::xorg-libxfixes-5.0.3-h7f98852_1004 
-  xorg-libxi         conda-forge/linux-64::xorg-libxi-1.7.10-h7f98852_0 
-  xorg-libxrender    conda-forge/linux-64::xorg-libxrender-0.9.11-hd590300_0 
-  xorg-libxt         conda-forge/linux-64::xorg-libxt-1.3.0-hd590300_1 
-  xorg-libxtst       conda-forge/linux-64::xorg-libxtst-1.2.3-h7f98852_1002 
-  xorg-recordproto   conda-forge/linux-64::xorg-recordproto-1.14.2-h7f98852_1002 
-  xorg-renderproto   conda-forge/linux-64::xorg-renderproto-0.11.1-h7f98852_1002 
-  xorg-xextproto     conda-forge/linux-64::xorg-xextproto-7.3.0-h0b41bf4_1003 
-  xorg-xproto        conda-forge/linux-64::xorg-xproto-7.0.31-h7f98852_1007 
-  xz                 conda-forge/linux-64::xz-5.2.6-h166bdaf_0 
-  zlib               conda-forge/linux-64::zlib-1.2.13-hd590300_5 
-  zstd               conda-forge/linux-64::zstd-1.5.2-hfc55251_7 
-
-
-
-Downloading and Extracting Packages
-                                                                                                                                                                                                                                   
-Preparing transaction: done                                                                                                                                                                                                        
-Verifying transaction: done                                                                                                                                                                                                        
-Executing transaction: done                                                                                                                                                                                                        
-#                                                                                                                                                                                                                                  
-# To activate this environment, use                                                                                                                                                                                                
-#                                                                                                                                                                                                                                  
-#     $ conda activate trimgalore-0.6.10
+Preparing transaction: done
+Verifying transaction: done
+Executing transaction: done                                                                                                                   
+#                        
+# To activate this environment, use                          
+#
+#     $ conda activate trim-galore-0.6.10                          
 #
 # To deactivate an active environment, use
 #
 #     $ conda deactivate</code></pre>
-</div>
-</div>
-</details>
 <p>Now, you should be able to activate the environment (using just its name – see the box below):</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> activate trim-galore</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate trim-galore</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Let’s test if we can run TrimGalore — note, the command is <code>trim_galore</code>:</p>
 <div class="sourceCode" id="cb49"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="ex">trim_galore</span> <span class="at">--help</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code> USAGE:

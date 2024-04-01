@@ -419,9 +419,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <hr style="height:1pt; visibility:hidden;">
 <section id="osc-projects" class="level3">
 <h3 class="anchored" data-anchor-id="osc-projects">OSC Projects</h3>
-<p>In this course, we are exclusively using the course’s OSC Project <code>PAS2700</code>. When you use OSC for your own research project, you would use a different OSC Project, likely either a research-project-specific one, or your lab/PI’s general use OSC Project.</p>
-<p>Generally, only PIs request <strong>OSC projects</strong>, and they typically manage them as well. OSC has <a href="https://www.osc.edu/supercomputing/support/account">this page with more information on how to do so</a>. Whoever manages an OSC Project can add both existing OSC users and new users to the Project. Anyone added to an OSC Project will have access to the project’s directories, and will be able specify this Project when issuing compute node resource requests.</p>
-<p>When you get added to an OSC Project and don’t yet have an OSC <strong>account</strong>, you will receive an email with a link that allows you to create one. It is not possible to create an account before you’ve been added to an OSC Project.</p>
+<p>In this course, we are exclusively using the course’s OSC Project <code>PAS2700</code>. When you use OSC for your own research project, you would use a different OSC Project, one that’s likely either specific to a research project or grant, or that is your lab/PI’s general use OSC Project.</p>
+<p>Generally, only PIs request OSC projects, and they typically manage them as well. OSC has <a href="https://www.osc.edu/supercomputing/support/account">this page with more information on how to do so</a>. Whoever manages an OSC Project can add both existing OSC users and new users to the Project. Anyone added to an OSC Project will have access to the project’s directories, and will be able specify this Project when issuing compute node resource requests.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -435,16 +434,16 @@ Billing
 <p>OSC will bill OSC Projects (not individual users), and only for the following two things:</p>
 <ul>
 <li><em><strong>File storage</strong></em> in the Project Storage file system</li>
-<li><em><strong>Compute node usage</strong></em> by “core hour” (e.g.&nbsp;using 2 cores for 2 hours = 4 core hours)</li>
+<li><em><strong>Compute node usage</strong></em> per “core hour” (e.g.&nbsp;using 2 cores for 2 hours = 4 core hours)</li>
 </ul>
-<p>The prices for academic usage are quite low (see <a href="https://www.osc.edu/content/academic_fee_model_faq">this page for specifics</a>), and at OSU, they are often <em>covered at the department level</em> so individual PIs often do not have to directly pay for this at all.</p>
+<p>The prices for academic usage are quite low (see <a href="https://www.osc.edu/content/academic_fee_model_faq">this page for specifics</a>), and at OSU, they are often covered at the department level so individual PIs often do not have to directly pay for this at all.</p>
 </div>
 </div>
 <hr style="height:1pt; visibility:hidden;">
 </section>
 <section id="hierarchical-components" class="level3">
 <h3 class="anchored" data-anchor-id="hierarchical-components">Hierarchical components</h3>
-<p>In week 1, you learned that a <em>supercomputer center</em> like OSC typically has <em>multiple supercomputers</em> (AKA “clusters”), each of which in turn consists of <em>many nodes</em> (basically computers). But I omitted a fourth “level” in this hierarchy:</p>
+<p>In week 1, you learned that a supercomputer center like OSC typically has multiple supercomputers, each of which in turn consists of many nodes. But I omitted a fourth “level” in this hierarchy:</p>
 <ul>
 <li><strong>Core / Processor / CPU / Thread</strong> — Components of a computer that can each (semi-)indendepently be asked to perform a computing task like running a bioinformatics program. While these terms are not technically all synonyms, we can treat them as such for our purposes.</li>
 </ul>
@@ -510,12 +509,12 @@ Billing
 </tbody>
 </table>
 <hr style="height:1pt; visibility:hidden;">
-<p>We’ve been working in the “Project dir” (<code>/fs/ess/</code>) for this course’s OSC project <code>PAS2700</code>. When you use OSC for your own research project with a different OSC Project, you should also <strong>work mostly in the Project (<code>/fs/ess/</code>) dir</strong>, which offers backed up, permanent and flexible amounts of storage.</p>
-<p>One other hand, Scratch dirs are temporary and not backed up, while the storage space of Home dirs is limited and cannot be expanded<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Compute storage space are linked to compute jobs and extremely fleeting: as soon as the compute “job” in question has stopped (e.g.&nbsp;your script has finished), these files will be deleted. So when are non-Project file systems useful?</p>
+<p>We’ve been working in the “Project dir” (<code>/fs/ess/</code>) for this course’s OSC project <code>PAS2700</code>. When you use OSC for your own research project with a different OSC Project, I would recommend that you also <strong>work mostly in the Project (<code>/fs/ess/</code>) dir</strong>, which offers backed up, permanent and flexible amounts of storage.</p>
+<p>One other hand, Scratch dirs are temporary and not backed up, while the storage space of Home dirs is limited and cannot be expanded<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Compute storage space is linked to compute jobs and extremely fleeting: as soon as the compute “job” in question has stopped, these files will be deleted. So when <em>are</em> non-Project file systems useful?</p>
 <ul>
 <li>Your <strong>Home</strong> dir can e.g.&nbsp;be useful for files that you use across projects, like some software.</li>
 <li><strong>Scratch</strong> has the advantages of having <em>effectively unlimited</em> space and much <em>faster</em> data read and write (“I/O”) speed than Home and Project space. It therefore regularly makes sense to run analyses on Scratch, and copy over files that you will continue to need.</li>
-<li><strong>Compute</strong> storage has even faster I/O so can be useful for very I/O-intensive jobs — but they also require some setup<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> and for better or worse, I very rarely end up using them.</li>
+<li><strong>Compute</strong> storage has even faster I/O so can be useful for very I/O-intensive jobs — but using it requires some extra code in your script<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> and for better or worse, I personally end up using this very rarely.</li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -573,7 +572,7 @@ Memory versus storage
 <h3 class="anchored" data-anchor-id="using-compute-nodes">Using compute nodes</h3>
 <p>You can use compute nodes by putting in a request for resources, such as the number of nodes, cores, and for how long you will need them. These requests result in “<strong>compute jobs</strong>” (also simply called “jobs”).</p>
 <p>Because many different users are sending such requests all the time, there is software called a <strong>job scheduler</strong> (specifically, <em>Slurm</em> in case of OSC) that considers each request and assigns the necessary resources to the job as they become available. We’ve already been running compute jobs by running VS Code via OnDemand, and we will talk about submitting scripts as “batch jobs” this week.</p>
-<p>At OSC OnDemand, we can get an overview of the current-minute usage of the OSC clusters by clicking on the “<strong>System Status</strong>” item in the “<strong>Clusters</strong>” dropdown menu:</p>
+<p>At OSC OnDemand, we can get an overview of the current-minute usage of the OSC clusters by clicking on the “<strong>System Status</strong>” item in the “Clusters” dropdown menu:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/ondemand_systemstatus_select.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
@@ -589,7 +588,7 @@ Memory versus storage
 </section>
 <section id="file-transfer" class="level3">
 <h3 class="anchored" data-anchor-id="file-transfer">File transfer</h3>
-<p>In week 1, you were shown that you can upload and download files from OSC in the OnDemand Files menu, but that’s only suitable for relatively small transfers. Here is a complete list of ways of transferring files between your computer and OSC:</p>
+<p>In week 1, you were shown that you can upload and download files from OSC in the OnDemand Files menu, but that’s only suitable for relatively small transfers. Here is a list of methods to transferr files between your computer and OSC:</p>
 <table class="table">
 <colgroup>
 <col style="width: 30%">
@@ -629,16 +628,11 @@ Memory versus storage
 <td>Moderate</td>
 <td>Limited</td>
 </tr>
-<tr class="even">
-<td><strong>Globus</strong></td>
-<td>larger (&gt;1GB)</td>
-<td>GUI</td>
-<td>Moderate <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></td>
-<td>Extensive</td>
-</tr>
 </tbody>
 </table>
+<div class="legend2">
 <p>For more details, see the <a href="#more-details-on-file-transfer-to-and-from-osc">self-study section at the bottom of this page</a>.</p>
+</div>
 <hr style="height:1pt; visibility:hidden;">
 </section>
 <section id="putting-it-together" class="level3">
@@ -661,8 +655,8 @@ Citing and contacting OSC
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li><p>When you use OSC, it’s good practice to <strong>acknowledge and cite OSC</strong> in your papers, see their <a href="https://www.osc.edu/resources/getting_started/citation">citation page</a>.</p></li>
-<li><p>For many questions such as if you have problems with your account, have problems installing or using specific software, or don’t understand why your jobs keep failing, you can <strong>email OSC at <a href="mailto:oschelp@osc.edu" class="email">oschelp@osc.edu</a></strong>. They are usually very quick to respond!</p></li>
+<li>When you use OSC, it’s good practice to <strong>acknowledge and cite OSC</strong> in your papers, see their <a href="https://www.osc.edu/resources/getting_started/citation">citation page</a>.</li>
+<li>For many questions such as if you have problems with your account, have problems installing or using specific software, or don’t understand why your jobs keep failing, you can <strong>email OSC at <a href="mailto:oschelp@osc.edu" class="email">oschelp@osc.edu</a></strong>. They are usually very quick to respond!</li>
 </ul>
 </div>
 </div>
@@ -672,16 +666,16 @@ Citing and contacting OSC
 <h2 class="anchored" data-anchor-id="self-study-material-more-on-file-transfer">Self-study material: More on file transfer</h2>
 <section id="remote-transfer-commands" class="level3">
 <h3 class="anchored" data-anchor-id="remote-transfer-commands">Remote transfer commands</h3>
-<p>For small transfers, you can also use a <strong>remote transfer command</strong> like <code>scp</code>, or a more advanced one like <code>rsync</code> or <code>rclone</code>. Such commands can provide a more convenient transfer method than OnDemand if you want to keep certain directories synced between OSC and your computer. The reason you shouldn’t use this for very large transfers is that the transfer will happen using a login node.</p>
+<p>For small transfers, an alternative to the OnDemand Files menu is using <strong>remote transfer commands</strong> like <code>scp</code>, <code>rsync</code>, or <code>rclone</code>. These commands can be more convenient than OnDemand especially if you want to keep certain directories synced between OSC and your computer.</p>
+<p>Because at OSC, these transfers will happen using a login node, these commands are unfortunately not recommended for large transfers<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</p>
 <section id="scp" class="level4">
 <h4 class="anchored" data-anchor-id="scp"><code>scp</code></h4>
-<p>One option is <code>scp</code> (secure copy), which works much like the regular <code>cp</code> command, including that you’ll need <code>-r</code> for recursive transfers.</p>
-<p>The key difference is that we have to somehow refer to a path on a remote computer, and we do so by starting with the remote computer’s address, followed by <code>:</code>, and then the path:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy from remote (OSC) to local (your computer):</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> <span class="op">&lt;</span>user<span class="op">&gt;</span>@pitzer.osc.edu:<span class="op">&lt;</span>remote-path<span class="op">&gt;</span> <span class="op">&lt;</span>local-path<span class="op">&gt;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy from local (your computer) to remote (OSC)</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> <span class="op">&lt;</span>local-path<span class="op">&gt;</span> <span class="op">&lt;</span>user<span class="op">&gt;</span>@pitzer.osc.edu:<span class="op">&lt;</span>remote-path<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>One option is <code>scp</code> (secure copy), which works much like the regular <code>cp</code> command, including the need for the <code>-r</code> option for recursive transfers. The key difference is that we have to somehow refer to a path on a remote computer, and we do so by starting with the remote computer’s address, followed by <code>:</code>, and then the path:</p>
+<pre class="bash-out-solo"><code># Copy from remote (OSC) to local (your computer):
+scp &lt;user&gt;@pitzer.osc.edu:&lt;remote-path&gt; &lt;local-path&gt;
+
+# Copy from local (your computer) to remote (OSC)
+scp &lt;local-path&gt; &lt;user&gt;@pitzer.osc.edu:&lt;remote-path&gt;</code></pre>
 <p>Here are two examples of copying from OSC to your local computer:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy a file from OSC to a local computer - namely, to your current working dir ('.'):</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> jelmer@pitzer.osc.edu:/fs/ess/PAS0471/jelmer/mcic-scripts/misc/fastqc.sh .</span>
@@ -697,32 +691,34 @@ Citing and contacting OSC
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> /Users/poelstra.1/Desktop/fastqc.sh jelmer@pitzer.osc.edu:/fs/scratch/PAS0471</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Some nuances for remote copying:</p>
 <ul>
-<li><p>As the above code implies, in both cases (remote-to-local and local-to-remote), you will <strong>issue the copying commands from your local computer.</strong></p></li>
-<li><p>For the remote computer (OSC), the <strong>path should always be absolute</strong>, whereas that for your local computer can be either relative or absolute.</p></li>
-<li><p>Since all files can be accessed at the same paths at Pitzer and at Owens, it doesn’t matter whether you use <code>@pitzer.osc.edu</code> or <code>@owens.osc.edu</code> in the <code>scp</code> command.</p></li>
+<li>For both transfer directions (remote-to-local and local-to-remote), you <strong>issue the copying commands from your local computer.</strong></li>
+<li>The path for the remote computer (OSC) should always be absolute but that for your local computer can be relative or absolute.</li>
+<li>Since all files can be accessed at the same paths at Pitzer and at Owens, it doesn’t matter whether you use <code>@pitzer.osc.edu</code> or <code>@owens.osc.edu</code> in the <code>scp</code> command.</li>
 </ul>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Transferring directly to and from OneDrive
+Transferring directly to and from OneDrive <em>(Click to expand)</em>
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>If your OneDrive is mounted on or synced to your local computer (i.e., if you can see it in your computer’s file brower), you can also transfer directly between OSC and OneDrive.</p>
-<p>For example, the path to my OneDrive files on my laptop is:<br>
+<p>If your OneDrive is mounted on or synced to your local computer (i.e., if you can see it in your computer’s file brower), you can also transfer directly between OSC and OneDrive. For example, the path to my OneDrive files on my laptop is:<br>
 <code>/Users/poelstra.1/Library/CloudStorage/OneDrive-TheOhioStateUniversity</code>.<br>
 So if I had a file called <code>fastqc.sh</code> in my top-level OneDrive dir, I could transfer it to my Home dir at OSC as follows:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> /Users/poelstra.1/Library/CloudStorage/OneDrive-TheOhioStateUniversity jelmer@pitzer.osc.edu:~</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </div>
 </div>
 <hr style="height:1pt; visibility:hidden;">
 </section>
 <section id="rsync" class="level4">
 <h4 class="anchored" data-anchor-id="rsync"><code>rsync</code></h4>
-<p>Another option, which I can recommend, is the <code>rsync</code> command, especially when you have directories that you repeatedly want to sync: <strong><code>rsync</code> won’t copy any files that are identical in source and destination</strong>.</p>
+<p>Another option, which I can recommend, is the <code>rsync</code> command, especially when you have directories that you repeatedly want to sync: <code>rsync</code> won’t copy any files that are identical in source and destination.</p>
 <p>A useful combination of options is <code>-avz --progress</code>:</p>
 <ul>
 <li><code>-a</code> enables archival mode (among other things, this makes it work recursively).</li>
@@ -836,8 +832,7 @@ Connected to sftp.osc.edu.</code></pre>
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The <code>~</code> shortcut to your Home directory does not work in <code>sftp</code>!</p>
-<p><code>sftp</code> is generally quite primitive and you also cannot use, for example, tab completion or the recalling of previous commands with the up arrow.</p>
+<p>The <code>~</code> shortcut to your Home directory does not work in <code>sftp</code>! <code>sftp</code> is generally quite primitive and you also cannot use, for example, tab completion or the recalling of previous commands with the up arrow.</p>
 </div>
 </div>
 <hr style="height:1pt; visibility:hidden;">
@@ -849,7 +844,6 @@ Connected to sftp.osc.edu.</code></pre>
 <div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sftp</span><span class="op">&gt;</span> get /fs/scratch/PAS0471/mcic-scripts/misc/fastqc.sh .</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="ex">sftp</span><span class="op">&gt;</span> get <span class="at">-r</span> /fs/scratch/PAS0471/sandbox/ .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr style="height:1pt; visibility:hidden;">
 </section>
 <section id="closing-the-sftp-connection" class="level4">
 <h4 class="anchored" data-anchor-id="closing-the-sftp-connection">Closing the SFTP connection</h4>
@@ -882,8 +876,8 @@ Connected to sftp.osc.edu.</code></pre>
 
 <ol>
 <li id="fn1"><p> And file sharing / collaborating is also a bit more difficult with home dirs.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Copying of files back-and-forth, and making sure your results are not lost upon some kind of failure.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p>But the initial setup for Globus is quite involved and a bit counter-intuitive.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p> Copying of files back-and-forth, and making sure your results are not lost upon some kind of failure.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p> This may be different at other supercomputer centers: there are no inherent transfer size limitations to these commands.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>For simplicity, these commands are copying between local dirs, which is also possible with <code>rsync</code>.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->

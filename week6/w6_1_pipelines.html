@@ -307,12 +307,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../ref/shell.html">
  <span class="dropdown-text">Unix shell</span></a>
   </li>  
-        <li class="dropdown-header">Markdown (TBA)</li>
-        <li class="dropdown-header">Git (TBA)</li>
-        <li class="dropdown-header">Shell scripting (TBA)</li>
-        <li class="dropdown-header">OSC, Slurm, and Conda (TBA)</li>
-        <li class="dropdown-header">Nextflow (TBA)</li>
-        <li class="dropdown-header">List of Further Resources (TBA)</li>
     </ul>
   </li>
   <li class="nav-item">
@@ -367,12 +361,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#pipelines" id="toc-pipelines" class="nav-link active" data-scroll-target="#pipelines"><span class="header-section-number">1</span> Pipelines</a></li>
-  <li><a href="#workflow-management-systems" id="toc-workflow-management-systems" class="nav-link" data-scroll-target="#workflow-management-systems"><span class="header-section-number">2</span> Workflow management systems</a>
-  <ul class="collapse">
-  <li><a href="#writing-pipelines-vs.-using-them" id="toc-writing-pipelines-vs.-using-them" class="nav-link" data-scroll-target="#writing-pipelines-vs.-using-them"><span class="header-section-number">2.1</span> Writing pipelines vs.&nbsp;using them</a></li>
-  <li><a href="#nf-core-rnaseq" id="toc-nf-core-rnaseq" class="nav-link" data-scroll-target="#nf-core-rnaseq"><span class="header-section-number">2.2</span> nf-core rnaseq</a></li>
-  </ul></li>
-  <li><a href="#notes-on-running-an-nf-core-pipeline" id="toc-notes-on-running-an-nf-core-pipeline" class="nav-link" data-scroll-target="#notes-on-running-an-nf-core-pipeline"><span class="header-section-number">3</span> Notes on running an nf-core pipeline</a></li>
+  <li><a href="#workflow-management-systems" id="toc-workflow-management-systems" class="nav-link" data-scroll-target="#workflow-management-systems"><span class="header-section-number">2</span> Workflow management systems</a></li>
+  <li><a href="#nf-core-pipelines" id="toc-nf-core-pipelines" class="nav-link" data-scroll-target="#nf-core-pipelines"><span class="header-section-number">3</span> nf-core pipelines</a></li>
   </ul>
 </nav>
     </div>
@@ -421,14 +411,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="pipelines" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="pipelines"><span class="header-section-number">1</span> Pipelines</h2>
 <p>What do we mean by a “pipeline” or “workflow”? We may informally refer to any consecutive series of steps in an analysis as a pipeline or workflow. But here, I am using these words to mean a consecutive series of steps that <strong>can be executed from start to finish with a single command</strong>.</p>
-<p>What are the advantages of creating a pipeline, rather than running scripts one-by-one as needed?</p>
+<p>What are the advantages of creating a pipeline over having a collection of scripts that you run one-by-one as needed?</p>
 <ul>
-<li>Rerunning everything is much easier.</li>
-<li>Re-applying the same set of analyses in a different project is much easier.</li>
 <li>It ensures you are including all necessary steps.</li>
 <li>The pipeline is a form of documentation of the steps taken.</li>
-<li>It improves reproducibility, e.g.&nbsp;making it easier for others to repeat your analysis.</li>
+<li>Rerunning everything is easier — both for yourself and others, improving reproducibility.</li>
+<li>Re-applying the same set of analyses in a different project is easier.</li>
 </ul>
+<p>The runner scripts that you have been creating in the last two weeks occupy a middle ground between just having a collection of scripts, and between having a pipeline according to the definition above. We’ll get into this a little more below.</p>
 <hr style="height:1pt; visibility:hidden;">
 <section id="a-simple-rna-seq-example" class="level4">
 <h4 class="anchored" data-anchor-id="a-simple-rna-seq-example">A simple RNA-seq example</h4>
@@ -445,7 +435,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 <hr style="height:1pt; visibility:hidden;">
-<p>For example, this shell script is similar to the “runner scripts” we created last week, and adheres to the above definition of a pipeline:</p>
+<p>For example, consider the below shell script, which is similar to the “runner scripts” we created last week, and adheres to the above definition of a pipeline:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -467,7 +457,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="challenges-with-basic-pipeline-scripts" class="level4">
 <h4 class="anchored" data-anchor-id="challenges-with-basic-pipeline-scripts">Challenges with basic pipeline scripts</h4>
-<p>While it -perhaps surprisingly- simple to create a pipeline along these lines, you are likely to run into a number of challenges in practice, such as the following two.</p>
+<p>While it is straightforward to create a pipeline along these lines that functions at least in principle, you are likely to run into a number of challenges in practice.</p>
 <p>First, how to <strong>rerun parts of the pipeline</strong> flexibly? This may be necessary after, e.g.:</p>
 <ul>
 <li>Some scripts failed for all or some samples</li>
@@ -500,7 +490,7 @@ Steps that need output files from prior steps won’t wait for those prior steps
 <h4 class="anchored" data-anchor-id="potential-solutions-to-these-challenges">Potential solutions to these challenges</h4>
 <ul>
 <li><p><strong>Stick to a runner script</strong><br>
-Rather than running the pipeline script as an actual script, just use this script as scaffolding and submit interactively jobs one-by-one / group-by-group. This is exactly what the “runner scripts”, of which we saw some examples last week, would do. You don’t have a true pipeline but that may be OK — several of the advantages we discussed above do apply.</p></li>
+The above example with the <code>sbatch</code> commands is a perfect example of the runner scripts we’ve been practicing with. The steps/sections have to submitted one-by-one, so it is not a true pipeline. But that may well be OK — several of the pipeline advantages that we discussed above do apply. But besides reduced automation / ease of rerunning, this does not really address the challenge of having to flexibly rerun parts of the pipeline.</p></li>
 <li><p><strong>Push the limits of the Bash and Slurm tool set</strong><br>
 Work with <code>if</code> statements, many arguments to scripts, and Slurm “job dependencies” (see some examples in the box below) — but this is very hard to manage for more complex workflows.</p></li>
 <li><p>Use a <strong>formal workflow management system</strong>.<br>
@@ -519,7 +509,7 @@ Pushing the limits of the Bash and Slurm tool set <em>(Click to expand)</em>
 </div>
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p><strong>First, here are some low-tech, ad-hoc solutions to having to rerun parts of the workflow:</strong></p>
+<p><strong>First, here are some low-tech, ad-hoc solutions to rerunning parts of the workflow:</strong></p>
 <ul>
 <li><p>Comment out part of the workflow — e.g., to skip a step:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Trim:</span></span>
@@ -550,34 +540,45 @@ Pushing the limits of the Bash and Slurm tool set <em>(Click to expand)</em>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Count - </span><span class="al">NOTE</span><span class="co">, this steps should be rerun as a whole:</span></span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> scripts/count.sh results/map results/count_table.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
-<p><strong>Second, some more bespoke code-bases solutions:</strong></p>
+<hr style="height:1pt; visibility:hidden;">
+<p><strong>Second, here are some more bespoke code-bases solutions:</strong></p>
 <ul>
-<li><p>Command-line options and <code>if</code>-statements to enable flexible running of part of the workflow (and perhaps to change settings):</p>
+<li><p>Command-line options and <code>if</code>-statements to flexibly run part of the pipeline (and perhaps change settings):</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">trim</span><span class="op">=</span><span class="va">$1</span>   <span class="co"># true or false</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="va">map</span><span class="op">=</span><span class="va">$2</span>    <span class="co"># true or false</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="va">count</span><span class="op">=</span><span class="va">$3</span>  <span class="co"># true or false</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sample <span class="kw">in</span> <span class="va">${samples</span><span class="op">[@]</span><span class="va">}</span><span class="kw">;</span> <span class="cf">do</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">[</span> <span class="st">"</span><span class="va">$trim</span><span class="st">"</span> <span class="ot">=</span> true <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="ex">scripts/trim.sh</span> data/<span class="st">"</span><span class="va">$sample</span><span class="st">"</span>.fq <span class="op">&gt;</span> res/<span class="st">"</span><span class="va">$sample</span><span class="st">"</span>_trim.fq</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">[</span> <span class="st">"</span><span class="va">$map</span><span class="st">"</span> <span class="ot">=</span> true <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="ex">scripts/map.sh</span> res/<span class="st">"</span><span class="va">$sample</span><span class="st">"</span>_trim.fq <span class="op">&gt;</span> res/<span class="st">"</span><span class="va">$sample</span><span class="st">"</span>.bam</span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">fi</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">[</span> <span class="st">"</span><span class="va">$count</span><span class="st">"</span> <span class="ot">=</span> true <span class="bu">]</span><span class="kw">;</span> <span class="cf">then</span></span>
-<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    <span class="ex">scripts/count.sh</span> <span class="va">${samples</span><span class="op">[@]</span><span class="va">}</span> <span class="op">&gt;</span> res/count_table.txt</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Slurm job dependencies:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sample <span class="kw">in</span> <span class="va">${samples</span><span class="op">[@]</span><span class="va">}</span><span class="kw">;</span> <span class="cf">do</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="va">line</span><span class="op">=</span><span class="va">$(</span><span class="ex">sbatch</span> scripts/trim.sh<span class="va">)</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">trim_id</span><span class="op">=</span><span class="va">$(</span><span class="bu">echo</span> <span class="va">$line</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/Submitted batch job //'</span><span class="va">)</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="ex">sbatch</span> <span class="at">--dependency</span><span class="op">=</span>afterok:<span class="va">$trim_id</span> scripts/map.sh</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> <span class="at">--dependency</span><span class="op">=</span>singleton scripts/count.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="st">"</span><span class="va">$trim</span><span class="st">"</span> <span class="ot">==</span> true <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> R1 <span class="kw">in</span> data/fastq/<span class="pp">*</span>_R1.fastq.gz<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>        <span class="fu">bash</span> scripts/trim.sh <span class="st">"</span><span class="va">$R1</span><span class="st">"</span> results/trim</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">done</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="st">"</span><span class="va">$map</span><span class="st">"</span> <span class="ot">==</span> true <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> R1 <span class="kw">in</span> results/trim/<span class="pp">*</span>_R1.fastq.gz<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">bash</span> scripts/map.sh <span class="st">"</span><span class="va">$R1</span><span class="st">"</span> results/map</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">done</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="st">"</span><span class="va">$count</span><span class="st">"</span> <span class="ot">==</span> true <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">bash</span> scripts/count.sh results/map results/count_table.txt</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Slurm job dependencies — in the example below, jobs will only start after their “dependencies” (jobs whose outputs they need) have finished:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> R1 <span class="kw">in</span> data/fastq/<span class="pp">*</span>_R1.fastq.gz<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Submit the trimming job and store its job number:</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">submit_line</span><span class="op">=</span><span class="va">$(</span><span class="ex">sbatch</span> scripts/trim.sh <span class="st">"</span><span class="va">$R1</span><span class="st">"</span> results/trim<span class="va">)</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">trim_id</span><span class="op">=</span><span class="va">$(</span><span class="bu">echo</span> <span class="st">"</span><span class="va">$submit_line</span><span class="st">"</span> <span class="kw">|</span> <span class="fu">sed</span> <span class="st">'s/Submitted batch job //'</span><span class="va">)</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Submit the mapping job with the condition that it only starts when the</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="co"># trimming job is done, using '--dependency=afterok:':</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="va">R1_trimmed</span><span class="op">=</span>results/trim/<span class="va">$(</span><span class="fu">basename</span> <span class="st">"</span><span class="va">$R1</span><span class="st">"</span><span class="va">)</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="ex">sbatch</span> <span class="at">--dependency</span><span class="op">=</span>afterok:<span class="va">$trim_id</span> scripts/map.sh <span class="st">"</span><span class="va">$R1_trimmed</span><span class="st">"</span> results/map</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># If you give the mapping and counting jobs the same name with `#SBATCH --job-name=`,</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># then you can use '--dependency=singleton': the counting job will only start</span></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="co"># when ALL the mapping jobs are done:</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> <span class="at">--dependency</span><span class="op">=</span>singleton scripts/count.sh results/map results/count_table.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 </div>
 </div>
@@ -596,7 +597,7 @@ Background reading on pipelines and workflow systems <em>(Click to expand)</em>
 <div class="callout-body-container callout-body">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="img/nature-feature.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+<p><img src="img/nature-feature.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
 <figcaption>Perkel 2019 - <a href="https://www.nature.com/articles/d41586-019-02619-z" class="uri">https://www.nature.com/articles/d41586-019-02619-z</a></figcaption>
 </figure>
 </div>
@@ -612,7 +613,7 @@ Background reading on pipelines and workflow systems <em>(Click to expand)</em>
 </section>
 <section id="workflow-management-systems" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="workflow-management-systems"><span class="header-section-number">2</span> Workflow management systems</h2>
-<p>Pipeline/workflow tools, often called “workflow management systems”, provide ways to formally describe and execute pipelines. Advantages of formal workflow management:</p>
+<p>Pipeline/workflow tools, often called “workflow management systems”, provide ways to formally describe and execute pipelines. Advantages of formal workflow management are improved:</p>
 <ul>
 <li><strong>Automation</strong>
 <ul>
@@ -631,138 +632,40 @@ By separating generic pipeline nuts-and-bolts one the one hand, and the followin
 <li>Things specific to the run-time environment (laptop vs.&nbsp;cluster vs.&nbsp;cloud).</li>
 </ul></li>
 </ul>
-<p>The most commonly used command-line based options in bioinformatics are:</p>
-<ul>
-<li>Nextflow</li>
-<li>Snakemake</li>
-<li>Common Workflow Language (CWL)</li>
-<li>Workflow Description Language (WDL)</li>
-</ul>
+<p>The two most commonly used command-line based options in bioinformatics are <strong>Nextflow</strong> and <strong>Snakemake</strong>. Both have their pros and cons, and I taught Snakemake in an earlier iteration of this course, but we’ll use Nextflow here.</p>
 <hr style="height:1pt; visibility:hidden;">
-<section id="writing-pipelines-vs.-using-them" class="level3" data-number="2.1">
-<h3 data-number="2.1" class="anchored" data-anchor-id="writing-pipelines-vs.-using-them"><span class="header-section-number">2.1</span> Writing pipelines vs.&nbsp;using them</h3>
-<p>Most workflow tools are small “domain-specific” languages -DSLs-, often a sort of extension of a more general language (Python for Snakemake, Groovy for Nextflow).</p>
-<p>Learning one of these tool to <strong>write your own pipelines</strong> is perhaps only worth it if you plan to somewhat commonly work on genomics/bioinformatics projects.</p>
-<p>But there are also <strong>publicly available pipelines</strong> that you can use. For example, the “nf-core” initiative (<a href="https://nf-co.re" class="uri">https://nf-co.re</a>) curates a set of best-practice, flexible, and well-documented pipelines written with Nextflow.</p>
+<section id="learning-to-write-pipelines" class="level4">
+<h4 class="anchored" data-anchor-id="learning-to-write-pipelines">Learning to write pipelines</h4>
+<p>Most workflow tools are small “domain-specific” languages (DSLs), often a sort of extension of a more general language: for example, Python for Snakemake, and Groovy/Java for Nextflow.</p>
+<p>Learning one of these tools is harder than it should be, in my opinion — a truly excellent workflow tool does not yet exist, and may not come to do so in the near-future either as existing options have become entrenched. Therefore, learning to <strong>write your own pipelines</strong> with one of them is probably only worth it if you plan to regularly work on genomics/bioinformatics projects.</p>
+<p><br></p>
+</section>
+</section>
+<section id="nf-core-pipelines" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="nf-core-pipelines"><span class="header-section-number">3</span> nf-core pipelines</h2>
+<p>There are also publicly available pipelines that you can use, and Nextflow has by far the best ecosystem of those. The “nf-core” initiative (<a href="https://nf-co.re" class="uri">https://nf-co.re</a>, <a href="https://www.nature.com/articles/s41587-020-0439-x">Ewels et al.&nbsp;2020</a>) curates a set of best-practice, flexible, and well-documented pipelines written in Nextflow:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="img/nfcore_homepage.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
-</figure>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="img/nfcore_paper.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
-<figcaption>The nf-core paper: <a href="https://www.nature.com/articles/s41587-020-0439-x" class="uri">https://www.nature.com/articles/s41587-020-0439-x</a></figcaption>
+<p><img src="img/nfcore_homepage.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
 </figure>
 </div>
 <hr style="height:1pt; visibility:hidden;">
-<p>nf-core currently has 58 complete pipelines — these are the four most popular ones:</p>
+<p>For many common omics analysis types, nf-core has a pipeline. It currently has 58 complete pipelines — these are the four most popular ones:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/nfcore_pipelines.png" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
 </figure>
 </div>
-<hr style="height:1pt; visibility:hidden;">
-</section>
-<section id="nf-core-rnaseq" class="level3" data-number="2.2">
-<h3 data-number="2.2" class="anchored" data-anchor-id="nf-core-rnaseq"><span class="header-section-number">2.2</span> nf-core rnaseq</h3>
-<p>We will run the nf-core rnaseq pipeline (<a href="https://nf-co.re/rnaseq" class="uri">https://nf-co.re/rnaseq</a>), a <strong>reference-based RNA-seq pipeline</strong>. Its inputs are FASTQ and reference genome files (assembly &amp; annotation), and the outputs include a gene count table and many “QC outputs”.</p>
+<p>Let’s take a closer look at the most widely used one, the <a href="https://nf-co.re/rnaseq%3E">rnaseq pipeline</a>:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/nfcore_rnaseq.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:120.0%"></p>
 </figure>
 </div>
-</section>
-</section>
-<section id="notes-on-running-an-nf-core-pipeline" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="notes-on-running-an-nf-core-pipeline"><span class="header-section-number">3</span> Notes on running an nf-core pipeline</h2>
-<p>Running a pipeline like this is a bit different (and more involved) than running a typical piece of bioinformatics software — it is, after all, stitching together many operations. Some considerations:</p>
-<ul>
-<li>We only need to install Nextflow and download the workflow files.</li>
-<li>The pipeline runs all its constituent tools via Singularity containers (this is most common, and recommended) or via Conda environments.</li>
-<li>The pipeline will submit Slurm batch jobs for us. It tries to parallelize as much as possible, so there are many separate jobs.</li>
-<li>When using the Nextflow <code>-resume</code> option, the pipeline will check what needs to be (re)run and what doesn’t: this is quite intricate but generally works well.</li>
-<li>Nextflow makes a distinction between the final output dir and the “working dir”. In the latter, jobs run and produce outputs, some of which are copied the the output dir.</li>
-</ul>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-RNA-seq to do what?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The nf-core rnaseq pipeline is meant for RNA-seq projects that:</p>
-<ul>
-<li>Attempt to sequence only mRNA while avoiding non-coding RNAs (“mRNA-seq”).</li>
-<li>Do not distinguish between RNA from different cell types (“bulk RNA-seq”).</li>
-<li>Use short reads (≤150 bp) that do not cover full transcripts but do uniquely ID genes.</li>
-<li>Use reference genomes (are reference-based) to associate reads with genes.</li>
-<li>Downstream of this pipeline, such projects typically aim to statistically compare expression between groups of samples, and have multiple biological replicates per group.</li>
-</ul>
-<p>That might seem quite specific, but this is by far the most common use RNA-seq use case.</p>
-<hr>
-<p>There are two main parts to the kind of RNA-seq data analysis I just described:</p>
-<ul>
-<li><strong>From reads to counts</strong><br>
-
-<ul>
-<li>Generating a count table using the reads &amp; the reference genome.</li>
-<li>This what nf-core rnaseq does, which we will run in <strong>today’s lab</strong>.</li>
-</ul></li>
-<li><strong>Count table analysis</strong><br>
-Differential expression analysis, function enrichment analysis, etc.</li>
-</ul>
-</div>
-</div>
-<section id="the-main-steps" class="level4">
-<h4 class="anchored" data-anchor-id="the-main-steps">The main steps</h4>
-<p><strong>Read QC and pre-processing</strong></p>
-<ol type="1">
-<li>Read QC (FastQC)</li>
-<li>Adapter and quality trimming (TrimGalore)</li>
-<li>Optional removal of rRNA (SortMeRNA) — off by default, but we will include this</li>
-</ol>
-<p><strong>Alignment &amp; quantification</strong></p>
-<ol start="4" type="1">
-<li>Alignment to the reference genome/transcriptome (STAR)</li>
-<li>Gene expression quantification (Salmon)</li>
-</ol>
-<p><strong>Post-processing, QC, and reporting</strong></p>
-<ol start="6" type="1">
-<li>Post-processing alignments: sort, index, mark duplicates (samtools, Picard)</li>
-<li>Alignment/count QC (RSeQC, Qualimap, dupRadar, Preseq, DESeq2)</li>
-<li>Create a QC/metrics report (MultiQC)</li>
-</ol>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-nf-core rnaseq pipeline variants
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This pipeline is quite flexible and you can turn several steps off, add optional steps, and change individual options for most tools that the pipeline runs.</p>
-<ul>
-<li><strong>Optional removal of contaminants</strong> (BBSplit)<br>
-Map to 1 or more additional genomes whose sequences may be present as contamination, and remove reads that map better to contaminant genomes.</li>
-<li><strong>Alternative quantification routes</strong>
-<ul>
-<li>Use RSEM instead of Salmon to quantify.</li>
-<li>Skip STAR and perform direct pseudo-alignment &amp; quantification with Salmon.</li>
-</ul></li>
-<li><strong>Transcript assembly and quantification (StringTie)</strong><br>
-While the pipeline is focused on gene-level quantification, it does produce transcript-level counts as well (this is run by default).</li>
-</ul>
-</div>
-</div>
+<p>Besides the advantages mentioned above, using such a pipeline … TODO .. not having to choose programs and their parameters.</p>
+<p><br></p>
 
 
-</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->

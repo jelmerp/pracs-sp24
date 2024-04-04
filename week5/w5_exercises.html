@@ -425,7 +425,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You should be in /fs/ess/PAS2700/users/$USER</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> week05/exercises</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> week05/exercises</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
-<li><p>Create a runner script (for the code to submit batch jobs), and then open it:</p>
+<li><p>Create a runner script (in which you’ll write the code to submit batch jobs), and then open it:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> scripts run</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> run/run.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
@@ -500,14 +500,13 @@ If you don’t have it, here’s the contents of the starting FastQC script <em>
 <section id="exercise-3-fastqc-batch-jobs-in-a-loop" class="level2">
 <h2 class="anchored" data-anchor-id="exercise-3-fastqc-batch-jobs-in-a-loop">Exercise 3: FastQC batch jobs in a loop</h2>
 <ol type="1">
-<li><p>Loop over all Garrigos et al.&nbsp;FASTQ files, and submit your FastQC script from Exercise 2 as a batch job for each file.</p></li>
+<li><p>Loop over all Garrigos et al.&nbsp;FASTQ files, submitting your Ex. 2 FastQC script as a batch job for each file.</p></li>
 <li><p>Check the Slurm queue immediately after running the loop, and keep checking it every couple of seconds until all your FastQC jobs have disappeared from the list (i.e., are done).</p></li>
-<li><p>You now arguably have too many Slurm log files to go through.</p>
+<li><p>You now arguably have too many Slurm log files to go through, so what to do next?</p>
 <ul>
-<li>The Slurm email feature should help: check that you didn’t get one or more emails about failed jobs.</li>
-<li>Here’s another thing you can do for a quick check: run the <code>tail</code> command with a glob (using <code>*</code>) so it will print the last lines of each of the output files. Try this.</li>
-<li>Scroll through that <code>tail</code> output: it should be pretty easy to spot any files that don’t end the way the should.</li>
-<li>Check the output files as well.</li>
+<li>The Slurm email feature should help: check that you didn’t get any emails about failed jobs.</li>
+<li>Another quick check is to run the <code>tail</code> command with a glob (using <code>*</code>) so it will print the last lines of each of the output files. Try this and scroll through the <code>tail</code> output: it should be pretty easy to spot any files that don’t end the way the should.</li>
+<li>Check the FastQC output files as well.</li>
 </ul></li>
 <li><p>It can be good to keep your Slurm log files, but things will soon get very messy if you keep them all in your working dir: create a dir called <code>logs</code> in the FastQC output dir, and move all Slurm log files into that dir.</p></li>
 </ol>
@@ -518,14 +517,14 @@ If you don’t have it, here’s the contents of the starting FastQC script <em>
 <p>As a starting point, take your TrimGalore shell script from <a href="../week4/w4_exercises.html">last week’s exercises</a>, and save it as <code>scripts/trimgalore.sh</code>.</p>
 <details>
 <summary>
-Hint: the starting TrimGalore script <em>(Click to expand)</em>
+If you don’t have it, here’s the contents of the starting TrimGalore script <em>(Click to expand)</em>
 </summary>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">#!/bin/bash</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">set</span> <span class="at">-euo</span> pipefail</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Load TrimGalore</span></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load miniconda3/23.3.1-py310</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> activate /fs/ess/PAS0471/jelmer/conda/trimgalore</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate /fs/ess/PAS0471/jelmer/conda/trimgalore</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Copy the placeholder variables</span></span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="va">R1_in</span><span class="op">=</span><span class="va">$1</span></span>
@@ -559,19 +558,20 @@ Hint: the starting TrimGalore script <em>(Click to expand)</em>
 <span id="cb5-37"><a href="#cb5-37" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <ol type="1">
-<li><p>Switch to using your own (instead of my) TrimGalore Conda environment — the one you created in class this week.</p></li>
+<li><p>The script currently uses one of my Conda environments. Switch to your own that you created in class this week.</p></li>
 <li><p>Add <code>#SBATCH</code> options to the top of the TrimGalore shell script to specify:</p>
 <ul>
-<li>The account</li>
+<li>The account/project</li>
 <li>The number of cores (8)</li>
 <li>The Slurm log file name</li>
-<li>That Slurm emails you upon job failure</li>
+<li>Something to make Slurm email you upon job failure</li>
 </ul></li>
 <li><p>Use the TrimGalore option <code>--cores</code> to make it use all 8 reserved cores.</p></li>
-<li><p>Submit the script as a batch job for sample <code>ERR10802863</code>, and check if everything went well. Then remove these test outputs.</p></li>
-<li><p>Run TrimGalore for all FASTQ file pairs from the Garrigos et al.&nbsp;data, and check if everything went well.</p></li>
+<li><p>Submit the script as a batch job for sample <code>ERR10802863</code>, and check that everything went well. Then remove all outputs (Slurm log files and TrimGalore output files) from this test-run.</p></li>
+<li><p>Run TrimGalore for all FASTQ file pairs from the Garrigos et al.&nbsp;data, and check that everything went well.</p></li>
 <li><p>Move the Slurm log files into a dir <code>logs</code> in the TrimGalore output dir.</p></li>
 </ol>
+<hr style="height:1pt; visibility:hidden;">
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -582,10 +582,10 @@ Saving time
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Compared to running TrimGalore last week, we now saved time in two ways:</p>
+<p>Compared to running TrimGalore last week, you now saved time in two ways:</p>
 <ul>
-<li>We used 8 cores, which decreases the running time, for example for the first sample, from nearly a minute to 17 seconds.</li>
-<li>We ran TrimGalore simultaneously instead of consecutively for each sample. If Slurm/OSC quickly granted you compute jobs, running TrimGalore on all files cost well under a minute instead of over 20 minutes.</li>
+<li>You used 8 cores, decreasing the running time — for example, for the first sample, from nearly a minute to 17 seconds.</li>
+<li>You ran TrimGalore simultaneously instead of consecutively for each sample. If Slurm/OSC started these jobs quickly, as is usual, then running TrimGalore on all files should have cost well under a minute instead of over 20 minutes.</li>
 </ul>
 </div>
 </div>
@@ -599,15 +599,16 @@ Saving time
 <summary>
 1 - Create a FastQC Conda environment
 </summary>
-<p>This should install the latest version, but you could also replace the <code>fastqc</code> at the end of the line with <code>fastqc=0.12.1</code>:</p>
+<p>When you don’t specify the version, the latest one should be installed — at least when you’re using a “fresh” environment (there could be complicating factors if you already had other software in the same environment):</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load miniconda3/23.3.1-py310</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> create <span class="at">-y</span> <span class="at">-n</span> fastqc <span class="at">-c</span> bioconda fastqc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>But to be more explicit, you could replace the <code>fastqc</code> at the end of the line with <code>fastqc=0.12.1</code>.</p>
 </details>
 <details>
 <summary>
 2 - Activate the environment and check the version
 </summary>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> activate fastqc</span>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate fastqc</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>FastQC v0.12.1</code></pre>
 </details>
@@ -621,7 +622,7 @@ Saving time
 </summary>
 <p>Replace the line <code>module load fastqc</code> with:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">module</span> load miniconda3/23.3.1-py310</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> activate fastqc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ex">conda</span> activate fastqc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <details>
 <summary>
@@ -639,6 +640,7 @@ Saving time
 <summary>
 4 - Make FastQC use 8 cores
 </summary>
+<p>The relevant FastQC option is <code>--threads</code> (recall to consider the terms threads, cores, and CPUs as synonyms in this context):</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> <span class="at">--threads</span> 8 <span class="at">--outdir</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span> <span class="st">"</span><span class="va">$fastq_file</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <details>
@@ -686,6 +688,7 @@ Submitted batch job 27902561
 <summary>
 3 - Check the output
 </summary>
+<p>Once all jobs have at least started running, you should see a lot of Slurm log files in your working dir:</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>results                    slurm-fastqc-27902531.out  slurm-fastqc-27902543.out  slurm-fastqc-27902555.out
 run                        slurm-fastqc-27902532.out  slurm-fastqc-27902544.out  slurm-fastqc-27902556.out
@@ -699,6 +702,7 @@ slurm-fastqc-27902527.out  slurm-fastqc-27902539.out  slurm-fastqc-27902551.out 
 slurm-fastqc-27902528.out  slurm-fastqc-27902540.out  slurm-fastqc-27902552.out  slurm-fastqc-27902564.out
 slurm-fastqc-27902529.out  slurm-fastqc-27902541.out  slurm-fastqc-27902553.out  slurm-fastqc-27902565.out
 slurm-fastqc-27902530.out  slurm-fastqc-27902542.out  slurm-fastqc-27902554.out</code></pre>
+<p>Here is how you can see the last lines of each of these files with <code>tail</code>:</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tail</span> slurm-fastqc<span class="pp">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>==&gt; slurm-fastqc-27902563.out &lt;==
 Approx 80% complete for ERR10802885_R2.fastq.gz
@@ -734,6 +738,7 @@ Analysis complete for ERR10802886_R2.fastq.gz
 Sun Mar 31 16:30:54 EDT 2024
 
 # [...output truncated...]</code></pre>
+<p>Finally, to check the FastQC output files:</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span> results/fastqc</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>total 48M
 -rw-rw----+ 1 poelstra PAS0471 718K Mar 31 16:29 ERR10802863_R1_fastqc.html
@@ -786,7 +791,7 @@ Simply add <code>--cores 8</code> to your TrimGalore command.
 </details>
 <details>
 <summary>
-4 - Submit the script once
+4 - Submit the script once, then clean up
 </summary>
 <div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="va">fastq_file</span><span class="op">=</span>../../garrigos_data/fastq/ERR10802863_R1.fastq.gz</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> scripts/trimgalore.sh <span class="st">"</span><span class="va">$fastq_file</span><span class="st">"</span> results/trimgalore</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>

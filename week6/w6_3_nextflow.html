@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Jelmer Poelstra">
-<meta name="dcterms.date" content="2024-02-25">
+<meta name="dcterms.date" content="2024-04-11">
 
-<title>pracs-sp24 - Week 1: Course Intro &amp; Shell Basics</title>
+<title>PRACS24: Nextflow</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -348,22 +348,15 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#links" id="toc-links" class="nav-link active" data-scroll-target="#links"><span class="header-section-number">1</span> Links</a></li>
-  <li><a href="#content-overview" id="toc-content-overview" class="nav-link" data-scroll-target="#content-overview"><span class="header-section-number">2</span> Content overview</a></li>
-  <li><a href="#readings" id="toc-readings" class="nav-link" data-scroll-target="#readings"><span class="header-section-number">3</span> Readings</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Week 1: Course Intro &amp; Shell Basics</h1>
+<h1 class="title">Intro to writing Nextflow pipelines</h1>
+<p class="subtitle lead">Week 6 - part III</p>
 </div>
 
 
@@ -380,7 +373,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 25, 2024</p>
+      <p class="date">April 11, 2024</p>
     </div>
   </div>
   
@@ -392,102 +385,23 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<hr>
-<p><br></p>
-<section id="links" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="links"><span class="header-section-number">1</span> Links</h2>
-<section id="lecture-pages" class="level4">
-<h4 class="anchored" data-anchor-id="lecture-pages">Lecture pages</h4>
-<ul>
-<li>Tue: <a href="../week1/w1_course-intro.html"><strong>Course intro</strong></a> (slides)</li>
-<li>Tue: <a href="../week1/w1_osc.html"><strong>OSC intro</strong></a></li>
-<li>Thu: <a href="../week1/w1_shell.html"><strong>Shell basics</strong></a></li>
-</ul>
-</section>
-<section id="exercises" class="level4">
-<h4 class="anchored" data-anchor-id="exercises">Exercises</h4>
-<ul>
-<li><a href="../week1/w1_exercises.html"><strong>Week 1 exercises</strong></a></li>
-</ul>
-<hr style="height:1pt; visibility:hidden;">
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Pre-course assignments (if you didn’t do this already)
+This page is still under development
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ul>
-<li><a href="https://forms.gle/vx2va7qfnNjRhg2M7">Pre-course survey</a></li>
-<li><a href="../week0/osc-setup.html">Get access to the Ohio Supercomputer Center (OSC)</a></li>
-</ul>
+
 </div>
 </div>
-<hr style="height:1pt; visibility:hidden;">
-</section>
-</section>
-<section id="content-overview" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="content-overview"><span class="header-section-number">2</span> Content overview</h2>
-<p>This week, you will get an overview of the course and a brief intro to the Ohio Supercomputer (OSC) during the Tuesday meeting, and will be taught the basics of working in a Unix shell environment during the Thursday meeting.</p>
-<p>More specifically, some of the things you will learn this week:</p>
-<section id="course-intro-overview-tuesday-class" class="level4">
-<h4 class="anchored" data-anchor-id="course-intro-overview-tuesday-class">Course intro &amp; overview (Tuesday class)</h4>
-<ul>
-<li>What to expect from this course.</li>
-<li>Which tools and languages we will use.</li>
-<li>What is expected of you during this course.</li>
-<li>Get up to speed on the infrastructure of the course.</li>
-</ul>
-</section>
-<section id="osc-intro-tuesday-class" class="level4">
-<h4 class="anchored" data-anchor-id="osc-intro-tuesday-class">OSC Intro (Tuesday class)</h4>
-<ul>
-<li>What is a supercomputer and why is it useful?</li>
-<li>Overview of the resources the Ohio Supercomputer Center (OSC) provides.</li>
-<li>How to use OSC OnDemand and access a Unix Shell in your browser.</li>
-</ul>
-</section>
-<section id="unix-shell-basics-thursday-class-readings-and-exercises" class="level4">
-<h4 class="anchored" data-anchor-id="unix-shell-basics-thursday-class-readings-and-exercises">Unix shell basics (Thursday class, Readings, and Exercises)</h4>
-<ul>
-<li>Why using a command-line interface can be beneficial.</li>
-<li>What the Unix shell is and what you can do with it.</li>
-<li>Using Unix commands, learn how to:
-<ul>
-<li>Navigate around your computer.</li>
-<li>Create and manage directories and files.</li>
-<li>View text files.</li>
-<li>Search within, manipulate, and extract information from text files.</li>
-</ul></li>
-</ul>
-<hr style="height:1pt; visibility:hidden;">
-</section>
-</section>
-<section id="readings" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="readings"><span class="header-section-number">3</span> Readings</h2>
-<p>The first few pages of the book <strong>Computing Skills for Biologists by Allesina &amp; Wilmes</strong> (<strong>CSB</strong> for short), should give you an introduction to the rationale behind the book as well as this course.</p>
-<p>Our main text for this week will be <strong>Chapter 1 from CSB</strong>, which will introduce you to using the Unix shell.</p>
-<p>I would recommend reading or at least skimming this before Thursday’s class, when we will go through much of the chapter’s content. That said, I will not assume you’ve read it during class, and you may prefer to focus your reading after the lectures. (We’ll discuss reading expectations and recommendations on Tuesday, too.)</p>
-<p>You can access the books directly online through the links below, or download PDFs from the CarmenCanvas website. Consider buying a paper copy of one or both if you can afford it.</p>
-<section id="required-readings" class="level4">
-<h4 class="anchored" data-anchor-id="required-readings">Required readings</h4>
-<ul>
-<li><a href="https://library.ohio-state.edu/record=b8624007~S7">CSB</a> Chapter 0: “Introduction Building a Computing Toolbox” – Introduction &amp; Section 0.1 only</li>
-<li><a href="https://library.ohio-state.edu/record=b8624007~S7">CSB</a> Chapter 1: “Unix”</li>
-</ul>
-</section>
-<section id="optional-readings" class="level4">
-<h4 class="anchored" data-anchor-id="optional-readings">Optional readings</h4>
-<ul>
-<li><a href="https://library.ohio-state.edu/record=b9490023~S7">Buffalo</a> Preface and Chapter 1: “How to Learn Bioinformatics”</li>
-</ul>
+<hr>
+<p><br></p>
 
 
-</section>
-</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

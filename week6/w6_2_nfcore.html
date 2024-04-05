@@ -240,7 +240,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
         <li>
     <a class="dropdown-item" href="../week5/w5_3_slurm.html">
- <span class="dropdown-text">III: Slurm batch jobs at OSC</span></a>
+ <span class="dropdown-text">III: Slurm batch jobs</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Week 6: Nexftlow</li>
@@ -301,8 +301,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../week2/w2_github-account.html">
  <span class="dropdown-text">Week 2: GitHub account</span></a>
   </li>  
-        <li><hr class="dropdown-divider"></li>
-        <li class="dropdown-header">Final project</li>
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-final-project" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Final project</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-final-project">    
         <li>
     <a class="dropdown-item" href="../finalproj/info.html">
  <span class="dropdown-text">General info</span></a>
@@ -313,9 +318,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
         <li>
     <a class="dropdown-item" href="../finalproj/presentation.html">
- <span class="dropdown-text">II: Oral presentation (Apr 18)</span></a>
+ <span class="dropdown-text">II: Oral presentation (Apr 16 &amp; 18)</span></a>
   </li>  
-        <li class="dropdown-header">III: Final submission (TBA) (Due Apr 29)</li>
+        <li>
+    <a class="dropdown-item" href="../finalproj/submission.html">
+ <span class="dropdown-text">III: Final submission (Due Apr 29)</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -466,13 +474,23 @@ This page is still under development
 <p><br></p>
 <section id="introduction" class="level4">
 <h4 class="anchored" data-anchor-id="introduction">Introduction</h4>
-<p>To learn how to run a Nextflow/nf-core pipeline, we’ll use <a href="https://nf-co.re/rnaseq">nf-core rnaseq</a>, a reference-based RNA-seq pipeline.</p>
-<p>Running a pipeline like this is a bit different (and more involved) than running a typical piece of bioinformatics software — it is, after all, stitching together many operations. Some considerations:</p>
+<p>To learn how to run a Nextflow/nf-core pipeline, we’ll use <a href="https://nf-co.re/rnaseq">nf-core rnaseq</a>, which performs a reference-based RNA-seq analysis.</p>
+<p>Running a pipeline like this is a bit different than running a typical piece of bioinformatics software — for example:</p>
 <ul>
-<li>We only need an installation of Nextflow and will simply download rather than install the pipeline’s files. Then, the pipeline runs all its constituent tools via Singularity containers<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</li>
-<li>The pipeline submits Slurm batch jobs for us. It tries to parallelize as much as possible, spawning <em>many</em> jobs. This also means we need a small “config file” to tell the pipeline how to submit jobs.</li>
+<li>The pipeline submits Slurm batch jobs for us, and tries to parallelize as much as possible, spawning <em>many</em> jobs. This also means we need a small “config file” to tell the pipeline how to submit jobs.</li>
+<li>We need an installation of Nextflow, and a download of the pipeline files, while the pipeline runs all its constituent tools via separate Singularity containers that it will need to download first<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</li>
 </ul>
-<p>When using the Nextflow <code>-resume</code> option, the pipeline will check what needs to be (re)run and what doesn’t: this is quite intricate but generally works well.</p>
+<p>Two other notes about running Nextflow pipelines:</p>
+<ul>
+<li>We talked about the need for flexible rerunning of parts of a pipeline. Nextflow can do this when we use the <strong><code>-resume</code></strong> option, and will for example:
+<ul>
+<li>Start where it left off if the previous run failed before finishing, or timed out.</li>
+<li>Adding or removing samples</li>
+<li>Replacing reference genome files</li>
+<li>More?</li>
+</ul></li>
+<li>outdir vs workdir</li>
+</ul>
 <p><br></p>
 </section>
 <section id="the-nf-core-rnaseq-pipeline" class="level2" data-number="1">
@@ -1343,7 +1361,7 @@ Count table versions
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p> Conda environments can also be used, but containers are recommended and are what will will use.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p> Conda environments can also be used, but containers are recommended, and are what we will use.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p> These kinds of settings are more commonly specified with command <em>options</em>, but somewhat oddly, this is the only way we can specify that here.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p> But if you want to run a pipeline yourself for your own research, make sure to use a dir that you have permissions to write to.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p> Preferably in GTF (<code>.gtf</code>) format, but the pipeline can accept GFF/GFF3 (<code>.gff</code>/<code>.gff3</code>) format files as well.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>

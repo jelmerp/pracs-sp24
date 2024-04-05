@@ -206,7 +206,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
         <li>
     <a class="dropdown-item" href="../week5/w5_3_slurm.html">
- <span class="dropdown-text">III: Slurm batch jobs at OSC</span></a>
+ <span class="dropdown-text">III: Slurm batch jobs</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Week 6: Nexftlow</li>
@@ -267,8 +267,13 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="../week2/w2_github-account.html">
  <span class="dropdown-text">Week 2: GitHub account</span></a>
   </li>  
-        <li><hr class="dropdown-divider"></li>
-        <li class="dropdown-header">Final project</li>
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-final-project" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Final project</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-final-project">    
         <li>
     <a class="dropdown-item" href="../finalproj/info.html">
  <span class="dropdown-text">General info</span></a>
@@ -279,9 +284,12 @@ ul.task-list li input[type="checkbox"] {
   </li>  
         <li>
     <a class="dropdown-item" href="../finalproj/presentation.html">
- <span class="dropdown-text">II: Oral presentation (Apr 18)</span></a>
+ <span class="dropdown-text">II: Oral presentation (Apr 16 &amp; 18)</span></a>
   </li>  
-        <li class="dropdown-header">III: Final submission (TBA) (Due Apr 29)</li>
+        <li>
+    <a class="dropdown-item" href="../finalproj/submission.html">
+ <span class="dropdown-text">III: Final submission (Due Apr 29)</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -400,26 +408,27 @@ ul.task-list li input[type="checkbox"] {
 <p>Graded aspects for the project focus on documentation, reproducibility, and automation. Accordingly, there are no real requirements for the level of complexity or sophistication, the number of scripts, the real-world usefulness, and so on. I would actually recommend that you take care not to be too ambitious in this regard: start small and then expand if you are able to.</p>
 <p>Some examples of possible types of projects:</p>
 <ul>
-<li><p>Work with your own data or a publicly available dataset that is similar to what you are expecting to work with<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p></li>
-<li><p>You may decide it would be most useful for you to focus on coding and creating a reproducible workflow, and that this is easier with a trivial and maybe not-so-relevant dataset, so you don’t get bogged down in other details.</p></li>
+<li>Work with your own data or a publicly available dataset that is similar to what you are expecting to work with<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</li>
+<li>You may decide it would be most useful for you to focus on coding and creating a reproducible workflow, and that this is easier with a trivial and maybe not-so-relevant dataset, so you don’t get bogged down in other details.</li>
 </ul>
-<p>If you need help with selecting a dataset or a project topic, don’t hesitate to contact me. I could most easily provide you with a variety of genomic/transcriptomic data sets, like RNA-Seq, microbial metabarcoding, or microbial isolate whole-genome sequencing, but could also help you find or create other kinds of data sets.</p>
+<p>If you need help with selecting a dataset or a project topic, don’t hesitate to contact me. It would be easiest for me to provide you with a genomic/transcriptomic data set, like RNA-Seq, microbial metabarcoding, or microbial isolate whole-genome sequencing, I but could also help you find or create another type of data set.</p>
 <hr style="height:1pt; visibility:hidden;">
 </section>
 <section id="graded-aspects" class="level3">
 <h3 class="anchored" data-anchor-id="graded-aspects">Graded aspects</h3>
-<p>Graded aspects of your project focus on appropriate usage of many of the tools and principles we covered during the course. To receive a high grade, your project should:</p>
+<p>Graded aspects of your project focus on appropriate usage of the tools and principles we covered during the course. To receive a high grade, your project should:</p>
 <ul>
-<li><p>Be <strong>well-organized</strong>: contained in a single parent directory with a clear and sensible structure of subdirectories, descriptive file and directory names, no files floating around with unclear purpose or source, and so on.</p></li>
-<li><p>Be <strong>well-documented</strong>, with <em>at least</em> one README in Markdown format in the root directory of your project, and preferably with additional READMEs elsewhere as appropriate.</p></li>
-<li><p>Be <strong>version-controlled</strong> with Git <em>throughout</em> with regular, meaningful commits. You will also need to push to GitHub for the proposal, draft, and final submission checkpoints.</p></li>
-<li><p>Contain <strong>shell scripts for data processing and/or analysis</strong>. Try not to do manual work such as editing a data file in a text editor, or using Excel to fix column names, since this hinders reproducibility.</p>
+<li><p>Be <strong>well-organized</strong>: contained in a single parent directory with a clear and sensible structure of sub-directories, descriptive file and directory names, no files floating around with unclear purpose or source, and so on.</p></li>
+<li><p>Be <strong>well-documented</strong>, with at least one README in Markdown format in the root directory of your project, and preferably with additional READMEs elsewhere as appropriate.</p></li>
+<li><p>Be <strong>version-controlled</strong> with Git with regular, meaningful commits throughout. You will also need to push your repository to GitHub for the proposal and final submission checkpoints.</p></li>
+<li><p>Contain <strong>shell scripts for data processing and/or analysis</strong>.</p>
 <ul>
-<li><p>Having some components in <em>other languages</em> is fine, in case you know how to do things there that we didn’t learn in the course (for example, doing some plotting in R, or using Python for data processing).</p></li>
-<li><p>Similarly, it is fine for some or all of your scripts to call <em>external, command-line programs</em> (e.g.&nbsp;some of the bioinformatics programs we have run, or any program that may be useful for your research).</p></li>
+<li><p>These shell script will likely run external, command-line bioinformatics tools.</p></li>
+<li><p>Having some components in other computer languages is fine, in case you know how to do things there that we didn’t learn in the course (for example, doing some plotting in R, or using Python for data processing).</p></li>
+<li><p>Try to minimize manual work such as editing a data file in a text editor, or using Excel to fix column names, since this hinders reproducibility.</p></li>
 </ul></li>
 <li><p>Run one or more scripts as <strong>Slurm batch jobs at OSC</strong>.</p></li>
-<li><p>Be easily <strong>re-runnable</strong> using a “runner script” or Nextflow workflow.</p></li>
+<li><p>Be easily <strong>re-runnable</strong> using a “runner script” (or optionally a Nextflow workflow). Note that after your final submission, I will actually try to rerun your project as part of the grading process!</p></li>
 </ul>
 <hr style="height:1pt; visibility:hidden;">
 </section>
@@ -427,6 +436,11 @@ ul.task-list li input[type="checkbox"] {
 <h3 class="anchored" data-anchor-id="checkpoints">Checkpoints</h3>
 <p>Information about expectations for each of the checkpoints (submissions &amp; oral presentation) for the project will be provided in the content for individual weeks. Below is an overview which will be updated with links to pages with information about each:</p>
 <table class="table">
+<colgroup>
+<col style="width: 28%">
+<col style="width: 28%">
+<col style="width: 42%">
+</colgroup>
 <thead>
 <tr class="header">
 <th>What</th>
@@ -437,22 +451,22 @@ ul.task-list li input[type="checkbox"] {
 <tbody>
 <tr class="odd">
 <td><strong>Proposal</strong></td>
-<td>Monday, April 8</td>
+<td>April 8 (Mon)</td>
 <td>10</td>
 </tr>
 <tr class="even">
 <td><strong>In-class oral presentations</strong></td>
-<td>Thursday, April 18</td>
+<td>April 16 (Tue) &amp; April 18 (Thu)</td>
 <td>15</td>
 </tr>
 <tr class="odd">
 <td><strong>Final submission</strong></td>
-<td>Monday, April 29</td>
+<td>April 29 (Mon)</td>
 <td>25</td>
 </tr>
 </tbody>
 </table>
-<p><br><br></p>
+<p><br></p>
 
 
 </section>
@@ -461,7 +475,7 @@ ul.task-list li input[type="checkbox"] {
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p> Note that “subsetting” the data may be useful or necessary if you have a large genomic dataset, and I can help you with that<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p> Note that “subsetting” the data may be useful or necessary if you have a large genomic dataset, and I can help you with that.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

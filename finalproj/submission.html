@@ -123,7 +123,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
         <li>
     <a class="dropdown-item" href="../week6/w6_overview.html">
- <span class="dropdown-text">Week 6: Automated pipelines with Nextflow</span></a>
+ <span class="dropdown-text">Week 6: Pipelines</span></a>
   </li>  
         <li class="dropdown-header">Week 7: Course recap (TBA)</li>
     </ul>
@@ -209,22 +209,19 @@ ul.task-list li input[type="checkbox"] {
  <span class="dropdown-text">III: Slurm batch jobs</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
-        <li class="dropdown-header">Week 6: Nexftlow</li>
+        <li class="dropdown-header">Week 6: Pipelines</li>
         <li>
     <a class="dropdown-item" href="../week6/w6_1_pipelines.html">
- <span class="dropdown-text">I: Pipelines and workflow tools</span></a>
+ <span class="dropdown-text">I: Runner scripts and pipelines</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../week6/w6_2_nfcore.html">
  <span class="dropdown-text">II: Running an nf-core Nextflow pipeline</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="../week6/w6_3_nextflow.html">
- <span class="dropdown-text">III: Intro to writing Nextflow pipelines</span></a>
-  </li>  
+        <li class="dropdown-header"><em>(Optional self-study: Writing Nextflow pipelines)</em> (TBA)</li>
         <li><hr class="dropdown-divider"></li>
-        <li class="dropdown-header">Week 7: Recap</li>
-        <li class="dropdown-header">Recap (TBA)</li>
+        <li class="dropdown-header">Week 7: Course recap</li>
+        <li class="dropdown-header">Course recap (TBA)</li>
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -411,9 +408,9 @@ ul.task-list li input[type="checkbox"] {
 <li>What the project does as a whole.</li>
 <li>What each script does.</li>
 <li>Where to access the data at OSC, assuming that the data is not in your repository.</li>
-<li>How the project’s scripts can be rerun using a single runner script (or Nextflow pipeline).</li>
+<li>How the project’s scripts can be rerun (see below).</li>
 </ul></li>
-<li><p><strong>A single runner script (or Nexftlow pipeline) that aims to rerun the full workflow.</strong></p></li>
+<li><p><strong>A single runner script<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> that aims to rerun the full workflow.</strong></p></li>
 <li><p>A file (e.g.&nbsp;<code>submission_notes.md</code>) or a section in your main README file that provides some additional information for me to grade your project appropriately. Some examples of things you may want to include:</p>
 <ul>
 <li>Additional instructions I will need <strong>to try and rerun your project</strong>, which I will be doing!</li>
@@ -441,7 +438,7 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="graded-aspects" class="level4">
 <h4 class="anchored" data-anchor-id="graded-aspects">Graded aspects</h4>
-<p>Below is a list of graded aspects and what to aim for if you want a perfect score. I’m providing a lot of detail here, so there are no surprises. In summary, you should aim to have a reproducible, well-organized and well-documented workflow — workflow size/complexity on the other hand, is not that important<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<p>Below is a list of graded aspects and what to aim for if you want a perfect score. I’m providing a lot of detail here, so there are no surprises. In summary, you should aim to have a reproducible, well-organized and well-documented workflow — workflow size/complexity on the other hand, is not that important<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
 <hr style="height:1pt; visibility:hidden;">
 <table class="table">
 <colgroup>
@@ -488,7 +485,7 @@ ul.task-list li input[type="checkbox"] {
 <td>Workflow reproducibility</td>
 <td>4</td>
 <td><ul>
-<li>Has a runner script (or Nextflow pipeline) that includes all steps in your analysis and that can be run by anybody with access to your repository and the raw data files.</li>
+<li>Has a runner script that includes all steps in your analysis and that can be run by anybody with access to your repository and the raw data files.</li>
 <li>Has information for me (or any other reader of the project!) about where at OSC to find the raw data files, and about other details needed to try to rerun the analyses.</li>
 <li>Appropriate software management with OSC modules and/or Conda environments (and/or containers), with versions for all software that you use clearly stated somewhere.</li>
 </ul></td>
@@ -531,7 +528,8 @@ ul.task-list li input[type="checkbox"] {
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>See also the <a href="../finalproj/info.html">General Info</a> page for the final project for some more general background.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Or Nextflow pipeline<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>See also the <a href="../finalproj/info.html">General Info</a> page for the final project for some more general background.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

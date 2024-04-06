@@ -391,34 +391,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#the-nf-core-rnaseq-pipeline" id="toc-the-nf-core-rnaseq-pipeline" class="nav-link active" data-scroll-target="#the-nf-core-rnaseq-pipeline"><span class="header-section-number">1</span> The nf-core rnaseq pipeline</a></li>
-  <li><a href="#getting-set-up" id="toc-getting-set-up" class="nav-link" data-scroll-target="#getting-set-up"><span class="header-section-number">2</span> Getting set up</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#the-nf-core-rnaseq-pipeline" id="toc-the-nf-core-rnaseq-pipeline" class="nav-link" data-scroll-target="#the-nf-core-rnaseq-pipeline"><span class="header-section-number">2</span> The nf-core rnaseq pipeline</a></li>
+  <li><a href="#getting-set-up" id="toc-getting-set-up" class="nav-link" data-scroll-target="#getting-set-up"><span class="header-section-number">3</span> Getting set up</a>
   <ul class="collapse">
-  <li><a href="#how-well-run-the-pipeline" id="toc-how-well-run-the-pipeline" class="nav-link" data-scroll-target="#how-well-run-the-pipeline"><span class="header-section-number">2.1</span> How we’ll run the pipeline</a></li>
-  <li><a href="#activating-the-conda-environment" id="toc-activating-the-conda-environment" class="nav-link" data-scroll-target="#activating-the-conda-environment"><span class="header-section-number">2.2</span> Activating the Conda environment</a></li>
-  <li><a href="#downloading-the-pipeline" id="toc-downloading-the-pipeline" class="nav-link" data-scroll-target="#downloading-the-pipeline"><span class="header-section-number">2.3</span> Downloading the pipeline</a></li>
+  <li><a href="#how-well-run-the-pipeline" id="toc-how-well-run-the-pipeline" class="nav-link" data-scroll-target="#how-well-run-the-pipeline"><span class="header-section-number">3.1</span> How we’ll run the pipeline</a></li>
+  <li><a href="#activating-the-conda-environment" id="toc-activating-the-conda-environment" class="nav-link" data-scroll-target="#activating-the-conda-environment"><span class="header-section-number">3.2</span> Activating the Conda environment</a></li>
+  <li><a href="#downloading-the-pipeline" id="toc-downloading-the-pipeline" class="nav-link" data-scroll-target="#downloading-the-pipeline"><span class="header-section-number">3.3</span> Downloading the pipeline</a></li>
   </ul></li>
-  <li><a href="#defining-inputs-and-outputs" id="toc-defining-inputs-and-outputs" class="nav-link" data-scroll-target="#defining-inputs-and-outputs"><span class="header-section-number">3</span> Defining inputs and outputs</a>
+  <li><a href="#defining-inputs-and-outputs" id="toc-defining-inputs-and-outputs" class="nav-link" data-scroll-target="#defining-inputs-and-outputs"><span class="header-section-number">4</span> Defining inputs and outputs</a>
   <ul class="collapse">
-  <li><a href="#preparing-the-sample-sheet" id="toc-preparing-the-sample-sheet" class="nav-link" data-scroll-target="#preparing-the-sample-sheet"><span class="header-section-number">3.1</span> Preparing the sample sheet</a></li>
-  <li><a href="#creating-an-osc-configuration-file" id="toc-creating-an-osc-configuration-file" class="nav-link" data-scroll-target="#creating-an-osc-configuration-file"><span class="header-section-number">3.2</span> Creating an OSC configuration file</a></li>
+  <li><a href="#preparing-the-sample-sheet" id="toc-preparing-the-sample-sheet" class="nav-link" data-scroll-target="#preparing-the-sample-sheet"><span class="header-section-number">4.1</span> Preparing the sample sheet</a></li>
+  <li><a href="#creating-an-osc-configuration-file" id="toc-creating-an-osc-configuration-file" class="nav-link" data-scroll-target="#creating-an-osc-configuration-file"><span class="header-section-number">4.2</span> Creating an OSC configuration file</a></li>
   </ul></li>
-  <li><a href="#writing-a-shell-script-to-run-the-pipeline" id="toc-writing-a-shell-script-to-run-the-pipeline" class="nav-link" data-scroll-target="#writing-a-shell-script-to-run-the-pipeline"><span class="header-section-number">4</span> Writing a shell script to run the pipeline</a>
+  <li><a href="#writing-a-shell-script-to-run-the-pipeline" id="toc-writing-a-shell-script-to-run-the-pipeline" class="nav-link" data-scroll-target="#writing-a-shell-script-to-run-the-pipeline"><span class="header-section-number">5</span> Writing a shell script to run the pipeline</a>
   <ul class="collapse">
-  <li><a href="#processing-arguments-passed-to-the-script" id="toc-processing-arguments-passed-to-the-script" class="nav-link" data-scroll-target="#processing-arguments-passed-to-the-script"><span class="header-section-number">4.1</span> Processing arguments passed to the script</a></li>
-  <li><a href="#building-the-nextflow-run-command" id="toc-building-the-nextflow-run-command" class="nav-link" data-scroll-target="#building-the-nextflow-run-command"><span class="header-section-number">4.2</span> Building the <code>nextflow run</code> command</a></li>
-  <li><a href="#the-final-script" id="toc-the-final-script" class="nav-link" data-scroll-target="#the-final-script"><span class="header-section-number">4.3</span> The final script</a></li>
+  <li><a href="#processing-arguments-passed-to-the-script" id="toc-processing-arguments-passed-to-the-script" class="nav-link" data-scroll-target="#processing-arguments-passed-to-the-script"><span class="header-section-number">5.1</span> Processing arguments passed to the script</a></li>
+  <li><a href="#building-the-nextflow-run-command" id="toc-building-the-nextflow-run-command" class="nav-link" data-scroll-target="#building-the-nextflow-run-command"><span class="header-section-number">5.2</span> Building the <code>nextflow run</code> command</a></li>
+  <li><a href="#the-final-script" id="toc-the-final-script" class="nav-link" data-scroll-target="#the-final-script"><span class="header-section-number">5.3</span> The final script</a></li>
   </ul></li>
-  <li><a href="#running-the-pipeline" id="toc-running-the-pipeline" class="nav-link" data-scroll-target="#running-the-pipeline"><span class="header-section-number">5</span> Running the pipeline</a>
+  <li><a href="#running-the-pipeline" id="toc-running-the-pipeline" class="nav-link" data-scroll-target="#running-the-pipeline"><span class="header-section-number">6</span> Running the pipeline</a>
   <ul class="collapse">
-  <li><a href="#submitting-your-shell-script" id="toc-submitting-your-shell-script" class="nav-link" data-scroll-target="#submitting-your-shell-script"><span class="header-section-number">5.1</span> Submitting your shell script</a></li>
-  <li><a href="#checking-the-pipelines-progress" id="toc-checking-the-pipelines-progress" class="nav-link" data-scroll-target="#checking-the-pipelines-progress"><span class="header-section-number">5.2</span> Checking the pipeline’s progress</a></li>
+  <li><a href="#submitting-your-shell-script" id="toc-submitting-your-shell-script" class="nav-link" data-scroll-target="#submitting-your-shell-script"><span class="header-section-number">6.1</span> Submitting your shell script</a></li>
+  <li><a href="#checking-the-pipelines-progress" id="toc-checking-the-pipelines-progress" class="nav-link" data-scroll-target="#checking-the-pipelines-progress"><span class="header-section-number">6.2</span> Checking the pipeline’s progress</a></li>
   </ul></li>
-  <li><a href="#the-pipelines-outputs" id="toc-the-pipelines-outputs" class="nav-link" data-scroll-target="#the-pipelines-outputs"><span class="header-section-number">6</span> The pipeline’s outputs</a></li>
-  <li><a href="#self-study-material-a-closer-look-at-the-output" id="toc-self-study-material-a-closer-look-at-the-output" class="nav-link" data-scroll-target="#self-study-material-a-closer-look-at-the-output"><span class="header-section-number">7</span> Self-study material: A closer look at the output</a>
+  <li><a href="#the-pipelines-outputs" id="toc-the-pipelines-outputs" class="nav-link" data-scroll-target="#the-pipelines-outputs"><span class="header-section-number">7</span> The pipeline’s outputs</a></li>
+  <li><a href="#self-study-material-a-closer-look-at-the-output" id="toc-self-study-material-a-closer-look-at-the-output" class="nav-link" data-scroll-target="#self-study-material-a-closer-look-at-the-output"><span class="header-section-number">8</span> Self-study material: A closer look at the output</a>
   <ul class="collapse">
-  <li><a href="#the-multiqc-report" id="toc-the-multiqc-report" class="nav-link" data-scroll-target="#the-multiqc-report"><span class="header-section-number">7.1</span> The MultiQC report</a></li>
-  <li><a href="#the-gene-count-table" id="toc-the-gene-count-table" class="nav-link" data-scroll-target="#the-gene-count-table"><span class="header-section-number">7.2</span> The gene count table</a></li>
+  <li><a href="#the-multiqc-report" id="toc-the-multiqc-report" class="nav-link" data-scroll-target="#the-multiqc-report"><span class="header-section-number">8.1</span> The MultiQC report</a></li>
+  <li><a href="#the-gene-count-table" id="toc-the-gene-count-table" class="nav-link" data-scroll-target="#the-gene-count-table"><span class="header-section-number">8.2</span> The gene count table</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -460,17 +461,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <hr>
 <p><br></p>
-<section id="introduction" class="level4">
-<h4 class="anchored" data-anchor-id="introduction">Introduction</h4>
+<section id="introduction" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
 <p>To learn how to run a Nextflow/nf-core pipeline, we’ll use <a href="https://nf-co.re/rnaseq">nf-core rnaseq</a>, which performs a reference-based RNA-seq analysis.</p>
-</section>
 <section id="general-mechanics-of-running-a-pipeline" class="level4">
 <h4 class="anchored" data-anchor-id="general-mechanics-of-running-a-pipeline">General mechanics of running a pipeline</h4>
 <p>Running a pipeline like this is a bit different, and more involved, than running a typical piece of bioinformatics software:</p>
 <ul>
-<li><p>The pipeline <strong>submits Slurm batch jobs for us</strong>, and tries to parallelize as much as possible, spawning <em>many</em> jobs. The main pipeline process only functions to orchestrate these jobs, and will keep running until the pipeline has finished or failed. This also means we need a small “config file” to tell the pipeline how to submit jobs.</p></li>
+<li><p>The pipeline <strong>submits Slurm batch jobs for us</strong>, and tries to parallelize as much as possible, spawning <em>many</em> jobs. The main pipeline process functions only to orchestrate these jobs, and will keep running until the pipeline has finished or failed. We will need a small “config file” to tell the pipeline how to submit jobs.</p></li>
 <li><p>We need an <strong>installation</strong> of Nextflow, and a download of the pipeline files, while the pipeline runs all its constituent tools via separate Singularity containers that it will need to download first<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p></li>
-<li><p>Nextflow <strong>distinguishes between a final output dir and a “work dir”</strong>. All processes will run in various sub-dirs of the work dir, and after each process, output files are copied to the final output dir (typically, not all outputs are copied, especially for intermediate steps like read trimming — and pipelines have settings to determine what is copied). This distinction is useful at OSC, where a Scratch dir is most suitable at the work dir (fast I/O and lots of storage space), and a Project dir is most suitable as the final output dir.</p></li>
+<li><p>Nextflow <strong>distinguishes between a final output dir and a “work dir”</strong>. All processes/jobs will run in various sub-dirs of the work dir, and after each process, key output files are copied to the final output dir<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. This distinction is useful at OSC, where a Scratch dir is most suitable as the work dir (due to its fast I/O and ample storage space), while a Project dir is most suitable as the final output dir.</p></li>
 <li><p>When you run a pipeline, there is a distinction between:</p>
 <ul>
 <li><strong>Pipeline-specific options</strong> to e.g.&nbsp;set inputs and outputs and customize which steps will be run and how (there can be 100+ of these for larger pipelines…). These by convention use a double dash <code>--</code>, e.g.&nbsp;<code>--input</code>.</li>
@@ -492,8 +492,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p><br></p>
 </section>
-<section id="the-nf-core-rnaseq-pipeline" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="the-nf-core-rnaseq-pipeline"><span class="header-section-number">1</span> The nf-core rnaseq pipeline</h2>
+</section>
+<section id="the-nf-core-rnaseq-pipeline" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="the-nf-core-rnaseq-pipeline"><span class="header-section-number">2</span> The nf-core rnaseq pipeline</h2>
 <p>The nf-core rnaseq pipeline is meant for RNA-seq projects that:</p>
 <ul>
 <li>Attempt to sequence only mRNA while avoiding non-coding RNAs (“mRNA-seq”).</li>
@@ -583,21 +584,17 @@ While the pipeline is focused on gene-level quantification, it does produce tran
 <p><br></p>
 </section>
 </section>
-<section id="getting-set-up" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="getting-set-up"><span class="header-section-number">2</span> Getting set up</h2>
-<section id="how-well-run-the-pipeline" class="level3" data-number="2.1">
-<h3 data-number="2.1" class="anchored" data-anchor-id="how-well-run-the-pipeline"><span class="header-section-number">2.1</span> How we’ll run the pipeline</h3>
-<p>The entire pipeline can be run with a single command. But before we can do so, we’ll need to a bunch of prep, such as:</p>
+<section id="getting-set-up" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="getting-set-up"><span class="header-section-number">3</span> Getting set up</h2>
+<section id="how-well-run-the-pipeline" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="how-well-run-the-pipeline"><span class="header-section-number">3.1</span> How we’ll run the pipeline</h3>
+<p>The entire pipeline can be run with a single command. But we do need to do some prep before we can do so, such as:</p>
 <ul>
 <li>Activating the software environment and downloading the pipeline files.</li>
 <li>Defining the pipeline’s inputs and outputs, which includes creating a “sample sheet”.</li>
 <li>Creating a small “config file” so Nextflow knows how to submit Slurm batch jobs at OSC.</li>
 </ul>
-<p>The main Nextflow process does not need much computing power (a single core with the default 4 GB of RAM will be sufficient) and even though our VS Code shell already runs on a compute and not a login node, we are still better off <strong>submitting the main process as a batch job as well</strong>, because:</p>
-<ul>
-<li>This process can run for many hours, and we don’t want to risk it disconnecting.</li>
-<li>It’s good to store all the standard output about pipeline progress and so on in a file — this will automatically end up in a Slurm log file if we submit it as a batch job.</li>
-</ul>
+<p>The main Nextflow process does not need much computing power (a single core with the default 4 GB of RAM will be sufficient). But even though our VS Code shell already runs on a compute node, we are better off <strong>submitting the main process as a batch job as well</strong>, because this process can run for many hours, and we want to be able to log off in the mean time.</p>
 <p>Like we’ve done before, we will use both a <em>primary script</em> that will be submitted as a batch job, and a <em>runner script</em> with commands to run interactively including the submission of said batch job:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> week06/nfc-rnaseq</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> week06/nfc-rnaseq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -606,9 +603,9 @@ While the pipeline is focused on gene-level quantification, it does produce tran
 <p>Open the <code>run/run.sh</code> in the VS Code editor pane.</p>
 <hr style="height:1pt; visibility:hidden;">
 </section>
-<section id="activating-the-conda-environment" class="level3" data-number="2.2">
-<h3 data-number="2.2" class="anchored" data-anchor-id="activating-the-conda-environment"><span class="header-section-number">2.2</span> Activating the Conda environment</h3>
-<p>If you did <a href="../week5/w5_exercises.html">last week’s exercises</a>, you created a Conda environment with <a href="https://anaconda.org/bioconda/nextflow">Nextflow</a> and <a href="https://anaconda.org/bioconda/nf-core">nf-core tools</a>. If not, you can use my Conda environment. We will activate this environment in our runner script because we will first interactively download the pipeline files.</p>
+<section id="activating-the-conda-environment" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="activating-the-conda-environment"><span class="header-section-number">3.2</span> Activating the Conda environment</h3>
+<p>If you did <a href="../week5/w5_exercises.html">last week’s exercises</a>, you created a Conda environment with <a href="https://anaconda.org/bioconda/nextflow">Nextflow</a> and <a href="https://anaconda.org/bioconda/nf-core">nf-core tools</a>. If not, you can use my Conda environment. We will activate this environment in our runner script because we’ll first interactively download the pipeline files.</p>
 <details>
 <summary>
 Code to create this Conda environment
@@ -637,14 +634,14 @@ Code to create this Conda environment
 nf-core, version 2.13.1</code></pre>
 <hr style="height:1pt; visibility:hidden;">
 </section>
-<section id="downloading-the-pipeline" class="level3" data-number="2.3">
-<h3 data-number="2.3" class="anchored" data-anchor-id="downloading-the-pipeline"><span class="header-section-number">2.3</span> Downloading the pipeline</h3>
+<section id="downloading-the-pipeline" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="downloading-the-pipeline"><span class="header-section-number">3.3</span> Downloading the pipeline</h3>
 <p>We’ll use the <code>nf-core download</code> command to download the rnaseq pipeline’s files, including the Singularity containers for all individual tools that the pipeline runs.</p>
-<p>First, we need to set the environment variable <code>NXF_SINGULARITY_CACHEDIR</code> to tell Nextflow where to store these containers<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. Here, we will use a shared <code>PAS2700</code> dir that already has all the containers, to save some downloading time and storage space — this took around 15 minutes to download. But when you run a pipeline for your own research, you’ll want to make sure to use a dir that you have permissions to write to.</p>
+<p>First, we need to set the environment variable <code>NXF_SINGULARITY_CACHEDIR</code> to tell Nextflow where to store these containers<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. Here, we will use a shared <code>PAS2700</code> dir that already has all the containers, to save some downloading time and storage space — this took around 15 minutes to download. But when you run a pipeline for your own research, you’ll want to use a dir that you have permissions to write to.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [Paste this code into the run/run.sh script, then run it in the terminal]</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an environment variable for the container dir</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">NXF_SINGULARITY_CACHEDIR</span><span class="op">=</span>/fs/ess/PAS2700/containers</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Next, we’ll run the <code>nf-core download</code> command to download the currently latest version (<code>3.14.0</code>) of the rnaseq pipeline to <code>software/rnaseq</code>, and the associated container files to the previously specified dir:</p>
+<p>Next, we’ll run the <code>nf-core download</code> command to download the latest version (<code>3.14.0</code>) of the rnaseq pipeline to <code>software/nfc-rnaseq</code>, and the associated container files to the previously specified dir:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [Paste this code into the run/run.sh script, then run it in the terminal]</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Download the nf-core rnaseq pipeline files</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">nf-core</span> download rnaseq <span class="dt">\</span></span>
@@ -700,13 +697,13 @@ CITATIONS.md  lib                 modules.json  README.md</code></pre>
 <p><br></p>
 </section>
 </section>
-<section id="defining-inputs-and-outputs" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="defining-inputs-and-outputs"><span class="header-section-number">3</span> Defining inputs and outputs</h2>
+<section id="defining-inputs-and-outputs" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="defining-inputs-and-outputs"><span class="header-section-number">4</span> Defining inputs and outputs</h2>
 <p>Next, we will define the pipeline’s inputs and outputs in the runner script. We’ll save these in variables, which we’ll later pass as arguments to the primary script. We will need:</p>
 <ul>
-<li>Input 1: A sample sheet, a text file pointing to the FASTQ files</li>
-<li>Input 2: Reference genome assembly (FASTA)</li>
-<li>Input 3: Reference genome annotation (GTF)</li>
+<li>Input 1: A sample sheet: a text file pointing to the FASTQ files</li>
+<li>Input 2: A reference genome assembly file (FASTA)</li>
+<li>Input 3: A reference genome annotation file (GTF)</li>
 <li>Output: The desired output dir for the final pipeline output</li>
 </ul>
 <div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [Paste this into run/run.sh and then run it in the terminal]</span></span>
@@ -715,12 +712,12 @@ CITATIONS.md  lib                 modules.json  README.md</code></pre>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="va">fasta</span><span class="op">=</span>../../garrigos_data/ref/GCF_016801865.2.fna</span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="va">gtf</span><span class="op">=</span>../../garrigos_data/ref/GCF_016801865.2.gtf</span>
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="va">outdir</span><span class="op">=</span>results/nfc-rnaseq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Here is how we will eventually run the primary script (that we have not yet written):</p>
+<p>Here is how we will eventually run the primary script (that we have not yet written), passing those inputs and outputs as arguments:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [Don't copy or run this yet]</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> scripts/nfc-rnaseq.sh <span class="st">"</span><span class="va">$samplesheet</span><span class="st">"</span> <span class="st">"</span><span class="va">$fasta</span><span class="st">"</span> <span class="st">"</span><span class="va">$gtf</span><span class="st">"</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr style="height:1pt; visibility:hidden;">
-<section id="preparing-the-sample-sheet" class="level3" data-number="3.1">
-<h3 data-number="3.1" class="anchored" data-anchor-id="preparing-the-sample-sheet"><span class="header-section-number">3.1</span> Preparing the sample sheet</h3>
+<section id="preparing-the-sample-sheet" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="preparing-the-sample-sheet"><span class="header-section-number">4.1</span> Preparing the sample sheet</h3>
 <p>This pipeline requires a “sample sheet” as one of its inputs. In the sample sheet, you provide the paths to your FASTQ files and the so-called “strandedness” of your RNA-Seq library.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
@@ -752,7 +749,7 @@ CONTROL_REP1,AEG588A1_S1_L004_R1_001.fastq.gz,AEG588A1_S1_L004_R2_001.fastq.gz,a
 <li>R2 FASTQ file path (idem).</li>
 <li>Strandedness: <code>unstranded</code>, <code>reverse</code>, <code>forward</code>, or <code>auto</code>. This data is forward-stranded, so we’ll use <code>forward</code>.</li>
 </ul>
-<p>We will create this file with a helper script that comes with the pipeline. To this script, we specify the strandedness of the reads, the suffices of the R1 and R2 FASTQ files, and the input FASTQ dir (<code>data/fastq</code>) and the output file (<code>$samplesheet</code>):</p>
+<p>We will create this file with a helper script that comes with the pipeline. We’ll tell this script about the strandedness of the reads, the suffices of the R1 and R2 FASTQ files, and the input FASTQ dir (<code>data/fastq</code>) and the output file (<code>$samplesheet</code>):</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [Paste this into run/run.sh and then run it in the terminal]</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the dir that will contain the sample sheet</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span></span>
@@ -779,8 +776,8 @@ ERR10802870,../../garrigos_data/fastq/ERR10802870_R1.fastq.gz,../../garrigos_dat
 ERR10802871,../../garrigos_data/fastq/ERR10802871_R1.fastq.gz,../../garrigos_data/fastq/ERR10802871_R2.fastq.gz,forward</code></pre>
 <hr style="height:1pt; visibility:hidden;">
 </section>
-<section id="creating-an-osc-configuration-file" class="level3" data-number="3.2">
-<h3 data-number="3.2" class="anchored" data-anchor-id="creating-an-osc-configuration-file"><span class="header-section-number">3.2</span> Creating an OSC configuration file</h3>
+<section id="creating-an-osc-configuration-file" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="creating-an-osc-configuration-file"><span class="header-section-number">4.2</span> Creating an OSC configuration file</h3>
 <p>To tell the pipeline how to submit Slurm batch jobs for us, we have to use a configuration (config) file. There are multiple ways of storing this file and telling Nextflow about it — we’ll simply create a file <code>nextflow.config</code> in the dir from which we submit the <code>nextflow run</code> command: Nextflow will automatically detect and parse such a file.</p>
 <p>We’ll keep this file as simple as possible, specifying only the “executor” program (in our case: Slurm) and the OSC project to use:</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a config file for batch job submissions</span></span>
@@ -792,11 +789,11 @@ ERR10802871,../../garrigos_data/fastq/ERR10802871_R1.fastq.gz,../../garrigos_dat
 <p><br></p>
 </section>
 </section>
-<section id="writing-a-shell-script-to-run-the-pipeline" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="writing-a-shell-script-to-run-the-pipeline"><span class="header-section-number">4</span> Writing a shell script to run the pipeline</h2>
-<p>No we’ll go through the key parts of the script <code>scripts/nfc-rnaseq.sh</code> that you will submit as a Slurm batch job.</p>
-<section id="processing-arguments-passed-to-the-script" class="level3" data-number="4.1">
-<h3 data-number="4.1" class="anchored" data-anchor-id="processing-arguments-passed-to-the-script"><span class="header-section-number">4.1</span> Processing arguments passed to the script</h3>
+<section id="writing-a-shell-script-to-run-the-pipeline" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="writing-a-shell-script-to-run-the-pipeline"><span class="header-section-number">5</span> Writing a shell script to run the pipeline</h2>
+<p>Now, we’ll go through the key parts of the script <code>scripts/nfc-rnaseq.sh</code> that you will submit as a Slurm batch job.</p>
+<section id="processing-arguments-passed-to-the-script" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="processing-arguments-passed-to-the-script"><span class="header-section-number">5.1</span> Processing arguments passed to the script</h3>
 <p>The inputs and outputs we discussed above will be the arguments passed to the script:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [Partial shell script code, don't copy or run]</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Process command-line arguments</span></span>
@@ -806,8 +803,8 @@ ERR10802871,../../garrigos_data/fastq/ERR10802871_R1.fastq.gz,../../garrigos_dat
 <span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="va">outdir</span><span class="op">=</span><span class="va">$4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr style="height:1pt; visibility:hidden;">
 </section>
-<section id="building-the-nextflow-run-command" class="level3" data-number="4.2">
-<h3 data-number="4.2" class="anchored" data-anchor-id="building-the-nextflow-run-command"><span class="header-section-number">4.2</span> Building the <code>nextflow run</code> command</h3>
+<section id="building-the-nextflow-run-command" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="building-the-nextflow-run-command"><span class="header-section-number">5.2</span> Building the <code>nextflow run</code> command</h3>
 <p>To run the pipeline, use the command <code>nextflow run</code>, followed by the path to the dir with pipeline files:</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [Partial shell script code, don't copy or run]</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run software/nfc-rnaseq/3_14_0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -815,7 +812,7 @@ ERR10802871,../../garrigos_data/fastq/ERR10802871_R1.fastq.gz,../../garrigos_dat
 <ul>
 <li><strong><code>--input</code></strong>: The path to the “sample sheet”.</li>
 <li><strong><code>--fasta</code></strong>: The path to the reference genome assembly FASTA file.</li>
-<li><strong><code>--gtf</code></strong>: The path to the reference genome annotation file.</li>
+<li><strong><code>--gtf</code></strong>: The path to the reference genome annotation GTF file.</li>
 <li><strong><code>--outdir</code></strong>: The path to the output dir.</li>
 </ul>
 <p>This pipeline has different options for e.g.&nbsp;alignment and quantification. We will stick close to the defaults, which includes alignment with <code>STAR</code> and quantification with <code>Salmon</code>, with one exception: we want to remove reads from ribosomal RNA (this step is skipped by default).</p>
@@ -839,7 +836,7 @@ The option we want is <strong><code>--remove_ribo_rna</code></strong>.
 <ul>
 <li><strong><code>-profile</code></strong>: A so-called “profile” to indicate how the pipeline should run software — this should be <code>singularity</code> when running the pipeline with Singularity containers.</li>
 <li><strong><code>-work-dir</code></strong>: The dir in which all the pipeline’s jobs/processes will run.</li>
-<li><strong><code>-ansi-log false</code></strong>: Change Nextflow’s progress “logging” type to a format that works with Slurm log files<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>.</li>
+<li><strong><code>-ansi-log false</code></strong>: Change Nextflow’s progress “logging” type to a format that works with Slurm log files<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>.</li>
 <li><strong><code>-resume</code></strong>: Resume the pipeline where it “needs to” (e.g., where it left off) instead of always starting over. (This option won’t make any difference when we run the pipeline for the first time, since there is nothing to resume. Nextflow will even give a warning along these lines, but this is not a problem.)</li>
 </ul>
 <p>With all above-mentioned options, your final <code>nextflow run</code> command is:</p>
@@ -856,12 +853,12 @@ The option we want is <strong><code>--remove_ribo_rna</code></strong>.
 <span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">-resume</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr style="height:1pt; visibility:hidden;">
 </section>
-<section id="the-final-script" class="level3" data-number="4.3">
-<h3 data-number="4.3" class="anchored" data-anchor-id="the-final-script"><span class="header-section-number">4.3</span> The final script</h3>
+<section id="the-final-script" class="level3" data-number="5.3">
+<h3 data-number="5.3" class="anchored" data-anchor-id="the-final-script"><span class="header-section-number">5.3</span> The final script</h3>
 <p>Below is the full code for the script, in which I also added:</p>
 <ul>
 <li>Our standard shell script header lines.</li>
-<li><code>#SBATCH</code> options: note that these are <strong>only</strong> for the “main” Nextflow job, not for the jobs that Nextflow itself will submit! So we ask for quite a bit of time<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>, but we don’t need more than the default 1 core and 4 GB of RAM.</li>
+<li><code>#SBATCH</code> options: note that these are <strong>only</strong> for the “main” Nextflow job, not for the jobs that Nextflow itself will submit! So we ask for quite a bit of time<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>, but we don’t need more than the default 1 core and 4 GB of RAM.</li>
 <li>Some <code>echo</code> reporting of arguments/variables, printing the date, etc.</li>
 </ul>
 <p>Open your <code>scripts/nfc-rnaseq.sh</code> script and paste the following into it:</p>
@@ -881,45 +878,51 @@ The option we want is <strong><code>--remove_ribo_rna</code></strong>.
 <span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">NXF_SINGULARITY_CACHEDIR</span><span class="op">=</span>/fs/ess/PAS0471/containers</span>
 <span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Process command-line arguments</span></span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="va">samplesheet</span><span class="op">=</span><span class="va">$1</span></span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a><span class="va">fasta</span><span class="op">=</span><span class="va">$2</span></span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a><span class="va">gtf</span><span class="op">=</span><span class="va">$3</span></span>
-<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a><span class="va">outdir</span><span class="op">=</span><span class="va">$4</span></span>
-<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Report</span></span>
-<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Starting script nfc-rnaseq.sh"</span></span>
-<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span></span>
-<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Samplesheet:          </span><span class="va">$samplesheet</span><span class="st">"</span></span>
-<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Reference FASTA:      </span><span class="va">$fasta</span><span class="st">"</span></span>
-<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Reference GTF:        </span><span class="va">$gtf</span><span class="st">"</span></span>
-<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Output dir:           </span><span class="va">$outdir</span><span class="st">"</span></span>
-<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span></span>
-<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the output dir</span></span>
-<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span></span>
-<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the workflow</span></span>
-<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run <span class="st">"</span><span class="va">$WORKFLOW_DIR</span><span class="st">"</span> <span class="dt">\</span></span>
-<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a>    <span class="at">--input</span> <span class="st">"</span><span class="va">$samplesheet</span><span class="st">"</span> <span class="dt">\</span></span>
-<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a>    <span class="at">--fasta</span> <span class="st">"</span><span class="va">$fasta</span><span class="st">"</span> <span class="dt">\</span></span>
-<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a>    <span class="at">--gtf</span> <span class="st">"</span><span class="va">$gtf</span><span class="st">"</span> <span class="dt">\</span></span>
-<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a>    <span class="at">--outdir</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span> <span class="dt">\</span></span>
-<span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a>    <span class="at">--remove_ribo_rna</span> <span class="dt">\</span></span>
-<span id="cb25-41"><a href="#cb25-41" aria-hidden="true" tabindex="-1"></a>    <span class="at">-work-dir</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span>/raw <span class="dt">\</span></span>
-<span id="cb25-42"><a href="#cb25-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">-profile</span> singularity <span class="dt">\</span></span>
-<span id="cb25-43"><a href="#cb25-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">-ansi-log</span> false <span class="dt">\</span></span>
-<span id="cb25-44"><a href="#cb25-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">-resume</span></span>
-<span id="cb25-45"><a href="#cb25-45" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-46"><a href="#cb25-46" aria-hidden="true" tabindex="-1"></a><span class="co"># Report</span></span>
-<span id="cb25-47"><a href="#cb25-47" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Done with script nfc-rnaseq.sh"</span></span>
-<span id="cb25-48"><a href="#cb25-48" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="ot">!</span> <span class="st">"</span><span class="va">$#</span><span class="st">"</span> <span class="ot">-eq</span> 4 <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Error: wrong number of arguments"</span></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"You provided </span><span class="va">$#</span><span class="st"> arguments, while 4 are required."</span></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Usage: nfc-rnaseq.sh &lt;samplesheet&gt; &lt;FASTA&gt; &lt;GTF&gt; &lt;outdir&gt;"</span></span>
+<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">exit</span> 1</span>
+<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
+<span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a><span class="va">samplesheet</span><span class="op">=</span><span class="va">$1</span></span>
+<span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a><span class="va">fasta</span><span class="op">=</span><span class="va">$2</span></span>
+<span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a><span class="va">gtf</span><span class="op">=</span><span class="va">$3</span></span>
+<span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a><span class="va">outdir</span><span class="op">=</span><span class="va">$4</span></span>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Report</span></span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Starting script nfc-rnaseq.sh"</span></span>
+<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span></span>
+<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Samplesheet:          </span><span class="va">$samplesheet</span><span class="st">"</span></span>
+<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Reference FASTA:      </span><span class="va">$fasta</span><span class="st">"</span></span>
+<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Reference GTF:        </span><span class="va">$gtf</span><span class="st">"</span></span>
+<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Output dir:           </span><span class="va">$outdir</span><span class="st">"</span></span>
+<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span></span>
+<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the output dir</span></span>
+<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span></span>
+<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the workflow</span></span>
+<span id="cb25-41"><a href="#cb25-41" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run <span class="st">"</span><span class="va">$WORKFLOW_DIR</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb25-42"><a href="#cb25-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">--input</span> <span class="st">"</span><span class="va">$samplesheet</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb25-43"><a href="#cb25-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">--fasta</span> <span class="st">"</span><span class="va">$fasta</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb25-44"><a href="#cb25-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">--gtf</span> <span class="st">"</span><span class="va">$gtf</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb25-45"><a href="#cb25-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">--outdir</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb25-46"><a href="#cb25-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">--remove_ribo_rna</span> <span class="dt">\</span></span>
+<span id="cb25-47"><a href="#cb25-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">-work-dir</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span>/raw <span class="dt">\</span></span>
+<span id="cb25-48"><a href="#cb25-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">-profile</span> singularity <span class="dt">\</span></span>
+<span id="cb25-49"><a href="#cb25-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">-ansi-log</span> false <span class="dt">\</span></span>
+<span id="cb25-50"><a href="#cb25-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">-resume</span></span>
+<span id="cb25-51"><a href="#cb25-51" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-52"><a href="#cb25-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Report</span></span>
+<span id="cb25-53"><a href="#cb25-53" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Done with script nfc-rnaseq.sh"</span></span>
+<span id="cb25-54"><a href="#cb25-54" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>
 </section>
 </section>
-<section id="running-the-pipeline" class="level2" data-number="5">
-<h2 data-number="5" class="anchored" data-anchor-id="running-the-pipeline"><span class="header-section-number">5</span> Running the pipeline</h2>
-<section id="submitting-your-shell-script" class="level3" data-number="5.1">
-<h3 data-number="5.1" class="anchored" data-anchor-id="submitting-your-shell-script"><span class="header-section-number">5.1</span> Submitting your shell script</h3>
+<section id="running-the-pipeline" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="running-the-pipeline"><span class="header-section-number">6</span> Running the pipeline</h2>
+<section id="submitting-your-shell-script" class="level3" data-number="6.1">
+<h3 data-number="6.1" class="anchored" data-anchor-id="submitting-your-shell-script"><span class="header-section-number">6.1</span> Submitting your shell script</h3>
 <p>Before you submit the script, check that all variables have been assigned by prefacing the command with <code>echo</code>:</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [ Run this directly in the terminal]</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> sbatch scripts/nfc-rnaseq.sh <span class="st">"</span><span class="va">$samplesheet</span><span class="st">"</span> <span class="st">"</span><span class="va">$fasta</span><span class="st">"</span> <span class="st">"</span><span class="va">$gtf</span><span class="st">"</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -978,8 +981,8 @@ Not sure your <code>run.sh</code> script is complete, or getting errors? Click f
 </details>
 <hr style="height:1pt; visibility:hidden;">
 </section>
-<section id="checking-the-pipelines-progress" class="level3" data-number="5.2">
-<h3 data-number="5.2" class="anchored" data-anchor-id="checking-the-pipelines-progress"><span class="header-section-number">5.2</span> Checking the pipeline’s progress</h3>
+<section id="checking-the-pipelines-progress" class="level3" data-number="6.2">
+<h3 data-number="6.2" class="anchored" data-anchor-id="checking-the-pipelines-progress"><span class="header-section-number">6.2</span> Checking the pipeline’s progress</h3>
 <p>Let’s check whether your job has started running, and if so, whether Nextflow has already spawned jobs:</p>
 <div class="sourceCode" id="cb31"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [Run this directly in the terminal]</span></span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="ex">squeue</span> <span class="at">-u</span> <span class="va">$USER</span> <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1077,13 +1080,13 @@ Core Nextflow options
   runName                   : curious_linnaeus
   containerEngine           : singularity
 [...output truncated...]</code></pre>
-<p>The warnings about <code>-resume</code> and config files shown above can be ignored. Also, some of this output has nice colors that was not shown above, so here is a screenshot:</p>
+<p>The warnings about <code>-resume</code> and config files shown above can be ignored. Some of this output has nice colors that was not shown above:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="img/slurmlog.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:95.0%"></p>
+<p><img src="img/slurmlog.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
 </figure>
 </div>
-<p>In the Slurm log file, pipeline progress is shown in the following way — you can only see which jobs are being submitted, not when they finish<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a>:</p>
+<p>In the Slurm log file, pipeline progress is shown in the following way — you can only see which jobs are being submitted, not when they finish<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>:</p>
 <pre class="bash-out-solo"><code>[e5/da8328] Submitted process &gt; NFCORE_RNASEQ:RNASEQ:PREPARE_GENOME:GTF_FILTER (GCF_016801865.2.fna)
 [b5/9427a1] Submitted process &gt; NFCORE_RNASEQ:RNASEQ:PREPARE_GENOME:CUSTOM_GETCHROMSIZES (GCF_016801865.2.fna)
 [05/e0e09f] Submitted process &gt; NFCORE_RNASEQ:RNASEQ:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:TRIMGALORE (ERR10802863)
@@ -1120,14 +1123,31 @@ You should also see the following warning among the job submissions <em>(Click t
 -[nf-core/rnaseq] Pipeline completed successfully -
 Done with script nfc-rnaseq.sh
 Mon Mar 25 14:09:52 EDT 2024</code></pre>
+<hr style="height:1pt; visibility:hidden;">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Work-dir paths and output
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The hexadecimals between square brackets (e.g.&nbsp;<code>[62/4f8c0d]</code>) that are printed before each job point to the sub-directory within the pipeline’s work-dir that the this process is running in (every individual process runs in its own dir). This can be handy for troubleshooting, or even just to take a closer look at what exactly the pipeline is running.</p>
+<p>Let’s take a look at the contents of the work-dir:</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>TODO</code></pre>
+</div>
+</div>
 <p><br></p>
 </section>
 </section>
-<section id="the-pipelines-outputs" class="level2" data-number="6">
-<h2 data-number="6" class="anchored" data-anchor-id="the-pipelines-outputs"><span class="header-section-number">6</span> The pipeline’s outputs</h2>
-<p>You pipeline run may finish in as little as 15-30 minutes with our small test data set, but this can vary substantially, mostly due to variation in Slurm queue-ing times (the pipeline makes quite large Slurm resource requests!).</p>
+<section id="the-pipelines-outputs" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="the-pipelines-outputs"><span class="header-section-number">7</span> The pipeline’s outputs</h2>
+<p>You pipeline run may finish in as little as 15-30 minutes with our small test data set, but this can vary substantially, mostly due to variation in Slurm queue times (the pipeline makes quite large Slurm resource requests!).</p>
 <p>Once it has finished, you can take a look at the files and dirs in the specified output dir:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span> results/nfc-rnaseq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span> results/nfc-rnaseq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>total 83K
 drwxr-xr-x   2 jelmer PAS0471  16K Mar 25 13:02 fastqc
 drwxr-xr-x   2 jelmer PAS0471 4.0K Mar 25 12:58 logs
@@ -1151,20 +1171,18 @@ drwxr-xr-x   3 jelmer PAS0471 4.0K Mar 25 13:02 trimgalore</code></pre>
 <p><br></p>
 </section>
 </section>
-<section id="self-study-material-a-closer-look-at-the-output" class="level2" data-number="7">
-<h2 data-number="7" class="anchored" data-anchor-id="self-study-material-a-closer-look-at-the-output"><span class="header-section-number">7</span> Self-study material: A closer look at the output</h2>
-<p>If you’re interested in RNA-seq data analysis, you may want to take a closer look at the outputs of the pipeline, especially MultiQC report.</p>
-<section id="the-multiqc-report" class="level3" data-number="7.1">
-<h3 data-number="7.1" class="anchored" data-anchor-id="the-multiqc-report"><span class="header-section-number">7.1</span> The MultiQC report</h3>
+<section id="self-study-material-a-closer-look-at-the-output" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="self-study-material-a-closer-look-at-the-output"><span class="header-section-number">8</span> Self-study material: A closer look at the output</h2>
+<p>If you’re interested in RNA-seq data analysis, you may want to take a closer look at the outputs of the pipeline, especially the MultiQC report.</p>
+<section id="the-multiqc-report" class="level3" data-number="8.1">
+<h3 data-number="8.1" class="anchored" data-anchor-id="the-multiqc-report"><span class="header-section-number">8.1</span> The MultiQC report</h3>
 <p>Here are some items in that report to pay particular attention to, with example figures from this data set:</p>
+<p>The <strong>General Statistics</strong> table (the first section) is very useful, with the following notes:</p>
 <ul>
-<li><p>The <strong>General Statistics</strong> table (the first section) is very useful, with the following notes:</p>
-<ul>
-<li><p>Most of the table’s content is also in later graphs, but the table allows for comparisons across metrics.</p></li>
-<li><p>The <code>%rRNA</code> (% of reads identified as rRNA and removed by SortMeRNA) can only be found in this table.</p></li>
-<li><p>It’s best to <em>hide the columns with statistics from Samtools</em>, which can be confusing if not downright misleading: click on “Configure Columns” and uncheck all the boxes for stats with Samtools in their name.</p></li>
-<li><p>Some stats are for R1 and R2 files only, and some are for each sample as a whole. Unfortunately, this means you get 3 rows per sample in the table.</p></li>
-</ul></li>
+<li>Most of the table’s content is also in later graphs, but the table allows for comparisons across metrics.</li>
+<li>The <code>%rRNA</code> (% of reads identified as rRNA and removed by SortMeRNA) can only be found in this table.</li>
+<li>It’s best to <em>hide the columns with statistics from Samtools</em>, which can be confusing if not downright misleading: click on “Configure Columns” and uncheck all the boxes for stats with Samtools in their name.</li>
+<li>Some stats are for R1 and R2 files only, and some are for each sample as a whole. Unfortunately, this means you get 3 rows per sample in the table.</li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1172,9 +1190,7 @@ drwxr-xr-x   3 jelmer PAS0471 4.0K Mar 25 13:02 trimgalore</code></pre>
 </figure>
 </div>
 <hr style="height:1pt; visibility:hidden;">
-<ul>
-<li>The <strong>Qualimap</strong> &gt; <strong>Genomic origin of reads</strong> plot shows, for each sample, the proportion of reads mapping to exonic vs.&nbsp;intronic vs.&nbsp;intergenic regions. This is an important QC plot: the vast majority of your reads should be exonic<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>.</li>
-</ul>
+<p>The <strong>Qualimap</strong> &gt; <strong>Genomic origin of reads</strong> plot shows, for each sample, the proportion of reads mapping to exonic vs.&nbsp;intronic vs.&nbsp;intergenic regions. This is an important QC plot: the vast majority of your reads should be exonic<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/multiqc_genomic-origin.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
@@ -1182,9 +1198,7 @@ drwxr-xr-x   3 jelmer PAS0471 4.0K Mar 25 13:02 trimgalore</code></pre>
 </figure>
 </div>
 <hr style="height:1pt; visibility:hidden;">
-<ul>
-<li>The <strong>STAR</strong> &gt; <strong>Alignment Scores</strong> plot shows, for each sample, the percentage of reads that was mapped. Note that “Mapped to multiple loci” reads <em>are</em> also included in the final counts, and that “Unmapped: too short” merely means unmapped, really, and not that the reads were too short.</li>
-</ul>
+<p>The <strong>STAR</strong> &gt; <strong>Alignment Scores</strong> plot shows, for each sample, the percentage of reads that was mapped. Note that “Mapped to multiple loci” reads <em>are</em> also included in the final counts, and that “Unmapped: too short” merely means unmapped, really, and not that the reads were too short.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/multiqc_star.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
@@ -1192,13 +1206,11 @@ drwxr-xr-x   3 jelmer PAS0471 4.0K Mar 25 13:02 trimgalore</code></pre>
 </figure>
 </div>
 <hr style="height:1pt; visibility:hidden;">
-<ul>
-<li><strong>FastQC</strong> checks your FASTQ files, i.e.&nbsp;your data prior to alignment. There are FastQC plots both before and after trimming with TrimGalore/Cutadapt. The most important FastQC modules are:
+<p><strong>FastQC</strong> checks your FASTQ files, i.e.&nbsp;your data prior to alignment. There are FastQC plots both before and after trimming with TrimGalore/Cutadapt. The most important FastQC modules are:</p>
 <ul>
 <li><strong>Sequence Quality Histograms</strong> — You’d like the mean qualities to stay in the “green area”.</li>
 <li><strong>Per Sequence GC Content</strong> — Secondary peaks may indicate contamination.</li>
 <li><strong>Adapter Content</strong> — Any adapter content should be gone in the post-trimming plot.</li>
-</ul></li>
 </ul>
 <hr style="height:1pt; visibility:hidden;">
 <section id="exercise-interpreting-fastqc-results-in-the-multiqc-report" class="level4 exercise">
@@ -1284,22 +1296,18 @@ drwxr-xr-x   3 jelmer PAS0471 4.0K Mar 25 13:02 trimgalore</code></pre>
 </details>
 </section>
 <hr style="height:1pt; visibility:hidden;">
-<ul>
-<li>The <strong>Qualimap</strong> &gt; <strong>Gene Coverage Profile</strong> plot. This shows average read-depth across the position of genes/transcripts (for all genes together), which helps to assess the amount of RNA degradation. For poly-A selected libraries, RNA molecules “begin” at the 3’ end (right-hand side of the graph), so the more degradation there is, the more you expect there to be a higher read-depth towards the 3’ end compared to the 5’ end. (Though note that sharp decreases at the <em>very</em> end on each side are expected.)</li>
-</ul>
+<p>The <strong>Qualimap</strong> &gt; <strong>Gene Coverage Profile</strong> plot shows average read-depth across the length of genes/transcripts (averaged across all genes), which helps to assess the amount of RNA degradation. For poly-A selected libraries, RNA molecules “begin” at the 3’ end (right-hand side of the graph), so the more degradation there is, the more you expect a higher read-depth towards the 3’ end relative to that at the 5’ end. (Though note that sharp decreases at the <em>very</em> end on each side are expected.)</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/multiqc_gene-coverage.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:85.0%"></p>
 <figcaption>There depth at ~20% (near the 5’ end) is clearly lower than at ~80% (near the 3’ end),<br>indicating some RNA degradation.</figcaption>
 </figure>
 </div>
-<ul>
-<li>The <strong>RSeqQC</strong> &gt; <strong>Infer experiment</strong> (library strandedness) plot. If your library is:
+<p>The <strong>RSeqQC</strong> &gt; <strong>Infer experiment</strong> (library strandedness) plot. If your library is:</p>
 <ul>
 <li>Unstranded, there should be similar percentages of Sense and Antisense reads.</li>
 <li>Forward-stranded, the vast majority of reads should be Sense.</li>
 <li>Reverse-stranded, the vast majority of reads should be Antisense.</li>
-</ul></li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -1307,9 +1315,7 @@ drwxr-xr-x   3 jelmer PAS0471 4.0K Mar 25 13:02 trimgalore</code></pre>
 <figcaption>This libary is clearly forward-stranded, as we indicated in our sample sheet.</figcaption>
 </figure>
 </div>
-<ul>
-<li>The <strong>STAR_SALMON DESeq2 PCA</strong> plot is from a Principal Component Analysis (PCA) run on the final gene count table, thus showing overall patterns of gene expression similarity among samples.</li>
-</ul>
+<p>The <strong>STAR_SALMON DESeq2 PCA</strong> plot is from a Principal Component Analysis (PCA) run on the final gene count table, thus showing overall patterns of gene expression similarity among samples.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/multiqc_pca.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
@@ -1318,15 +1324,15 @@ drwxr-xr-x   3 jelmer PAS0471 4.0K Mar 25 13:02 trimgalore</code></pre>
 </div>
 <hr style="height:1pt; visibility:hidden;">
 </section>
-<section id="the-gene-count-table" class="level3" data-number="7.2">
-<h3 data-number="7.2" class="anchored" data-anchor-id="the-gene-count-table"><span class="header-section-number">7.2</span> The gene count table</h3>
-<p>The gene count table has one row for each gene and one column for each sample, with the first two columns being the <code>gene_id</code> and <code>gene_name</code><a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a>. Each cell’s value contains the read count estimate for a specific gene in a specific sample:</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [Paste this into the run/run.sh script and run it in the terminal]</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Take a look at the count table:</span></span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ('column -t' lines up columns, and less's '-S' option turns off line wrapping)</span></span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="va">counts</span><span class="op">=</span>results/nfc-rnaseq/star_salmon/salmon.merged.gene_counts_length_scaled.tsv</span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="ex">column</span> <span class="at">-t</span> <span class="st">"</span><span class="va">$counts</span><span class="st">"</span> <span class="kw">|</span> <span class="fu">less</span> <span class="at">-S</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="the-gene-count-table" class="level3" data-number="8.2">
+<h3 data-number="8.2" class="anchored" data-anchor-id="the-gene-count-table"><span class="header-section-number">8.2</span> The gene count table</h3>
+<p>The gene count table has one row for each gene and one column for each sample, with the first two columns being the <code>gene_id</code> and <code>gene_name</code><a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>. Each cell’s value contains the read count estimate for a specific gene in a specific sample:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [Paste this into the run/run.sh script and run it in the terminal]</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Take a look at the count table:</span></span>
+<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ('column -t' lines up columns, and less's '-S' option turns off line wrapping)</span></span>
+<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="va">counts</span><span class="op">=</span>results/nfc-rnaseq/star_salmon/salmon.merged.gene_counts_length_scaled.tsv</span>
+<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="ex">column</span> <span class="at">-t</span> <span class="st">"</span><span class="va">$counts</span><span class="st">"</span> <span class="kw">|</span> <span class="fu">less</span> <span class="at">-S</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>gene_id             gene_name           ERR10802863        ERR10802864        ERR10802865        ERR10802866        ERR10802867        ERR10802868       
 ATP6                ATP6                163.611027228009   178.19903533081    82.1025390726658   307.649552934133   225.78249209207    171.251589309856  
 ATP8                ATP8                0                  1.01047333891691   0                  0                  0                  0                 
@@ -1357,7 +1363,7 @@ Count table versions
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>The workflow outputs several versions of the count table<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>, but the one with <code>gene_counts_length_scaled</code> is the one we want:</p>
+<p>The workflow outputs several versions of the count table<a href="#fn9" class="footnote-ref" id="fnref9" role="doc-noteref"><sup>9</sup></a>, but the one with <code>gene_counts_length_scaled</code> is the one we want:</p>
 <ul>
 <li><code>gene_counts</code> as opposed to <code>transcript_counts</code> for counts that are summed across transcripts for each gene.</li>
 <li><code>length</code> for estimates that have been adjusted to account for between-sample differences in mean transcript length (longer transcripts would be expected to produce more reads in sequencing).</li>
@@ -1376,13 +1382,14 @@ Count table versions
 
 <ol>
 <li id="fn1"><p> Conda environments can also be used, but containers are recommended, and are what we will use.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p> Somewhat oddly, there is no command-line option available for this: we have to use this environment variable, also when running the pipeline.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn3"><p> The default logging does not work well the output goes to a text file, as it will in our case because we will submit the script with the Nextflow command as a Slurm batch job.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn4"><p> And for a run of a full data set, you may want to ask even more, e.g.&nbsp;12-24 hours.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p> The default Nextflow logging (without <code>-ansi-log false</code>) does show when jobs finish, but this would result in very messy output in a Slurm log file.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn6"><p> A lot of intronic content may indicate that you have a lot of pre-mRNA in your data; this is more common when your library prep used rRNA depletion instead of poly-A selection. A lot of intergenic content may indicate DNA contamination. Poor genome annotation quality may also contribute to a low percentage of exonic reads. The <em>RSeQC</em> &gt; <em>Read Distribution</em> plot will show this with even more categories, e.g.&nbsp;separately showing UTRs.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn7"><p> Which happen to be the same here, but these are usually different.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn8"><p> And each version in two formats: <code>.rds</code> (a binary R object file type) and <code>.tsv</code>.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p> Typically, not all outputs are copied, especially for intermediate steps like read trimming — and pipelines have settings to determine what is copied<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p> Somewhat oddly, there is no command-line option available for this: we have to use this environment variable, also when running the pipeline.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p> The default logging does not work well the output goes to a text file, as it will in our case because we will submit the script with the Nextflow command as a Slurm batch job.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p> And for a run of a full data set, you may want to ask even more, e.g.&nbsp;12-24 hours.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p> The default Nextflow logging (without <code>-ansi-log false</code>) does show when jobs finish, but this would result in very messy output in a Slurm log file.<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p> A lot of intronic content may indicate that you have a lot of pre-mRNA in your data; this is more common when your library prep used rRNA depletion instead of poly-A selection. A lot of intergenic content may indicate DNA contamination. Poor genome annotation quality may also contribute to a low percentage of exonic reads. The <em>RSeQC</em> &gt; <em>Read Distribution</em> plot will show this with even more categories, e.g.&nbsp;separately showing UTRs.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn8"><p> Which happen to be the same here, but these are usually different.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn9"><p> And each version in two formats: <code>.rds</code> (a binary R object file type) and <code>.tsv</code>.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

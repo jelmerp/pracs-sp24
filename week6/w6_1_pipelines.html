@@ -434,34 +434,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-This page is still under development
-</div>
-</div>
-<div class="callout-body-container callout-body">
-
-</div>
-</div>
 <hr>
 <p><br></p>
 <section id="overview" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="overview">Overview</h2>
-<section id="this-week" class="level4">
-<h4 class="anchored" data-anchor-id="this-week">This week</h4>
-<p>TODO</p>
-<hr style="height:1pt; visibility:hidden;">
-</section>
-<section id="this-session" class="level4">
-<h4 class="anchored" data-anchor-id="this-session">This session</h4>
-<p>Today, I’ll talk more about runner scripts and will introduce formal pipelines. To compare and contrast these, let’s keep in mind an example with a very simple RNA-seq analysis that:</p>
+<p>This week, we will see different ways to write and run analysis pipelines. Here, we’ll talk more about runner scripts and you’ll get introduced to formal pipelines. In the the second session, we’ll run a best-practice Nextflow pipeline for RNA-seq analysis.</p>
+<p>While thinking about different ways to organize and run your analyses, let’s have an example in mind with a simple RNA-seq analysis that:</p>
 <ul>
 <li>Trims reads in FASTQ files <em>(independently for each sample)</em></li>
-<li>Aligns (maps) reads to a reference genome <em>(independently for each sample)</em></li>
+<li>Maps (aligns) reads to a reference genome <em>(independently for each sample)</em></li>
 <li>Creates a gene expression count table from the alignments <em>(for all samples together)</em></li>
 </ul>
 <div class="quarto-figure quarto-figure-center">
@@ -472,66 +453,70 @@ This page is still under development
 </div>
 <p><br></p>
 </section>
-</section>
 <section id="more-on-runner-scripts" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="more-on-runner-scripts"><span class="header-section-number">1</span> More on runner scripts</h2>
-<p>In the past two weeks of this course, we have created a few “runner scripts” (usually named <code>run/run.sh</code>): overarching scripts that we ran line-by-line in order to run (week 4) or submit as batch jobs (week 5) our “primary scripts” (e.g.&nbsp;<code>scripts/fastqc.sh</code>).</p>
-<p>These runner scripts were useful to store the code to do this instead of typing that code directly in the terminal, especially because we were passing arguments to our script and running loops — not only would this be tedious to type, but it would also reduce reproducibility if we didn’t store <em>how</em> we ran our scripts.</p>
+<p>In the past two weeks of this course, we have created a few “runner scripts” (usually named <code>run/run.sh</code>): digital notebook-like scripts that we ran line-by-line in order to run (week 4) or submit as batch jobs (week 5) our “primary scripts” (e.g.&nbsp;<code>scripts/fastqc.sh</code>).</p>
+<p>These runner scripts were useful to store that code instead of typing it directly in the terminal, especially because we were passing arguments to our script and running loops — not only would this be tedious to type, but it would also reduce reproducibility if we didn’t store exactly <em>how</em> we ran our scripts.</p>
 <p>However, our runner scripts so far were very short. In the context of the part of a research project that would involve running a consecutive series of bioinformatics tools and perhaps custom scripts, the idea would be to <strong>include all these steps in such a runner script</strong>. For example, for the above-mentioned RNA-seq analysis, such a runner script could look like so:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the inputs</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">fastq_dir</span><span class="op">=</span>data/fastq</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="va">ref_assembly</span><span class="op">=</span>data/ref/assembly.fna</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="va">ref_annotation</span><span class="op">=</span>data/ref/annotation.gtf</span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Trim the reads:</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> R1 <span class="kw">in</span> <span class="st">"</span><span class="va">$fastq_dir</span><span class="st">"</span>/<span class="pp">*</span>_R1.fastq.gz<span class="kw">;</span> <span class="cf">do</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="ex">sbatch</span> scripts/trim.sh <span class="st">"</span><span class="va">$R1</span><span class="st">"</span> results/trim</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Align (map) the reads to a reference genome assembly:</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> R1 <span class="kw">in</span> results/trim/<span class="pp">*</span>_R1.fastq.gz<span class="kw">;</span> <span class="cf">do</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="ex">sbatch</span> scripts/map.sh <span class="st">"</span><span class="va">$R1</span><span class="st">"</span> <span class="st">"</span><span class="va">$ref_assembly</span><span class="st">"</span> results/map</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Count alignments per sample per gene using the annotation:</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> scripts/count.sh results/map <span class="st">"</span><span class="va">$ref_annotation</span><span class="st">"</span> results/count_table.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>In the code above, we call primary shell scripts for each of the three steps (<code>trim.sh</code>, <code>map.sh</code>, and<code>count.sh</code>): these would each run a bioinformatics tool to perform that step, like the familiar TrimGalore for trimming.</p>
-<p>Here are some advantages of using this script structure with a runner script:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [hypothetical example - don't run this]</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the inputs</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="va">fastq_dir</span><span class="op">=</span>data/fastq</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="va">ref_assembly</span><span class="op">=</span>data/ref/assembly.fna</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="va">ref_annotation</span><span class="op">=</span>data/ref/annotation.gtf</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Trim the reads:</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> R1 <span class="kw">in</span> <span class="st">"</span><span class="va">$fastq_dir</span><span class="st">"</span>/<span class="pp">*</span>_R1.fastq.gz<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="co"># (The trim.sh script takes 2 arguments: R1 FASTQ and output dir)</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="ex">sbatch</span> scripts/trim.sh <span class="st">"</span><span class="va">$R1</span><span class="st">"</span> results/trim</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Align (map) the reads to a reference genome assembly:</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> R1 <span class="kw">in</span> results/trim/<span class="pp">*</span>_R1.fastq.gz<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># (The map.sh script takes 3 arguments: R1 FASTQ, ref. assembly, and output dir)</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    <span class="ex">sbatch</span> scripts/map.sh <span class="st">"</span><span class="va">$R1</span><span class="st">"</span> <span class="st">"</span><span class="va">$ref_assembly</span><span class="st">"</span> results/map</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Count alignments per sample per gene using the annotation:</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># (The count.sh script takes 3 arguments: input dir, ref. annotation, and output dir)</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> scripts/count.sh results/map <span class="st">"</span><span class="va">$ref_annotation</span><span class="st">"</span> results/count_table.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The code above runs a primary shell script for each of the three steps (<code>trim.sh</code>, <code>map.sh</code>, and<code>count.sh</code>): these would each run a bioinformatics tool to perform that step, like TrimGalore for trimming.</p>
+<p>Here are some advantages of using such a script structure with an overarching runner script:</p>
 <ul>
-<li>It ensures you are including all necessary steps.</li>
+<li>It (more or less) ensures you are including all necessary steps.</li>
 <li>The runner script is a form of documentation of the steps taken.</li>
-<li>Rerunning everything is easy — both for yourself and others, improving reproducibility.</li>
-<li>Re-applying the same set of analyses in a different project is easy.</li>
+<li>Rerunning everything is straightforward — both for yourself and others, improving reproducibility.</li>
+<li>Re-applying the same set of analyses in a different project is straightforward.</li>
 </ul>
 <p><br></p>
 </section>
 <section id="pipelines" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="pipelines"><span class="header-section-number">2</span> Pipelines</h2>
-<p>What do we mean by a “pipeline”? We may informally refer to any consecutive series of steps in an analysis as a pipeline. The above runner script, in particular, can be called a pipeline in an informal way. But here, I am using pipeline in a sticter sense to mean a series of steps that <strong>can be executed from start to finish with a single command</strong>.</p>
+<p>What exactly do we mean by a “pipeline”? We may informally refer to any consecutive series of analysis steps as a pipeline. The above runner script, in particular, can be called a pipeline in an informal way. But here, I am using pipeline in a stricter sense to mean a series of steps that <strong>can be executed from start to finish with a single command</strong>.</p>
 <p>An advantage of a true pipeline is increased automation, as well as “supercharging” all the above-mentioned advantages of runner script. For example, a pipeline <em>truly</em> ensures that you are including all necessary steps.</p>
 <hr style="height:1pt; visibility:hidden;">
 <details>
 <summary>
 But wait, can we not just run our runner script with a single command: <code>bash run/run.sh</code>? <em>(Click to expand)</em>
 </summary>
-This doesn’t work because we are submitting batch jobs TODO EXPAND
+This doesn’t work because we are submitting batch jobs in each step. Because the script would continue to the next line/submission immediately after the previous lines, all jobs would effectively be submitted at the same time, and e.g.&nbsp;the mapping script would fail because the trimmed reads it needs are not yet there. (Below, we’ll briefly talk about ways around this problem.)
 </details>
+<hr style="height:1pt; visibility:hidden;">
 <p>To turn our runner script into a pipeline, we would need to overcome the problem of simultaneous batch job submission. Additionally, a pipeline worth its salt should also be able to <strong>detect and stop upon failure</strong>, and to <strong>rerun parts of the pipeline</strong> flexibly. The latter may be necessary after, e.g.:</p>
 <ul>
 <li>Some scripts failed for all or some samples</li>
 <li>You added or removed a sample</li>
 <li>You had to modify a script or settings somewhere halfway the pipeline.</li>
 </ul>
-<p>How could we do this?</p>
+<p>So how could we implement all of that?</p>
 <ul>
 <li><p><strong>Push the limits of the Bash and Slurm tool set</strong><br>
-Work with <code>if</code> statements, many script arguments, and Slurm “job dependencies” (see examples in the box below) — but this is very hard to manage for more complex workflows. You could also solve just the simultaneous batch job problem by putting all steps into a single script, but this would make the pipeline very ineffcient.</p></li>
+Work with <code>if</code> statements, many script arguments, and Slurm “job dependencies” (see examples in the box below) — but this is quite hard to manage for more complex workflows. You could also solve just the simultaneous batch job problem by putting all steps into a single script, but this would make the pipeline very inefficient.</p></li>
 <li><p><strong>Use a formal workflow management system</strong>.<br>
 We’ll talk about these some more below.</p></li>
 </ul>
 <hr style="height:1pt; visibility:hidden;">
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -540,7 +525,7 @@ Pushing the limits of the Bash and Slurm tool set <em>(Click to expand)</em>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>First, here are some low-tech, ad-hoc solutions to rerunning parts of the workflow:</strong></p>
 <ul>
@@ -617,7 +602,7 @@ Pushing the limits of the Bash and Slurm tool set <em>(Click to expand)</em>
 </div>
 </div>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -626,7 +611,7 @@ Background reading on the need for pipelines <em>(Click to expand)</em>
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -645,20 +630,20 @@ Background reading on the need for pipelines <em>(Click to expand)</em>
 </section>
 <section id="workflow-management-systems" class="level2" data-number="3">
 <h2 data-number="3" class="anchored" data-anchor-id="workflow-management-systems"><span class="header-section-number">3</span> Workflow management systems</h2>
-<p>Pipeline/workflow tools, often called “workflow management systems”, provide ways to formally describe and execute pipelines. Advantages of formal workflow management are improved automation, flexibility, portability, and scalability<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<p>Pipeline/workflow tools, often called “workflow management systems” in full, provide ways to formally describe and execute pipelines. Advantages of these tools are improved automation, flexibility, portability, and scalability<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
 <ul>
 <li><strong>Automation</strong>
 <ul>
 <li>Detect &amp; rerun upon changes in input files and failed steps.</li>
-<li>Easily run for other data sets.</li>
 <li>Automate Slurm job submissions.</li>
 <li>Integration with software management.</li>
+<li>Easily run for other data sets.</li>
 </ul></li>
 </ul>
 <hr style="height:1pt; visibility:hidden;">
 <ul>
 <li><strong>Flexibility, portability, and scalability</strong><br>
-By separating generic pipeline nuts-and-bolts one the one hand, and the following two on the other hand:
+This is due to these tools separating generic pipeline nuts-and-bolts from the following two aspects:
 <ul>
 <li>Run-specific configuration — samples, directories, settings/parameters.</li>
 <li>Things specific to the run-time environment (laptop vs.&nbsp;cluster vs.&nbsp;cloud).</li>
@@ -669,7 +654,7 @@ By separating generic pipeline nuts-and-bolts one the one hand, and the followin
 <h4 class="anchored" data-anchor-id="learn-to-write-pipelines">Learn to write pipelines?</h4>
 <p>Most workflow tools are small “domain-specific” languages (DSLs), often a sort of extension of a more general language: for example, Python for Snakemake, and Groovy/Java for Nextflow.</p>
 <p>Learning one of these tools is harder than it should be, in my opinion — a truly excellent workflow tool does not yet exist, and may not appear in the near-future either because existing options have become entrenched. Therefore, learning to <strong>write your own pipelines</strong> with one of them is probably only worth it if you plan to regularly work on genomics/bioinformatics projects.</p>
-<p>If you decide not to do this, I recommend that you use runner scripts, as taught in this course, instead. Either way, you can also use publicly available pipelines written with one of these workflow tools.</p>
+<p>If you decide not to do this, I recommend that you instead use runner scripts as taught in this course. Either way, you can also use publicly available pipelines written with one of these workflow tools.</p>
 <p><br></p>
 </section>
 </section>
@@ -694,7 +679,7 @@ By separating generic pipeline nuts-and-bolts one the one hand, and the followin
 <p><img src="img/nfcore_rnaseq.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:120.0%"></p>
 </figure>
 </div>
-<p>Besides the advantages mentioned above, using such a pipeline … TODO .. not having to choose programs and their parameters.</p>
+<p>There is often a bewildering array of bioinformatics programs for a given type of analysis, and it can be very hard and time-consuming to figure out what you should use. An additional advantage of using an nf-core (or similar) pipeline is that you can be confident that it uses a good if not optimal combination of tools and tool settings, since most of these pipelines have been developed over years by many experts in the field, and are also continuously updated.</p>
 <p><br></p>
 
 

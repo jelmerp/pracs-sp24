@@ -415,10 +415,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#checking-the-pipelines-progress" id="toc-checking-the-pipelines-progress" class="nav-link" data-scroll-target="#checking-the-pipelines-progress"><span class="header-section-number">6.2</span> Checking the pipeline’s progress</a></li>
   </ul></li>
   <li><a href="#the-pipelines-outputs" id="toc-the-pipelines-outputs" class="nav-link" data-scroll-target="#the-pipelines-outputs"><span class="header-section-number">7</span> The pipeline’s outputs</a></li>
-  <li><a href="#self-study-material-a-closer-look-at-the-output" id="toc-self-study-material-a-closer-look-at-the-output" class="nav-link" data-scroll-target="#self-study-material-a-closer-look-at-the-output"><span class="header-section-number">8</span> Self-study material: A closer look at the output</a>
+  <li><a href="#self-study-i-a-closer-look-at-the-output" id="toc-self-study-i-a-closer-look-at-the-output" class="nav-link" data-scroll-target="#self-study-i-a-closer-look-at-the-output"><span class="header-section-number">8</span> Self-study I: A closer look at the output</a>
   <ul class="collapse">
   <li><a href="#the-multiqc-report" id="toc-the-multiqc-report" class="nav-link" data-scroll-target="#the-multiqc-report"><span class="header-section-number">8.1</span> The MultiQC report</a></li>
   <li><a href="#the-gene-count-table" id="toc-the-gene-count-table" class="nav-link" data-scroll-target="#the-gene-count-table"><span class="header-section-number">8.2</span> The gene count table</a></li>
+  </ul></li>
+  <li><a href="#self-study-ii-reference-genome-files" id="toc-self-study-ii-reference-genome-files" class="nav-link" data-scroll-target="#self-study-ii-reference-genome-files"><span class="header-section-number">9</span> Self-study II: Reference genome files</a>
+  <ul class="collapse">
+  <li><a href="#the-genome-assembly-fasta" id="toc-the-genome-assembly-fasta" class="nav-link" data-scroll-target="#the-genome-assembly-fasta"><span class="header-section-number">9.1</span> The genome assembly FASTA</a></li>
+  <li><a href="#the-genome-annotation-gffgtf" id="toc-the-genome-annotation-gffgtf" class="nav-link" data-scroll-target="#the-genome-annotation-gffgtf"><span class="header-section-number">9.2</span> The genome annotation GFF/GTF</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -704,7 +709,8 @@ CITATIONS.md  lib                 modules.json  README.md</code></pre>
 <li>Input 2: A reference genome assembly file (FASTA)</li>
 <li>Input 3: A reference genome annotation file (GTF)</li>
 </ul>
-<p>And these outputs:</p>
+<p><em>(If you’re not familiar with FASTA or GTF files,</em> <em>take a look a <a href="#self-study-ii-reference-genome-files">this self-study section at the bottom of this page</a>.)</em></p>
+<p>Next, we will need these outputs:</p>
 <ul>
 <li>Output 1: The desired output dir for the final pipeline output</li>
 <li>Output 2: The desired Nextflow “workdir” for the initial pipeline output</li>
@@ -1185,8 +1191,8 @@ drwxr-xr-x   3 jelmer PAS0471 4.0K Mar 25 13:02 trimgalore</code></pre>
 <p><br></p>
 </section>
 </section>
-<section id="self-study-material-a-closer-look-at-the-output" class="level2" data-number="8">
-<h2 data-number="8" class="anchored" data-anchor-id="self-study-material-a-closer-look-at-the-output"><span class="header-section-number">8</span> Self-study material: A closer look at the output</h2>
+<section id="self-study-i-a-closer-look-at-the-output" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="self-study-i-a-closer-look-at-the-output"><span class="header-section-number">8</span> Self-study I: A closer look at the output</h2>
 <p>If you’re interested in RNA-seq data analysis, you may want to take a closer look at the outputs of the pipeline, especially the MultiQC report.</p>
 <section id="the-multiqc-report" class="level3" data-number="8.1">
 <h3 data-number="8.1" class="anchored" data-anchor-id="the-multiqc-report"><span class="header-section-number">8.1</span> The MultiQC report</h3>
@@ -1385,6 +1391,188 @@ Count table versions
 </ul>
 </div>
 </div>
+<p><br></p>
+</section>
+</section>
+<section id="self-study-ii-reference-genome-files" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="self-study-ii-reference-genome-files"><span class="header-section-number">9</span> Self-study II: Reference genome files</h2>
+<section id="the-genome-assembly-fasta" class="level3" data-number="9.1">
+<h3 data-number="9.1" class="anchored" data-anchor-id="the-genome-assembly-fasta"><span class="header-section-number">9.1</span> The genome assembly FASTA</h3>
+<section id="the-fasta-format" class="level4">
+<h4 class="anchored" data-anchor-id="the-fasta-format">The FASTA format</h4>
+<p>FASTA files contain one or more DNA or amino acid sequences, with no limits on the number of sequences or the sequence lengths. FASTA is the standard format for, e.g.:</p>
+<ul>
+<li>Genome assembly sequences</li>
+<li>Transcriptomes and proteomes (all of an organism’s transcripts &amp; amino acid sequences, respectively)</li>
+<li>Sequence downloads from NCBI such as a single gene/protein or other GenBank entry</li>
+</ul>
+<p>The following example FASTA file contains two entries:</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>unique_sequence_ID <span class="ex">Optional</span> description</span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="ex">ATTCATTAAAGCAGTTTATTGGCTTAATGTACATCAGTGAAATCATAAATGCTAAAAA</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>unique_sequence_ID2</span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="ex">ATTCATTAAAGCAGTTTATTGGCTTAATGTACATCAGTGAAATCATAAATGCTAAATG</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Each entry consists of a <strong>header</strong> line and the <strong>sequence</strong> itself. Header lines <strong>start with a <code>&gt;</code></strong> (greater-than sign) and are otherwise “free form”, though the idea is that they provide an identifier for the sequence that follows.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+FASTA file name extensions are variable: <code>.fa</code>, <code>.fasta</code>, <code>.fna</code>, <code>.faa</code> (<em>Click to expand</em>)
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>“Generic” extensions are <code>.fasta</code> and <code>.fa</code> (e.g: <code>culex_assembly.fasta</code>)</li>
+<li>Also used are extensions that explicitly indicate whether sequences are <em>nucleotides</em> (<code>.fna</code>) or <em>amino acids</em> (<code>.faa</code>)</li>
+</ul>
+</div>
+</div>
+</div>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+<section id="your-culex-genome-assembly-fasta" class="level4">
+<h4 class="anchored" data-anchor-id="your-culex-genome-assembly-fasta">Your <em>Culex</em> genome assembly FASTA</h4>
+<p>Your reference genome files are in <code>data/ref</code>:</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span> data/ref</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>-rw------- 1 jelmer PAS0471 547M Jan 22 12:34 GCF_016801865.2.fna
+-rw------- 1 jelmer PAS0471 123M Jan 22 12:34 GCF_016801865.2.gtf</code></pre>
+<p>While we can easily open small to medium-size files in the editor pane, “visual editors” like that do not work well for larger files like these.</p>
+<p>A handy command to view text files of any size is <strong><code>less</code></strong>, which opens them up in a “pager” within your shell – you’ll see what that means if you try it with one of the assembly FASTA file:</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> data/ref/GCF_016801865.2.fna</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>&gt;NC_068937.1 Culex pipiens pallens isolate TS chromosome 1, TS_CPP_V2, whole genome shotgun sequence
+aagcccttttatggtcaaaaatatcgtttaacttgaatatttttccttaaaaaataaataaatttaagcaaacagctgag
+tagatgtcatctactcaaatctacccataagcacacccctgttcaatttttttttcagccataagggcgcctccagtcaa
+attttcatattgagaatttcaatacaattttttaagtcgtaggggcgcctccagtcaaattttcatattgagaatttcaa
+tacatttttttatgtcgtaggggcgcctccagtcaaattttcatattgagaatttcaatacattttttttaagtcgtagg
+ggcgcctccagtcaaattttcatattgagaatttcaatacatttttttaagtcttaggggcgcctccagtcaaattttca
+tattgagaatttcaatacatttttttaagtcgtaggggcgcctccagtcaaattttcatattgagaattttaatacaatt
+ttttaaatcctaggggcgccttcagacaaacttaatttaaaaaatatcgctcctcgacttggcgactttgcgactgactg
+cgacagcactaccttggaacactgaaatgtttggttgactttccagaaagagtgcatatgacttgaaaaaaaaagagcgc
+ttcaaaattgagtcaagaaattggtgaaacttggtgcaagcccttttatggttaaaaatatcgtttaacttgaatatttt
+tccttaaaaaataaataaatttaagcaaacagctgagtagatgtcatctactcaaatctacccataagcacacccctgga
+CCTAATTCATGGAGGTGAATAGAGCATACGTAAATACAAAACTCATGACATTAGCCTGTAAGGATTGTGTaattaatgca
+aaaatattgaTAGAATGAAAGATGCAAGTCccaaaaattttaagtaaatgaATAGTAATCATAAAGATAActgatgatga</code></pre>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Side note: Lowercase vs.&nbsp;uppercase nucleotide letters? <em>(Click to expand)</em>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>As you have probably noticed, nucleotide bases are typically typed in uppercase (<code>A</code>, <code>C</code>, <code>G</code>, <code>T</code>). What does the mixture of lowercase and uppercase bases in the <em>Cx. pipiens</em> assembly FASTA mean, then?</p>
+<p>Lowercase bases are what is called “soft-masked”: they are repetitive sequences, and bioinformatics programs will treat them differently than non-repetitive sequences, which are in uppercase.</p>
+</div>
+</div>
+</div>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+</section>
+<section id="the-genome-annotation-gffgtf" class="level3" data-number="9.2">
+<h3 data-number="9.2" class="anchored" data-anchor-id="the-genome-annotation-gffgtf"><span class="header-section-number">9.2</span> The genome annotation GFF/GTF</h3>
+<section id="the-gffgtf-format" class="level4">
+<h4 class="anchored" data-anchor-id="the-gffgtf-format">The GFF/GTF format</h4>
+<p>The GTF and GFF formats are very similar tab-delimited <strong>tabular</strong> <strong>files</strong> that contain <strong>genome annotations</strong>, with:</p>
+<ul>
+<li>One row for each annotated “<strong>genomic feature</strong>” (gene, exon, etc.)</li>
+<li>One column for each piece of information about a feature, like its genomic coordinates</li>
+</ul>
+<p>See the sample below, with an added header line (<em>not normally present</em>) with column names:</p>
+<pre class="bash-out-solo"><code>seqname     source  feature start   end     score  strand  frame    attributes
+NC_000001   RefSeq  gene    11874   14409   .       +       .       gene_id "DDX11L1"; transcript_id ""; db_xref "GeneID:100287102"; db_xref "HGNC:HGNC:37102"; description "DEAD/H-box helicase 11 like 1 (pseudogene)"; gbkey "Gene"; gene "DDX11L1"; gene_biotype "transcribed_pseudogene"; pseudo "true"; 
+NC_000001   RefSeq  exon    11874   12227   .       +       .       gene_id "DDX11L1"; transcript_id "NR_046018.2"; db_xref "GeneID:100287102"; gene "DDX11L1"; product "DEAD/H-box helicase 11 like 1 (pseudogene)"; pseudo "true"; </code></pre>
+<p>Some details on the more important/interesting columns:</p>
+<ul>
+<li><code>seqname</code> — Name of the chromosome, scaffold, or contig</li>
+<li><code>feature</code> — Name of the feature type, e.g.&nbsp;“gene”, “exon”, “intron”, “CDS”</li>
+<li><code>start</code> &amp; <code>end</code> — Start &amp; end position of the feature</li>
+<li><code>strand</code> — Whether the feature is on the <code>+</code> (forward) or <code>-</code> (reverse) strand</li>
+<li><code>attribute</code> — A semicolon-separated list of tag-value pairs with additional information</li>
+</ul>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+<section id="your-culex-gtf-file" class="level4">
+<h4 class="anchored" data-anchor-id="your-culex-gtf-file">Your <em>Culex</em> GTF file</h4>
+<p>For our <em>Cx. pipiens</em> reference genome, we only have a GTF file.<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> Take a look at it, again with <code>less</code> (but now with the <code>-S</code> option):</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> <span class="at">-S</span> data/ref/GCF_016801865.2.gtf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>#gtf-version 2.2
+#!genome-build TS_CPP_V2
+#!genome-build-accession NCBI_Assembly:GCF_016801865.2
+#!annotation-source NCBI RefSeq GCF_016801865.2-RS_2022_12
+NC_068937.1     Gnomon  gene    2046    110808  .       +       .       gene_id "LOC120427725"; transcript_id ""; db_xref "GeneID:120427725"; description "homeotic protein deformed"; gbkey "Gene"; gene "LOC120427725"; gene_biotype "protein_coding"; 
+NC_068937.1     Gnomon  transcript      2046    110808  .       +       .       gene_id "LOC120427725"; transcript_id "XM_052707445.1"; db_xref "GeneID:120427725"; gbkey "mRNA"; gene "LOC120427725"; model_evidence "Supporting evidence includes similarity to: 25 Proteins"; product "homeotic protein deformed, transcript variant X3"; transcript_biotype "mRNA"; 
+NC_068937.1     Gnomon  exon    2046    2531    .       +       .       gene_id "LOC120427725"; transcript_id "XM_052707445.1"; db_xref "GeneID:120427725"; gene "LOC120427725"; model_evidence "Supporting evidence includes similarity to: 25 Proteins"; product "homeotic protein deformed, transcript variant X3"; transcript_biotype "mRNA"; exon_number "1"; 
+NC_068937.1     Gnomon  exon    52113   52136   .       +       .       gene_id "LOC120427725"; transcript_id "XM_052707445.1"; db_xref "GeneID:120427725"; gene "LOC120427725"; model_evidence "Supporting evidence includes similarity to: 25 Proteins"; product "homeotic protein deformed, transcript variant X3"; transcript_biotype "mRNA"; exon_number "2"; 
+NC_068937.1     Gnomon  exon    70113   70962   .       +       .       gene_id "LOC120427725"; transcript_id "XM_052707445.1"; db_xref "GeneID:120427725"; gene "LOC120427725"; model_evidence "Supporting evidence includes similarity to: 25 Proteins"; product "homeotic protein deformed, transcript variant X3"; transcript_biotype "mRNA"; exon_number "3"; 
+NC_068937.1     Gnomon  exon    105987  106087  .       +       .       gene_id "LOC120427725"; transcript_id "XM_052707445.1"; db_xref "GeneID:120427725"; gene "LOC120427725"; model_evidence "Supporting evidence includes similarity to: 25 Proteins"; product "homeotic protein deformed, transcript variant X3"; transcript_biotype "mRNA"; exon_number "4"; 
+NC_068937.1     Gnomon  exon    106551  106734  .       +       .       gene_id "LOC120427725"; transcript_id "XM_052707445.1"; db_xref "GeneID:120427725"; gene "LOC120427725"; model_evidence "Supporting evidence includes similarity to: 25 Proteins"; product "homeotic protein deformed, transcript variant X3"; transcript_biotype "mRNA"; exon_number "5"; </code></pre>
+</section>
+<section id="exercise-transcripts-and-genes" class="level4 exercise">
+<h4 class="anchored" data-anchor-id="exercise-transcripts-and-genes"><i class="fa-solid fa-user-edit" aria-label="user-edit"></i> Exercise: Transcripts and genes</h4>
+<p>The GTF file is sorted: all entries from the first line of the table, until you again see “gene” in the third column, belong to the first gene. Can you make sense of all these entries for this gene, given what you know of gene structures? How many transcripts does this gene have?</p>
+<details>
+<summary>
+<em>(Click to see some pointers)</em>
+</summary>
+<ul>
+<li>The first gene (“LOC120427725”) has 3 transcripts.</li>
+<li>Each transcript has 6-7 exons, 5 CDSs, and a start and stop codon.</li>
+</ul>
+<p>Below, I’ve printed all lines belonging to the first gene:</p>
+<pre class="bash-out-solo"><code>NC_068937.1 Gnomon  gene    2046    110808  .   +   .   gene_id "LOC120427725"; transcript_id ""; db_xref "GeneID:120427725"; description "homeotic protein deformed"; gbkey "Gene"; gene "LOC120427725"; gene_biotype "protein_coding"; 
+NC_068937.1 Gnomon  transcript  2046    110808  .   +   .   gene_id "LOC120427725"; transcript_id "XM_052707445.1"; db_xref "GeneID:120427725"; gbkey "mRNA"; gene "LOC120427725"; model_evidence "Supporting evidence includes similarity to: 25 Proteins"; product "homeotic protein deformed, transcript variant X3"; transcript_biotype "mRNA"; 
+NC_068937.1 Gnomon  exon    2046    2531    .   +   .   gene_id "LOC120427725"; transcript_id "XM_052707445.1"; db_xref "GeneID:120427725"; gene "LOC120427725"; model_evidence "Supporting evidence includes similarity to: 25 Proteins"; product "homeotic protein deformed, transcript variant X3"; transcript_biotype "mRNA"; exon_number "1"; 
+NC_068937.1 Gnomon  exon    52113   52136   .   +   .   gene_id "LOC120427725"; transcript_id "XM_052707445.1"; db_xref "GeneID:120427725"; gene "LOC120427725"; model_evidence "Supporting evidence includes similarity to: 25 Proteins"; product "homeotic protein deformed, transcript variant X3"; transcript_biotype "mRNA"; exon_number "2"; 
+NC_068937.1 Gnomon  exon    70113   70962   .   +   .   gene_id "LOC120427725"; transcript_id "XM_052707445.1"; db_xref "GeneID:120427725"; gene "LOC120427725"; model_evidence "Supporting evidence includes similarity to: 25 Proteins"; product "homeotic protein deformed, transcript variant X3"; transcript_biotype "mRNA"; exon_number "3"; 
+NC_068937.1 Gnomon  exon    105987  106087  .   +   .   gene_id "LOC120427725"; transcript_id "XM_052707445.1"; db_xref "GeneID:120427725"; gene "LOC120427725"; model_evidence "Supporting evidence includes similarity to: 25 Proteins"; product "homeotic protein deformed, transcript variant X3"; transcript_biotype "mRNA"; exon_number "4"; 
+NC_068937.1 Gnomon  exon    106551  106734  .   +   .   gene_id "LOC120427725"; transcript_id "XM_052707445.1"; db_xref "GeneID:120427725"; gene "LOC120427725"; model_evidence "Supporting evidence includes similarity to: 25 Proteins"; product "homeotic protein deformed, transcript variant X3"; transcript_biotype "mRNA"; exon_number "5"; 
+NC_068937.1 Gnomon  exon    109296  109660  .   +   .   gene_id "LOC120427725"; transcript_id "XM_052707445.1"; db_xref "GeneID:120427725"; gene "LOC120427725"; model_evidence "Supporting evidence includes similarity to: 25 Proteins"; product "homeotic protein deformed, transcript variant X3"; transcript_biotype "mRNA"; exon_number "6"; 
+NC_068937.1 Gnomon  exon    109726  110808  .   +   .   gene_id "LOC120427725"; transcript_id "XM_052707445.1"; db_xref "GeneID:120427725"; gene "LOC120427725"; model_evidence "Supporting evidence includes similarity to: 25 Proteins"; product "homeotic protein deformed, transcript variant X3"; transcript_biotype "mRNA"; exon_number "7"; 
+NC_068937.1 Gnomon  CDS 70143   70962   .   +   0   gene_id "LOC120427725"; transcript_id "XM_052707445.1"; db_xref "GeneID:120427725"; gbkey "CDS"; gene "LOC120427725"; product "homeotic protein deformed"; protein_id "XP_052563405.1"; exon_number "3"; 
+NC_068937.1 Gnomon  CDS 105987  106087  .   +   2   gene_id "LOC120427725"; transcript_id "XM_052707445.1"; db_xref "GeneID:120427725"; gbkey "CDS"; gene "LOC120427725"; product "homeotic protein deformed"; protein_id "XP_052563405.1"; exon_number "4"; 
+NC_068937.1 Gnomon  CDS 106551  106734  .   +   0   gene_id "LOC120427725"; transcript_id "XM_052707445.1"; db_xref "GeneID:120427725"; gbkey "CDS"; gene "LOC120427725"; product "homeotic protein deformed"; protein_id "XP_052563405.1"; exon_number "5"; 
+NC_068937.1 Gnomon  CDS 109296  109660  .   +   2   gene_id "LOC120427725"; transcript_id "XM_052707445.1"; db_xref "GeneID:120427725"; gbkey "CDS"; gene "LOC120427725"; product "homeotic protein deformed"; protein_id "XP_052563405.1"; exon_number "6"; 
+NC_068937.1 Gnomon  CDS 109726  110025  .   +   0   gene_id "LOC120427725"; transcript_id "XM_052707445.1"; db_xref "GeneID:120427725"; gbkey "CDS"; gene "LOC120427725"; product "homeotic protein deformed"; protein_id "XP_052563405.1"; exon_number "7"; 
+NC_068937.1 Gnomon  start_codon 70143   70145   .   +   0   gene_id "LOC120427725"; transcript_id "XM_052707445.1"; db_xref "GeneID:120427725"; gbkey "CDS"; gene "LOC120427725"; product "homeotic protein deformed"; protein_id "XP_052563405.1"; exon_number "3"; 
+NC_068937.1 Gnomon  stop_codon  110026  110028  .   +   0   gene_id "LOC120427725"; transcript_id "XM_052707445.1"; db_xref "GeneID:120427725"; gbkey "CDS"; gene "LOC120427725"; product "homeotic protein deformed"; protein_id "XP_052563405.1"; exon_number "7"; 
+NC_068937.1 Gnomon  transcript  5979    110808  .   +   .   gene_id "LOC120427725"; transcript_id "XM_039592629.2"; db_xref "GeneID:120427725"; gbkey "mRNA"; gene "LOC120427725"; model_evidence "Supporting evidence includes similarity to: 24 Proteins"; product "homeotic protein deformed, transcript variant X2"; transcript_biotype "mRNA"; 
+NC_068937.1 Gnomon  exon    5979    6083    .   +   .   gene_id "LOC120427725"; transcript_id "XM_039592629.2"; db_xref "GeneID:120427725"; gene "LOC120427725"; model_evidence "Supporting evidence includes similarity to: 24 Proteins"; product "homeotic protein deformed, transcript variant X2"; transcript_biotype "mRNA"; exon_number "1"; 
+NC_068937.1 Gnomon  exon    52113   52136   .   +   .   gene_id "LOC120427725"; transcript_id "XM_039592629.2"; db_xref "GeneID:120427725"; gene "LOC120427725"; model_evidence "Supporting evidence includes similarity to: 24 Proteins"; product "homeotic protein deformed, transcript variant X2"; transcript_biotype "mRNA"; exon_number "2"; 
+NC_068937.1 Gnomon  exon    70113   70962   .   +   .   gene_id "LOC120427725"; transcript_id "XM_039592629.2"; db_xref "GeneID:120427725"; gene "LOC120427725"; model_evidence "Supporting evidence includes similarity to: 24 Proteins"; product "homeotic protein deformed, transcript variant X2"; transcript_biotype "mRNA"; exon_number "3"; 
+NC_068937.1 Gnomon  exon    105987  106087  .   +   .   gene_id "LOC120427725"; transcript_id "XM_039592629.2"; db_xref "GeneID:120427725"; gene "LOC120427725"; model_evidence "Supporting evidence includes similarity to: 24 Proteins"; product "homeotic protein deformed, transcript variant X2"; transcript_biotype "mRNA"; exon_number "4"; 
+NC_068937.1 Gnomon  exon    106551  106734  .   +   .   gene_id "LOC120427725"; transcript_id "XM_039592629.2"; db_xref "GeneID:120427725"; gene "LOC120427725"; model_evidence "Supporting evidence includes similarity to: 24 Proteins"; product "homeotic protein deformed, transcript variant X2"; transcript_biotype "mRNA"; exon_number "5"; 
+NC_068937.1 Gnomon  exon    109296  109660  .   +   .   gene_id "LOC120427725"; transcript_id "XM_039592629.2"; db_xref "GeneID:120427725"; gene "LOC120427725"; model_evidence "Supporting evidence includes similarity to: 24 Proteins"; product "homeotic protein deformed, transcript variant X2"; transcript_biotype "mRNA"; exon_number "6"; 
+NC_068937.1 Gnomon  exon    109726  110808  .   +   .   gene_id "LOC120427725"; transcript_id "XM_039592629.2"; db_xref "GeneID:120427725"; gene "LOC120427725"; model_evidence "Supporting evidence includes similarity to: 24 Proteins"; product "homeotic protein deformed, transcript variant X2"; transcript_biotype "mRNA"; exon_number "7"; 
+NC_068937.1 Gnomon  CDS 70143   70962   .   +   0   gene_id "LOC120427725"; transcript_id "XM_039592629.2"; db_xref "GeneID:120427725"; gbkey "CDS"; gene "LOC120427725"; product "homeotic protein deformed"; protein_id "XP_039448563.1"; exon_number "3"; 
+NC_068937.1 Gnomon  CDS 105987  106087  .   +   2   gene_id "LOC120427725"; transcript_id "XM_039592629.2"; db_xref "GeneID:120427725"; gbkey "CDS"; gene "LOC120427725"; product "homeotic protein deformed"; protein_id "XP_039448563.1"; exon_number "4"; 
+NC_068937.1 Gnomon  CDS 106551  106734  .   +   0   gene_id "LOC120427725"; transcript_id "XM_039592629.2"; db_xref "GeneID:120427725"; gbkey "CDS"; gene "LOC120427725"; product "homeotic protein deformed"; protein_id "XP_039448563.1"; exon_number "5"; 
+NC_068937.1 Gnomon  CDS 109296  109660  .   +   2   gene_id "LOC120427725"; transcript_id "XM_039592629.2"; db_xref "GeneID:120427725"; gbkey "CDS"; gene "LOC120427725"; product "homeotic protein deformed"; protein_id "XP_039448563.1"; exon_number "6"; 
+NC_068937.1 Gnomon  CDS 109726  110025  .   +   0   gene_id "LOC120427725"; transcript_id "XM_039592629.2"; db_xref "GeneID:120427725"; gbkey "CDS"; gene "LOC120427725"; product "homeotic protein deformed"; protein_id "XP_039448563.1"; exon_number "7"; 
+NC_068937.1 Gnomon  start_codon 70143   70145   .   +   0   gene_id "LOC120427725"; transcript_id "XM_039592629.2"; db_xref "GeneID:120427725"; gbkey "CDS"; gene "LOC120427725"; product "homeotic protein deformed"; protein_id "XP_039448563.1"; exon_number "3"; 
+NC_068937.1 Gnomon  stop_codon  110026  110028  .   +   0   gene_id "LOC120427725"; transcript_id "XM_039592629.2"; db_xref "GeneID:120427725"; gbkey "CDS"; gene "LOC120427725"; product "homeotic protein deformed"; protein_id "XP_039448563.1"; exon_number "7"; 
+NC_068937.1 Gnomon  transcript  60854   110807  .   +   .   gene_id "LOC120427725"; transcript_id "XM_039592628.2"; db_xref "GeneID:120427725"; gbkey "mRNA"; gene "LOC120427725"; model_evidence "Supporting evidence includes similarity to: 24 Proteins"; product "homeotic protein deformed, transcript variant X1"; transcript_biotype "mRNA"; 
+NC_068937.1 Gnomon  exon    60854   61525   .   +   .   gene_id "LOC120427725"; transcript_id "XM_039592628.2"; db_xref "GeneID:120427725"; gene "LOC120427725"; model_evidence "Supporting evidence includes similarity to: 24 Proteins"; product "homeotic protein deformed, transcript variant X1"; transcript_biotype "mRNA"; exon_number "1"; 
+NC_068937.1 Gnomon  exon    70113   70962   .   +   .   gene_id "LOC120427725"; transcript_id "XM_039592628.2"; db_xref "GeneID:120427725"; gene "LOC120427725"; model_evidence "Supporting evidence includes similarity to: 24 Proteins"; product "homeotic protein deformed, transcript variant X1"; transcript_biotype "mRNA"; exon_number "2"; 
+NC_068937.1 Gnomon  exon    105987  106087  .   +   .   gene_id "LOC120427725"; transcript_id "XM_039592628.2"; db_xref "GeneID:120427725"; gene "LOC120427725"; model_evidence "Supporting evidence includes similarity to: 24 Proteins"; product "homeotic protein deformed, transcript variant X1"; transcript_biotype "mRNA"; exon_number "3"; 
+NC_068937.1 Gnomon  exon    106551  106734  .   +   .   gene_id "LOC120427725"; transcript_id "XM_039592628.2"; db_xref "GeneID:120427725"; gene "LOC120427725"; model_evidence "Supporting evidence includes similarity to: 24 Proteins"; product "homeotic protein deformed, transcript variant X1"; transcript_biotype "mRNA"; exon_number "4"; 
+NC_068937.1 Gnomon  exon    109296  109660  .   +   .   gene_id "LOC120427725"; transcript_id "XM_039592628.2"; db_xref "GeneID:120427725"; gene "LOC120427725"; model_evidence "Supporting evidence includes similarity to: 24 Proteins"; product "homeotic protein deformed, transcript variant X1"; transcript_biotype "mRNA"; exon_number "5"; 
+NC_068937.1 Gnomon  exon    109726  110807  .   +   .   gene_id "LOC120427725"; transcript_id "XM_039592628.2"; db_xref "GeneID:120427725"; gene "LOC120427725"; model_evidence "Supporting evidence includes similarity to: 24 Proteins"; product "homeotic protein deformed, transcript variant X1"; transcript_biotype "mRNA"; exon_number "6"; 
+NC_068937.1 Gnomon  CDS 70143   70962   .   +   0   gene_id "LOC120427725"; transcript_id "XM_039592628.2"; db_xref "GeneID:120427725"; gbkey "CDS"; gene "LOC120427725"; product "homeotic protein deformed"; protein_id "XP_039448562.1"; exon_number "2"; 
+NC_068937.1 Gnomon  CDS 105987  106087  .   +   2   gene_id "LOC120427725"; transcript_id "XM_039592628.2"; db_xref "GeneID:120427725"; gbkey "CDS"; gene "LOC120427725"; product "homeotic protein deformed"; protein_id "XP_039448562.1"; exon_number "3"; 
+NC_068937.1 Gnomon  CDS 106551  106734  .   +   0   gene_id "LOC120427725"; transcript_id "XM_039592628.2"; db_xref "GeneID:120427725"; gbkey "CDS"; gene "LOC120427725"; product "homeotic protein deformed"; protein_id "XP_039448562.1"; exon_number "4"; 
+NC_068937.1 Gnomon  CDS 109296  109660  .   +   2   gene_id "LOC120427725"; transcript_id "XM_039592628.2"; db_xref "GeneID:120427725"; gbkey "CDS"; gene "LOC120427725"; product "homeotic protein deformed"; protein_id "XP_039448562.1"; exon_number "5"; 
+NC_068937.1 Gnomon  CDS 109726  110025  .   +   0   gene_id "LOC120427725"; transcript_id "XM_039592628.2"; db_xref "GeneID:120427725"; gbkey "CDS"; gene "LOC120427725"; product "homeotic protein deformed"; protein_id "XP_039448562.1"; exon_number "6"; 
+NC_068937.1 Gnomon  start_codon 70143   70145   .   +   0   gene_id "LOC120427725"; transcript_id "XM_039592628.2"; db_xref "GeneID:120427725"; gbkey "CDS"; gene "LOC120427725"; product "homeotic protein deformed"; protein_id "XP_039448562.1"; exon_number "2"; 
+NC_068937.1 Gnomon  stop_codon  110026  110028  .   +   0   gene_id "LOC120427725"; transcript_id "XM_039592628.2"; db_xref "GeneID:120427725"; gbkey "CDS"; gene "LOC120427725"; product "homeotic protein deformed"; protein_id "XP_039448562.1"; exon_number "6"; </code></pre>
+</details>
+</section>
 <p><br> <br></p>
 
 
@@ -1404,6 +1592,8 @@ Count table versions
 <li id="fn7"><p> A lot of intronic content may indicate that you have a lot of pre-mRNA in your data; this is more common when your library prep used rRNA depletion instead of poly-A selection. A lot of intergenic content may indicate DNA contamination. Poor genome annotation quality may also contribute to a low percentage of exonic reads. The <em>RSeQC</em> &gt; <em>Read Distribution</em> plot will show this with even more categories, e.g.&nbsp;separately showing UTRs.<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn8"><p> Which happen to be the same here, but these are usually different.<a href="#fnref8" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn9"><p> And each version in two formats: <code>.rds</code> (a binary R object file type) and <code>.tsv</code>.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn10"><p>Note that because individual sequence entries are commonly spread across multiple lines, FASTA entries do not necessarily cover 2 lines (cf.&nbsp;FASTQ).<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn11"><p>A GFF file would contain the same information but in a slightly different format. For programs used in RNA-seq analysis, GTF files tend to be the preferred format.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

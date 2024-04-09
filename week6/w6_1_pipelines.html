@@ -252,7 +252,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../week6/w6_2_nfcore.html">
  <span class="dropdown-text">II: Running an nf-core Nextflow pipeline</span></a>
   </li>  
-        <li class="dropdown-header"><em>(Optional self-study: Writing Nextflow pipelines)</em> (TBA)</li>
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Week 7: Course recap</li>
         <li class="dropdown-header">Course recap (TBA)</li>
@@ -457,7 +456,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h2 data-number="1" class="anchored" data-anchor-id="more-on-runner-scripts"><span class="header-section-number">1</span> More on runner scripts</h2>
 <p>In the past two weeks of this course, we have created a few “runner scripts” (usually named <code>run/run.sh</code>): digital notebook-like scripts that we ran line-by-line in order to run (week 4) or submit as batch jobs (week 5) our “primary scripts” (e.g.&nbsp;<code>scripts/fastqc.sh</code>).</p>
 <p>These runner scripts were useful to store that code instead of typing it directly in the terminal, especially because we were passing arguments to our script and running loops — not only would this be tedious to type, but it would also reduce reproducibility if we didn’t store exactly <em>how</em> we ran our scripts.</p>
-<p>However, our runner scripts so far were very short. In the context of the part of a research project that would involve running a consecutive series of bioinformatics tools and perhaps custom scripts, the idea would be to <strong>include all these steps in such a runner script</strong>. For example, for the above-mentioned RNA-seq analysis, such a runner script could look like so:</p>
+<p>However, our runner scripts so far have been very short. In the context of a research project that would include running a series of steps with different bioinformatics tools (and perhaps custom scripts), the idea would be to <strong>include all these steps in such a runner script</strong>. For example, for the above-mentioned RNA-seq analysis, such a runner script could look like so:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [hypothetical example - don't run this]</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the inputs</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="va">fastq_dir</span><span class="op">=</span>data/fastq</span>
@@ -479,19 +478,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Count alignments per sample per gene using the annotation:</span></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># (The count.sh script takes 3 arguments: input dir, ref. annotation, and output dir)</span></span>
 <span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> scripts/count.sh results/map <span class="st">"</span><span class="va">$ref_annotation</span><span class="st">"</span> results/count_table.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>The code above runs a primary shell script for each of the three steps (<code>trim.sh</code>, <code>map.sh</code>, and<code>count.sh</code>): these would each run a bioinformatics tool to perform that step, like TrimGalore for trimming.</p>
-<p>Here are some advantages of using such a script structure with an overarching runner script:</p>
+<p>The code above runs a primary shell script for each of the three steps (<code>trim.sh</code>, <code>map.sh</code>, and<code>count.sh</code>): each of these <em>takes arguments</em> and runs a bioinformatics tool to perform that step (for example, TrimGalore for trimming).</p>
+<p>Here are some advantages of using such a script structure with flexible (i.e., argument-accepting) primary scripts, and an overarching runner script:</p>
 <ul>
-<li>It (more or less) ensures you are including all necessary steps.</li>
-<li>The runner script is a form of documentation of the steps taken.</li>
-<li>Rerunning everything is straightforward — both for yourself and others, improving reproducibility.</li>
+<li>Rerunning everything, including with a modified sample set, or tool settings, is relatively straightforward — both for yourself and others, improving reproducibility.</li>
 <li>Re-applying the same set of analyses in a different project is straightforward.</li>
+<li>The runner script is a form of documentation of all steps taken.</li>
+<li>It (more or less) ensures you are including all necessary steps.</li>
 </ul>
 <p><br></p>
 </section>
 <section id="pipelines" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="pipelines"><span class="header-section-number">2</span> Pipelines</h2>
-<p>What exactly do we mean by a “pipeline”? We may informally refer to any consecutive series of analysis steps as a pipeline. The above runner script, in particular, can be called a pipeline in an informal way. But here, I am using pipeline in a stricter sense to mean a series of steps that <strong>can be executed from start to finish with a single command</strong>.</p>
+<p>What exactly do we mean by a “pipeline”? We may informally refer to any consecutive series of analysis steps as a pipeline. The above runner script, in particular, can informally be called a pipeline. But here, I am using pipeline in a stricter sense to mean a series of steps that <strong>can be executed from start to finish with a single command</strong>.</p>
 <p>An advantage of a true pipeline is increased automation, as well as “supercharging” all the above-mentioned advantages of runner script. For example, a pipeline <em>truly</em> ensures that you are including all necessary steps.</p>
 <hr style="height:1pt; visibility:hidden;">
 <details>
@@ -510,7 +509,7 @@ This doesn’t work because we are submitting batch jobs in each step. Because t
 <p>So how could we implement all of that?</p>
 <ul>
 <li><p><strong>Push the limits of the Bash and Slurm tool set</strong><br>
-Work with <code>if</code> statements, many script arguments, and Slurm “job dependencies” (see examples in the box below) — but this is quite hard to manage for more complex workflows. You could also solve just the simultaneous batch job problem by putting all steps into a single script, but this would make the pipeline very inefficient.</p></li>
+Use <code>if</code> statements, many script arguments, and Slurm “job dependencies” (see the box below) — but this is hard to manage for more complex workflows. Alternatively, if you only want to solve the simultaneous batch job problem, you can put all steps in a single script, but this would make for a very inefficient pipeline.</p></li>
 <li><p><strong>Use a formal workflow management system</strong>.<br>
 We’ll talk about these some more below.</p></li>
 </ul>
@@ -654,13 +653,14 @@ This is due to these tools separating generic pipeline nuts-and-bolts from the f
 <h4 class="anchored" data-anchor-id="learn-to-write-pipelines">Learn to write pipelines?</h4>
 <p>Most workflow tools are small “domain-specific” languages (DSLs), often a sort of extension of a more general language: for example, Python for Snakemake, and Groovy/Java for Nextflow.</p>
 <p>Learning one of these tools is harder than it should be, in my opinion — a truly excellent workflow tool does not yet exist, and may not appear in the near-future either because existing options have become entrenched. Therefore, learning to <strong>write your own pipelines</strong> with one of them is probably only worth it if you plan to regularly work on genomics/bioinformatics projects.</p>
-<p>If you decide not to do this, I recommend that you instead use runner scripts as taught in this course. Either way, you can also use publicly available pipelines written with one of these workflow tools.</p>
+<p>If you decide not to do this, I recommend that you instead use runner scripts as taught in this course. <a href="../week6/w6_exercises.html">This week’s exercises</a> and your final project can help you get some more practice with these.</p>
+<p>Either way, for many kinds of omics data, it is also possible (and a great idea) to use publicly available pipelines written with one of these workflow tools, and we’ll practice with that next.</p>
 <p><br></p>
 </section>
 </section>
 <section id="nf-core-pipelines" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="nf-core-pipelines"><span class="header-section-number">4</span> nf-core pipelines</h2>
-<p>Nextflow has by far the best ecosystem of publicly available pipelines. The “nf-core” initiative (<a href="https://nf-co.re" class="uri">https://nf-co.re</a>, <a href="https://www.nature.com/articles/s41587-020-0439-x">Ewels et al.&nbsp;2020</a>) curates a set of best-practice, flexible, and well-documented pipelines written in Nextflow:</p>
+<p>Among workflow tools, Nextflow has by far the best ecosystem of publicly available pipelines. The “nf-core” initiative (<a href="https://nf-co.re" class="uri">https://nf-co.re</a>, <a href="https://www.nature.com/articles/s41587-020-0439-x">Ewels et al.&nbsp;2020</a>) curates a set of best-practice, flexible, and well-documented pipelines written in Nextflow:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/nfcore_homepage.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:50.0%"></p>
@@ -679,7 +679,7 @@ This is due to these tools separating generic pipeline nuts-and-bolts from the f
 <p><img src="img/nfcore_rnaseq.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:120.0%"></p>
 </figure>
 </div>
-<p>There is often a bewildering array of bioinformatics programs for a given type of analysis, and it can be very hard and time-consuming to figure out what you should use. An additional advantage of using an nf-core (or similar) pipeline is that you can be confident that it uses a good if not optimal combination of tools and tool settings, since most of these pipelines have been developed over years by many experts in the field, and are also continuously updated.</p>
+<p>There is often a bewildering array of bioinformatics programs for a given type of analysis, and it can be very hard and time-consuming to figure out what you should use. An <strong>additional advantage</strong> of using an nf-core (or similar) pipeline is that you can be confident that it uses a good if not optimal combination of tools and tool settings, since most of these pipelines have been developed over years by many experts in the field, and are also continuously updated.</p>
 <p><br></p>
 
 

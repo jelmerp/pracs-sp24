@@ -252,7 +252,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../week6/w6_2_nfcore.html">
  <span class="dropdown-text">II: Running an nf-core Nextflow pipeline</span></a>
   </li>  
-        <li class="dropdown-header"><em>(Optional self-study: Writing Nextflow pipelines)</em> (TBA)</li>
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Week 7: Course recap</li>
         <li class="dropdown-header">Course recap (TBA)</li>
@@ -699,22 +698,29 @@ CITATIONS.md  lib                 modules.json  README.md</code></pre>
 </section>
 <section id="defining-inputs-and-outputs" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="defining-inputs-and-outputs"><span class="header-section-number">4</span> Defining inputs and outputs</h2>
-<p>Next, we will define the pipeline’s inputs and outputs in the runner script. We’ll save these in variables, which we’ll later pass as arguments to the primary script. We will need:</p>
+<p>Next, we will define the pipeline’s inputs and outputs in the runner script. We’ll save these in variables, which we’ll later pass as arguments to the primary script. We will need the following inputs:</p>
 <ul>
 <li>Input 1: A sample sheet: a text file pointing to the FASTQ files</li>
 <li>Input 2: A reference genome assembly file (FASTA)</li>
 <li>Input 3: A reference genome annotation file (GTF)</li>
-<li>Output: The desired output dir for the final pipeline output</li>
+</ul>
+<p>And these outputs:</p>
+<ul>
+<li>Output 1: The desired output dir for the final pipeline output</li>
+<li>Output 2: The desired Nextflow “workdir” for the initial pipeline output</li>
 </ul>
 <div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [Paste this into run/run.sh and then run it in the terminal]</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Defining the inputs and outputs</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Defining the inputs</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="va">samplesheet</span><span class="op">=</span><span class="st">"</span><span class="va">$outdir</span><span class="st">"</span>/nfc_samplesheet.csv</span>
 <span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="va">fasta</span><span class="op">=</span>../../garrigos_data/ref/GCF_016801865.2.fna</span>
 <span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="va">gtf</span><span class="op">=</span>../../garrigos_data/ref/GCF_016801865.2.gtf</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="va">outdir</span><span class="op">=</span>results/nfc-rnaseq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Defining the outputs</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="va">outdir</span><span class="op">=</span>results/nfc-rnaseq</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="va">workdir</span><span class="op">=</span>/fs/scratch/PAS2700/week6/nfc-rnaseq/<span class="va">$USER</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Here is how we will eventually run the primary script (that we have not yet written), passing those inputs and outputs as arguments:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [Don't copy or run this yet]</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> scripts/nfc-rnaseq.sh <span class="st">"</span><span class="va">$samplesheet</span><span class="st">"</span> <span class="st">"</span><span class="va">$fasta</span><span class="st">"</span> <span class="st">"</span><span class="va">$gtf</span><span class="st">"</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> scripts/nfc-rnaseq.sh <span class="st">"</span><span class="va">$samplesheet</span><span class="st">"</span> <span class="st">"</span><span class="va">$fasta</span><span class="st">"</span> <span class="st">"</span><span class="va">$gtf</span><span class="st">"</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span> <span class="st">"</span><span class="va">$workdir</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr style="height:1pt; visibility:hidden;">
 <section id="preparing-the-sample-sheet" class="level3" data-number="4.1">
 <h3 data-number="4.1" class="anchored" data-anchor-id="preparing-the-sample-sheet"><span class="header-section-number">4.1</span> Preparing the sample sheet</h3>
@@ -779,13 +785,14 @@ ERR10802871,../../garrigos_data/fastq/ERR10802871_R1.fastq.gz,../../garrigos_dat
 <section id="creating-an-osc-configuration-file" class="level3" data-number="4.2">
 <h3 data-number="4.2" class="anchored" data-anchor-id="creating-an-osc-configuration-file"><span class="header-section-number">4.2</span> Creating an OSC configuration file</h3>
 <p>To tell the pipeline how to submit Slurm batch jobs for us, we have to use a configuration (config) file. There are multiple ways of storing this file and telling Nextflow about it — we’ll simply create a file <code>nextflow.config</code> in the dir from which we submit the <code>nextflow run</code> command: Nextflow will automatically detect and parse such a file.</p>
-<p>We’ll keep this file as simple as possible, specifying only the “executor” program (in our case: Slurm) and the OSC project to use:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a config file for batch job submissions</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (This is a way you can use echo to print multiple lines to a file)</span></span>
+<p>We’ll keep this file as simple as possible, specifying only our “executor” program (Slurm) and OSC project:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [Paste this into run/run.sh and then run it in the terminal]</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a config file for batch job submissions</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"</span></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="st">process.executor = 'slurm'</span></span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="st">process.clusterOptions='--account=PAS2700'</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="st">"</span> <span class="op">&gt;</span> nextflow.config</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="st">"</span> <span class="op">&gt;</span> nextflow.config</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># (This is a way you can use echo to print multiple lines to a file)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>
 </section>
 </section>
@@ -794,13 +801,14 @@ ERR10802871,../../garrigos_data/fastq/ERR10802871_R1.fastq.gz,../../garrigos_dat
 <p>Now, we’ll go through the key parts of the script <code>scripts/nfc-rnaseq.sh</code> that you will submit as a Slurm batch job.</p>
 <section id="processing-arguments-passed-to-the-script" class="level3" data-number="5.1">
 <h3 data-number="5.1" class="anchored" data-anchor-id="processing-arguments-passed-to-the-script"><span class="header-section-number">5.1</span> Processing arguments passed to the script</h3>
-<p>The inputs and outputs we discussed above will be the arguments passed to the script:</p>
+<p>The inputs and outputs we discussed above, and the Nextflow “workdir”, will be the arguments passed to the script:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [Partial shell script code, don't copy or run]</span></span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Process command-line arguments</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="va">samplesheet</span><span class="op">=</span><span class="va">$1</span></span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="va">fasta</span><span class="op">=</span><span class="va">$2</span></span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="va">gtf</span><span class="op">=</span><span class="va">$3</span></span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="va">outdir</span><span class="op">=</span><span class="va">$4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="va">outdir</span><span class="op">=</span><span class="va">$4</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a><span class="va">workdir</span><span class="op">=</span><span class="va">$5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr style="height:1pt; visibility:hidden;">
 </section>
 <section id="building-the-nextflow-run-command" class="level3" data-number="5.2">
@@ -832,7 +840,7 @@ The option we want is <strong><code>--remove_ribo_rna</code></strong>.
 </details>
 </section>
 <hr style="height:1pt; visibility:hidden;">
-<p>We’ll also use several <strong>general Nextflow options</strong> (note the single dash <code>-</code> notation):</p>
+<p>We’ll also use several <strong>general Nextflow options</strong> (note the single dash <code>-</code> option notation):</p>
 <ul>
 <li><strong><code>-profile</code></strong>: A so-called “profile” to indicate how the pipeline should run software — this should be <code>singularity</code> when running the pipeline with Singularity containers.</li>
 <li><strong><code>-work-dir</code></strong>: The dir in which all the pipeline’s jobs/processes will run.</li>
@@ -847,7 +855,7 @@ The option we want is <strong><code>--remove_ribo_rna</code></strong>.
 <span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">--gtf</span> <span class="st">"</span><span class="va">$gtf</span><span class="st">"</span> <span class="dt">\</span></span>
 <span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">--outdir</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span> <span class="dt">\</span></span>
 <span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">--remove_ribo_rna</span> <span class="dt">\</span></span>
-<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">-work-dir</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span>/raw <span class="dt">\</span></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">-work-dir</span> <span class="st">"</span><span class="va">$workdir</span><span class="st">"</span> <span class="dt">\</span></span>
 <span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">-profile</span> singularity <span class="dt">\</span></span>
 <span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">-ansi-log</span> false <span class="dt">\</span></span>
 <span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">-resume</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -878,44 +886,46 @@ The option we want is <strong><code>--remove_ribo_rna</code></strong>.
 <span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">NXF_SINGULARITY_CACHEDIR</span><span class="op">=</span>/fs/ess/PAS0471/containers</span>
 <span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Process command-line arguments</span></span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="ot">!</span> <span class="st">"</span><span class="va">$#</span><span class="st">"</span> <span class="ot">-eq</span> 4 <span class="kw">]];</span> <span class="cf">then</span></span>
+<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="ot">!</span> <span class="st">"</span><span class="va">$#</span><span class="st">"</span> <span class="ot">-eq</span> 5 <span class="kw">]];</span> <span class="cf">then</span></span>
 <span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Error: wrong number of arguments"</span></span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"You provided </span><span class="va">$#</span><span class="st"> arguments, while 4 are required."</span></span>
-<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Usage: nfc-rnaseq.sh &lt;samplesheet&gt; &lt;FASTA&gt; &lt;GTF&gt; &lt;outdir&gt;"</span></span>
+<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"You provided </span><span class="va">$#</span><span class="st"> arguments, while 5 are required."</span></span>
+<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Usage: nfc-rnaseq.sh &lt;samplesheet&gt; &lt;FASTA&gt; &lt;GTF&gt; &lt;outdir&gt; &lt;workdir&gt;"</span></span>
 <span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a>    <span class="bu">exit</span> 1</span>
 <span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a><span class="cf">fi</span></span>
 <span id="cb25-23"><a href="#cb25-23" aria-hidden="true" tabindex="-1"></a><span class="va">samplesheet</span><span class="op">=</span><span class="va">$1</span></span>
 <span id="cb25-24"><a href="#cb25-24" aria-hidden="true" tabindex="-1"></a><span class="va">fasta</span><span class="op">=</span><span class="va">$2</span></span>
 <span id="cb25-25"><a href="#cb25-25" aria-hidden="true" tabindex="-1"></a><span class="va">gtf</span><span class="op">=</span><span class="va">$3</span></span>
 <span id="cb25-26"><a href="#cb25-26" aria-hidden="true" tabindex="-1"></a><span class="va">outdir</span><span class="op">=</span><span class="va">$4</span></span>
-<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Report</span></span>
-<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Starting script nfc-rnaseq.sh"</span></span>
-<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span></span>
-<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Samplesheet:          </span><span class="va">$samplesheet</span><span class="st">"</span></span>
-<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Reference FASTA:      </span><span class="va">$fasta</span><span class="st">"</span></span>
-<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Reference GTF:        </span><span class="va">$gtf</span><span class="st">"</span></span>
-<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Output dir:           </span><span class="va">$outdir</span><span class="st">"</span></span>
-<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span></span>
-<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the output dir</span></span>
-<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span></span>
-<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the workflow</span></span>
-<span id="cb25-41"><a href="#cb25-41" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run <span class="st">"</span><span class="va">$WORKFLOW_DIR</span><span class="st">"</span> <span class="dt">\</span></span>
-<span id="cb25-42"><a href="#cb25-42" aria-hidden="true" tabindex="-1"></a>    <span class="at">--input</span> <span class="st">"</span><span class="va">$samplesheet</span><span class="st">"</span> <span class="dt">\</span></span>
-<span id="cb25-43"><a href="#cb25-43" aria-hidden="true" tabindex="-1"></a>    <span class="at">--fasta</span> <span class="st">"</span><span class="va">$fasta</span><span class="st">"</span> <span class="dt">\</span></span>
-<span id="cb25-44"><a href="#cb25-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">--gtf</span> <span class="st">"</span><span class="va">$gtf</span><span class="st">"</span> <span class="dt">\</span></span>
-<span id="cb25-45"><a href="#cb25-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">--outdir</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span> <span class="dt">\</span></span>
-<span id="cb25-46"><a href="#cb25-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">--remove_ribo_rna</span> <span class="dt">\</span></span>
-<span id="cb25-47"><a href="#cb25-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">-work-dir</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span>/raw <span class="dt">\</span></span>
-<span id="cb25-48"><a href="#cb25-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">-profile</span> singularity <span class="dt">\</span></span>
-<span id="cb25-49"><a href="#cb25-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">-ansi-log</span> false <span class="dt">\</span></span>
-<span id="cb25-50"><a href="#cb25-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">-resume</span></span>
-<span id="cb25-51"><a href="#cb25-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-52"><a href="#cb25-52" aria-hidden="true" tabindex="-1"></a><span class="co"># Report</span></span>
-<span id="cb25-53"><a href="#cb25-53" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Done with script nfc-rnaseq.sh"</span></span>
-<span id="cb25-54"><a href="#cb25-54" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-27"><a href="#cb25-27" aria-hidden="true" tabindex="-1"></a><span class="va">workdir</span><span class="op">=</span><span class="va">$5</span></span>
+<span id="cb25-28"><a href="#cb25-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-29"><a href="#cb25-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Report</span></span>
+<span id="cb25-30"><a href="#cb25-30" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Starting script nfc-rnaseq.sh"</span></span>
+<span id="cb25-31"><a href="#cb25-31" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span></span>
+<span id="cb25-32"><a href="#cb25-32" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Samplesheet:          </span><span class="va">$samplesheet</span><span class="st">"</span></span>
+<span id="cb25-33"><a href="#cb25-33" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Reference FASTA:      </span><span class="va">$fasta</span><span class="st">"</span></span>
+<span id="cb25-34"><a href="#cb25-34" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Reference GTF:        </span><span class="va">$gtf</span><span class="st">"</span></span>
+<span id="cb25-35"><a href="#cb25-35" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Output dir:           </span><span class="va">$outdir</span><span class="st">"</span></span>
+<span id="cb25-36"><a href="#cb25-36" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Nextflow work dir:    </span><span class="va">$workdir</span><span class="st">"</span></span>
+<span id="cb25-37"><a href="#cb25-37" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span></span>
+<span id="cb25-38"><a href="#cb25-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-39"><a href="#cb25-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the output dirs</span></span>
+<span id="cb25-40"><a href="#cb25-40" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span> <span class="st">"</span><span class="va">$workdir</span><span class="st">"</span></span>
+<span id="cb25-41"><a href="#cb25-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-42"><a href="#cb25-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Run the workflow</span></span>
+<span id="cb25-43"><a href="#cb25-43" aria-hidden="true" tabindex="-1"></a><span class="ex">nextflow</span> run <span class="st">"</span><span class="va">$WORKFLOW_DIR</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb25-44"><a href="#cb25-44" aria-hidden="true" tabindex="-1"></a>    <span class="at">--input</span> <span class="st">"</span><span class="va">$samplesheet</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb25-45"><a href="#cb25-45" aria-hidden="true" tabindex="-1"></a>    <span class="at">--fasta</span> <span class="st">"</span><span class="va">$fasta</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb25-46"><a href="#cb25-46" aria-hidden="true" tabindex="-1"></a>    <span class="at">--gtf</span> <span class="st">"</span><span class="va">$gtf</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb25-47"><a href="#cb25-47" aria-hidden="true" tabindex="-1"></a>    <span class="at">--outdir</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb25-48"><a href="#cb25-48" aria-hidden="true" tabindex="-1"></a>    <span class="at">--remove_ribo_rna</span> <span class="dt">\</span></span>
+<span id="cb25-49"><a href="#cb25-49" aria-hidden="true" tabindex="-1"></a>    <span class="at">-work-dir</span> <span class="st">"</span><span class="va">$workdir</span><span class="st">"</span> <span class="dt">\</span></span>
+<span id="cb25-50"><a href="#cb25-50" aria-hidden="true" tabindex="-1"></a>    <span class="at">-profile</span> singularity <span class="dt">\</span></span>
+<span id="cb25-51"><a href="#cb25-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">-ansi-log</span> false <span class="dt">\</span></span>
+<span id="cb25-52"><a href="#cb25-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">-resume</span></span>
+<span id="cb25-53"><a href="#cb25-53" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-54"><a href="#cb25-54" aria-hidden="true" tabindex="-1"></a><span class="co"># Report</span></span>
+<span id="cb25-55"><a href="#cb25-55" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"Done with script nfc-rnaseq.sh"</span></span>
+<span id="cb25-56"><a href="#cb25-56" aria-hidden="true" tabindex="-1"></a><span class="fu">date</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><br></p>
 </section>
 </section>
@@ -925,12 +935,12 @@ The option we want is <strong><code>--remove_ribo_rna</code></strong>.
 <h3 data-number="6.1" class="anchored" data-anchor-id="submitting-your-shell-script"><span class="header-section-number">6.1</span> Submitting your shell script</h3>
 <p>Before you submit the script, check that all variables have been assigned by prefacing the command with <code>echo</code>:</p>
 <div class="sourceCode" id="cb26"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [ Run this directly in the terminal]</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> sbatch scripts/nfc-rnaseq.sh <span class="st">"</span><span class="va">$samplesheet</span><span class="st">"</span> <span class="st">"</span><span class="va">$fasta</span><span class="st">"</span> <span class="st">"</span><span class="va">$gtf</span><span class="st">"</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="bash-out"><code>sbatch scripts/nfc-rnaseq.sh results/nfc-rnaseq/nfc_samplesheet.csv data/ref/GCF_016801865.2.fna data/ref/GCF_016801865.2.gtf results/nfc-rnaseq</code></pre>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> sbatch scripts/nfc-rnaseq.sh <span class="st">"</span><span class="va">$samplesheet</span><span class="st">"</span> <span class="st">"</span><span class="va">$fasta</span><span class="st">"</span> <span class="st">"</span><span class="va">$gtf</span><span class="st">"</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span> <span class="st">"</span><span class="va">$workdir</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>sbatch scripts/nfc-rnaseq.sh results/nfc-rnaseq/nfc_samplesheet.csv data/ref/GCF_016801865.2.fna data/ref/GCF_016801865.2.gtf results/nfc-rnaseq /fs/scratch/PAS2700/week6/nfc-rnaseq/jelmer</code></pre>
 <p>If so, you are ready to submit the script as a batch job:</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [Paste this into run/run.sh and then run it in the terminal]</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Submit the script to run the pipeline as a batch job</span></span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> scripts/nfc-rnaseq.sh <span class="st">"</span><span class="va">$samplesheet</span><span class="st">"</span> <span class="st">"</span><span class="va">$fasta</span><span class="st">"</span> <span class="st">"</span><span class="va">$gtf</span><span class="st">"</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> scripts/nfc-rnaseq.sh <span class="st">"</span><span class="va">$samplesheet</span><span class="st">"</span> <span class="st">"</span><span class="va">$fasta</span><span class="st">"</span> <span class="st">"</span><span class="va">$gtf</span><span class="st">"</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span> <span class="st">"</span><span class="va">$workdir</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>Submitted batch job 27767854</code></pre>
 <hr style="height:1pt; visibility:hidden;">
 <details>
@@ -953,31 +963,34 @@ Not sure your <code>run.sh</code> script is complete, or getting errors? Click f
 <span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">--container-cache-utilisation</span> amend <span class="dt">\</span></span>
 <span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">--download-configuration</span></span>
 <span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Defining the inputs and outputs</span></span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Defining the inputs</span></span>
 <span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a><span class="va">samplesheet</span><span class="op">=</span><span class="st">"</span><span class="va">$outdir</span><span class="st">"</span>/nfc_samplesheet.csv</span>
 <span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a><span class="va">fasta</span><span class="op">=</span>../../garrigos_data/ref/GCF_016801865.2.fna</span>
 <span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a><span class="va">gtf</span><span class="op">=</span>../../garrigos_data/ref/GCF_016801865.2.gtf</span>
-<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a><span class="va">outdir</span><span class="op">=</span>results/nfc-rnaseq</span>
-<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the dir that will contain the sample sheet</span></span>
-<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span></span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Defining the outputs</span></span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a><span class="va">outdir</span><span class="op">=</span>results/nfc-rnaseq</span>
+<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a><span class="va">workdir</span><span class="op">=</span>/fs/scratch/PAS2700/week6/nfc-rnaseq/<span class="va">$USER</span></span>
 <span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the sample sheet for the nf-core pipeline</span></span>
-<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> software/nfc-rnaseq/3_14_0/bin/fastq_dir_to_samplesheet.py <span class="dt">\</span></span>
-<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a>    <span class="at">--strandedness</span> forward <span class="dt">\</span></span>
-<span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a>    <span class="at">--read1_extension</span> <span class="st">"_R1.fastq.gz"</span> <span class="dt">\</span></span>
-<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a>    <span class="at">--read2_extension</span> <span class="st">"_R2.fastq.gz"</span> <span class="dt">\</span></span>
-<span id="cb30-31"><a href="#cb30-31" aria-hidden="true" tabindex="-1"></a>    ../../garrigos_data/fastq <span class="dt">\</span></span>
-<span id="cb30-32"><a href="#cb30-32" aria-hidden="true" tabindex="-1"></a>    <span class="st">"</span><span class="va">$samplesheet</span><span class="st">"</span></span>
-<span id="cb30-33"><a href="#cb30-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-34"><a href="#cb30-34" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a config file for batch job submissions</span></span>
-<span id="cb30-35"><a href="#cb30-35" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"</span></span>
-<span id="cb30-36"><a href="#cb30-36" aria-hidden="true" tabindex="-1"></a><span class="st">process.executor = 'slurm'</span></span>
-<span id="cb30-37"><a href="#cb30-37" aria-hidden="true" tabindex="-1"></a><span class="st">process.clusterOptions='--account=PAS2700'</span></span>
-<span id="cb30-38"><a href="#cb30-38" aria-hidden="true" tabindex="-1"></a><span class="st">"</span> <span class="op">&gt;</span> nextflow.config</span>
-<span id="cb30-39"><a href="#cb30-39" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-40"><a href="#cb30-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Submit the script to run the pipeline as a batch job</span></span>
-<span id="cb30-41"><a href="#cb30-41" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> scripts/nfc-rnaseq.sh <span class="st">"</span><span class="va">$samplesheet</span><span class="st">"</span> <span class="st">"</span><span class="va">$fasta</span><span class="st">"</span> <span class="st">"</span><span class="va">$gtf</span><span class="st">"</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the dir that will contain the sample sheet</span></span>
+<span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span></span>
+<span id="cb30-28"><a href="#cb30-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-29"><a href="#cb30-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the sample sheet for the nf-core pipeline</span></span>
+<span id="cb30-30"><a href="#cb30-30" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> software/nfc-rnaseq/3_14_0/bin/fastq_dir_to_samplesheet.py <span class="dt">\</span></span>
+<span id="cb30-31"><a href="#cb30-31" aria-hidden="true" tabindex="-1"></a>    <span class="at">--strandedness</span> forward <span class="dt">\</span></span>
+<span id="cb30-32"><a href="#cb30-32" aria-hidden="true" tabindex="-1"></a>    <span class="at">--read1_extension</span> <span class="st">"_R1.fastq.gz"</span> <span class="dt">\</span></span>
+<span id="cb30-33"><a href="#cb30-33" aria-hidden="true" tabindex="-1"></a>    <span class="at">--read2_extension</span> <span class="st">"_R2.fastq.gz"</span> <span class="dt">\</span></span>
+<span id="cb30-34"><a href="#cb30-34" aria-hidden="true" tabindex="-1"></a>    ../../garrigos_data/fastq <span class="dt">\</span></span>
+<span id="cb30-35"><a href="#cb30-35" aria-hidden="true" tabindex="-1"></a>    <span class="st">"</span><span class="va">$samplesheet</span><span class="st">"</span></span>
+<span id="cb30-36"><a href="#cb30-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-37"><a href="#cb30-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a config file for batch job submissions</span></span>
+<span id="cb30-38"><a href="#cb30-38" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"</span></span>
+<span id="cb30-39"><a href="#cb30-39" aria-hidden="true" tabindex="-1"></a><span class="st">process.executor = 'slurm'</span></span>
+<span id="cb30-40"><a href="#cb30-40" aria-hidden="true" tabindex="-1"></a><span class="st">process.clusterOptions='--account=PAS2700'</span></span>
+<span id="cb30-41"><a href="#cb30-41" aria-hidden="true" tabindex="-1"></a><span class="st">"</span> <span class="op">&gt;</span> nextflow.config</span>
+<span id="cb30-42"><a href="#cb30-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-43"><a href="#cb30-43" aria-hidden="true" tabindex="-1"></a><span class="co"># Submit the script to run the pipeline as a batch job</span></span>
+<span id="cb30-44"><a href="#cb30-44" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> scripts/nfc-rnaseq.sh <span class="st">"</span><span class="va">$samplesheet</span><span class="st">"</span> <span class="st">"</span><span class="va">$fasta</span><span class="st">"</span> <span class="st">"</span><span class="va">$gtf</span><span class="st">"</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <hr style="height:1pt; visibility:hidden;">
 </section>
@@ -1054,6 +1067,7 @@ Samplesheet:          results/nfc-rnaseq/nfc_samplesheet.csv
 Reference FASTA:      data/ref/GCF_016801865.2.fna
 Reference GTF:        data/ref/GCF_016801865.2.gtf
 Output dir:           results/nfc-rnaseq
+Nextflow workdir:     /fs/scratch/PAS2700/week6/nfc-rnaseq/jelmer
 
 N E X T F L O W  ~  version 23.10.1
 WARN: It appears you have never run this project before -- Option `-resume` is ignored
@@ -1136,7 +1150,7 @@ Work-dir paths and output
 <div class="callout-body-container callout-body">
 <p>The hexadecimals between square brackets (e.g.&nbsp;<code>[62/4f8c0d]</code>) that are printed before each job point to the sub-directory within the pipeline’s work-dir that the this process is running in (every individual process runs in its own dir). This can be handy for troubleshooting, or even just to take a closer look at what exactly the pipeline is running.</p>
 <p>Let’s take a look at the contents of the work-dir:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> X</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /fs/scratch/PAS2700/week6/nfc-rnaseq/<span class="va">$USER</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>TODO</code></pre>
 </div>
 </div>

@@ -705,26 +705,26 @@ CITATIONS.md  lib                 modules.json  README.md</code></pre>
 <h2 data-number="4" class="anchored" data-anchor-id="defining-inputs-and-outputs"><span class="header-section-number">4</span> Defining inputs and outputs</h2>
 <p>Next, we will define the pipeline’s inputs and outputs in the runner script. We’ll save these in variables, which we’ll later pass as arguments to the primary script. We will need the following inputs:</p>
 <ul>
-<li>Input 1: A sample sheet: a text file pointing to the FASTQ files</li>
-<li>Input 2: A reference genome assembly file (FASTA)</li>
-<li>Input 3: A reference genome annotation file (GTF)</li>
+<li>Input 1: A sample sheet: a text file pointing to the FASTQ files (we’ll create this in a bit)</li>
+<li>Input 2: A FASTA reference genome assembly file (we already have this)</li>
+<li>Input 3: A GTF reference genome annotation file (we already have this)</li>
 </ul>
 <p><em>(If you’re not familiar with FASTA or GTF files,</em> <em>take a look a <a href="#self-study-ii-reference-genome-files">this self-study section at the bottom of this page</a>.)</em></p>
-<p>Next, we will need these outputs:</p>
+<p>And we will need these outputs:</p>
 <ul>
 <li>Output 1: The desired output dir for the final pipeline output</li>
 <li>Output 2: The desired Nextflow “workdir” for the initial pipeline output</li>
 </ul>
 <div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [Paste this into run/run.sh and then run it in the terminal]</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Defining the inputs</span></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="va">samplesheet</span><span class="op">=</span><span class="st">"</span><span class="va">$outdir</span><span class="st">"</span>/nfc_samplesheet.csv</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="va">fasta</span><span class="op">=</span>../../garrigos_data/ref/GCF_016801865.2.fna</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="va">gtf</span><span class="op">=</span>../../garrigos_data/ref/GCF_016801865.2.gtf</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Defining the outputs</span></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="va">outdir</span><span class="op">=</span>results/nfc-rnaseq</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="va">workdir</span><span class="op">=</span>/fs/scratch/PAS2700/week6/nfc-rnaseq/<span class="va">$USER</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Here is how we will eventually run the primary script (that we have not yet written), passing those inputs and outputs as arguments:</p>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Defining the pipeline outputs</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="va">outdir</span><span class="op">=</span>results/nfc-rnaseq</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="va">workdir</span><span class="op">=</span>/fs/scratch/PAS2700/week6/nfc-rnaseq/<span class="va">$USER</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Defining the pipeline inputs</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="va">samplesheet</span><span class="op">=</span><span class="st">"</span><span class="va">$outdir</span><span class="st">"</span>/nfc_samplesheet.csv</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a><span class="va">fasta</span><span class="op">=</span>../../garrigos_data/ref/GCF_016801865.2.fna</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="va">gtf</span><span class="op">=</span>../../garrigos_data/ref/GCF_016801865.2.gtf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Just to give you an idea, here is how we will eventually run the primary script (that we have not yet written), passing those inputs and outputs as arguments:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [Don't copy or run this yet]</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> scripts/nfc-rnaseq.sh <span class="st">"</span><span class="va">$samplesheet</span><span class="st">"</span> <span class="st">"</span><span class="va">$fasta</span><span class="st">"</span> <span class="st">"</span><span class="va">$gtf</span><span class="st">"</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span> <span class="st">"</span><span class="va">$workdir</span><span class="st">"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr style="height:1pt; visibility:hidden;">
@@ -761,7 +761,7 @@ CONTROL_REP1,AEG588A1_S1_L004_R1_001.fastq.gz,AEG588A1_S1_L004_R2_001.fastq.gz,a
 <li>R2 FASTQ file path (idem).</li>
 <li>Strandedness: <code>unstranded</code>, <code>reverse</code>, <code>forward</code>, or <code>auto</code>. This data is forward-stranded, so we’ll use <code>forward</code>.</li>
 </ul>
-<p>We will create this file with a helper script that comes with the pipeline. We’ll tell this script about the strandedness of the reads, the suffices of the R1 and R2 FASTQ files, and the input FASTQ dir (<code>data/fastq</code>) and the output file (<code>$samplesheet</code>):</p>
+<p>We will create this file with a helper script that comes with the pipeline, and tell the script about the strandedness of the reads, the R1 and R2 FASTQ file suffices, the input FASTQ dir (<code>data/fastq</code>), and the output file (<code>$samplesheet</code>):</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [Paste this into run/run.sh and then run it in the terminal]</span></span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the dir that will contain the sample sheet</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span></span>
@@ -795,10 +795,22 @@ ERR10802871,../../garrigos_data/fastq/ERR10802871_R1.fastq.gz,../../garrigos_dat
 <div class="sourceCode" id="cb21"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [Paste this into run/run.sh and then run it in the terminal]</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a config file for batch job submissions</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="st">process.executor = 'slurm'</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="st">process.executor='slurm'</span></span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="st">process.clusterOptions='--account=PAS2700'</span></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="st">"</span> <span class="op">&gt;</span> nextflow.config</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="co"># (This is a way you can use echo to print multiple lines to a file)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="st">"</span> <span class="op">&gt;</span> nextflow.config</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Multi-line echo strings
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>It might look odd, but you can include newlines in <code>echo</code> strings as shown above. Note also that we are using single quotes (<code>'...'</code>) inside the string, because a double quote would mark the end the string.</p>
+</div>
+</div>
 <p><br></p>
 </section>
 </section>
@@ -969,14 +981,14 @@ Not sure your <code>run.sh</code> script is complete, or getting errors? Click f
 <span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">--container-cache-utilisation</span> amend <span class="dt">\</span></span>
 <span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">--download-configuration</span></span>
 <span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Defining the inputs</span></span>
-<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a><span class="va">samplesheet</span><span class="op">=</span><span class="st">"</span><span class="va">$outdir</span><span class="st">"</span>/nfc_samplesheet.csv</span>
-<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a><span class="va">fasta</span><span class="op">=</span>../../garrigos_data/ref/GCF_016801865.2.fna</span>
-<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a><span class="va">gtf</span><span class="op">=</span>../../garrigos_data/ref/GCF_016801865.2.gtf</span>
-<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Defining the outputs</span></span>
-<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a><span class="va">outdir</span><span class="op">=</span>results/nfc-rnaseq</span>
-<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a><span class="va">workdir</span><span class="op">=</span>/fs/scratch/PAS2700/week6/nfc-rnaseq/<span class="va">$USER</span></span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Defining the pipeline outputs</span></span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a><span class="va">outdir</span><span class="op">=</span>results/nfc-rnaseq</span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a><span class="va">workdir</span><span class="op">=</span>/fs/scratch/PAS2700/week6/nfc-rnaseq/<span class="va">$USER</span></span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a><span class="co"># Defining the pipeline inputs</span></span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a><span class="va">samplesheet</span><span class="op">=</span><span class="st">"</span><span class="va">$outdir</span><span class="st">"</span>/nfc_samplesheet.csv</span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a><span class="va">fasta</span><span class="op">=</span>../../garrigos_data/ref/GCF_016801865.2.fna</span>
+<span id="cb30-24"><a href="#cb30-24" aria-hidden="true" tabindex="-1"></a><span class="va">gtf</span><span class="op">=</span>../../garrigos_data/ref/GCF_016801865.2.gtf</span>
 <span id="cb30-25"><a href="#cb30-25" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-26"><a href="#cb30-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the dir that will contain the sample sheet</span></span>
 <span id="cb30-27"><a href="#cb30-27" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> <span class="at">-p</span> <span class="st">"</span><span class="va">$outdir</span><span class="st">"</span></span>
@@ -991,7 +1003,7 @@ Not sure your <code>run.sh</code> script is complete, or getting errors? Click f
 <span id="cb30-36"><a href="#cb30-36" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb30-37"><a href="#cb30-37" aria-hidden="true" tabindex="-1"></a><span class="co"># Create a config file for batch job submissions</span></span>
 <span id="cb30-38"><a href="#cb30-38" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"</span></span>
-<span id="cb30-39"><a href="#cb30-39" aria-hidden="true" tabindex="-1"></a><span class="st">process.executor = 'slurm'</span></span>
+<span id="cb30-39"><a href="#cb30-39" aria-hidden="true" tabindex="-1"></a><span class="st">process.executor='slurm'</span></span>
 <span id="cb30-40"><a href="#cb30-40" aria-hidden="true" tabindex="-1"></a><span class="st">process.clusterOptions='--account=PAS2700'</span></span>
 <span id="cb30-41"><a href="#cb30-41" aria-hidden="true" tabindex="-1"></a><span class="st">"</span> <span class="op">&gt;</span> nextflow.config</span>
 <span id="cb30-42"><a href="#cb30-42" aria-hidden="true" tabindex="-1"></a></span>
@@ -1010,7 +1022,7 @@ Not sure your <code>run.sh</code> script is complete, or getting errors? Click f
   27767854 serial-40 nfc-rnas   jelmer  RUNNING    1:33   6:00:00      1 p0219</code></pre>
 <p>In the example output above, the only running job is the one we directly submitted, i.e.&nbsp;the main Nextflow process. The <code>NAME</code> column is the script’s name, <code>nfc-rnaseq.sh</code> (truncated to <code>nfc-rnas</code>).</p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1019,7 +1031,7 @@ See examples of <code>squeue</code> output that includes Nextflow-submitted jobs
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>The top job, with partial name <code>nf-NFCOR</code>, is a job that’s been submitted by Nextflow:</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="ex">squeue</span> <span class="at">-u</span> <span class="va">$USER</span> <span class="at">-l</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1107,20 +1119,18 @@ Core Nextflow options
 </figure>
 </div>
 <p>In the Slurm log file, pipeline progress is shown in the following way — you can only see which jobs are being submitted, not when they finish<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a>:</p>
-<pre class="bash-out-solo"><code>[e5/da8328] Submitted process &gt; NFCORE_RNASEQ:RNASEQ:PREPARE_GENOME:GTF_FILTER (GCF_016801865.2.fna)
-[b5/9427a1] Submitted process &gt; NFCORE_RNASEQ:RNASEQ:PREPARE_GENOME:CUSTOM_GETCHROMSIZES (GCF_016801865.2.fna)
-[05/e0e09f] Submitted process &gt; NFCORE_RNASEQ:RNASEQ:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:TRIMGALORE (ERR10802863)
-[25/a6c2f5] Submitted process &gt; NFCORE_RNASEQ:RNASEQ:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:FASTQC (ERR10802863)
-[24/cef9a0] Submitted process &gt; NFCORE_RNASEQ:RNASEQ:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:TRIMGALORE (ERR10802864)
-[b1/9cfa7e] Submitted process &gt; NFCORE_RNASEQ:RNASEQ:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:FASTQC (ERR10802864)
-[c4/3107c1] Submitted process &gt; NFCORE_RNASEQ:RNASEQ:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:TRIMGALORE (ERR10802865)
-[7e/92ec89] Submitted process &gt; NFCORE_RNASEQ:RNASEQ:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:TRIMGALORE (ERR10802866)
-[01/f7ccfb] Submitted process &gt; NFCORE_RNASEQ:RNASEQ:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:FASTQC (ERR10802866)
-[42/4b4da2] Submitted process &gt; NFCORE_RNASEQ:RNASEQ:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:TRIMGALORE (ERR10802868)
-[8c/fe6ca5] Submitted process &gt; NFCORE_RNASEQ:RNASEQ:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:TRIMGALORE (ERR10802867)
-[e6/a12ec8] Submitted process &gt; NFCORE_RNASEQ:RNASEQ:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:FASTQC (ERR10802867)
-[2e/f9059d] Submitted process &gt; NFCORE_RNASEQ:RNASEQ:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:FASTQC (ERR10802865)
-[de/2735d1] Submitted process &gt; NFCORE_RNASEQ:RNASEQ:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:FASTQC (ERR10802868)</code></pre>
+<pre class="bash-out-solo"><code>[6e/d95b6f] Submitted process &gt; NFCORE_RNASEQ:RNASEQ:PREPARE_GENOME:CUSTOM_GETCHROMSIZES (GCF_016801865.2.fna)
+[ee/eba07d] Submitted process &gt; NFCORE_RNASEQ:RNASEQ:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:FASTQC (ERR10802864)
+[28/131e16] Submitted process &gt; NFCORE_RNASEQ:RNASEQ:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:FASTQC (ERR10802863)
+[36/22cf36] Submitted process &gt; NFCORE_RNASEQ:RNASEQ:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:TRIMGALORE (ERR10802863)
+[59/402585] Submitted process &gt; NFCORE_RNASEQ:RNASEQ:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:TRIMGALORE (ERR10802864)
+[c3/27b16d] Submitted process &gt; NFCORE_RNASEQ:RNASEQ:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:FASTQC (ERR10802865)
+[b0/f78597] Submitted process &gt; NFCORE_RNASEQ:RNASEQ:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:TRIMGALORE (ERR10802865)
+[4c/253978] Submitted process &gt; NFCORE_RNASEQ:RNASEQ:PREPARE_GENOME:GTF_FILTER (GCF_016801865.2.fna)
+[39/264a8e] Submitted process &gt; NFCORE_RNASEQ:RNASEQ:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:FASTQC (ERR10802866)
+[ec/6aa13c] Submitted process &gt; NFCORE_RNASEQ:RNASEQ:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:TRIMGALORE (ERR10802866)
+[dd/73a5e4] Submitted process &gt; NFCORE_RNASEQ:RNASEQ:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:FASTQC (ERR10802868)
+[d8/c1bb3e] Submitted process &gt; NFCORE_RNASEQ:RNASEQ:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:FASTQC (ERR10802867)</code></pre>
 <details>
 <summary>
 You should also see the following warning among the job submissions <em>(Click to expand)</em>
@@ -1155,9 +1165,36 @@ Work-dir paths and output
 </div>
 <div class="callout-body-container callout-body">
 <p>The hexadecimals between square brackets (e.g.&nbsp;<code>[62/4f8c0d]</code>) that are printed before each job point to the sub-directory within the pipeline’s work-dir that the this process is running in (every individual process runs in its own dir). This can be handy for troubleshooting, or even just to take a closer look at what exactly the pipeline is running.</p>
-<p>Let’s take a look at the contents of the work-dir:</p>
+<ul>
+<li><p>First, list the contents of the top-level work-dir:</p>
 <div class="sourceCode" id="cb43"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> /fs/scratch/PAS2700/week6/nfc-rnaseq/<span class="va">$USER</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre class="bash-out"><code>TODO</code></pre>
+<pre class="bash-out"><code>28  36  39  59  6e  b0  b7  c3  c9  collect-file  d5  d8  da  dd  e0  ec  ee  tmp</code></pre></li>
+<li><p>Let’s look at the files for one of the processes (jobs) we saw in the log file, the last FastQC process, which had the workdir reference <code>[d8/c1bb3e]</code> — we’ll use the <code>-a</code> option to <code>ls</code> so hidden files are also listed, some of which are of interest:</p>
+<div class="sourceCode" id="cb45"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># (The full name of the `c1bb3e` dir is much longer, but these characters uniquely</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="co">#  identify it, so we can use a *)</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-a</span> /fs/scratch/PAS2700/week6/nfc-rnaseq/jelmer/d8/c1bb3e<span class="pp">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>.               .command.err  .command.run    ERR10802867_1_fastqc.html  ERR10802867_2_fastqc.html  ERR10802867_R1.fastq.gz  versions.yml
+..              .command.log  .command.sh     ERR10802867_1_fastqc.zip   ERR10802867_2_fastqc.zip   ERR10802867_R2.fastq.gz
+.command.begin  .command.out  .command.trace  ERR10802867_1.gz           ERR10802867_2.gz           .exitcode</code></pre></li>
+<li><p>To see exactly how FastQC was run by the pipeline, show the contents of the <code>.command.sh</code> file:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> /fs/scratch/PAS2700/week6/nfc-rnaseq/jelmer/d8/c1bb3ea3e697573b4d5860308b2690/.command.sh </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>#!/bin/bash -euo pipefail
+printf "%s %s\n" ERR10802867_R1.fastq.gz ERR10802867_1.gz ERR10802867_R2.fastq.gz ERR10802867_2.gz | while read old_name new_name; do
+    [ -f "${new_name}" ] || ln -s $old_name $new_name
+done
+
+fastqc \
+    --quiet \
+    --threads 6 \
+    ERR10802867_1.gz ERR10802867_2.gz
+
+cat &lt;&lt;-END_VERSIONS &gt; versions.yml
+"NFCORE_RNASEQ:RNASEQ:FASTQ_FASTQC_UMITOOLS_TRIMGALORE:FASTQC":
+    fastqc: $( fastqc --version | sed '/FastQC v/!d; s/.*v//' )
+END_VERSIONS</code></pre></li>
+<li><p>Logging and errors would end up in the <code>.command.log</code>, <code>.command.out</code>, and/or <code>.command.err</code> files (when there’s an error, at least part of it will be printed in your Slurm log, but not always the full error).</p></li>
+<li><p>The input files (as links/shortcuts, so the files don’t have to be copied in fill) and output files are also present in this dir, such as <code>ERR10802867_1_fastqc.html</code> in this case.</p></li>
+</ul>
 </div>
 </div>
 <p><br></p>
@@ -1167,7 +1204,7 @@ Work-dir paths and output
 <h2 data-number="7" class="anchored" data-anchor-id="the-pipelines-outputs"><span class="header-section-number">7</span> The pipeline’s outputs</h2>
 <p>You pipeline run may finish in as little as 15-30 minutes with our small test data set, but this can vary substantially, mostly due to variation in Slurm queue times (the pipeline makes quite large Slurm resource requests!).</p>
 <p>Once it has finished, you can take a look at the files and dirs in the specified output dir:</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span> results/nfc-rnaseq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span> results/nfc-rnaseq</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>total 83K
 drwxr-xr-x   2 jelmer PAS0471  16K Mar 25 13:02 fastqc
 drwxr-xr-x   2 jelmer PAS0471 4.0K Mar 25 12:58 logs
@@ -1180,20 +1217,21 @@ drwxr-xr-x  33 jelmer PAS0471  16K Mar 25 13:12 star_salmon
 drwxr-xr-x   3 jelmer PAS0471 4.0K Mar 25 13:02 trimgalore</code></pre>
 <p>The two most important outputs are:</p>
 <ul>
-<li><p>The <strong>MultiQC report</strong> (<code>&lt;outdir&gt;/multiqc/star_salmon/multiqc_report.html</code>): this has lots of QC summaries of the data, both the raw data and the alignments, and even a gene expression PCA plot.</p></li>
+<li><p>The <strong>MultiQC report</strong> (<code>&lt;outdir&gt;/multiqc/star_salmon/multiqc_report.html</code>): this has lots of QC summaries of the data, both the raw data and the alignments, and even a gene expression PCA plot. Importantly, this file also lists the <strong><em>versions</em></strong> of each piece of software that was used by the pipeline.</p></li>
 <li><p>The <strong>gene count table</strong> (<code>&lt;outdir&gt;/star_salmon/salmon.merged.gene_counts_length_scaled.tsv</code>): This is what you would use for downstream analysis such as differential expression and functional enrichment analysis.</p></li>
 </ul>
 <hr style="height:1pt; visibility:hidden;">
 <section id="opening-the-multiqc-report" class="level5">
 <h5 class="anchored" data-anchor-id="opening-the-multiqc-report">Opening the MultiQC report</h5>
 <p>If your run has finished, you can open your MultiQC report — because it’s an HTML file, you’ll have to download it and open it on your own computer. To download the MultiQC HTML file at <code>results/nfc-rnaseq/multiqc/star_salmon/multiqc_report.html</code>, find this file in the VS Code explorer (file browser) on the left, right-click on it, and select <code>Download...</code>. You can download it to any location on your computer. Then find the file on your computer and click on it to open it — it should be opened in your browser.</p>
-<p>Alternatively, you can find a copy of the MultiQC report on this website, <a href="img/multiqc_report.html">here</a>, and open it in a separate browser tab. There’s a lot of information in the report — if you want to learn more, please go through the self-study section below.</p>
-<p><br></p>
+<p>Alternatively, you can find a <strong><a href="img/multiqc_report.html">copy of the MultiQC report on this website</a></strong>, and open it in a separate browser tab. There’s a lot of information in the report — if you want to learn more, please go through the self-study section below.</p>
+<p><br><br></p>
 </section>
 </section>
 <section id="self-study-i-a-closer-look-at-the-output" class="level2" data-number="8">
 <h2 data-number="8" class="anchored" data-anchor-id="self-study-i-a-closer-look-at-the-output"><span class="header-section-number">8</span> Self-study I: A closer look at the output</h2>
-<p>If you’re interested in RNA-seq data analysis, you may want to take a closer look at the outputs of the pipeline, especially the MultiQC report.</p>
+<p>If you’re interested in RNA-seq data analysis, you may want to take a closer look at the outputs of the pipeline, especially the <a href="img/multiqc_report.html">MultiQC report</a>.</p>
+<hr style="height:1pt; visibility:hidden;">
 <section id="the-multiqc-report" class="level3" data-number="8.1">
 <h3 data-number="8.1" class="anchored" data-anchor-id="the-multiqc-report"><span class="header-section-number">8.1</span> The MultiQC report</h3>
 <p>Here are some items in that report to pay particular attention to, with example figures from this data set:</p>
@@ -1335,24 +1373,25 @@ drwxr-xr-x   3 jelmer PAS0471 4.0K Mar 25 13:02 trimgalore</code></pre>
 <figcaption>This libary is clearly forward-stranded, as we indicated in our sample sheet.</figcaption>
 </figure>
 </div>
-<p>The <strong>STAR_SALMON DESeq2 PCA</strong> plot is from a Principal Component Analysis (PCA) run on the final gene count table, thus showing overall patterns of gene expression similarity among samples.</p>
+<p>The <strong>STAR_SALMON DESeq2 PCA</strong> plot is from a Principal Component Analysis (PCA) run on the final gene count table, showing overall patterns of gene expression similarity among samples.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="img/multiqc_pca.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%"></p>
-<figcaption>The sampels clear form two distinct groups along PC1.</figcaption>
+<figcaption>The samples clearly form two distinct groups along PC1.</figcaption>
 </figure>
 </div>
+<p>Finally, the section <strong>nf-corer/rnaseq Software Versions</strong> way at the bottom lists the version of all programs used by the pipeline!</p>
 <hr style="height:1pt; visibility:hidden;">
 </section>
 <section id="the-gene-count-table" class="level3" data-number="8.2">
 <h3 data-number="8.2" class="anchored" data-anchor-id="the-gene-count-table"><span class="header-section-number">8.2</span> The gene count table</h3>
 <p>The gene count table has one row for each gene and one column for each sample, with the first two columns being the <code>gene_id</code> and <code>gene_name</code><a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a>. Each cell’s value contains the read count estimate for a specific gene in a specific sample:</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [Paste this into the run/run.sh script and run it in the terminal]</span></span>
-<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb47-3"><a href="#cb47-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Take a look at the count table:</span></span>
-<span id="cb47-4"><a href="#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ('column -t' lines up columns, and less's '-S' option turns off line wrapping)</span></span>
-<span id="cb47-5"><a href="#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="va">counts</span><span class="op">=</span>results/nfc-rnaseq/star_salmon/salmon.merged.gene_counts_length_scaled.tsv</span>
-<span id="cb47-6"><a href="#cb47-6" aria-hidden="true" tabindex="-1"></a><span class="ex">column</span> <span class="at">-t</span> <span class="st">"</span><span class="va">$counts</span><span class="st">"</span> <span class="kw">|</span> <span class="fu">less</span> <span class="at">-S</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># [Paste this into the run/run.sh script and run it in the terminal]</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Take a look at the count table:</span></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="co"># ('column -t' lines up columns, and less's '-S' option turns off line wrapping)</span></span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="va">counts</span><span class="op">=</span>results/nfc-rnaseq/star_salmon/salmon.merged.gene_counts_length_scaled.tsv</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="ex">column</span> <span class="at">-t</span> <span class="st">"</span><span class="va">$counts</span><span class="st">"</span> <span class="kw">|</span> <span class="fu">less</span> <span class="at">-S</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>gene_id             gene_name           ERR10802863        ERR10802864        ERR10802865        ERR10802866        ERR10802867        ERR10802868       
 ATP6                ATP6                163.611027228009   178.19903533081    82.1025390726658   307.649552934133   225.78249209207    171.251589309856  
 ATP8                ATP8                0                  1.01047333891691   0                  0                  0                  0                 
@@ -1407,13 +1446,13 @@ Count table versions
 <li>Sequence downloads from NCBI such as a single gene/protein or other GenBank entry</li>
 </ul>
 <p>The following example FASTA file contains two entries:</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>unique_sequence_ID <span class="ex">Optional</span> description</span>
-<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a><span class="ex">ATTCATTAAAGCAGTTTATTGGCTTAATGTACATCAGTGAAATCATAAATGCTAAAAA</span></span>
-<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>unique_sequence_ID2</span>
-<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="ex">ATTCATTAAAGCAGTTTATTGGCTTAATGTACATCAGTGAAATCATAAATGCTAAATG</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>unique_sequence_ID <span class="ex">Optional</span> description</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="ex">ATTCATTAAAGCAGTTTATTGGCTTAATGTACATCAGTGAAATCATAAATGCTAAAAA</span></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;</span>unique_sequence_ID2</span>
+<span id="cb53-4"><a href="#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="ex">ATTCATTAAAGCAGTTTATTGGCTTAATGTACATCAGTGAAATCATAAATGCTAAATG</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Each entry consists of a <strong>header</strong> line and the <strong>sequence</strong> itself. Header lines <strong>start with a <code>&gt;</code></strong> (greater-than sign) and are otherwise “free form”, though the idea is that they provide an identifier for the sequence that follows.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></p>
 <div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-8-contents" aria-controls="callout-8" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1422,7 +1461,7 @@ FASTA file name extensions are variable: <code>.fa</code>, <code>.fasta</code>, 
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-8" class="callout-8-contents callout-collapse collapse">
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
 <li>“Generic” extensions are <code>.fasta</code> and <code>.fa</code> (e.g: <code>culex_assembly.fasta</code>)</li>
@@ -1436,12 +1475,12 @@ FASTA file name extensions are variable: <code>.fa</code>, <code>.fasta</code>, 
 <section id="your-culex-genome-assembly-fasta" class="level4">
 <h4 class="anchored" data-anchor-id="your-culex-genome-assembly-fasta">Your <em>Culex</em> genome assembly FASTA</h4>
 <p>Your reference genome files are in <code>data/ref</code>:</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span> data/ref</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span> data/ref</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>-rw------- 1 jelmer PAS0471 547M Jan 22 12:34 GCF_016801865.2.fna
 -rw------- 1 jelmer PAS0471 123M Jan 22 12:34 GCF_016801865.2.gtf</code></pre>
 <p>While we can easily open small to medium-size files in the editor pane, “visual editors” like that do not work well for larger files like these.</p>
 <p>A handy command to view text files of any size is <strong><code>less</code></strong>, which opens them up in a “pager” within your shell – you’ll see what that means if you try it with one of the assembly FASTA file:</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> data/ref/GCF_016801865.2.fna</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> data/ref/GCF_016801865.2.fna</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>&gt;NC_068937.1 Culex pipiens pallens isolate TS chromosome 1, TS_CPP_V2, whole genome shotgun sequence
 aagcccttttatggtcaaaaatatcgtttaacttgaatatttttccttaaaaaataaataaatttaagcaaacagctgag
 tagatgtcatctactcaaatctacccataagcacacccctgttcaatttttttttcagccataagggcgcctccagtcaa
@@ -1456,7 +1495,7 @@ tccttaaaaaataaataaatttaagcaaacagctgagtagatgtcatctactcaaatctacccataagcacacccctgga
 CCTAATTCATGGAGGTGAATAGAGCATACGTAAATACAAAACTCATGACATTAGCCTGTAAGGATTGTGTaattaatgca
 aaaatattgaTAGAATGAAAGATGCAAGTCccaaaaattttaagtaaatgaATAGTAATCATAAAGATAActgatgatga</code></pre>
 <div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-10-contents" aria-controls="callout-10" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -1465,7 +1504,7 @@ Side note: Lowercase vs.&nbsp;uppercase nucleotide letters? <em>(Click to expand
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div id="callout-10" class="callout-10-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>As you have probably noticed, nucleotide bases are typically typed in uppercase (<code>A</code>, <code>C</code>, <code>G</code>, <code>T</code>). What does the mixture of lowercase and uppercase bases in the <em>Cx. pipiens</em> assembly FASTA mean, then?</p>
 <p>Lowercase bases are what is called “soft-masked”: they are repetitive sequences, and bioinformatics programs will treat them differently than non-repetitive sequences, which are in uppercase.</p>
@@ -1501,7 +1540,7 @@ NC_000001   RefSeq  exon    11874   12227   .       +       .       gene_id "DDX
 <section id="your-culex-gtf-file" class="level4">
 <h4 class="anchored" data-anchor-id="your-culex-gtf-file">Your <em>Culex</em> GTF file</h4>
 <p>For our <em>Cx. pipiens</em> reference genome, we only have a GTF file.<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a> Take a look at it, again with <code>less</code> (but now with the <code>-S</code> option):</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> <span class="at">-S</span> data/ref/GCF_016801865.2.gtf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb59"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">less</span> <span class="at">-S</span> data/ref/GCF_016801865.2.gtf</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>#gtf-version 2.2
 #!genome-build TS_CPP_V2
 #!genome-build-accession NCBI_Assembly:GCF_016801865.2

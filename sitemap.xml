@@ -50,7 +50,7 @@
   </url>
   <url>
     <loc>https://jelmerp.github.io/pracs-sp24/index.html</loc>
-    <lastmod>2024-04-09T17:03:10.411Z</lastmod>
+    <lastmod>2024-04-11T14:49:57.219Z</lastmod>
   </url>
   <url>
     <loc>https://jelmerp.github.io/pracs-sp24/finalproj/submission.html</loc>
@@ -61,72 +61,76 @@
     <lastmod>2024-04-05T15:23:39.717Z</lastmod>
   </url>
   <url>
-    <loc>https://jelmerp.github.io/pracs-sp24/week0/osc-setup.html</loc>
-    <lastmod>2024-02-29T01:25:34.419Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jelmerp.github.io/pracs-sp24/week1/removed.html</loc>
-    <lastmod>2024-02-25T03:33:25.564Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jelmerp.github.io/pracs-sp24/week1/w1_overview.html</loc>
-    <lastmod>2024-02-26T22:30:30.663Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jelmerp.github.io/pracs-sp24/week1/w1_osc.html</loc>
-    <lastmod>2024-02-27T16:51:27.223Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jelmerp.github.io/pracs-sp24/week6/w6_exercises.html</loc>
-    <lastmod>2024-04-02T20:28:10.074Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jelmerp.github.io/pracs-sp24/week6/w6_overview.html</loc>
-    <lastmod>2024-04-05T20:11:10.532Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jelmerp.github.io/pracs-sp24/week6/w6_1_pipelines.html</loc>
-    <lastmod>2024-04-09T17:19:43.254Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jelmerp.github.io/pracs-sp24/ref/shell.html</loc>
-    <lastmod>2024-02-24T21:16:15.006Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jelmerp.github.io/pracs-sp24/ref/further-resources.html</loc>
-    <lastmod>2024-02-25T04:18:13.599Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jelmerp.github.io/pracs-sp24/ref/glossary.html</loc>
-    <lastmod>2024-02-18T14:25:23.852Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jelmerp.github.io/pracs-sp24/week6/w6_2_nfcore.html</loc>
-    <lastmod>2024-04-10T20:55:30.259Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jelmerp.github.io/pracs-sp24/week6/w6_3_nextflow.html</loc>
-    <lastmod>2024-04-04T20:59:03.699Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jelmerp.github.io/pracs-sp24/week1/w1_course-intro.html</loc>
-    <lastmod>2024-02-27T19:08:08.046Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jelmerp.github.io/pracs-sp24/week1/w1_shell.html</loc>
-    <lastmod>2024-03-04T14:09:28.512Z</lastmod>
-  </url>
-  <url>
-    <loc>https://jelmerp.github.io/pracs-sp24/week1/w1_exercises.html</loc>
-    <lastmod>2024-03-04T17:45:03.499Z</lastmod>
+    <loc>https://jelmerp.github.io/pracs-sp24/week7/w7_1.html</loc>
+    <lastmod>2024-04-11T14:49:25.716Z</lastmod>
   </url>
   <url>
     <loc>https://jelmerp.github.io/pracs-sp24/week0/overview.html</loc>
     <lastmod>2024-02-24T17:23:35.087Z</lastmod>
   </url>
   <url>
+    <loc>https://jelmerp.github.io/pracs-sp24/week1/w1_exercises.html</loc>
+    <lastmod>2024-03-04T17:45:03.499Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jelmerp.github.io/pracs-sp24/week1/w1_shell.html</loc>
+    <lastmod>2024-03-04T14:09:28.512Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jelmerp.github.io/pracs-sp24/week1/w1_course-intro.html</loc>
+    <lastmod>2024-02-27T19:08:08.046Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jelmerp.github.io/pracs-sp24/week6/w6_3_nextflow.html</loc>
+    <lastmod>2024-04-04T20:59:03.699Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jelmerp.github.io/pracs-sp24/week6/w6_2_nfcore.html</loc>
+    <lastmod>2024-04-10T20:55:30.259Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jelmerp.github.io/pracs-sp24/ref/glossary.html</loc>
+    <lastmod>2024-02-18T14:25:23.852Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jelmerp.github.io/pracs-sp24/ref/further-resources.html</loc>
+    <lastmod>2024-02-25T04:18:13.599Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jelmerp.github.io/pracs-sp24/ref/shell.html</loc>
+    <lastmod>2024-02-24T21:16:15.006Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jelmerp.github.io/pracs-sp24/week6/w6_1_pipelines.html</loc>
+    <lastmod>2024-04-09T17:19:43.254Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jelmerp.github.io/pracs-sp24/week6/w6_overview.html</loc>
+    <lastmod>2024-04-11T14:31:28.192Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jelmerp.github.io/pracs-sp24/week6/w6_exercises.html</loc>
+    <lastmod>2024-04-11T18:07:49.494Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jelmerp.github.io/pracs-sp24/week1/w1_osc.html</loc>
+    <lastmod>2024-02-27T16:51:27.223Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jelmerp.github.io/pracs-sp24/week1/w1_overview.html</loc>
+    <lastmod>2024-02-26T22:30:30.663Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jelmerp.github.io/pracs-sp24/week1/removed.html</loc>
+    <lastmod>2024-02-25T03:33:25.564Z</lastmod>
+  </url>
+  <url>
+    <loc>https://jelmerp.github.io/pracs-sp24/week0/osc-setup.html</loc>
+    <lastmod>2024-02-29T01:25:34.419Z</lastmod>
+  </url>
+  <url>
     <loc>https://jelmerp.github.io/pracs-sp24/week7/w7_overview.html</loc>
-    <lastmod>2024-02-18T02:56:41.748Z</lastmod>
+    <lastmod>2024-04-11T14:47:15.328Z</lastmod>
   </url>
   <url>
     <loc>https://jelmerp.github.io/pracs-sp24/finalproj/info.html</loc>

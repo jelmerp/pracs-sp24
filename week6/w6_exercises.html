@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -125,7 +159,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="dropdown-item" href="../week6/w6_overview.html">
  <span class="dropdown-text">Week 6: Pipelines</span></a>
   </li>  
-        <li class="dropdown-header">Week 7: Course recap (TBA)</li>
+        <li>
+    <a class="dropdown-item" href="../week7/w7_overview.html">
+ <span class="dropdown-text">Week 7: Course recap</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -220,7 +257,10 @@ ul.task-list li input[type="checkbox"] {
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Week 7: Course recap</li>
-        <li class="dropdown-header">Course recap (TBA)</li>
+        <li>
+    <a class="dropdown-item" href="../week7/w7_1.html">
+ <span class="dropdown-text">Course recap &amp; [TBA]</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -251,7 +291,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
         <li>
     <a class="dropdown-item" href="../week6/w6_exercises.html">
- <span class="dropdown-text">Week 6: Nextflow</span></a>
+ <span class="dropdown-text">Week 6: Pipelines</span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Assignments</li>
@@ -352,7 +392,27 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction-and-setting-up" id="toc-introduction-and-setting-up" class="nav-link active" data-scroll-target="#introduction-and-setting-up">Introduction and setting up</a>
+  <ul class="collapse">
+  <li><a href="#setting-up" id="toc-setting-up" class="nav-link" data-scroll-target="#setting-up">Setting up</a></li>
+  </ul></li>
+  <li><a href="#exercise-1-align-reads-with-star" id="toc-exercise-1-align-reads-with-star" class="nav-link" data-scroll-target="#exercise-1-align-reads-with-star">Exercise 1: Align reads with STAR</a></li>
+  <li><a href="#exercise-2-quantify-gene-counts-with-salmon" id="toc-exercise-2-quantify-gene-counts-with-salmon" class="nav-link" data-scroll-target="#exercise-2-quantify-gene-counts-with-salmon">Exercise 2: Quantify gene counts with Salmon</a></li>
+  <li><a href="#exercise-3-summarize-qc-metrics-with-multiqc" id="toc-exercise-3-summarize-qc-metrics-with-multiqc" class="nav-link" data-scroll-target="#exercise-3-summarize-qc-metrics-with-multiqc">Exercise 3: Summarize QC metrics with MultiQC</a></li>
+  <li><a href="#exercise-4-ponder-your-runner-script" id="toc-exercise-4-ponder-your-runner-script" class="nav-link" data-scroll-target="#exercise-4-ponder-your-runner-script">Exercise 4: Ponder your runner script</a></li>
+  <li><a href="#solutions" id="toc-solutions" class="nav-link" data-scroll-target="#solutions">Solutions</a>
+  <ul class="collapse">
+  <li><a href="#exercise-1" id="toc-exercise-1" class="nav-link" data-scroll-target="#exercise-1">Exercise 1</a></li>
+  <li><a href="#exercise-2" id="toc-exercise-2" class="nav-link" data-scroll-target="#exercise-2">Exercise 2</a></li>
+  <li><a href="#exercise-3" id="toc-exercise-3" class="nav-link" data-scroll-target="#exercise-3">Exercise 3</a></li>
+  <li><a href="#exercise-4" id="toc-exercise-4" class="nav-link" data-scroll-target="#exercise-4">Exercise 4</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -388,13 +448,187 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+This page is still under construction.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
 <hr>
 <p><br></p>
-<p>Content TBA</p>
+<section id="introduction-and-setting-up" class="level2">
+<h2 class="anchored" data-anchor-id="introduction-and-setting-up">Introduction and setting up</h2>
+<p>These exercises mainly serve to practice more with organizing your scripts according to the strategy of using:</p>
+<ul>
+<li>Primary shell scripts that typically run a single bioinformatics tool for a single file or sample, and that accept e.g.&nbsp;a file name as an argument.</li>
+<li>A runner script that serves as an informal pipeline: it mainly contains code to run all the primary scripts, typically submitting those as batch jobs, and often using loops to do so.</li>
+</ul>
+<p>From last week, you already have primary scripts and runner script code to run FastQC and TrimGalore, and have used these to pre-process the Garrigos et al.&nbsp;RNA-seq reads. Here, you’ll add a few steps so that your runner script will more closely resemble something you might use in this course’s final project, or your research projects: it will be larger than the previous ones and will also contain consecutive steps, where the input of one step is the output of a previous step.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Primary script code
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>For your convenience, I will provide the scripts from last week, and there are also hints with the contents of the additional primary scripts. You should feel free to copy the latter as well if you run out of time, <em>so you are still able to think about and write your runner script,</em> <em>which is the main point of these exercises</em>.</p>
+</div>
+</div>
+<hr style="height:1pt; visibility:hidden;">
+<section id="setting-up" class="level3">
+<h3 class="anchored" data-anchor-id="setting-up">Setting up</h3>
+<ul>
+<li><p>Create and move into a dir for the exercises:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># You should be in /fs/ess/PAS2700/users/$USER</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> week06/exercises</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> week06/exercises</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Create dirs for primary scripts and for a runner script, the create the runner script and open it:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> scripts run</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">touch</span> run/run.sh</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>At the top of the runner script, add the following short description of what it does (modify the date, your name, and the path as needed):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2024-04-11, Jelmer Poelstra</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># - A runner script to run a simple RNA-seq analysis, creating a gene count table</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">#   from RNA-seq reads and a reference genome assembly and annotation.</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># - The steps are read QC and trimming, alignment, and quantification.</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># - The working dir is /fs/ess/PAS2700/users/jelmer/week06/exercises.</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># - I am working on the OSC Pitzer cluster.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+<li><p>Copy the primary scripts:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cp</span> <span class="at">-v</span> XX scripts/</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>TODO</code></pre></li>
+<li><p>Additionally, your runner script from last week’s exercises (<code>../../week05/exercsises/run/run.sh</code>) should have the loops to run submit these scripts for all samples. To make things easier, I’ve copied that code below — copy and paste this into your current <code>run/run.sh</code> script:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 1: Run FastQC for all FASTQ files</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> fastq_file <span class="kw">in</span> ../../garrigos_data/fastq/<span class="pp">*</span>fastq.gz<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="ex">sbatch</span> scripts/fastqc.sh <span class="st">"</span><span class="va">$fastq_file</span><span class="st">"</span> results/fastqc</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Step 2: Run TrimGalore for all FASTQ files</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> R1 <span class="kw">in</span> ../../garrigos_data/fastq/<span class="pp">*</span>_R1.fastq.gz<span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>    <span class="ex">sbatch</span> scripts/trimgalore.sh <span class="st">"</span><span class="va">$R1</span><span class="st">"</span> results/trimgalore</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
+</ul>
+<p><br></p>
+</section>
+</section>
+<section id="exercise-1-align-reads-with-star" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-1-align-reads-with-star">Exercise 1: Align reads with STAR</h2>
+<p>You will align (map) the <em>trimmed</em> reads to the reference genome with the program STAR, which is an aligner specifically designed for RNA-seq data<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<section id="a-index-the-reference-genomes" class="level4">
+<h4 class="anchored" data-anchor-id="a-index-the-reference-genomes">A: Index the reference genomes</h4>
+<p>When aligning reads, the first step is nearly always to create an index of the reference genome<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>. The script <code>scripts/star_index.sh</code> that you already copied has the code to do this (also shown in the box below), and takes XXX arguments:</p>
+<ol type="1">
+<li>The reference genome</li>
+<li>The output dir for the index files</li>
+</ol>
+<details>
+<summary>
+Click to see the code of the <code>star_index.sh</code> script
+</summary>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">TODO</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<p><i class="fa-solid fa-user-edit" aria-label="user-edit"></i> In your runner script, write code to submit the <code>scripts/star_index.sh</code> as a batch job, passing the appropriate arguments to the script (note that your reference genome files are in <code>../../garrigos_data/ref</code>). Then submit the job, monitor its progress, and when its done, check the output files and move the Slurm log file to somewhere in the output dir.</p>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+<section id="b-align-the-reads" class="level4">
+<h4 class="anchored" data-anchor-id="b-align-the-reads">B: Align the reads</h4>
+<p>Now you can align the reads to the reference genome (index). The script <code>scripts/star_align.sh</code> does this for <em>one sample</em> (two FASTQ files, R1 and R2) at a time, and takes XX arguments:</p>
+<ol type="1">
+<li>An R1 FASTQ file</li>
+<li>The reference genome index dir</li>
+<li>An output dir (this can be the same for each sample)</li>
+</ol>
+<details>
+<summary>
+Click to see the code of the <code>star_align.sh</code> script
+</summary>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">TODO</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<p><i class="fa-solid fa-user-edit" aria-label="user-edit"></i> In your runner script, write a <code>for</code> loop to submit a separate <code>scripts/star_align.sh</code> batch job for each sample. Then submit the jobs, monitor their progress, and when they are all done, check the output files and move the Slurm log files to somewhere in the output dir.</p>
+<p><br></p>
+</section>
+</section>
+<section id="exercise-2-quantify-gene-counts-with-salmon" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-2-quantify-gene-counts-with-salmon">Exercise 2: Quantify gene counts with Salmon</h2>
+<p><br></p>
+</section>
+<section id="exercise-3-summarize-qc-metrics-with-multiqc" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-3-summarize-qc-metrics-with-multiqc">Exercise 3: Summarize QC metrics with MultiQC</h2>
+<p><br></p>
+</section>
+<section id="exercise-4-ponder-your-runner-script" class="level2">
+<h2 class="anchored" data-anchor-id="exercise-4-ponder-your-runner-script">Exercise 4: Ponder your runner script</h2>
+<p><br></p>
+</section>
+<section id="solutions" class="level2">
+<h2 class="anchored" data-anchor-id="solutions">Solutions</h2>
+<section id="exercise-1" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-1">Exercise 1</h3>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+<section id="exercise-2" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-2">Exercise 2</h3>
+<p>A</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> slurm-star_index<span class="pp">*</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code># Starting script star_index.sh
+Thu Apr 11 13:44:02 EDT 2024
+# Input assembly FASTA:   ../../garrigos_data/ref/GCF_016801865.2.fna
+# Input annotation GTF:   ../../garrigos_data/ref/GCF_016801865.2.gtf
+# Output dir:             results/star/index
+# Numberr of threads:     16
+
+        /fs/ess/PAS0471/jelmer/conda/star/bin/STAR-avx2 --runMode genomeGenerate --genomeFastaFiles ../../garrigos_data/ref/GCF_016801865.2.fna --sjdbGTFfile ../../garrigos_data/ref/GCF_016801865.2.gtf --genomeDir results/star/index --runThreadN 16
+        STAR version: 2.7.11b   compiled: 2024-03-19T08:38:59+0000 :/opt/conda/conda-bld/star_1710837244939/work/source
+Apr 11 13:44:03 ..... started STAR run
+Apr 11 13:44:03 ... starting to generate Genome files
+Apr 11 13:44:11 ..... processing annotations GTF
+!!!!! WARNING: --genomeSAindexNbases 14 is too large for the genome size=566354144, which may cause seg-fault at the mapping step. Re-run genome generation with recommended --genomeSAindexNbases 13
+Apr 11 13:44:16 ... starting to sort Suffix Array. This may take a long time...
+Apr 11 13:44:18 ... sorting Suffix Array chunks and saving them to disk...
+Apr 11 13:45:31 ... loading chunks from disk, packing SA...
+Apr 11 13:45:43 ... finished generating suffix array
+Apr 11 13:45:43 ... generating Suffix Array index
+Apr 11 13:47:11 ... completed Suffix Array index
+Apr 11 13:47:11 ..... inserting junctions into the genome indices
+Apr 11 13:47:41 ... writing Genome to disk ...
+Apr 11 13:47:41 ... writing Suffix Array to disk ...
+Apr 11 13:47:43 ... writing SAindex to disk
+Apr 11 13:47:43 ..... finished successfully
+
+# Used STAR version:
+2.7.11b
+# Done with script star_index.sh
+Thu Apr 11 13:47:44 EDT 2024</code></pre>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+<section id="exercise-3" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-3">Exercise 3</h3>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+<section id="exercise-4" class="level3">
+<h3 class="anchored" data-anchor-id="exercise-4">Exercise 4</h3>
+<p><br><br></p>
 
 
+</section>
+</section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p> RNA-seq read alignment needs to be “splice-aware”: when the reads are mapped to the genome, introns are included in the reference but are (mostly) not present in the reads, as the reads are mostly mature mRNA with the introns spliced out. Therefore, a read may align as several disjunct fragments across introns!<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>The aligner will then align the reads to this index rather than the genome itself, which is much more efficient. These indices are aligner-specific, and can even differ among versions of the same aligner.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

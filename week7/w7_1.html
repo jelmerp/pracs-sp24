@@ -22,6 +22,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -175,7 +209,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
         <li>
     <a class="dropdown-item" href="../week3/w3_git3.html">
- <span class="dropdown-text"><em>(Git bonus material)</em></span></a>
+ <span class="dropdown-text"><em>(Bonus: Branching, collaborating, and undoing)</em></span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Week 4: Shell scripts</li>
@@ -189,7 +223,7 @@ ul.task-list li input[type="checkbox"] {
   </li>  
         <li>
     <a class="dropdown-item" href="../week4/w4_3_bonus.html">
- <span class="dropdown-text"><em>(Scripts bonus material)</em></span></a>
+ <span class="dropdown-text"><em>(Bonus: while loops, arrays, and more)</em></span></a>
   </li>  
     </ul>
   </li>
@@ -210,6 +244,10 @@ ul.task-list li input[type="checkbox"] {
         <li>
     <a class="dropdown-item" href="../week5/w5_3_slurm.html">
  <span class="dropdown-text">III: Slurm batch jobs</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../week5/w5_bonus_ssh.html">
+ <span class="dropdown-text"><em>(Bonus: Connecting with SSH)</em></span></a>
   </li>  
         <li><hr class="dropdown-divider"></li>
         <li class="dropdown-header">Week 6: Runner scripts and pipelines</li>
@@ -358,7 +396,24 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#brief-recap-of-what-you-learned-in-this-course" id="toc-brief-recap-of-what-you-learned-in-this-course" class="nav-link active" data-scroll-target="#brief-recap-of-what-you-learned-in-this-course"><span class="header-section-number">1</span> Brief recap of what you learned in this course</a></li>
+  <li><a href="#miscellaneous-notes" id="toc-miscellaneous-notes" class="nav-link" data-scroll-target="#miscellaneous-notes"><span class="header-section-number">2</span> Miscellaneous notes</a>
+  <ul class="collapse">
+  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices"><span class="header-section-number">2.1</span> Best practices</a></li>
+  <li><a href="#using-ssh-to-connect-to-osc" id="toc-using-ssh-to-connect-to-osc" class="nav-link" data-scroll-target="#using-ssh-to-connect-to-osc"><span class="header-section-number">2.2</span> Using SSH to connect to OSC</a></li>
+  </ul></li>
+  <li><a href="#file-transfer-to-and-from-osc-with-filezilla" id="toc-file-transfer-to-and-from-osc-with-filezilla" class="nav-link" data-scroll-target="#file-transfer-to-and-from-osc-with-filezilla"><span class="header-section-number">3</span> File transfer to and from OSC with FileZilla</a></li>
+  <li><a href="#downloading-files-at-the-command-line" id="toc-downloading-files-at-the-command-line" class="nav-link" data-scroll-target="#downloading-files-at-the-command-line"><span class="header-section-number">4</span> Downloading files at the command line</a>
+  <ul class="collapse">
+  <li><a href="#wget" id="toc-wget" class="nav-link" data-scroll-target="#wget"><span class="header-section-number">4.1</span> <code>wget</code></a></li>
+  <li><a href="#other-genomic-downloads" id="toc-other-genomic-downloads" class="nav-link" data-scroll-target="#other-genomic-downloads"><span class="header-section-number">4.2</span> Other genomic downloads</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -397,11 +452,175 @@ ul.task-list li input[type="checkbox"] {
 
 <hr>
 <p><br></p>
-<p>Content TBA</p>
+<section id="brief-recap-of-what-you-learned-in-this-course" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="brief-recap-of-what-you-learned-in-this-course"><span class="header-section-number">1</span> Brief recap of what you learned in this course</h2>
+<p>TBA</p>
+<p><br></p>
+</section>
+<section id="miscellaneous-notes" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="miscellaneous-notes"><span class="header-section-number">2</span> Miscellaneous notes</h2>
+<section id="best-practices" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="best-practices"><span class="header-section-number">2.1</span> Best practices</h3>
+<section id="script-arguments-and-hard-coding" class="level4">
+<h4 class="anchored" data-anchor-id="script-arguments-and-hard-coding">Script arguments and hard-coding</h4>
+<p>We’ve been writing shell scripts that accept arguments, instead of including variable things like inputs and outputs in the scripts themselves. The latter method can be referred to as “hard-coding” these items.</p>
+<p>You can use arguments also for things like settings, for example for bioinformatics program options that may you may want to vary among different runs of the script, or for information about your data like read length or RNA-seq library strandedness (as you did in last week’s exercises). If you don’t hard-code these options in your script but have arguments for them, it will be easier to re-use your script in different contexts.</p>
+<p>But there is balance to be struck here, and you can also “hobble” your script with a confusing array of arguably too many arguments. Along those lines, here are two things to consider:</p>
+<ul>
+<li><p>When you do hard-code potentially variable things in your script, it can be a good idea to define them clearly <strong>at the top of your script</strong>. We actually did this in our primary script to run the nf-core rnaseq pipeline, where we had the following lines to define a variable with the location of the workflow dir:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Settings and constants</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">WORKFLOW_DIR</span><span class="op">=</span>software/nfc-rnaseq/3_14_0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Such variables can be referred to as “constants”, since they are hard-coded in the script, and in shell code, ALL-CAPS is regularly used for them<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p></li>
+<li><p>It is also possible to make your shell script accept <em>options</em>. The example below uses both long and short options (e.g.&nbsp;<code>-o | --outdir</code>). It also used “flag” options that turn functionality on/off (e.g.&nbsp;<code>--no_gcbias</code>) and options that take arguments (e.g.&nbsp;<code>--infile</code>).</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Process command-line options</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="bu">[</span> <span class="st">"</span><span class="va">$1</span><span class="st">"</span> <span class="ot">!=</span> <span class="st">""</span> <span class="bu">]</span><span class="kw">;</span> <span class="cf">do</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">"</span><span class="va">$1</span><span class="st">"</span> <span class="kw">in</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>        <span class="ss">-o</span> <span class="kw">|</span> <span class="ss">--outdir</span> <span class="kw">)</span>     <span class="bu">shift</span> <span class="kw">&amp;&amp;</span> <span class="va">outdir</span><span class="op">=</span><span class="va">$1</span> <span class="cf">;;</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>        <span class="ss">-i</span> <span class="kw">|</span> <span class="ss">--infile</span> <span class="kw">)</span>     <span class="bu">shift</span> <span class="kw">&amp;&amp;</span> <span class="va">infile</span><span class="op">=</span><span class="va">$1</span> <span class="cf">;;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>        <span class="ss">--transcripts</span> <span class="kw">)</span>     <span class="bu">shift</span> <span class="kw">&amp;&amp;</span> <span class="va">transcripts</span><span class="op">=</span><span class="va">$1</span> <span class="cf">;;</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>        <span class="ss">--no_gcbias</span> <span class="kw">)</span>       <span class="va">gcbias</span><span class="op">=</span>false <span class="cf">;;</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>        <span class="ss">--dl_container</span> <span class="kw">)</span>    <span class="va">dl_container</span><span class="op">=</span>true <span class="cf">;;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="ss">-h</span> <span class="kw">|</span> <span class="ss">--help</span> <span class="kw">)</span>       <span class="ex">script_help</span><span class="kw">;</span> <span class="bu">exit</span> 0 <span class="cf">;;</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>        <span class="ss">-v</span> <span class="kw">|</span> <span class="ss">--version</span> <span class="kw">)</span>    <span class="bu">echo</span> <span class="st">"Version 2024-04-13"</span> <span class="kw">&amp;&amp;</span> <span class="bu">exit</span> 0 <span class="cf">;;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>        <span class="pp">*</span> <span class="kw">)</span>                 <span class="bu">echo</span> <span class="st">"Invalid option </span><span class="va">$1</span><span class="st">"</span> <span class="kw">&amp;&amp;</span> <span class="bu">exit</span> 1 <span class="cf">;;</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">esac</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">shift</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="cf">done</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Such a script could for example be run like so:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> scripts/salmon.sh <span class="at">-i</span> my.bam <span class="at">-o</span> results/salmon <span class="at">--no_gcbias</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>That’s more readable less error-prone than “anonymous” positional arguments. It also makes it possible to add several/many settings that have defaults — when a script only takes arguments, all of them always need to be provided.</p></li>
+</ul>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+<section id="program-versions" class="level4">
+<h4 class="anchored" data-anchor-id="program-versions">Program versions</h4>
+<p>Here is one small best-practice addition to shell scripts that was used in last week’s exercises, which I also wanted to point out here (you may want to use this in your final project!). For scripts that run bioinformatics tools, it’s a good idea <strong>include a line to print the program version</strong>. For example, the FastQC script contained the following lines at the end:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Used FastQC version:"</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This way you’ll always have a clear record of the version that you used when you ran the script, at least if you keep the Slurm log file (and in last week’s exercises, we additionally moved Slurm log files to a <code>logs</code> dir within the output dir).</p>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+</section>
+<section id="using-ssh-to-connect-to-osc" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="using-ssh-to-connect-to-osc"><span class="header-section-number">2.2</span> Using SSH to connect to OSC</h3>
+<p>Because OSC’s OnDemand web portal is so useful, we have been exclusively using that to connect to OSC. But not all supercomputers have such a web portal, and the classic way of connecting to supercomputers and other remote computers is using SSH (Secure SHell). You can also connect to OSC with SSH, and this can be a faster way than going through OnDemand when you’re comfortable in the Unix shell.</p>
+<p>At least with a Mac or Linux computer, you just have to open a shell on your own computer and use the <code>ssh</code> command to “move your shell” to OSC:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> jelmer@pitzer.osc.edu</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>jelmer@pitzer.osc.edu's password:</code></pre>
+<p>I have added a <a href="../week5/w5_bonus_ssh.html">page with more information on connecting to OSC with SSH</a>, which also includes information to:</p>
+<ul>
+<li>Avoid being prompted for your password every time you connect</li>
+<li>SSH-tunnel a local VS Code installation to OSC (!!)</li>
+</ul>
+<p><br></p>
+</section>
+</section>
+<section id="file-transfer-to-and-from-osc-with-filezilla" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="file-transfer-to-and-from-osc-with-filezilla"><span class="header-section-number">3</span> File transfer to and from OSC with FileZilla</h2>
+<p>In week 5, I had added some self-study material about file transfer to and from OSC at the <a href="../week5/w5_1_osc.html#self-study-material-more-on-file-transfer">bottom of the lecture page on OSC</a>. This material covers:</p>
+<ul>
+<li>Remote transfer commands like <code>scp</code> and <code>rsync</code> <em>(for small transfers)</em></li>
+<li>SFTP, focusing on command-line usage <em>(for transfers of any size)</em></li>
+<li>Globus (briefly) <em>(for large transfers)</em></li>
+</ul>
+<p>Here, let’s briefly go over what it probably overall the single best way to transfer files, since it works for transfers of any size, and is easy and quick: <strong>file transfer with a GUI-based SFTP client</strong>. There are a number of such programs, but I chose to show you <strong>FileZilla</strong> because it works on all operating systems<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<ul>
+<li><p>Go to the <a href="https://filezilla-project.org/download.php?type=client">FileZilla download page</a> — it should automatically display a big green download button for your operating system: click that and install and open the program.</p></li>
+<li><p>To connect to OSC, find the Site Manager: click <code>File</code> in the top menu bar and then <code>Site Manager</code><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. In the Site Manager:</p>
+<ul>
+<li>Protocol: select “SFTP - SSH File Transfer Protocol”.</li>
+<li>Host: type <code>sftp.osc.edu</code> (and you can leave the Port box empty).</li>
+<li>Logon Type: Make sure “Normal” is selected.</li>
+<li>User: Type you OSC user name.</li>
+<li>Password: Type or copy your OSC password.</li>
+<li>Click the “Connect” button at the bottom to connect to OSC.</li>
+</ul></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/filezilla_connect.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%"></p>
+</figure>
+</div>
+<ul>
+<li>Once connected, your main screen is split with a local file explorer on the left, and a remote file explorer on the right:</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/split_screen.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:90.0%"></p>
+</figure>
+</div>
+<ul>
+<li><p>Transferring dirs and files in either direction is as simple as dragging and dropping them to the other side!</p></li>
+<li><p>Your default location at OSC is your home dir in <code>/users/</code>, but you can type a path in the top bar to e.g.&nbsp;go to <code>/fs/ess/PAS2700/users</code>:</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="img/proj_dir.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%"></p>
+</figure>
+</div>
+<p><br></p>
+</section>
+<section id="downloading-files-at-the-command-line" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="downloading-files-at-the-command-line"><span class="header-section-number">4</span> Downloading files at the command line</h2>
+<p>When you need to get large files from public repositories like the NCBI (e.g.&nbsp;reference genome files, raw reads from the SRA), I would recommend not to download these to your own computer and then transfer them to OSC, but to download them directly to OSC using commands.</p>
+<section id="wget" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="wget"><span class="header-section-number">4.1</span> <code>wget</code></h3>
+<p>You can download files from any URL that will allow you using the <code>wget</code> command. It has many options, but basic usage is quite simple:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This will download the file at the URL to your current working dir</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="op">&lt;</span>URL<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>As an example, say that we want to download the reference genome FASTA and GTF files for <em>Culex pipiens</em>, the focal species of the Garrigos et al.&nbsp;RNA-seq data set that we’ve been working with. The files for that genome can be found at this <a href="https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/016/801/865/GCA_016801865.2_TS_CPP_V2/">NCBI FTP webpage</a>.</p>
+<p>You can right-click on any of the files and then click “Copy Link Address” (or something similar, depending on your browser) — let’s copy the URL to the assembly FASTA (<code>.fna.gz</code>) file. Then type <code>wget</code> and <kbd>Space</kbd> in your terminal and paste the URL:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/016/801/865/GCA_016801865.2_TS_CPP_V2/GCA_016801865.2_TS_CPP_V2_genomic.fna.gz</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>--2024-04-13 13:33:16--  https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/016/801/865/GCA_016801865.2_TS_CPP_V2/GCA_016801865.2_TS_CPP_V2_genomic.fna.gz
+Resolving ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)... 130.14.250.12, 130.14.250.11, 2607:f220:41e:250::12, ...
+Connecting to ftp.ncbi.nlm.nih.gov (ftp.ncbi.nlm.nih.gov)|130.14.250.12|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 172895917 (165M) [application/x-gzip]
+Saving to: ‘GCA_016801865.2_TS_CPP_V2_genomic.fna.gz’
+
+100%[=====================================================================================================================&gt;] 172,895,917 51.7MB/s   in 3.2s   
+
+2024-04-13 13:33:20 (51.7 MB/s) - ‘GCA_016801865.2_TS_CPP_V2_genomic.fna.gz’ saved [172895917/172895917]</code></pre>
+<p>Let’s list our downloaded file:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lh</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="bash-out"><code>-rw-r--r--  1 jelmer PAS0471 165M Aug  5  2022 GCA_016801865.2_TS_CPP_V2_genomic.fna.gz</code></pre>
+<hr style="height:1pt; visibility:hidden;">
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Another commonly used downloading command is <code>curl</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>wget</code> and <code>curl</code> have similar functionality, so you don’t really need to learn to use both of them.</p>
+</div>
+</div>
+<hr style="height:1pt; visibility:hidden;">
+</section>
+<section id="other-genomic-downloads" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="other-genomic-downloads"><span class="header-section-number">4.2</span> Other genomic downloads</h3>
+<ul>
+<li><p>For reference genome downloads, NCBI also has a relatively new and very useful tool called <strong>“datasets”</strong>. This is especially useful if you want to download multiple or many genomes — for example, you can download all available genomes of a certain (say, bacterial) genus with a single command.</p></li>
+<li><p>For downloads from the Sequence Read Archive (SRA), which contains high-throughput sequencing reads, you can use tools like <a href="https://github.com/ncbi/sra-tools/wiki/HowTo:-fasterq-dump">fasterq-dump</a> and <a href="https://github.com/rpetit3/fastq-dl">dl-fastq</a>. Also handy is the simple <a href="https://sra-explorer.info">SRA explorer website</a>, where you can enter an NCBI accession number and it will give you download links.</p></li>
+</ul>
+<p><br><br></p>
 
 
+</section>
+</section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p> But this is far from universal, it is also fairly common to use all-caps for all shell variables, but this is not what we’ve been doing.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p> And has a more intuitive user interface than CyberDuck, another very commonly used program that works both on Mac and Windows.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p> There is a also an icon in the far top-left to access this menu. Additionally, there is a “Quickconnect” bar but I’ve not managed to connect to OSC with that.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

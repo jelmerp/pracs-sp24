@@ -1005,7 +1005,7 @@
     "href": "week7/w7_1.html#brief-recap-of-what-you-learned-in-this-course",
     "title": "Course recap and file transfer",
     "section": "1 Brief recap of what you learned in this course",
-    "text": "1 Brief recap of what you learned in this course\nTBA"
+    "text": "1 Brief recap of what you learned in this course\nIn this course, you have learned to:\n\nWork in the Unix shell and use a variety of Unix commands\nWrite simple but flexible shell scripts that use a set of best practices and accept arguments\nRun (bioinformatics) tools with CLIs, command-line interfaces\nUnderstand the basics of a supercomputer and get comfortable working with one (OSC)\nUse Conda to install and manage software environments\nSubmit shell scripts as Slurm batch jobs\nUse the VS Code text editor as an IDE for shell code\nWrite informal pipelines using runner scripts\nUse formal Nextflow/nf-core pipelines\nStructure your research project files in a consistent way that favors reproducibility\nWrite in Markdown, for example to create README and notes files to document your research\nUse Git to version control your research project code and share this code with GitHub\n\nAs also mentioned in the introductory presentation, these skills should:\n\nHelp you to do your research more reproducibly and efficiently\nPrepare you to work with large “omics” datasets"
   },
   {
     "objectID": "week7/w7_1.html#miscellaneous-notes",

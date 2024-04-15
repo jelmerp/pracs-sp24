@@ -544,7 +544,7 @@ Click to see the code of the <code>fastqc.sh</code> script
 <span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Process the command-line arguments</span></span>
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="kw">[[</span> <span class="ot">!</span> <span class="st">"</span><span class="va">$#</span><span class="st">"</span> <span class="ot">-eq</span> 2 <span class="kw">]];</span> <span class="cf">then</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Error: You provided </span><span class="va">$#</span><span class="st"> arguments, while 4 are required."</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Error: You provided </span><span class="va">$#</span><span class="st"> arguments, while 2 are required."</span></span>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Usage: fastqc.sh &lt;FASTQ-file&gt; &lt;output-dir&gt;"</span></span>
 <span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Example: sbatch fastqc.sh data/fastq/A_R1.fastq.gz results/fastqc"</span></span>
 <span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="bu">echo</span> <span class="st">"Your arguments: </span><span class="va">$*</span><span class="st">"</span></span>

@@ -401,16 +401,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    
   <ul>
   <li><a href="#brief-recap-of-what-you-learned-in-this-course" id="toc-brief-recap-of-what-you-learned-in-this-course" class="nav-link active" data-scroll-target="#brief-recap-of-what-you-learned-in-this-course"><span class="header-section-number">1</span> Brief recap of what you learned in this course</a></li>
-  <li><a href="#miscellaneous-notes" id="toc-miscellaneous-notes" class="nav-link" data-scroll-target="#miscellaneous-notes"><span class="header-section-number">2</span> Miscellaneous notes</a>
+  <li><a href="#final-notes-on-best-practices" id="toc-final-notes-on-best-practices" class="nav-link" data-scroll-target="#final-notes-on-best-practices"><span class="header-section-number">2</span> Final notes on best practices</a>
   <ul class="collapse">
-  <li><a href="#best-practices" id="toc-best-practices" class="nav-link" data-scroll-target="#best-practices"><span class="header-section-number">2.1</span> Best practices</a></li>
-  <li><a href="#using-ssh-to-connect-to-osc" id="toc-using-ssh-to-connect-to-osc" class="nav-link" data-scroll-target="#using-ssh-to-connect-to-osc"><span class="header-section-number">2.2</span> Using SSH to connect to OSC</a></li>
+  <li><a href="#script-arguments-and-hard-coding" id="toc-script-arguments-and-hard-coding" class="nav-link" data-scroll-target="#script-arguments-and-hard-coding"><span class="header-section-number">2.1</span> Script arguments and hard-coding</a></li>
+  <li><a href="#program-versions" id="toc-program-versions" class="nav-link" data-scroll-target="#program-versions"><span class="header-section-number">2.2</span> Program versions</a></li>
   </ul></li>
-  <li><a href="#file-transfer-to-and-from-osc-with-filezilla" id="toc-file-transfer-to-and-from-osc-with-filezilla" class="nav-link" data-scroll-target="#file-transfer-to-and-from-osc-with-filezilla"><span class="header-section-number">3</span> File transfer to and from OSC with FileZilla</a></li>
-  <li><a href="#downloading-files-at-the-command-line" id="toc-downloading-files-at-the-command-line" class="nav-link" data-scroll-target="#downloading-files-at-the-command-line"><span class="header-section-number">4</span> Downloading files at the command line</a>
+  <li><a href="#using-ssh-to-connect-to-osc" id="toc-using-ssh-to-connect-to-osc" class="nav-link" data-scroll-target="#using-ssh-to-connect-to-osc"><span class="header-section-number">3</span> Using SSH to connect to OSC</a></li>
+  <li><a href="#file-transfer-to-and-from-osc-with-filezilla" id="toc-file-transfer-to-and-from-osc-with-filezilla" class="nav-link" data-scroll-target="#file-transfer-to-and-from-osc-with-filezilla"><span class="header-section-number">4</span> File transfer to and from OSC with FileZilla</a></li>
+  <li><a href="#downloading-files-at-the-command-line" id="toc-downloading-files-at-the-command-line" class="nav-link" data-scroll-target="#downloading-files-at-the-command-line"><span class="header-section-number">5</span> Downloading files at the command line</a>
   <ul class="collapse">
-  <li><a href="#wget" id="toc-wget" class="nav-link" data-scroll-target="#wget"><span class="header-section-number">4.1</span> <code>wget</code></a></li>
-  <li><a href="#other-genomic-downloads" id="toc-other-genomic-downloads" class="nav-link" data-scroll-target="#other-genomic-downloads"><span class="header-section-number">4.2</span> Other genomic downloads</a></li>
+  <li><a href="#wget" id="toc-wget" class="nav-link" data-scroll-target="#wget"><span class="header-section-number">5.1</span> <code>wget</code></a></li>
+  <li><a href="#other-genomic-downloads" id="toc-other-genomic-downloads" class="nav-link" data-scroll-target="#other-genomic-downloads"><span class="header-section-number">5.2</span> Other genomic downloads</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -420,7 +421,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Course recap and file transfer</h1>
+<h1 class="title">Course recap &amp; SSH, file transfer and downloading</h1>
 <p class="subtitle lead">Week 7</p>
 </div>
 
@@ -452,45 +453,53 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <hr>
 <p><br></p>
+<p>In this last lecture page of the course, I will start with a recap of what you learned in this course. Then, we’ll have a series of final notes, mostly focused on remote connections.</p>
+<p><br></p>
 <section id="brief-recap-of-what-you-learned-in-this-course" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="brief-recap-of-what-you-learned-in-this-course"><span class="header-section-number">1</span> Brief recap of what you learned in this course</h2>
 <p>In this course, you have learned to:</p>
+<p><strong>Shell</strong></p>
 <ul>
 <li>Work in the Unix shell and use a variety of Unix commands</li>
 <li>Write simple but flexible shell scripts that use a set of best practices and accept arguments</li>
 <li>Run (bioinformatics) tools with CLIs, command-line interfaces</li>
+<li>Use the VS Code text editor as an IDE for shell code</li>
+</ul>
+<p><strong>Supercomputing</strong></p>
+<ul>
 <li>Understand the basics of a supercomputer and get comfortable working with one (OSC)</li>
 <li>Use Conda to install and manage software environments</li>
 <li>Submit shell scripts as Slurm batch jobs</li>
-<li>Use the VS Code text editor as an IDE for shell code</li>
-<li>Write informal pipelines using runner scripts</li>
-<li>Use formal Nextflow/nf-core pipelines</li>
+</ul>
+<p><strong>Research project reproducibility</strong></p>
+<ul>
 <li>Structure your research project files in a consistent way that favors reproducibility</li>
 <li>Write in Markdown, for example to create README and notes files to document your research</li>
 <li>Use Git to version control your research project code and share this code with GitHub</li>
+<li>Write informal pipelines using runner scripts</li>
+<li>Use formal Nextflow/nf-core pipelines</li>
 </ul>
-<p>As also mentioned in the introductory presentation, these skills should:</p>
+<hr style="height:1pt; visibility:hidden;">
+<p>As mentioned in the introductory presentation, <strong>these skills should</strong>:</p>
 <ul>
 <li>Help you to do your research more reproducibly and efficiently</li>
-<li>Prepare you to work with large “omics” datasets</li>
+<li>Prepare you to work with large “omics” data sets</li>
 </ul>
 <p><br></p>
 </section>
-<section id="miscellaneous-notes" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="miscellaneous-notes"><span class="header-section-number">2</span> Miscellaneous notes</h2>
-<section id="best-practices" class="level3" data-number="2.1">
-<h3 data-number="2.1" class="anchored" data-anchor-id="best-practices"><span class="header-section-number">2.1</span> Best practices</h3>
-<section id="script-arguments-and-hard-coding" class="level4">
-<h4 class="anchored" data-anchor-id="script-arguments-and-hard-coding">Script arguments and hard-coding</h4>
+<section id="final-notes-on-best-practices" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="final-notes-on-best-practices"><span class="header-section-number">2</span> Final notes on best practices</h2>
+<section id="script-arguments-and-hard-coding" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="script-arguments-and-hard-coding"><span class="header-section-number">2.1</span> Script arguments and hard-coding</h3>
 <p>We’ve been writing shell scripts that accept arguments, instead of including variable things like inputs and outputs in the scripts themselves. The latter method can be referred to as “hard-coding” these items.</p>
-<p>You can use arguments also for things like settings, for example for bioinformatics program options that may you may want to vary among different runs of the script, or for information about your data like read length or RNA-seq library strandedness (as you did in last week’s exercises). If you don’t hard-code these options in your script but have arguments for them, it will be easier to re-use your script in different contexts.</p>
+<p>You can also use arguments for <em>settings</em> like bioinformatics program options you may want to vary among different runs of the script, or relatedly, for information about your data like read length or RNA-seq library strandedness (as you did in last week’s exercises). If you don’t hard-code these options in your script but have arguments for them, it will be easier to re-use your script in different contexts.</p>
 <p>But there is balance to be struck here, and you can also “hobble” your script with a confusing array of arguably too many arguments. Along those lines, here are two things to consider:</p>
 <ul>
 <li><p>When you do hard-code potentially variable things in your script, it can be a good idea to define them clearly <strong>at the top of your script</strong>. We actually did this in our primary script to run the nf-core rnaseq pipeline, where we had the following lines to define a variable with the location of the workflow dir:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Settings and constants</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">WORKFLOW_DIR</span><span class="op">=</span>software/nfc-rnaseq/3_14_0</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Such variables can be referred to as “constants”, since they are hard-coded in the script, and in shell code, ALL-CAPS is regularly used for them<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p></li>
-<li><p>It is also possible to make your shell script accept <em>options</em>. The example below uses both long and short options (e.g.&nbsp;<code>-o | --outdir</code>). It also used “flag” options that turn functionality on/off (e.g.&nbsp;<code>--no_gcbias</code>) and options that take arguments (e.g.&nbsp;<code>--infile</code>).</p>
+<li><p>It is also possible to make your shell script accept <em>options</em>. The example below uses both long and short options (e.g.&nbsp;<code>-o | --outdir</code>). It also uses “flag” options that turn functionality on/off (e.g.&nbsp;<code>--no_gcbias</code>) and options that take arguments (e.g.&nbsp;<code>--infile</code>).</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Process command-line options</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> <span class="bu">[</span> <span class="st">"</span><span class="va">$1</span><span class="st">"</span> <span class="ot">!=</span> <span class="st">""</span> <span class="bu">]</span><span class="kw">;</span> <span class="cf">do</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">case</span> <span class="st">"</span><span class="va">$1</span><span class="st">"</span> <span class="kw">in</span></span>
@@ -511,19 +520,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <hr style="height:1pt; visibility:hidden;">
 </section>
-<section id="program-versions" class="level4">
-<h4 class="anchored" data-anchor-id="program-versions">Program versions</h4>
+<section id="program-versions" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="program-versions"><span class="header-section-number">2.2</span> Program versions</h3>
 <p>Here is one small best-practice addition to shell scripts that was used in last week’s exercises, which I also wanted to point out here (you may want to use this in your final project!). For scripts that run bioinformatics tools, it’s a good idea <strong>include a line to print the program version</strong>. For example, the FastQC script contained the following lines at the end:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"# Used FastQC version:"</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">fastqc</span> <span class="at">--version</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>This way you’ll always have a clear record of the version that you used when you ran the script, at least if you keep the Slurm log file (and in last week’s exercises, we additionally moved Slurm log files to a <code>logs</code> dir within the output dir).</p>
-<hr style="height:1pt; visibility:hidden;">
+<p><br></p>
 </section>
 </section>
-<section id="using-ssh-to-connect-to-osc" class="level3" data-number="2.2">
-<h3 data-number="2.2" class="anchored" data-anchor-id="using-ssh-to-connect-to-osc"><span class="header-section-number">2.2</span> Using SSH to connect to OSC</h3>
-<p>Because OSC’s OnDemand web portal is so useful, we have been exclusively using that to connect to OSC. But not all supercomputers have such a web portal, and the classic way of connecting to supercomputers and other remote computers is using SSH (Secure SHell). You can also connect to OSC with SSH, and this can be a faster way than going through OnDemand when you’re comfortable in the Unix shell.</p>
-<p>At least with a Mac or Linux computer, you just have to open a shell on your own computer and use the <code>ssh</code> command to “move your shell” to OSC:</p>
+<section id="using-ssh-to-connect-to-osc" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="using-ssh-to-connect-to-osc"><span class="header-section-number">3</span> Using SSH to connect to OSC</h2>
+<p>Because OSC’s OnDemand web portal is so useful, we have been exclusively using that to connect to OSC. But not all supercomputers have such a web portal, and the classic way of connecting to supercomputers and other remote computers is using SSH (Secure SHell). You can also connect to OSC with SSH, and this can be a faster way than going through OnDemand when you’re comfortable with the Unix shell.</p>
+<p>As a very brief teaser on this: at least with a Mac or Linux computer, you can simply open a shell on your own computer and use the <code>ssh</code> command to “move your shell” to OSC:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh</span> jelmer@pitzer.osc.edu</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre class="bash-out"><code>jelmer@pitzer.osc.edu's password:</code></pre>
 <p>I have added a <a href="../week5/w5_bonus_ssh.html">page with more information on connecting to OSC with SSH</a>, which also includes information to:</p>
@@ -533,16 +542,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <p><br></p>
 </section>
-</section>
-<section id="file-transfer-to-and-from-osc-with-filezilla" class="level2" data-number="3">
-<h2 data-number="3" class="anchored" data-anchor-id="file-transfer-to-and-from-osc-with-filezilla"><span class="header-section-number">3</span> File transfer to and from OSC with FileZilla</h2>
+<section id="file-transfer-to-and-from-osc-with-filezilla" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="file-transfer-to-and-from-osc-with-filezilla"><span class="header-section-number">4</span> File transfer to and from OSC with FileZilla</h2>
 <p>In week 5, I had added some self-study material about file transfer to and from OSC at the <a href="../week5/w5_1_osc.html#self-study-material-more-on-file-transfer">bottom of the lecture page on OSC</a>. This material covers:</p>
 <ul>
 <li>Remote transfer commands like <code>scp</code> and <code>rsync</code> <em>(for small transfers)</em></li>
 <li>SFTP, focusing on command-line usage <em>(for transfers of any size)</em></li>
 <li>Globus (briefly) <em>(for large transfers)</em></li>
 </ul>
-<p>Here, let’s briefly go over what it probably overall the single best way to transfer files, since it works for transfers of any size, and is easy and quick: <strong>file transfer with a GUI-based SFTP client</strong>. There are a number of such programs, but I chose to show you <strong>FileZilla</strong> because it works on all operating systems<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
+<p>Here, let’s briefly go over what it probably overall the single best way to transfer files to and from OSC, since it works for transfers of any size, and is easy and quick: <strong>file transfer with a GUI-based SFTP client</strong>. There are a number of such programs, but I chose to show you <strong>FileZilla</strong> because it works on all operating systems<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
 <ul>
 <li><p>Go to the <a href="https://filezilla-project.org/download.php?type=client">FileZilla download page</a> — it should automatically display a big green download button for your operating system: click that and install and open the program.</p></li>
 <li><p>To connect to OSC, find the Site Manager: click <code>File</code> in the top menu bar and then <code>Site Manager</code><a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>. In the Site Manager:</p>
@@ -579,11 +587,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p><br></p>
 </section>
-<section id="downloading-files-at-the-command-line" class="level2" data-number="4">
-<h2 data-number="4" class="anchored" data-anchor-id="downloading-files-at-the-command-line"><span class="header-section-number">4</span> Downloading files at the command line</h2>
-<p>When you need to get large files from public repositories like the NCBI (e.g.&nbsp;reference genome files, raw reads from the SRA), I would recommend not to download these to your own computer and then transfer them to OSC, but to download them directly to OSC using commands.</p>
-<section id="wget" class="level3" data-number="4.1">
-<h3 data-number="4.1" class="anchored" data-anchor-id="wget"><span class="header-section-number">4.1</span> <code>wget</code></h3>
+<section id="downloading-files-at-the-command-line" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="downloading-files-at-the-command-line"><span class="header-section-number">5</span> Downloading files at the command line</h2>
+<p>When you need to get large files from public repositories like NCBI (e.g.&nbsp;reference genome files, raw reads from the SRA), I would recommend not to download these to your own computer and then transfer them to OSC, but to download them directly to OSC using commands.</p>
+<section id="wget" class="level3" data-number="5.1">
+<h3 data-number="5.1" class="anchored" data-anchor-id="wget"><span class="header-section-number">5.1</span> <code>wget</code></h3>
 <p>You can download files from any URL that will allow you using the <code>wget</code> command. It has many options, but basic usage is quite simple:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This will download the file at the URL to your current working dir</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="op">&lt;</span>URL<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -619,10 +627,10 @@ Another commonly used downloading command is <code>curl</code>
 </div>
 <hr style="height:1pt; visibility:hidden;">
 </section>
-<section id="other-genomic-downloads" class="level3" data-number="4.2">
-<h3 data-number="4.2" class="anchored" data-anchor-id="other-genomic-downloads"><span class="header-section-number">4.2</span> Other genomic downloads</h3>
+<section id="other-genomic-downloads" class="level3" data-number="5.2">
+<h3 data-number="5.2" class="anchored" data-anchor-id="other-genomic-downloads"><span class="header-section-number">5.2</span> Other genomic downloads</h3>
 <ul>
-<li><p>For reference genome downloads, NCBI also has a relatively new and very useful tool called <strong>“datasets”</strong>. This is especially useful if you want to download multiple or many genomes — for example, you can download all available genomes of a certain (say, bacterial) genus with a single command.</p></li>
+<li><p>For reference genome downloads, NCBI also has a relatively new and very useful portal called <strong>“datasets”</strong> <a href="https://www.ncbi.nlm.nih.gov/datasets/docs/v2/reference-docs/command-line/datasets">that also includes a CLI tools of the same name</a>. This is especially useful if you want to download multiple or many genomes — for example, you can download all available genomes of a certain (say, bacterial) genus with a single command.</p></li>
 <li><p>For downloads from the Sequence Read Archive (SRA), which contains high-throughput sequencing reads, you can use tools like <a href="https://github.com/ncbi/sra-tools/wiki/HowTo:-fasterq-dump">fasterq-dump</a> and <a href="https://github.com/rpetit3/fastq-dl">dl-fastq</a>. Also handy is the simple <a href="https://sra-explorer.info">SRA explorer website</a>, where you can enter an NCBI accession number and it will give you download links.</p></li>
 </ul>
 <p><br><br></p>

@@ -447,7 +447,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p><br></p>
 <section id="overview" class="level2 unnumbered">
 <h2 class="unnumbered anchored" data-anchor-id="overview">Overview</h2>
-<p>This week, we will see different ways to write and run analysis pipelines. Here, we’ll talk more about runner scripts and you’ll get introduced to formal pipelines. In the the second session, we’ll run a best-practice Nextflow pipeline for RNA-seq analysis.</p>
+<p>This week, we will see different ways to write and run analysis pipelines. Here, we’ll talk more about runner scripts and you’ll get introduced to formal pipelines. In the second session, we’ll run a best-practice Nextflow pipeline for RNA-seq analysis.</p>
 <p>While thinking about different ways to organize and run your analyses, let’s have an example in mind with a simple RNA-seq analysis that:</p>
 <ul>
 <li>Trims reads in FASTQ files <em>(independently for each sample)</em></li>
@@ -568,7 +568,7 @@ Pushing the limits of the Bash and Slurm tool set <em>(Click to expand)</em>
 <span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="ex">sbatch</span> scripts/count.sh results/map results/count_table.txt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div></li>
 </ul>
 <hr style="height:1pt; visibility:hidden;">
-<p><strong>Second, here are some more bespoke code-bases solutions:</strong></p>
+<p><strong>Second, here are some more bespoke code-based solutions:</strong></p>
 <ul>
 <li><p>Command-line options and <code>if</code>-statements to flexibly run part of the pipeline (and perhaps change settings):</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode sh code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">trim</span><span class="op">=</span><span class="va">$1</span>   <span class="co"># true or false</span></span>
